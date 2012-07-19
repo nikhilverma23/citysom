@@ -1,0 +1,166 @@
+/*
+ * CSS Styles that are needed by jScrollPane for it to operate correctly.
+ *
+ * Include this stylesheet in your site or copy and paste the styles below into your stylesheet - jScrollPane
+ * may not operate correctly without them.
+ */
+
+.jspContainer
+{
+	overflow: hidden;
+	position: relative;
+}
+
+.jspPane
+{
+	position: absolute;
+}
+
+.jspVerticalBar
+{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 28px;
+	height: 100%;
+	background: transparent;
+}
+
+.jspHorizontalBar
+{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 16px;
+	background: red;
+}
+
+.jspVerticalBar *,
+.jspHorizontalBar *
+{
+	margin: 0;
+	padding: 0;
+}
+
+.jspCap
+{
+	display: none;
+}
+
+.jspHorizontalBar .jspCap
+{
+	float: left;
+}
+
+.jspTrack
+{
+	background: transparent url(../images/scrollcenter.png) center repeat-y;
+	position: relative;
+}
+
+.jspDrag
+{
+	background: #bbd;
+	position: relative;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	background-image:url(../images/drag-bg.png);
+	width:16px;
+	margin:auto;
+}
+.jspDragTop, .jspDragBottom{
+    background-color:#FFF;
+    background-repeat:no-repeat;
+    height: 7px;
+    left: 0;
+    position: absolute;
+    width: 16px;
+}
+.jspDragTop
+    {
+        top: 0;
+        background-image:url(../images/drag-top.png);
+    }
+
+.jspDragBottom
+    {
+        bottom: 0;
+        background-image:url(../images/drag-bottom.png);
+    }
+
+.jspHorizontalBar .jspTrack,
+.jspHorizontalBar .jspDrag
+{
+	float: left;
+	height: 100%;
+}
+
+.jspArrow
+{
+	background: #50506d;
+	text-indent: -20000px;
+	display: block;
+	cursor: pointer;
+}
+
+.jspArrow.jspDisabled
+{
+	cursor: default;
+	background: #80808d;
+}
+
+.jspVerticalBar .jspArrow
+{
+	height: 23px;
+}
+
+.jspArrowDown
+	{
+        background-image:url(../images/scrolbottom.png); background-repeat:no-repeat;
+        background-position:bottom;
+        background-color:transparent;
+	}
+	
+.jspArrowUp
+	{
+	    background-image:url(../images/scrolltop.png); background-repeat:no-repeat;
+	    background-position:bottom;
+	    background-color:transparent;
+	}
+.jspArrowDown.jspDisabled{
+    background-color:transparent;
+    background-image:url(../images/scrolbottom-disabled.png); background-repeat:no-repeat;
+}
+.jspArrowUp.jspDisabled{
+    background-color:transparent;
+    background-image:url(../images/scrolltop-disabled.png); background-repeat:no-repeat;
+}
+
+
+
+.jspHorizontalBar .jspArrow
+{
+	width: 16px;
+	float: left;
+	height: 100%;
+}
+
+.jspVerticalBar .jspArrow:focus
+{
+	outline: none;
+}
+
+.jspCorner
+{
+	background: #eeeef4;
+	float: left;
+	height: 100%;
+}
+
+/* Yuk! CSS Hack for IE6 3 pixel bug :( */
+* html .jspCorner
+{
+	margin: 0 -3px 0 0;
+} 

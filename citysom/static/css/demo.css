@@ -1,0 +1,43 @@
+/*
+ * CSS Styles that are used on the jScrollPane demo site - these are custom to the site and
+ * you shouldn't need to use them in your own implementations of jScrollPane.
+ */
+
+
+p.intro
+{
+	font-size: 116%;
+	padding: 10px;
+	background: #fff;
+
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+
+}
+
+
+ul.link-list li
+{
+	margin: 0;
+}
+
+ul p
+{
+	margin: 0;
+}
+
+/* For the form demo page */
+
+pre
+{
+	background: #fff;
+	padding: 10px;
+	font-size: 93%;
+	width: 740px;
+
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	overflow: auto;
+}

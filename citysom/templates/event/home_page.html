@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block title %}Citysom{% endblock %}
+
+{% block content %}
+<!--        <div class="filledarea">
+        	<div id="headingtext">April 2012</div>
+            <div id="sundayarea"><img src="/static/images/sundayimg.png" width="508" height="17" alt="sunday" /></div>
+        </div>	 -->
+        <div id="april">
+             <div class="aprilregion"><img src="/media/images/april.png" width="708" height="144" alt="sunday" /></div>          
+        </div>
+        <!-- filledarea main start from here -->
+         <div class="filledarea">
+        	<div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price $<span id="min_price_span">0</span></div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><a href="javascript:void(0)" id="min_price_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox"><input name="min_price" id="min_price" type="text" class="textfiled" value="0" readonly="readonly"/></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="min_price_up"><img src="/static/images/button_up.png"/></a></div>
+                </div>
+            </div>
+            
+            <div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Max.Price $<span id="max_price_span">0</span></div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><a href="javascript:void(0)" id="max_price_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox"><input name="max_price" id="max_price" type="text" class="textfiled" value="0"/></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="max_price_up"><img src="/static/images/button_up.png"/></a></div>
+                </div>
+            </div>
+            
+            <div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Start Time 8:00p</div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><input name="" type="image" src="/static/images/button_down.png" /></div>
+                    <div class="textbox"><input name="" type="text" class="textfiled" /></div>
+                    <div class="nextbutton"><input name="" type="image" src="/static/images/button_up.png" /></div>
+                </div>
+            </div>
+            
+            <div class="minprice_main">
+                    <div class="minprice_heading">Event Type</div>
+                    <div class="minprice_heading">
+                        <select name="mydropdown" style="background-color: black;width:150px; margin-top: 3px;color:white;font-weight:bold;"> 
+                                    <option value="Milk">All</option>
+                                    <option value="Cheese">Old Cheese</option>
+                                    <option value="Bread">Hot Bread</option>
+                                    <option value="Cheese">Old Cheese</option>
+                                    <option value="Bread">Hot Bread</option>                                
+                                    <option value="Cheese">Old Cheese</option>
+                                    <option value="Bread">Hot Bread</option>                                
+                                    <option value="Cheese">Old Cheese</option>
+                                    <option value="Bread">Hot Bread</option>
+                        </select>
+                    </div>
+                </div>
+           
+        </div>
+         <!-- filledarea main end from here -->
+          <!-- filledarea start from here -->
+         <div class="filledarea1" style="width: 967px !important; float: left; position:relative;">
+         <div class="everything_area">
+				<ul>
+    				<li class="every_heading"><a href="index.html"><div class="everything_icon"><img src="/static/images/searchicon.png" width="24" height="24" alt="icon" /></div>        &nbsp;&nbsp;Everything</a></li>
+					<li><a href="category.html"><div class="everything_icon"><img src="/static/images/cateicon.png" width="27" height="19" alt="icon" /></div>        &nbsp;&nbsp;Categories</a></li>
+					<li><a href="category.html"><div class="everything_icon"><img src="/static/images/voice_icon.png" width="16" height="26" alt="icon" /></div>    &nbsp;Concerts</a></li>
+	<li style="width:auto;"><a href="#">More &nbsp;&nbsp;></a></li>
+</ul>
+            </div>   
+           <div id="categories" class="menurecipes_content eve" >
+                                  <div id="bottom_scroll">
+                           <div class="left_region">
+                            <div class="event_type">
+                                   <h6 style="font-weight:bold;margin-bottom: 20px;margin-left: 14px;">Event Type</h6>
+                            </div>
+                            <div class="left_images">
+                                    <ul>
+                                        <li><img style="padding: 3px;" src="/static/images/concerts.png" width="120" height="170" alt="1"  /></li>
+                                        <li><img style="padding: 3px;" src="/static/images/plays.png" width="120" height="170" alt="1" /></li>  
+                                        <li><img style="padding: 3px;" src="/static/images/lectures.png" width="120" height="170" alt="1" /></li>
+                                    </ul>
+                            </div>
+                  </div>
+                  <div class="right_region">
+                            <div class="start_time">
+                            <h6 style="font-weight: bold; margin-bottom:20px;margin-right:98px;">Arrange Time : Start Time</h6>
+                        </div>
+                            <div class="right_images">  
+                             <ul>
+                                <li><img style="padding-bottom:5px;" src="/static/images/churchillimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/brieitimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/clreusimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/fooimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/carimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/cameraimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/agentimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/verdictimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/cameraimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/agentimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/verdictimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/churchillimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/brieitimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/clreusimg.png" width="130" height="170" alt="1" /></li>
+                                <li><img style="padding-bottom:5px;" src="/static/images/fooimg.png" width="130" height="170" alt="1" /></li>
+                            </ul>
+                         </div>
+                 </div>
+                 </div>
+           </div>
+           <div id="everything1" class="menurecipes_content text" >
+                <div id="bottom_images"></div>
+           </div>
+           <div id="concerts">
+           </div>
+      </div> 
+      <script>
+  		var step = 10;
+  		
+  		function load_events()
+  		{
+  			url = '/event/event_list/?view=list';
+  			min_price = parseInt($("#min_price").val());
+  			max_price = parseInt($("#max_price").val());
+  			if(min_price)
+  				url +='&min_price='+min_price;
+  			if(max_price)
+  				url +='&max_price='+max_price;
+  			
+	  		$.get(url,
+	  			function(data)
+	  			{
+					$("#bottom_images").html(data);
+	  			}
+	  		);
+	  	}
+  		
+  		$("#min_price_down").click(function(){
+  			current_value = parseInt($("#min_price").val())-step;
+  			if(current_value >= 0)
+  			{
+  				$("#min_price").val(current_value);
+  				$("#min_price_span").html(current_value);
+  				load_events();
+  			}
+  		});
+  		$("#min_price_up").click(function(){
+  			current_value = parseInt($("#min_price").val())+step;
+  			$("#min_price").val(current_value);
+  			$("#min_price_span").html(current_value);
+  			load_events();
+  		});
+  		
+  		$("#max_price_down").click(function(){
+  			current_value = parseInt($("#max_price").val())-step;
+  			if(current_value >= 0)
+  			{
+  				$("#max_price").val(current_value);
+  				$("#max_price_span").html(current_value);
+  				load_events();
+  			}
+  		});
+  		$("#max_price_up").click(function(){
+  			current_value = parseInt($("#max_price").val())+step;
+  			$("#max_price").val(current_value);
+  			$("#max_price_span").html(current_value);
+  			load_events();
+  		});
+  		load_events();
+      </script>
+{% endblock %}
+
+
+
+

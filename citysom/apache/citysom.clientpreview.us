@@ -1,0 +1,32 @@
+<VirtualHost *:80>
+   ServerName citysom.clientperview.us
+   ServerAlias citysom.*.com
+   ServerAdmin clientpreview@citysom.us
+
+   DocumentRoot /home/citysom/citysom/citysom/
+
+   Alias /robots.txt /home/citysom/citysom/citysom/static/robots.txt
+   Alias /favicon.ico /home/citysom/citysom/citysom/static/favicon.ico
+
+   Alias /static/ /home/citysom/citysom/citysom/static/
+   Alias /media/ /home/citysom/citysom/citysom/static/
+
+   <Directory /home/citysom/citysom/citysom/static>
+       Options None
+       Order deny,allow
+       Allow from all
+   </Directory>
+
+   WSGIDaemonProcess citysom.clientpreview.us user=citysom group=citysom processes=5 threads=1 maximum-requests=100
+   WSGIProcessGroup  citysom.clientpreview.us
+   WSGIScriptAlias / /home/citysom/citysom/citysom/django.wsgi
+
+   <Directory /home/citysom/citysom/citysom/apache>
+      Order allow,deny
+      Allow from all
+   </Directory>
+
+   ErrorLog /home/citysom/citysom/citysom/log/error.log
+   CustomLog /home/citysom/citysom/citysom/log/access.log combined
+</VirtualHost>
+                        

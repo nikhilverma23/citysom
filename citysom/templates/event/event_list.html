@@ -1,0 +1,11 @@
+<ul>
+ 	{% for event in events %}
+		<li>
+			<div>
+				<a href="{{event.id}}">
+					<img src="/static/{{event.event_poster}}" alt="{{event.title}}"/>
+				</a>
+			</div>
+		</li>             		
+ 	{% endfor %}
+</ul>

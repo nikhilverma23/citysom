@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+
+{% block title %}Create an event{% endblock %}
+
+{% block content %}
+<script type="text/javascript" src="/static/js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+        mode : "textareas",
+        theme : "advanced",
+        skin : "o2k7",
+        skin_variant : "black"
+});
+</script>
+<div class="cre_event">Create an event</div>
+ 
+        <div class="datearea">
+                
+                
+        </div>
+        <div class="clear"></div>
+<div id="login">
+			<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload_image">
+                <img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+                {{eventform_poster.event_poster_file}}
+                <a href="javascript:void(0)" style="text-decoration: none;color: black" id="upload_link"><h6 style="margin-top:10px;margin-left:15px;">----Upload poster----</h6></a>
+            </div>
+            </form>
+            {% if form.errors %}
+			<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
+			{% endif %}
+            <div class="login_content">
+                  <form id="event-form" action="" method="POST" enctype="multipart/form-data">
+                  	{% csrf_token %}
+                    <div class="width-60 fltlft">
+                         <fieldset class="adminform">
+                            <ul class="adminformlist" style="list-style: none;">
+                            	<li class="formlist1">
+                                	{% if eventform.title.errors %}
+								    	<p class="error">{{ eventform.title.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event Title:</b>
+                                    {{eventform.title}}
+                                </li>
+                                <li class="formlist1">
+                                	{% if eventform.venue_name.errors %}
+								    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Venue Name:</b>
+                                    {{eventform.venue_name}}
+                                </li>
+                                <li class="formlist1">
+                                		<div id="venue_map" style="margin: 10px; height: 300px;"></div>
+                                </li>
+                                <li class="formlist1">
+                                	{% if eventform.date_started.errors %}
+								    	<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
+								  	{% endif %}
+                                   <b>Event start date:</b>
+                                   {{eventform.date_started}}
+                                </li>
+                                <li class="formlist1">
+                                	{% if eventform.date_completed.errors %}
+								    	<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event end date:</b>
+                                    {{eventform.date_completed}} 
+                                </li>
+                                <!--<li class="formlist1">
+                                	{% if eventform.event_duration.errors %}
+								    	<p class="error">{{ eventform.event_duration.errors|join:", "  }}</p>
+								  	{% endif %}
+                                  <b>Event Duration:</b>
+                                   {{eventform.event_duration}} 
+                                </li>-->
+                                <li class="formlist1" style="margin-top: 20px;">
+                            <b style="float:left;">Event Start Hours:</b>
+                                   
+                   <div id="start_hour">
+
+                       <div class="start_left">
+                           <span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+                             {% if eventform.start_hours_on_monday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_monday.errors %}
+				    		 <p class="error">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Mondays:</label>
+                             {{eventform.start_hours_on_monday}} 
+				    	     {{eventform.end_hours_on_monday}} 
+                             <input type="checkbox" name="monday_checkbox" name="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
+                             
+                             
+                             {% if eventform.start_hours_on_tuesday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_tuesday.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_tuesday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_tuesday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Tuesdays:</label>
+                             {{eventform.start_hours_on_tuesday}}
+                             {{eventform.end_hours_on_monday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Tuesdays" style="margin-left:7px;" /><br />
+                            
+							 {% if eventform.start_hours_on_wednesday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_wednesday.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_wednesday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_tuesday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Wednesdays:</label>
+                             {{eventform.start_hours_on_wednesday}} 
+                             {{eventform.end_hours_on_wednesday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Wednesdays" style="margin-left:7px;" /><br />
+				  		</div>
+				  		<div class="start_right">
+				  			<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+				  			 {% if eventform.start_hours_on_thursday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_thursday.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_thursday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_thursday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Thursdays:</label>
+                             {{eventform.start_hours_on_thursday}} 
+				    	     {{eventform.end_hours_on_thursday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Thursdays" style="margin-left:7px;" /><br />
+							 
+							 {% if eventform.start_hours_on_friday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_friday.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_friday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_friday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Fridays:</label>
+                             {{eventform.start_hours_on_friday}} 
+                             {{eventform.end_hours_on_friday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Fridays" style="margin-left:7px;" /><br />
+							 
+							 {% if eventform.start_hours_on_saturday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_saturday.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_saturday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_saturday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Saturdays:</label>
+                             {{eventform.start_hours_on_saturday}} 
+                             {{eventform.end_hours_on_saturday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Saturdays" style="margin-left:7px;" /><br />
+							 
+							 {% if eventform.start_hours_on_sunday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_sunday.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_sunday.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_sunday.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Sundays:</label>
+                             {{eventform.start_hours_on_sunday}} 
+                             {{eventform.end_hours_on_sunday}} 
+                             <input type="checkbox" name="classical" class="uni" value="Sundays" style="margin-left:7px;" /><br />
+						</div>
+                   </div>
+                      <!--<li class="formlist1">
+                                	{% if eventform.event_poster.errors %}
+								    	<p class="error">{{ eventform.event_poster.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event end date:</b>
+                                    {{eventform.event_poster}} 
+                       </li>-->       
+                      <div class="clear"></div>
+                             
+                        </li>
+                        <li class="formlist1">
+                        	{% if eventform.frequency.errors %}
+						    	<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Repeats:</b>
+                            {{eventform.frequency}} 
+                        </li>
+                        
+                        <li class="formlist1 ">
+                        	{% if eventform.interval.errors %}
+						    	<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.interval}} 
+                        </li>
+                        
+                        <li class="formlist1">
+                        	{% if eventform.frequency.errors %}
+						    	<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.repeat_on}} 
+                        </li>
+             
+                        
+                        <li class="formlist1">
+                        	{% if eventform.event_ticket_price.errors %}
+						    	<p class="error">{{ eventform.event_ticket_price.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Full price ticket:</b>
+                            {{eventform.event_ticket_price}} 
+                        </li>
+                        <li class="formlist1">
+                        	{% if eventform.eventwebsite.errors %}
+						    	<p class="error">{{ eventform.eventwebsite.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event website:</b>
+                            {{eventform.eventwebsite}} 
+                        </li>
+                         <li class="formlist1">
+                            <strong style="float: left; font-weight: bold;">Category:</strong>
+                            <div id="event_categories">
+                                <div class="event_type">
+                                	{% if eventform.category.errors %}
+						    	<p class="error">{{ eventform.category.errors|join:", "  }}</p>
+						  	{% endif %}
+                                    <h3 class="subheading">Event type</h3>
+                                        {{eventform.category}}
+                                </div>
+                                <div class="event_genre">
+                                	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                                 <h3 class="subheading">Event genre</h3>
+                                 	{{eventform.event_genre}} 
+                                 </div>
+                                <div class="event_public">
+                                	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                              <h3 class="subheading">Event public</h3> 
+                              {{eventform.event_public}}
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    </li>
+                    <div class="clear"></div>
+                        <!--<li class="formlist1">
+                        	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Keywords:</b>
+                            <input type="text" name="keywords" class="uni" value="Max 10 words,seperated by commas" style="border-bottom: 2px solid #000; margin-left:52px; width:300px;background: none;" />
+                        </li>-->
+                         <li class="formlist1">
+                         	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                         <b>Description:</b>
+                         <textarea  class="uni" style="width: 100%; height: 300px;" ></textarea>
+                         </li>
+                        <a href="#">             
+                        <img src="./images/submit.png" alt="" style="margin-left: 36px; margin-top:20px;" />
+                        </a>
+                      </ul>  
+                </fieldset>
+             </div>   {% if eventform.status.errors %}
+						    	<p class="error">{{ eventform.status.errors|join:", "  }}</p>
+						  	{% endif %}
+             {{eventform.status.as_hidden}}
+             {{eventform.location.as_hidden}}
+             {{eventform.event_poster.as_hidden}}
+             <input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>
+          </form>
+       </div>
+       </div> 
+
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+$(".datepicker").datepicker(
+	{
+		dateFormat:"yy-mm-dd",
+		showOn: "button",
+		buttonImage: "/static/images/calendar_icon.png",
+		buttonImageOnly: true
+	}
+);
+$(".timepicker").timepicker(
+	{
+		timeFormat:"hh:mm:ss"
+	}
+);
+var geocoder;
+var map;
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("venue_map"), myOptions);
+}
+function codeAddress(address)
+{
+	if(address)
+	{
+	    geocoder.geocode( { 'address': address}, function(results, status) 
+	    {
+	    	if (status == google.maps.GeocoderStatus.OK) 
+	    	{
+	       		map.setCenter(results[0].geometry.location);
+	        	var marker = new google.maps.Marker(
+	        	{
+	           		map: map, 
+	            	position: results[0].geometry.location
+	        	}
+	        	);
+	      } 
+	      else 
+	      {
+	      	alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	}
+}
+initialize();
+$("#venue_map").hide();
+$("#id_venue_name").blur(function(){
+	if($(this).val())
+	{
+		$("#venue_map").show();
+		codeAddress($(this).val());
+	}
+});
+$("#id_venue_name").focus(function(){
+	if(!$(this).val())
+	{
+		$("#venue_map").hide();
+	}
+});
+$("input[type=checkbox].uni").click(function(){
+	if($(this).is(":checked"))
+	{
+		class_name = "."+$(this).attr("rel");
+		first_child = class_name+":eq(0)";
+		second_child = class_name+":eq(1)";  
+		$(first_child).val("09:00:00");
+		$(second_child).val("17:00:00");
+	}
+});
+$("#eventposter-form").ajaxForm(
+	{
+		success: function(data) 
+		{ 
+			$("#id_event_poster").val(data);
+			$("#poster_image").attr("src",'/static/images/'+data);			
+		}
+   	}
+);
+$("#id_event_poster_file").hide();
+$("#upload_link").click(function(){
+	$("#id_event_poster_file").click();
+});
+$("#id_event_poster_file").change(function(){
+	$("#eventposter-form").submit();
+});
+</script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}My Professional Account{% endblock %}
+
+{% block content %}
+
+<div class="cre_event">My Professional Account</div>
+<div class="datearea"></div>
+<div class="clear"></div>
+<div class="bln_area"></div>
+<div class="login_content profile_content">
+<form enctype="multipart/form-data" method="post"  action="/myprofile/completingprofile/">
+{% csrf_token %}
+   
+  {% if form.errors %}
+  <p class="mainerror">Please correct the errors below: {{ form.non_field_errors }}</p>
+  {% endif %} 
+    
+    <fieldset>
+    <div class="form_fields">
+      {% if form.first_name.errors %}
+        <p class="error">{{ form.first_name.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_first_name">First Name:</label>
+      {{ form.first_name }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+      {% if form.last_name.errors %}
+        <p class="error">{{ form.last_name.as_text }}</p>
+      {% endif %}
+      <label for="id_last_name">Last Name:</label>
+      {{ form.last_name }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+      {% if form.gender.errors %}
+        <p class="error">{{ form.gender.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_gender">Gender:</label>
+      {{ form.gender }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.mobile.errors %}
+        <p class="error">{{ form.mobile.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_telephone">Telephone Number:</label>
+      {{ form.mobile }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email2.errors %}
+        <p class="error">{{ form.email2.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email2">Email 2:</label>
+      {{ form.email2 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email3.errors %}
+        <p class="error">{{ form.email2.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email3">Email 3:</label>
+      {{ form.email3 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email4.errors %}
+        <p class="error">{{ form.email4.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email4">Email 3:</label>
+      {{ form.email4 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.facebook_account.errors %}
+        <p class="error">{{ form.facebook_account.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_facebook_account">Facebook Account:</label>
+      {{ form.facebook_account }}
+      <div class="clear"></div>
+    </div>
+    <input id="submit_profiledetails" type="submit"  value="" name="submit" class="continue_button"/>
+   </form>
+{% endblock %}

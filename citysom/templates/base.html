@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+		<title>{% block title %}Citysom{% endblock %}</title>
+		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-timepicker.js"></script>
+		<script type="text/javascript" src="/static/js/jquery/js/jquery.form.js"></script>
+		<link type="text/css" href="/static/js/jquery/css/eggplant/jquery-ui-1.8.21.custom.css" rel="stylesheet" media="all" />
+		<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
+		<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				jQuery("#menu > li a").click(function(e) {
+
+					jQuery("#everything1, #categories, #concerts, #more").hide();
+
+					jQuery(this).parent().addClass('active');
+					jQuery(jQuery(this).attr('href')).show();
+					return false;
+				});
+
+				jQuery("#bottom_images").jScrollPane({
+					showArrows : true
+				});
+
+				$(".search_link").click(function() {
+					$("#searchtextarea").val("Search Here...");
+					$("#searchtextarea").focus();
+					$("#searchtextarea").click(function() {
+						$(this).val('');
+					});
+				});
+				$(".login_top_link").click(function(){
+					$(".login_top_div").toggle();
+				});
+				
+				$(document).ready(function(){
+			        $(".login_content input[type=text],.login_content input[type=checkbox],.login_content input[type=radio],.login_content input[type=password], .login_content textarea, .login_content select").uniform();
+			    });
+			});
+
+		</script>
+		{% block head %}
+		{% endblock %}
+	</head>
+	<body>
+		<!-- Container start from here -->
+		<div id="container">
+			<!-- Container 2 start from here -->
+			<div id="container2">
+				<!-- Topnavigation start from here -->
+				<div id="topnavigation">
+					<ul>
+						<li class="lilink">
+							<a href="javascript:void(0)" class="search_link">Search</a>
+						</li>
+						<li>
+							<a href="#">Categorize</a>
+						</li>
+						{% if user.is_authenticated %}
+						<li>
+							<a href="/event/createevent/">Publish</a>
+						</li>
+						{% endif %}
+					</ul>
+					<div id="commenttext">
+						Hello <span>{% if user.is_authenticated %}{{user.username}}<a href="{% url editprofile %}">Edit Profile</a>{% else %}Guest!{% endif %}</span>
+					</div>
+				</div>
+				<!-- Topnavigation end from here -->
+				<!-- centerarea main start from here -->
+				<div id="centerarea_main">
+					<div id="logo">
+						<a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200" height="65" alt="Citysom" /> </a>
+					</div>
+					<div id="searchbox_main">
+							<div id="logouttext">
+								{% if user.is_authenticated %}
+									<a href="/accounts/logout">Logout</a>
+								{% else %}
+									<a href="javascript:void(0)" class="login_top_link">Login</a>
+								{% endif %}
+							</div>
+							<div class="login_top_div" style="display: none;">
+								<form method="post" action="{% url auth_login %}">
+									{% csrf_token %}
+									<div>
+										<dt><label for="id_username">Username:</label></dt>
+										<dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
+										<dt><label for="id_password">Password:</label></dt>
+										<dd><input type="password" name="password" id="id_password" /></dd>
+										<dt>
+											<input type="submit" value="Log in" class="login_submit" />
+											<input type="button" value="Sign Up" class="login_submit" onclick="document.location.href='/accounts/register/';"/>
+										</dt>
+									</div>
+								</form>
+							</div>
+							<div id="searchbox">
+								<input name="searchtextarea" id="searchtextarea" type="text" />
+							</div>
+					</div>
+					<div class="filledarea1">
+			        	<div class="textmain">
+			            	<div class="textheading">Boston, MA</div>
+							<div class="clear"></div>
+			                <div class="txt"><a href="#">Change location</a></div>
+			            </div>
+			            <div class="txt2">Today: {% now "jS F Y" %}</div>
+			        </div>
+					{% block content %}
+					{% endblock %} <!-- filledarea start from here -->
+					<!--filledarea end from here -->
+				</div>
+				<!-- centerarea main end from here -->
+				<div class="clear"></div>
+			</div>
+			<!-- Container 2 end from here -->
+		</div>
+		<!-- Container end from here -->
+		<div id="footerbg">
+			<!-- Topnavigation start from here -->
+			<div id="bottomnavigation">
+			    <ul>
+			     <li>
+			      <a href="/about_us">About us</a>
+			     </li>
+			     <li>
+			      <a href="/contact_us">Contact us</a>
+			     </li>
+			     <li>
+			      <a href="/legal_info">Legal information</a>
+			     </li>
+			    </ul>
+			</div>
+			<!-- Topnavigation end from here -->
+		</div>
+	</body>
+</html>

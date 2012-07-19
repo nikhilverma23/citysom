@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+{% block title %}Edit Profile Information{% endblock %}
+{% block content %}
+<div class="cre_event">Edit Profile Information</div>
+<div class="datearea"></div>
+<div class="clear"></div>
+<div class="bln_area"></div>
+<div class="login_content profile_content">
+<form enctype="multipart/form-data" method="post"  action="/myprofile/completingprofile/">
+{% csrf_token %}
+  {% if form.errors %}
+  <p class="mainerror">Please correct the errors below: {{ form.non_field_errors }}</p>
+  {% endif %} 
+    
+    <fieldset>
+    {% if account_type == "personal" %}
+    	<div class="form_fields">
+     	 	{% if form.first_name.errors %}
+        		<p class="error">{{ form.first_name.errors|join:", "  }}</p>
+      	 	{% endif %}
+      	 	<label for="id_first_name">First Name:</label>
+      		{{ form.first_name }}
+      	<div class="clear"></div>
+    </div>
+    <div class="form_fields">
+	      {% if form.last_name.errors %}
+	      	<p class="error">{{ form.last_name.as_text }}</p>
+	      {% endif %}
+	      <label for="id_last_name">Last Name:</label>
+	      {{ form.last_name }}
+	      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+      {% if form.gender.errors %}
+        <p class="error">{{ form.gender.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_gender">Gender:</label>
+      {{ form.gender }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.telephone.errors %}
+        <p class="error">{{ form.telephone.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_telephone">Telephone Number:</label>
+      {{ form.mobile }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email_id_2.errors %}
+        <p class="error">{{ form.email_id_2.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email_id_2">Email 2:</label>
+      {{ form.email_id_2 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email_id_3.errors %}
+        <p class="error">{{ form.email_id_3.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email_id_3">Email 3:</label>
+      {{ form.email_id_3 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.email_id_4.errors %}
+        <p class="error">{{ form.email_id_4.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_email_id_4">Email 3:</label>
+      {{ form.email_id_4 }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.facebook_account.errors %}
+        <p class="error">{{ form.facebook_account.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_facebook_account">Facebook Account:</label>
+      {{ form.facebook_account }}
+      <div class="clear"></div>
+    </div>
+    
+    
+    
+    {% else %}
+    
+    
+    <div class="form_fields">
+      {% if form.first_name.errors %}
+        <p class="adminformlist">{{ form.first_name.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_first_name">First Name:</label>
+      {{ form.first_name }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+      {% if form.last_name.errors %}
+        <p class="error">{{ form.last_name.as_text }}</p>
+      {% endif %}
+      <label for="id_last_name">Last Name:</label>
+      {{ form.last_name }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+      {% if form.gender.errors %}
+        <p class="error">{{ form.gender.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_gender">Gender:</label>
+      {{ form.gender }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.telephone.errors %}
+        <p class="error">{{ form.mobile.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_telephone">Telephone Number:</label>
+      {{ form.mobile }}
+      <div class="clear"></div>
+    </div>
+    
+    <div class="form_fields">
+      {% if form.institution_name.errors %}
+        <p class="error">{{ form.institution_name.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_institution_name">Institute Name:</label>
+      {{ form.institution_name }}
+      <div class="clear"></div>
+    </div>
+    
+    <p style="margin-bottom: 20px;"><b>Institute Address:</b></p>
+    <div class="form_fields">
+      {% if form.street.errors %}
+        <p class="error">{{ form.street.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_street" style="text-align: center;">Street:</label>
+      {{ form.street }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+    {% if form.state.errors %}
+        <p class="error">{{ form.state.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_state" style="text-align: center;">State</label>
+      {{ form.state }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+    {% if form.zip_code.errors %}
+        <p class="error">{{ form.zip_code.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_zip_code" style="text-align: center;">Zip Code:</label>
+      {{ form.zip_code }}
+      <div class="clear"></div>
+    </div>
+    
+    
+    <div class="form_fields">
+     {% if form.country.errors %}
+        <p class="error">{{ form.country.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_country" style="text-align: center;">Country:</label>
+      {{ form.country }}
+      <div class="clear"></div>
+    </div>
+    <div class="form_fields">
+    {% if form.institution_website.errors %}
+        <p class="error">{{ form.institution_website.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_institution_website">Institute Website:</label>
+      {{ form.institution_website }}
+      <div class="clear"></div>
+    </div>
+    <div class="institute_operation_left">
+    	<p><b>Institute Hours of Operation:</b></p>
+    </div>
+    <div class="institute_operation_right">
+    	<div class="institute_operation_left">
+		    <div class="form_fields">
+		    {% if form.start_hours_on_monday.errors %}
+		        <p class="error">{{ form.start_hours_on_monday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_monday">Monday:</label>
+		      {{ form.start_hours_on_monday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		    <div class="form_fields">
+		    {% if form.end_hours_on_monday.errors %}
+		        <p class="error">{{ form.end_hours_on_monday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_monday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		    
+		     <div class="form_fields">
+		     {% if form.start_hours_on_tuesday.errors %}
+		        <p class="error">{{ form.start_hours_on_tuesday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_working_hours_on_tuesday">Tuesday:</label>
+		      {{ form.start_hours_on_tuesday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		    <div class="form_fields">
+		    {% if form.end_hours_on_tuesday.errors %}
+		        <p class="error">{{ form.end_hours_on_tuesday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_tuesday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		    
+		    
+		     <div class="form_fields">
+		     {% if form.start_hours_on_wednesday.errors %}
+		        <p class="error">{{ form.start_hours_on_wednesday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_wednesday">Wednesday:</label>
+		      {{ form.start_hours_on_wednesday }}
+		      <div class="clear"></div>
+		    </div>
+		    <div class="form_fields">
+		    {% if form.end_hours_on_wednesday.errors %}
+		        <p class="error">{{ form.end_hours_on_wednesday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_wednesday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		 </div>
+		 <div class="institute_operation_right">
+		     <div class="form_fields">
+		     {% if form.start_hours_on_thursday.errors %}
+		        <p class="error">{{ form.start_hours_on_thursday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_thursday">Thursday:</label>
+		      {{ form.start_hours_on_thursday }}
+		      <div class="clear"></div>
+		    </div>
+		    <div class="form_fields">
+		    {% if form.end_hours_on_thursday.errors %}
+		        <p class="error">{{ form.end_hours_on_thursday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_thursday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		     <div class="form_fields">
+		     {% if form.start_hours_on_friday.errors %}
+		        <p class="error">{{ form.start_hours_on_friday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_friday">Friday:</label>
+		      {{ form.start_hours_on_friday }}
+		      <div class="clear"></div>
+		    </div>
+		     <div class="form_fields">
+		    {% if form.end_hours_on_friday.errors %}
+		        <p class="error">{{ form.end_hours_on_friday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_friday }}
+		      <div class="clear"></div>
+		    </div>
+		    
+		    
+		     <div class="form_fields">
+		       {% if form.start_hours_on_saturday.errors %}
+		        <p class="error">{{ form.start_hours_on_saturday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_saturday">Saturday:</label>
+		      {{ form.start_hours_on_saturday }}
+		      <div class="clear"></div>
+		      
+		       <div class="form_fields">
+		    {% if form.end_hours_on_saturday.errors %}
+		        <p class="error">{{ form.end_hours_on_saturday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_saturday }}
+		      <div class="clear"></div>
+		  
+		    </div>
+		     <div class="form_fields">
+		     {% if form.start_hours_on_sunday.errors %}
+		        <p class="error">{{ form.start_hours_on_sunday.errors|join:", "  }}</p>
+		      {% endif %}
+		      <label for="id_start_hours_on_sunday">Sunday:</label>
+		      {{ form.start_hours_on_sunday }}
+		      <div class="clear"></div>
+		      
+		       <div class="form_fields">
+		    {% if form.end_hours_on_sunday.errors %}
+		        <p class="error">{{ form.end_hours_on_sunday.errors|join:", "  }}</p>
+		      {% endif %}
+		      {{ form.end_hours_on_sunday }}
+		      <div class="clear"></div>
+		      
+		    </div>
+		</div>
+		<div class="clear"></div>  
+	</div>
+	<div class="clear"></div>   
+	    
+  
+ </fieldset>
+	
+	{% endif %}
+	
+	<input id="submit_profiledetails" type="submit"  value="" name="submit" class="continue_button"/>
+</form>
+</div>
+{% endblock %}

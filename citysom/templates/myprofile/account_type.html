@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Choose Account Type{% endblock %}
+{% block content %}
+<div class="cre_event">Choose Account Type</div>
+<div class="datearea"></div>
+<div class="clear"></div>
+<div class="bln_area"></div>
+<div class="login_content profile_content">
+
+<form method="POST" action="">
+{% csrf_token %}
+  {% if account_form.errors %}
+  <p class="mainerror">Please correct the errors below: {{ account_form.non_field_errors }}</p>
+  {% endif %} 
+    
+    <fieldset>
+    <div class="form_fields">
+      {% if account_form.account_type.errors %}
+        <p class="adminformlist">{{ account_form.account_type.errors|join:", "  }}</p>
+      {% endif %}
+      <label for="id_account_type">Choose Your Account:</label>
+      {{ account_form.account_type }}
+      <div class="clear"></div>
+    </div>
+    </fieldset>
+    <input id="submit_account_details" type="submit"  value="" name="submit" class="continue_button"/>
+ </form>
+ {% endblock %}

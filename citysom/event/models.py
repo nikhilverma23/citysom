@@ -1,0 +1,160 @@
+from datetime import datetime
+import logging
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.db  import models
+from citysom.util import EVENT_GENRE, EVENT_PUBLIC,\
+DAYS_OF_WEEK 
+
+
+class Place(models.Model):
+    """
+    where the event is taking place
+    """
+    venue_name = models.CharField(max_length=255)
+    # event  start hours on respective weekdays
+    institution_name = models.CharField(max_length=100,blank=True,null=True)
+    institution_website = models.CharField(max_length=100,blank=True,null=True)
+    street = models.CharField(max_length=75)
+    state = models.CharField(max_length=30)
+    zip_code = models.IntegerField(max_length=7, blank=True, null=True)
+    start_hours_on_monday = models.TimeField(null=True,blank=True)
+    end_hours_on_monday = models.TimeField(null=True,blank=True)
+    start_hours_on_tuesday = models.TimeField(null=True,blank=True)
+    end_hours_on_tuesday = models.TimeField(null=True,blank=True)
+    start_hours_on_wednesday = models.TimeField(null=True,blank=True)
+    end_hours_on_wednesday = models.TimeField(null=True,blank=True)
+    start_hours_on_thursday = models.TimeField(null=True,blank=True)
+    end_hours_on_thursday = models.TimeField(null=True,blank=True)
+    start_hours_on_friday = models.TimeField(null=True,blank=True)
+    end_hours_on_friday = models.TimeField(null=True,blank=True)
+    start_hours_on_saturday = models.TimeField(null=True,blank=True)
+    end_hours_on_saturday = models.TimeField(null=True,blank=True)
+    start_hours_on_sunday = models.TimeField(null=True,blank=True)
+    end_hours_on_sunday = models.TimeField(null=True,blank=True) 
+    
+    
+    def __unicode__(self):
+        return self.venue_name
+
+
+
+class Category(models.Model):
+    """
+    Describes the Event Category
+    """
+    type = models.CharField(max_length=20,\
+                                  help_text = "type of event"
+                                  )
+
+    def __unicode__(self):
+        return self.type  
+
+
+class EventGenre(models.Model):
+    """
+    Describes the various genre
+    """
+    
+    genre_choices = models.CharField(max_length=255)
+    
+    def __unicode__(self):
+        return self.genre_choices
+        
+class EventPublic(models.Model):
+    """
+    Describes the audience who watch the event
+    """
+    choicelist = models.CharField(max_length=255)
+    
+    
+    def __unicode__(self):
+        return self.choicelist
+    
+    
+class Event(models.Model):
+    """
+    Charactersitics of Event
+    """
+    
+   
+    # Name of event
+    title = models.CharField(max_length=200)
+    # Event Website
+    eventwebsite = models.URLField(max_length=255,blank=True,null=True)
+    
+    description = models.TextField(blank=True,null=True)
+    
+    keyword = models.CharField(max_length=25,null=True,blank=True)
+    # Where the event is taking place
+    location = models.ForeignKey(Place,blank=True,null=True)
+    # What type of event is this.
+    category = models.ForeignKey(Category)
+    # Who sets up the event
+    user = models.ForeignKey(User,db_column="event_created_by",\
+                             related_name="who_sets_the_event",\
+                             help_text="Who sets the event")
+    
+    status = models.BooleanField(default=False,\
+                                 help_text="Event is active or Inactive")
+    # Image for Event
+    event_poster = models.ImageField(upload_to="images/",\
+                                     max_length=100,blank=True,null=True)
+    
+    # Any videos of event
+    video = models.FileField(upload_to="videos/",blank=True,null=True,\
+                             help_text="Video of Event if any(to be added later)")
+    
+    event_genre = models.ManyToManyField(EventGenre,blank=True,null=True)
+    
+    # audience for this event like adults ,children etc
+    event_public = models.ManyToManyField(EventPublic,blank=True, null=True)
+    schedule_type = models.CharField(max_length=255,blank=True,null=True)
+
+    
+    def duration(self):
+        return self.date_started - self.date_completed
+    
+    def __unicode__(self):
+        result =  "Event id:%s, title:%s" %(self.id, self.title)
+        return result 
+
+
+class Days(models.Model):
+    week_day = models.CharField(max_length=20,null=True,blank=True)
+    
+    def __unicode__(self):
+        return self.week_day
+
+
+class PerformanceDetails(models.Model):
+    """
+    Performance parameter
+    """
+     # When the event was started
+    date_started = models.DateField(help_text="when the event was started",null=True, blank=True)
+    # When the event was completed
+    date_completed = models.DateField(null=True, blank=True)
+    
+    event = models.ForeignKey(Event,null=True,blank=True)
+    place = models.ForeignKey(Place,null=True,blank=True)
+    showtimes_start = models.TimeField(blank=True,null=True)
+    showtimes_end = models.TimeField(blank=True,null=True)
+    frequency = models.CharField(max_length=80,\
+                                 blank=True,null=True,\
+                                 help_text="weekly,monthly etc"
+                                 )
+    interval = models.IntegerField(help_text="basically the count")
+    by_day = models.ManyToManyField(Days,\
+                                    blank=True,null=True,
+                                    help_text="by_day",
+                                    )
+    by_monthday = models.CharField(max_length=80,blank=True,null=True)
+    by_month = models.CharField(max_length=80,blank=True,null=True)
+
+    ticket_price = models.DecimalField(verbose_name="Full Price Ticket",max_digits=8, decimal_places=2)
+
+    def __unicode__(self):
+        return self.frequency
+        

@@ -1,0 +1,1 @@
+Activate your citysom Account - you have {{ expiration_days }} days!
