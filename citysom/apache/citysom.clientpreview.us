@@ -3,15 +3,15 @@
    ServerAlias citysom.*.com
    ServerAdmin clientpreview@citysom.us
 
-   DocumentRoot /home/citysom/citysom/
+   DocumentRoot /home/citysom/citysom/citysom/
 
-   Alias /robots.txt /home/citysom/citysom//static/robots.txt
-   Alias /favicon.ico /home/citysom/citysom/static/favicon.ico
+   Alias /robots.txt /home/citysom/citysom/citysom/static/robots.txt
+   Alias /favicon.ico /home/citysom/citysom/citysom/static/favicon.ico
 
-   Alias /static/ /home/citysom/citysom/static/
-   Alias /media/ /home/citysom/citysom/static/
+   Alias /static/ /home/citysom/citysom/citysom/static/
+   Alias /media/ /home/citysom/citysom/citysom/static/
 
-   <Directory /home/citysom/citysom/static>
+   <Directory /home/citysom/citysom/citysom/static>
        Options None
        Order deny,allow
        Allow from all
@@ -19,14 +19,14 @@
 
    WSGIDaemonProcess citysom.clientpreview.us user=citysom group=citysom processes=5 threads=1 maximum-requests=100
    WSGIProcessGroup  citysom.clientpreview.us
-   WSGIScriptAlias / /home/citysom/citysom/django.wsgi
+   WSGIScriptAlias / /home/citysom/citysom/citysom/django.wsgi
 
-   <Directory /home/citysom/citysom/apache>
+   <Directory /home/citysom/citysom/citysom/apache>
       Order allow,deny
       Allow from all
    </Directory>
 
-   ErrorLog /home/citysom/citysom/log/error.log
-   CustomLog /home/citysom/citysom/log/access.log combined
+   ErrorLog /home/citysom/citysom/citysom/log/error.log
+   CustomLog /home/citysom/citysom/citysom/log/access.log combined
 </VirtualHost>
                         
