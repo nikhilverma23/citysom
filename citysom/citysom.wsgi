@@ -15,6 +15,11 @@ framework.
 """
 import os
 
+import sys
+path = '/home/charleshenri/webapps/django/citysom/'
+if path not in sys.path:
+    sys.path.append(path)
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "citysom.settings")
 
 # This application object is used by any WSGI server configured to use this
