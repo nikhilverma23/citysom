@@ -8,7 +8,7 @@ from django.http import Http404, HttpResponse, HttpResponseServerError
 from django.template import loader, Context
 from django import http
 from django.contrib.auth.decorators import login_required
-from citysom.settings import MEDIA_ROOT
+from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 
 def server_error(request, template_name='500.html'):
     """
@@ -85,6 +85,12 @@ def eventcreation(request):
                 event_obj.event_public.add(public.id)
         else:
             print "Form is getting Invalid"
+            
+        return render_to_response('event/home_page.html',
+                              {'eventform':event_form,
+                               'eventform_poster':eventposter_form},
+                             context_instance=RequestContext(request)
+                              )
     else:
         
         eventposter_form = EventPosterForm()
@@ -104,7 +110,7 @@ def home(request):
     
 def handle_uploaded_file(request):
     event_poster = request.FILES['event_poster_file']
-    destination = open(MEDIA_ROOT + '/images/'+ str(event_poster), 'wb+')
+    destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
     for chunk in event_poster.chunks():
         destination.write(chunk)
 

@@ -27,10 +27,10 @@ class EventForm(forms.Form):
         self.fields['end_hours_on_thursday'].widget.attrs['class'] = "timepicker thursday"
         self.fields['start_hours_on_friday'].widget.attrs['class'] = "timepicker friday"
         self.fields['end_hours_on_friday'].widget.attrs['class'] = "timepicker friday"
-        self.fields['start_hours_on_saturday'].widget.attrs['class'] = "timepicker friday"
-        self.fields['end_hours_on_saturday'].widget.attrs['class'] = "timepicker friday"
-        self.fields['start_hours_on_sunday'].widget.attrs['class'] = "timepicker friday"
-        self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker friday"
+        self.fields['start_hours_on_saturday'].widget.attrs['class'] = "timepicker saturday"
+        self.fields['end_hours_on_saturday'].widget.attrs['class'] = "timepicker saturday"
+        self.fields['start_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
+        self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
         
         
     title = forms.CharField(max_length=255,required=True)

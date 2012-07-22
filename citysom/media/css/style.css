@@ -355,8 +355,23 @@ body
     {
         list-style:none;
         float:left;
-        margin-left:10px;    
-    }    
+        margin-left:10px;
+        display:table-cell;
+        width: 196px;
+        height: 270px;    
+    }
+#bottom_images ul li div
+    {
+    	text-align: center;
+    	vertical-align: middle;
+    	display: table-cell;
+    	height: 270px;
+    }
+#bottom_images ul li div img
+    {
+    	max-width: 196px;
+    	max-height: 270px;
+    }        
 #headingtext
 	{
 		padding:0px 0px 0px 0px;
@@ -441,6 +456,7 @@ body
     font-weight: bold;
     margin: 5px 0 0;
     width: 178px;
+    text-align: center;
 	}
 	
 .nextbutton
@@ -457,7 +473,7 @@ body
 		height:33px;
 		float:left;
 		margin:0px 0px 0px 0px;
-		background-image:url(../images/textarea_box.png); background-repeat:no-repeat;
+		text-align: center;
 	}
 	
 .textfiled
