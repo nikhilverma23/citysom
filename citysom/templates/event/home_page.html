@@ -13,29 +13,29 @@
         <!-- filledarea main start from here -->
          <div class="filledarea">
         	<div class="minprice_main">
-            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price $<span id="min_price_span">0</span></div>
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price</div>
                 <div class="minprice_heading">
                 	<div class="nextbutton"><a href="javascript:void(0)" id="min_price_down"><img src="/static/images/button_down.png" /></a></div>
-                    <div class="textbox"><input name="min_price" id="min_price" type="text" class="textfiled" value="0" readonly="readonly"/></div>
+                    <div class="textbox">$<span id="min_price_span">0</span><input name="min_price" id="min_price" type="hidden" value="0"/></div>
                     <div class="nextbutton"><a href="javascript:void(0)" id="min_price_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
             
             <div class="minprice_main">
-            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Max.Price $<span id="max_price_span">0</span></div>
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Max.Price</div>
                 <div class="minprice_heading">
                 	<div class="nextbutton"><a href="javascript:void(0)" id="max_price_down"><img src="/static/images/button_down.png" /></a></div>
-                    <div class="textbox"><input name="max_price" id="max_price" type="text" class="textfiled" value="0"/></div>
+                    <div class="textbox">$<span id="max_price_span">0</span><input name="max_price" id="max_price" type="hidden" value="0"/></div>
                     <div class="nextbutton"><a href="javascript:void(0)" id="max_price_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
             
             <div class="minprice_main">
-            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Start Time 8:00p</div>
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Start Time</div>
                 <div class="minprice_heading">
-                	<div class="nextbutton"><input name="" type="image" src="/static/images/button_down.png" /></div>
-                    <div class="textbox"><input name="" type="text" class="textfiled" /></div>
-                    <div class="nextbutton"><input name="" type="image" src="/static/images/button_up.png" /></div>
+                	<div class="nextbutton"><a href="javascript:void(0)" id="max_time_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox"><span id="max_price_span">8:00</span><input name="max_time" id="max_time" type="hidden" value="8:00" /></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="max_time_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
             
@@ -116,6 +116,7 @@
       </div> 
       <script>
   		var step = 10;
+  		var timestep = 5;
   		
   		function load_events()
   		{
@@ -136,35 +137,59 @@
 	  	}
   		
   		$("#min_price_down").click(function(){
-  			current_value = parseInt($("#min_price").val())-step;
-  			if(current_value >= 0)
+  			var current_price = parseInt($("#min_price").val())-step;
+  			if(current_price >= 0)
   			{
-  				$("#min_price").val(current_value);
-  				$("#min_price_span").html(current_value);
+  				$("#min_price").val(current_price);
+  				$("#min_price_span").html(current_price);
   				load_events();
   			}
   		});
   		$("#min_price_up").click(function(){
-  			current_value = parseInt($("#min_price").val())+step;
-  			$("#min_price").val(current_value);
-  			$("#min_price_span").html(current_value);
+  			var current_price = parseInt($("#min_price").val())+step;
+  			$("#min_price").val(current_price);
+  			$("#min_price_span").html(current_price);
   			load_events();
   		});
   		
   		$("#max_price_down").click(function(){
-  			current_value = parseInt($("#max_price").val())-step;
-  			if(current_value >= 0)
+  			var current_max_price = parseInt($("#max_price").val())-step;
+  			if(current_max_price >= 0)
   			{
-  				$("#max_price").val(current_value);
-  				$("#max_price_span").html(current_value);
+  				$("#max_price").val(current_max_price);
+  				$("#max_price_span").html(current_max_price);
   				load_events();
   			}
   		});
   		$("#max_price_up").click(function(){
-  			current_value = parseInt($("#max_price").val())+step;
-  			$("#max_price").val(current_value);
-  			$("#max_price_span").html(current_value);
+  			var current_max_price = parseInt($("#max_price").val())+step;
+  			$("#max_price").val(current_max_price);
+  			$("#max_price_span").html(current_max_price);
   			load_events();
+  		});
+  		
+  		$("#max_time_down").click(function(){
+  			var time_val = $("#max_time").val();
+  			time_val = time_val.replace(":","");
+  			current_time = parseInt(time_val)-timestep;
+  			console.log(current_time);
+  			if(current_time >= 0)
+  			{
+  				$("#max_time").val(current_time);
+  				$("#max_time_span").html(current_time);
+  				load_events();
+  			}
+  		});
+  		$("#max_time_up").click(function(){
+  			var time_val = $("#max_time").val();
+  			time_val = time_val.replace(":","");
+  			current_time = parseInt(time_val)+timestep;
+  			if(current_time < 2400)
+  			{
+  				$("#max_time").val(current_time);
+  				$("#max_time_span").html(current_time);
+  				load_events();
+  			}
   		});
   		load_events();
       </script>

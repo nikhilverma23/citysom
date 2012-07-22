@@ -83,7 +83,9 @@
 								{% if user.is_authenticated %}
 									<a href="/accounts/logout">Logout</a>
 								{% else %}
-									<a href="javascript:void(0)" class="login_top_link">Login</a>
+									<a href="#">Login with Facebook</a> | 
+									<a href="javascript:void(0)" class="login_top_link">Login</a> | 
+									<a href="/accounts/register/">Sign Up</a>
 								{% endif %}
 							</div>
 							<div class="login_top_div" style="display: none;">
@@ -96,7 +98,6 @@
 										<dd><input type="password" name="password" id="id_password" /></dd>
 										<dt>
 											<input type="submit" value="Log in" class="login_submit" />
-											<input type="button" value="Sign Up" class="login_submit" onclick="document.location.href='/accounts/register/';"/>
 										</dt>
 									</div>
 								</form>
