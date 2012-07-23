@@ -4,7 +4,7 @@ from citysom.event.models import Place, Event, Category, PerformanceDetails
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from citysom.event.forms import EventForm, EventPosterForm
-from django.http import Http404, HttpResponse, HttpResponseServerError
+from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
 from django.template import loader, Context
 from django import http
 from django.contrib.auth.decorators import login_required
@@ -34,6 +34,7 @@ def eventcreation(request):
         if event_form.is_valid():
             place_obj = Place(
                             venue_name = event_form.cleaned_data['venue_name'],
+                            street = event_form.cleaned_data['street_address'],
                             start_hours_on_monday = event_form.cleaned_data['start_hours_on_monday'],
                             end_hours_on_monday = event_form.cleaned_data['end_hours_on_monday'],
                             start_hours_on_tuesday = event_form.cleaned_data['start_hours_on_tuesday'],
@@ -83,14 +84,11 @@ def eventcreation(request):
                 event_obj.event_genre.add(genre.id)
             for public in event_form.cleaned_data['event_public']:
                 event_obj.event_public.add(public.id)
+            return HttpResponseRedirect('/myprofile/home/')
+            
         else:
             print "Form is getting Invalid"
             
-        return render_to_response('event/home_page.html',
-                              {'eventform':event_form,
-                               'eventform_poster':eventposter_form},
-                             context_instance=RequestContext(request)
-                              )
     else:
         
         eventposter_form = EventPosterForm()

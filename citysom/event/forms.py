@@ -34,7 +34,9 @@ class EventForm(forms.Form):
         
         
     title = forms.CharField(max_length=255,required=True)
-    venue_name = forms.CharField(max_length=255,required=True)
+    venue_name = forms.CharField(max_length=255,required=False)
+    street_address = forms.CharField(max_length=255,required=True)
+    
     date_started = forms.DateField(required=True)
 
     date_completed = forms.DateField(required=True)

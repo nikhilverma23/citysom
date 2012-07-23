@@ -51,6 +51,15 @@ tinyMCE.init({
                                     <b>Venue Name:</b>
                                     {{eventform.venue_name}}
                                 </li>
+                                
+                                <li class="formlist1">
+                                	{% if eventform.street_address.errors %}
+								    	<p class="error">{{ eventform.street_address.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Street Address:</b>
+                                    {{eventform.street_address}}
+                                </li>
+                                
                                 <li class="formlist1">
                                 		<div id="venue_map" style="margin: 10px; height: 300px;"></div>
                                 </li>
