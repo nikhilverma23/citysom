@@ -14,7 +14,18 @@
     
     <fieldset>
     {% if account_type == "personal" %}
-    	<div class="form_fields">
+    	
+	<div class="form_fields">
+      	{% if form.gender.errors %}
+        	<p class="error">{{ form.gender.errors|join:", "  }}</p>
+      	{% endif %}
+      	<label for="id_gender">Greeting:</label>
+            {{ form.gender }}
+        <div class="clear"></div>
+      	</div>
+
+
+        <div class="form_fields">
      	 	{% if form.first_name.errors %}
         		<p class="error">{{ form.first_name.errors|join:", "  }}</p>
       	 	{% endif %}
@@ -29,14 +40,6 @@
 	      <label for="id_last_name">Last Name:</label>
 	      {{ form.last_name }}
 	      <div class="clear"></div>
-    </div>
-    <div class="form_fields">
-      {% if form.gender.errors %}
-        <p class="error">{{ form.gender.errors|join:", "  }}</p>
-      {% endif %}
-      <label for="id_gender">Gender:</label>
-      {{ form.gender }}
-      <div class="clear"></div>
     </div>
     
     <div class="form_fields">
