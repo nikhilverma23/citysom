@@ -1,8 +1,11 @@
 from django.utils.translation import ugettext_lazy as _
 
 GENDER_CHOICES = (
-        ('M', _('Male')),
-        ('F', _('Female'))
+        ('choices', 'Select Gender'),
+	('mr', 'Mr'),
+        ('mrs', 'Mrs'),
+	('mis', 'Miss'),
+	('ms', 'Ms'),
     )
 
 ACCOUNT_TYPE = (
