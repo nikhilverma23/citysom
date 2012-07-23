@@ -84,7 +84,7 @@ tinyMCE.init({
                                   <b>Event Duration:</b>
                                    {{eventform.event_duration}} 
                                 </li>-->
-                                <li class="formlist1">
+                                <li class="formlist1 left_aligned_radios">
                                 	{% if eventform.schedule_type.errors %}
 								    	<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
 								  	{% endif %}
@@ -93,7 +93,7 @@ tinyMCE.init({
                                 </li>
                                 
                                 
-                                <li class="formlist1" style="margin-top: 20px;">
+                                <li class="formlist1 open_hours_div" style="margin-top: 20px;" title="Open Hours">
                             <b style="float:left;">Event Start Hours:</b>
                                    
                    <div id="start_hour">
@@ -387,5 +387,39 @@ $("#upload_link").click(function(){
 $("#id_event_poster_file").change(function(){
 	$("#eventposter-form").submit();
 });
+$("#id_schedule_type_0").click(function(){
+	if($(this).is(":checked"))
+	{
+		$( ".open_hours_div" ).dialog( "open" );
+	}
+});
+
+$(function() {
+	$( ".open_hours_div" ).dialog({
+			autoOpen: false,
+			width: 600,
+			buttons: {
+				"Save": function() {
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+	});
+});
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<script>
+var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-33.8902, 151.1759),
+  new google.maps.LatLng(-33.8474, 151.2631));
+
+var input = document.getElementById('id_street_address');
+var options = {
+  types: ['(cities)'],
+};
+
+autocomplete = new google.maps.places.Autocomplete(input, options);
 </script>
 {% endblock %}
