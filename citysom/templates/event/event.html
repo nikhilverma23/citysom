@@ -84,6 +84,15 @@ tinyMCE.init({
                                   <b>Event Duration:</b>
                                    {{eventform.event_duration}} 
                                 </li>-->
+                                <li class="formlist1">
+                                	{% if eventform.schedule_type.errors %}
+								    	<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
+								  	{% endif %}
+                                  <b>Schedule Type:</b>
+                                   {{eventform.schedule_type}} 
+                                </li>
+                                
+                                
                                 <li class="formlist1" style="margin-top: 20px;">
                             <b style="float:left;">Event Start Hours:</b>
                                    
