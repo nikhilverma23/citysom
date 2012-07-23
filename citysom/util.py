@@ -55,12 +55,10 @@ DAYS_OF_WEEK = (
 )
 
 FREQUENCY_CHOICES = (
-                        ('event_repeat','Repeats'),
-                        ('never','Never'),
+                        ('once','Once'),
                         ('daily','Daily'),
                         ('weekly','Weekly'),
                         ('monthly','Monthly'),
-                        ('other','Other(be specific)'),
                         
                         )
    
