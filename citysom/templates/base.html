@@ -69,7 +69,7 @@
 						{% endif %}
 					</ul>
 					<div id="commenttext">
-						Hello <span>{% if user.is_authenticated %}{{user.username}}<a href="{% url editprofile %}">Edit Profile</a>{% else %}Guest!{% endif %}</span>
+						Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
 					</div>
 				</div>
 				<!-- Topnavigation end from here -->
@@ -81,9 +81,10 @@
 					<div id="searchbox_main">
 							<div id="logouttext">
 								{% if user.is_authenticated %}
+									<a href="{% url editprofile %}">Edit Profile</a> | 
 									<a href="/accounts/logout">Logout</a>
 								{% else %}
-									<a href="#">Login with Facebook</a> | 
+									<a href="javascript:void(0)" onclick="getLogin()">Login with Facebook</a> | 
 									<a href="javascript:void(0)" class="login_top_link">Login</a> | 
 									<a href="/accounts/register/">Sign Up</a>
 								{% endif %}
@@ -141,5 +142,63 @@
 			</div>
 			<!-- Topnavigation end from here -->
 		</div>
+		<div id="fb-root"></div>
+		<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '238686352919310', // App ID
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+	          FB.Event.subscribe('auth.login', function(response) {
+	                   console.log('User is Logged In');
+	          });
+	
+	          FB.Event.subscribe('auth.logout', function(response) {
+	                   console.log('Session was terminated!');
+	          });
+	
+	          FB.Event.subscribe('edge.create', function(response) {
+	                   console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
+	          });
+	  };
+	
+	  // Load the SDK Asynchronously
+	  (function(d){
+	     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement('script'); js.id = id; js.async = true;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     ref.parentNode.insertBefore(js, ref);
+	   }(document));
+	   
+	   function getLogin()
+      {
+               FB.getLoginStatus(function(response) {
+                 if (response.status === 'connected') {
+                         login();
+                 } else if (response.status === 'not_authorized') {
+                         login();
+                 } else {
+                         login();
+                 }
+               });
+      }
+      
+      function login()
+      {
+               FB.login(function(response) {
+                  if (response.authResponse) {
+                         FB.api('/me', function(response) {
+                            document.location.href='/success';
+
+                         });
+                  } else {
+                         console.log('User cancelled login or did not fully authorize.');
+                  }
+               }, {scope:'email'});
+      }
+		</script>
 	</body>
 </html>
