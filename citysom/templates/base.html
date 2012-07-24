@@ -15,6 +15,10 @@
 		<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
+				var loc = window.location.toString()
+				var page = loc.substring(loc.indexOf('/', 8), loc.length);
+				$('#topnavigation>ul>li>a[href="' + page + '"]').parent().addClass("current");
+				
 				jQuery("#menu > li a").click(function(e) {
 
 					jQuery("#everything1, #categories, #concerts, #more").hide();
@@ -23,6 +27,10 @@
 					jQuery(jQuery(this).attr('href')).show();
 					return false;
 				});
+				
+				//jQuery("#topnavigation > ul li").click(function(){
+				//	jQuery(this).addClass("current");
+				//});
 
 				jQuery("#bottom_images").jScrollPane({
 					showArrows : true
@@ -57,7 +65,7 @@
 				<div id="topnavigation">
 					<ul>
 						<li class="lilink">
-							<a href="javascript:void(0)" class="search_link">Search</a>
+							<a href="{% url home %}" class="search_link">Search</a>
 						</li>
 						<li>
 							<a href="#">Categorize</a>
@@ -93,13 +101,11 @@
 								<form method="post" action="{% url auth_login %}">
 									{% csrf_token %}
 									<div>
-										<dt><label for="id_username">Username:</label></dt>
-										<dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
-										<dt><label for="id_password">Password:</label></dt>
-										<dd><input type="password" name="password" id="id_password" /></dd>
-										<dt>
-											<input type="submit" value="Log in" class="login_submit" />
-										</dt>
+										<dl>
+											<dt><label for="id_username">Username:</label></dt> <dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
+											<dt><label for="id_password">Password:</label></dt> <dd><input type="password" name="password" id="id_password" /></dd>
+											<dt><input type="submit" value="Log in" class="login_submit" /></dt>
+										</dl>
 									</div>
 								</form>
 							</div>
@@ -200,5 +206,7 @@
                }, {scope:'email'});
       }
 		</script>
+
+</script>
 	</body>
 </html>
