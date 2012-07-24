@@ -313,16 +313,14 @@ body
 	font-family: Helvetica;
 	font-size:12px;
 }
+
 #logouttext a:hover
 {
 	text-decoration: underline;
 	color: #FF6600;
-<<<<<<< HEAD
 	font-size:13px;
 	font-weight: bold;
-=======
 	font-size:12px;
->>>>>>> 5486cfaf5cb8200f98eaeb523467a5ae2f9d7259
 }
 .subheading{
     display: block;
