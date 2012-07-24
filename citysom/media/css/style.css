@@ -194,9 +194,9 @@ body
 		list-style:none;
 		padding:0px 13px 0px 13px;
 		color:#fff;
-		font-family:Calibri;
+		font-family:Helvetica;
 		font-size:16px;
-		font-weight:bold;
+		font-weight:normal;
 		float:left;
 		margin:0px 0px 0px 0px;
 	}
@@ -207,28 +207,65 @@ body
 		padding:5px 13px 5px 13px;
 		color:#fff;
 		font-family:Helvetica;
-		font-size:14px;
+		font-size:13px;
 		
 		float:left;
 		margin:0px 0px 0px 0px;
 	}
-	
+/*	
 #topnavigation ul li:hover
 	{
 		border-bottom: 3px solid #FF6600;
 	}
 	
+#topnavigation ul li:visited
+	{
+		border-bottom: 3px solid #FF6600;
+		font-weight: bold;
+	}
+*/	
+.current
+	{
+		border-bottom: 3px solid #FF6600;
+		font-weight: bold;
+	}
+
 #topnavigation ul li a
 	{
 		color:#fff;
-		text-decoration:none;		
+		text-decoration:none;
+		font-family:Helvetica;
+		font-size:13px;
+		font-weight:inherit;	
+	}
+/*
+#topnavigation ul li a:link
+	{
+		color:#fff;
+		text-decoration:none;
+		font-family:Helvetica;
+		font-size:13px;	
+		font-weight:normal;
+	}
+
+#topnavigation ul li a:visited
+	{
+		font-weight: bold;
+		border-bottom: 3px solid #FF6600;
 	}
 
 #topnavigation ul li a:hover
 	{
-		font-weight: bold;
+		font-weight: normal;
+		border-bottom: 3px solid #FF6600;
 	}
-	
+
+#topnavigation ul li a:active
+	{
+		font-weight: normal;
+		border-bottom: 3px solid #FF6600;
+	}
+*/		
 #commenttext
 	{
 		list-style:none;
