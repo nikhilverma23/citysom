@@ -154,9 +154,10 @@ body
 	{
 		width:100%;
 		margin:auto;
-		background:url(../images/bg1.jpg) repeat-x #9c9c9c;
+		background:#ffffff url(../images/bg01.jpg) repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
 	}
-    #container_reg
+
+#container_reg
     {
         width:100%;
         margin:auto;
@@ -178,9 +179,9 @@ body
 #topnavigation
 	{
 		width:980px;
-		float:left;
-		height:35px;
-		margin-left: 12px;
+		/*float:left;*/
+		height:27px;
+		margin: auto;
 	}
 	
 #topnavigation ul
@@ -698,6 +699,15 @@ body
         margin: 0px 0 0 10px;
         width: auto;
     }
+
+#headerbg
+	{
+		width:100%;
+	    margin:0px 0px 0px 0px;
+	    background-image:url(../images/footerbg.png); background-repeat:repeat-x;
+	    height:34px;
+	}
+
 #footerbg
 	{
 	    width:100%;
@@ -892,7 +902,7 @@ h6
 .review_rating{border-bottom: 2px solid black; font-family: Calibri;}
 .event_text{height: auto;width: auto;margin-top: 10px;margin-bottom: 10px;}
 .event_text p{ font-family:Calibri;}
-.login_top_div{position: absolute; top:20px; right:0px; width: 330px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}
+.login_top_div{position: absolute; top:20px; display: none; right:0px; width: 330px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}
 .login_top_div dl{overflow:hidden; padding:5px;}
 .login_top_div dt{margin: 0; float: left; padding: 7px 0; width: 20%; font-family:Helvetica; font-size:13px; font-style:bold;}
 .login_top_div dd{margin: 0; padding:7px 0; float:left; width:80%}
@@ -908,7 +918,7 @@ h6
 p.error{display: block; height: 30px; color: #FF0000; padding-left: 30px; padding-top: 5px; background: url("../images/cross_icon.png") no-repeat; margin: 10px 0px 0px 120px;}
 p.mainerror{display: block; height: 35px; color: #FF0000;}
 .continue_button{border: none; background: url(../images/cont.png) no-repeat; width: 265px; height: 45px; margin-left: 36px; margin-top: 30px;}
-.login_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:32px; width: 200px;font-size:13px;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;background-color: transparent;outline:0;}
+.login_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:32px; width: 350px;font-size:13px;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;background-color: transparent;outline:0;}
 .login_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
 .login_content .formlist1 b{display: inline-block; width: 150px;}
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}

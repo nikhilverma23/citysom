@@ -70,28 +70,31 @@
 	</head>
 	<body>
 		<!-- Container start from here -->
+		<div id="headerbg">
+			<div id="topnavigation">
+				<ul>
+					<li class="lilink">
+						<a href="{% url home %}" class="search_link">Search</a>
+					</li>
+					<li>
+						<a href="#">Categorize</a>
+					</li>
+					{% if user.is_authenticated %}
+					<li>
+						<a href="/event/createevent/">Publish</a>
+					</li>
+					{% endif %}
+				</ul>
+				<div id="commenttext">
+					Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
+				</div>
+			</div>
+		</div>
 		<div id="container">
 			<!-- Container 2 start from here -->
 			<div id="container2">
 				<!-- Topnavigation start from here -->
-				<div id="topnavigation">
-					<ul>
-						<li class="lilink">
-							<a href="{% url home %}" class="search_link">Search</a>
-						</li>
-						<li>
-							<a href="#">Categorize</a>
-						</li>
-						{% if user.is_authenticated %}
-						<li>
-							<a href="/event/createevent/">Publish</a>
-						</li>
-						{% endif %}
-					</ul>
-					<div id="commenttext">
-						Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
-					</div>
-				</div>
+				
 				<!-- Topnavigation end from here -->
 				<!-- centerarea main start from here -->
 				<div id="centerarea_main">
