@@ -705,7 +705,7 @@ body
 	{
 		width:100%;
 	    margin:0px 0px 0px 0px;
-	    background-image:url(../images/footerbg.png); background-repeat:repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
+	    background-image:url(../images/footerbg.png); 
 	    height:34px;
 	}
 
@@ -713,7 +713,7 @@ body
 	{
 	    width:100%;
 	    margin:0px 0px 0px 0px;
-	    background-image:url(../images/footerbg.png); background-repeat:repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
+	    background-image:url(../images/footerbg.png); background-repeat:repeat-x;
 	    height:34px;
 	}
 	
