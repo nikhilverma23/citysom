@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, unique=True)
     first_name = models.CharField(max_length=30,blank=True, null=True)
     last_name = models.CharField(max_length=30, blank=True, null=True)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     mobile = models.CharField(max_length=15, blank=True)
     primary_email = models.EmailField(max_length=60, blank=True)
     account_type = models.CharField(max_length=80,
@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     institution_website = models.CharField(max_length=100,blank=True,null=True)
     street = models.CharField(max_length=75)
     state = models.CharField(max_length=30)
-    zip_code = models.IntegerField(max_length=7, blank=True, null=True)
+    zip_code = models.CharField(max_length=10, blank=True, null=True)
     country = models.CharField(max_length=30, blank=True)
    
     start_hours_on_monday = models.TimeField(null=True,blank=True)
