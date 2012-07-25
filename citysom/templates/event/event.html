@@ -93,7 +93,7 @@ tinyMCE.init({
                                 </li>
                                 
                                 
-                                <li class="formlist1 open_hours_div" style="margin-top: 20px;" title="Open Hours">
+                                <li class="formlist1 open_hours_div" style="margin-top: 20px;">
                             <b style="float:left;">Event Start Hours:</b>
                                    
                    <div id="start_hour">
@@ -193,7 +193,7 @@ tinyMCE.init({
                       <div class="clear"></div>
                              
                         </li>
-                        <li class="formlist1">
+                        <li class="formlist1 performance_hours_div">
                         	{% if eventform.frequency.errors %}
 						    	<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -201,7 +201,7 @@ tinyMCE.init({
                             {{eventform.frequency}} 
                         </li>
                         
-                        <li class="formlist1 ">
+                        <li class="formlist1 performance_hours_div">
                         	{% if eventform.interval.errors %}
 						    	<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -209,7 +209,7 @@ tinyMCE.init({
                             {{eventform.interval}} 
                         </li>
                         
-                        <li class="formlist1">
+                        <li class="formlist1 performance_hours_div">
                         	{% if eventform.frequency.errors %}
 						    	<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -247,7 +247,9 @@ tinyMCE.init({
 						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
 						  	{% endif %}
                                  <h3 class="subheading">Event genre</h3>
-                                 	{{eventform.event_genre}} 
+                                 	<div class="event_genre_div">
+                                 		{{eventform.event_genre}} 
+                                 	</div>
                                  </div>
                                 <div class="event_public">
                                 	{% if eventform.venue_name.errors %}
@@ -390,23 +392,26 @@ $("#id_event_poster_file").change(function(){
 $("#id_schedule_type_0").click(function(){
 	if($(this).is(":checked"))
 	{
-		$( ".open_hours_div" ).dialog( "open" );
+		$( ".open_hours_div" ).show();
+		$( ".performance_hours_div" ).hide();
 	}
 });
-
-$(function() {
-	$( ".open_hours_div" ).dialog({
-			autoOpen: false,
-			width: 600,
-			buttons: {
-				"Save": function() {
-					$( this ).dialog( "close" );
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				}
-			}
-	});
+$("#id_schedule_type_1").click(function(){
+	if($(this).is(":checked"))
+	{
+		$( ".performance_hours_div" ).show();
+		$( ".open_hours_div" ).hide();
+	}
+});
+$( ".open_hours_div" ).hide();
+$( ".performance_hours_div" ).hide();
+$(".category_class").click(function(){
+	$.get(
+		'/event/event_genre/?type='+$('.category_class:checked').val(),
+		function(data){
+			$(".event_genre_div").html(data);
+		}		
+	);
 });
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>

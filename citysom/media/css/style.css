@@ -920,3 +920,40 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .ui-datepicker-trigger{vertical-align: bottom; 	}
 .left_aligned_radios ul,.left_aligned_radios li{display: inline-block;}
 #start_hour input[type=text]{width: 100px;}
+
+#home_calendar{width: 708px; height: 144px; font-family: Calibri;}
+#month_section{color: #090909; font-weight: bold; font-size: 18px; font-family: Calibri; text-align: center; margin-bottom: 10px;}
+#week_section{color: #090909; font-weight: bold; font-family: Calibri; text-align: center; border-bottom: 2px solid #C0C0C0; padding-bottom: 5px;}
+#week_section span.red{color: #FF0000;}
+#week_section span{margin: 0px 5px; font-size: 16px;}
+#days_section{border-bottom: 2px solid #C0C0C0;}
+#left_movement, #days_container, #right_movement{float: left;}
+#left_movement div.prev_arrow_div,#right_movement div.next_arrow_div{float: left; margin-top: 20px;}
+#left_movement div.prev_arrow_div{margin-right: 15px;}
+#right_movement div.next_arrow_div{margin-left: 15px;}
+#days_container{width: 470px; padding: 10px 40px;}
+#days_container a
+{
+	font-size: 18px;
+	color: #090909;
+	text-decoration: none;
+	font-family: Calibri;
+	font-weight: bold;
+	display: inline-block;
+	width: 18px;
+	margin-right: 12px;
+	text-align: center;
+	margin-bottom: 5px;
+}
+#days_container a.active{
+border-radius:12px;
+background-color:#000000;
+color:#FFFFFF;
+}
+#days_container a.today{
+color:#FF6600;
+}
+.last_day
+{
+	margin-right:0px !important;
+}

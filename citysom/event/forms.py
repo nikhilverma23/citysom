@@ -17,6 +17,7 @@ class EventForm(forms.Form):
         self.fields['date_completed'].widget.attrs['class'] = "datepicker"
         categories = Category.objects.all()
         self.fields['category'].choices = [(c.pk,c.type) for c in categories]
+        self.fields['category'].widget.attrs['class'] = "category_class"
         self.fields['start_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
         self.fields['end_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
         self.fields['start_hours_on_tuesday'].widget.attrs['class'] = "timepicker tuesday"
