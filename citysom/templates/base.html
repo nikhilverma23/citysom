@@ -19,6 +19,18 @@
 				var page = loc.substring(loc.indexOf('/', 8), loc.length);
 				$('#topnavigation>ul>li>a[href="' + page + '"]').parent().addClass("current");
 				
+				var mouse_is_inside=false;
+				
+				$('.login_top_div').hover(function(){
+					mouse_is_inside=true;
+					}, function(){
+						mouse_is_inside=false;
+					});
+				
+				$(document).mouseup(function(){
+					if(!mouse_is_inside) $('.login_top_div').hide();	
+				});
+		
 				jQuery("#menu > li a").click(function(e) {
 
 					jQuery("#everything1, #categories, #concerts, #more").hide();
@@ -97,7 +109,7 @@
 									<a href="/accounts/register/">Sign Up</a>
 								{% endif %}
 							</div>
-							<div class="login_top_div" style="display: none;">
+							<div class="login_top_div" id="log_top_div" style="display: none;">
 								<form method="post" action="{% url auth_login %}">
 									{% csrf_token %}
 									<div>
