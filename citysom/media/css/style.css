@@ -172,13 +172,13 @@ body
     
 #container2
 	{
-		width:1000px;
+		width:974px;
 		margin:auto;
 	}
 	
 #topnavigation
 	{
-		width:980px;
+		width:954px;
 		/*float:left;*/
 		height:27px;
 		margin: auto;
@@ -720,7 +720,7 @@ body
         height: 27px;
         margin: auto;
         padding: 8px 0 0;
-        width: 980px;
+        width: 954px;
 	}
 	
 #bottomnavigation ul
@@ -913,7 +913,7 @@ h6
 .login_top_div .login_submit{background: #FFFFFF; border-radius: 5px; border: 1px solid #BEBEBE; padding:5px; color: #FF6000; margin: 10px 110px 5px; font-family: Helvetica; font-size: 12px; font-weight: bold; width: 100px;}
 .login_content .form_fields{clear: both; margin-bottom: 20px;}
 .login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
-.login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
+.login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;margin-left:5px; background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
 .login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
 p.error{display: block; height: 30px; color: #FF0000; padding-left: 30px; padding-top: 5px; background: url("../images/cross_icon.png") no-repeat; margin: 10px 0px 0px 120px;}
 p.mainerror{display: block; height: 35px; color: #FF0000;}
@@ -923,7 +923,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .login_content .formlist1 b{display: inline-block; width: 150px;}
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}
 .submitButton{border: none; background: url(../images/submit.png) no-repeat; width: 265px; height: 45px; margin-left: 100px; margin-top: 30px;}
-.profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:13px;}
+.profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:13px; margin-left:10px}
 .institute_operation_left{float: left;}
 .institute_operation_right{float: left; margin-left: 10px;}
 .institute_operation_left input[type=text],.institute_operation_right input[type=text]{width: 100px !important;}

@@ -14,7 +14,9 @@
     
     <fieldset>
     {% if account_type == "personal" %}
-    	
+    
+    <p style=",margin-bottom: 25px; font-family: Georgia; font-color:#111111; font-size:20px; font-weight:bold;">How shall we call you?</p>    	
+	
 	<div class="form_fields">
       	{% if form.gender.errors %}
         	<p class="error">{{ form.gender.errors|join:", "  }}</p>
@@ -91,7 +93,7 @@
     
     {% else %}
     
-    
+    <p style="margin-bottom: 20px; font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">How shall we contact you?</p>      
     <div class="form_fields">
       	{% if form.gender.errors %}
         	<p class="error">{{ form.gender.errors|join:", "  }}</p>
@@ -129,21 +131,21 @@
       <div class="clear"></div>
     </div>
     
+    <p style="margin-top: 30px; margin-bottom: 30px;font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">How can we find you?</p>    
     <div class="form_fields">
       {% if form.institution_name.errors %}
         <p class="error">{{ form.institution_name.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_institution_name">Institute Name:</label>
+      <label for="id_institution_name">Name:</label>
       {{ form.institution_name }}
       <div class="clear"></div>
     </div>
     
-    <p style="margin-bottom: 20px;"><b>Institute Address:</b></p>
     <div class="form_fields">
       {% if form.street.errors %}
         <p class="error">{{ form.street.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_street" style="text-align: center;">Street:</label>
+      <label for="id_street">Street:</label>
       {{ form.street }}
       <div class="clear"></div>
     </div>
@@ -151,7 +153,7 @@
     {% if form.state.errors %}
         <p class="error">{{ form.state.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_state" style="text-align: center;">State</label>
+      <label for="id_state">State</label>
       {{ form.state }}
       <div class="clear"></div>
     </div>
@@ -159,7 +161,7 @@
     {% if form.zip_code.errors %}
         <p class="error">{{ form.zip_code.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_zip_code" style="text-align: center;">Zip Code:</label>
+      <label for="id_zip_code">Zip Code:</label>
       {{ form.zip_code }}
       <div class="clear"></div>
     </div>
@@ -169,7 +171,7 @@
      {% if form.country.errors %}
         <p class="error">{{ form.country.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_country" style="text-align: center;">Country:</label>
+      <label for="id_country">Country:</label>
       {{ form.country }}
       <div class="clear"></div>
     </div>
@@ -177,12 +179,12 @@
     {% if form.institution_website.errors %}
         <p class="error">{{ form.institution_website.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_institution_website">Institute Website:</label>
+      <label for="id_institution_website">Website:</label>
       {{ form.institution_website }}
       <div class="clear"></div>
     </div>
     <div class="institute_operation_left ">
-    	<p><b>Institute Hours of Operation:</b></p>
+    	<p style="margin-top: 30px; margin-bottom: 30px; font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">When shall we come and visit?</p>  
     </div>
     <div id="start_hour" class="form_fields">
 
