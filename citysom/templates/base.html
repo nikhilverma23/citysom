@@ -19,6 +19,18 @@
 				var page = loc.substring(loc.indexOf('/', 8), loc.length);
 				$('#topnavigation>ul>li>a[href="' + page + '"]').parent().addClass("current");
 				
+				var mouse_is_inside=false;
+				
+				$('.login_top_div').hover(function(){
+					mouse_is_inside=true;
+					}, function(){
+						mouse_is_inside=false;
+					});
+				
+				$(document).mouseup(function(){
+					if(!mouse_is_inside) $('.login_top_div').hide();	
+				});
+		
 				jQuery("#menu > li a").click(function(e) {
 
 					jQuery("#everything1, #categories, #concerts, #more").hide();
@@ -58,28 +70,31 @@
 	</head>
 	<body>
 		<!-- Container start from here -->
+		<div id="headerbg">
+			<div id="topnavigation">
+				<ul>
+					<li class="lilink">
+						<a href="{% url home %}" class="search_link">Search</a>
+					</li>
+					<li>
+						<a href="#">Categorize</a>
+					</li>
+					{% if user.is_authenticated %}
+					<li>
+						<a href="/event/createevent/">Publish</a>
+					</li>
+					{% endif %}
+				</ul>
+				<div id="commenttext">
+					Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
+				</div>
+			</div>
+		</div>
 		<div id="container">
 			<!-- Container 2 start from here -->
 			<div id="container2">
 				<!-- Topnavigation start from here -->
-				<div id="topnavigation">
-					<ul>
-						<li class="lilink">
-							<a href="{% url home %}" class="search_link">Search</a>
-						</li>
-						<li>
-							<a href="#">Categorize</a>
-						</li>
-						{% if user.is_authenticated %}
-						<li>
-							<a href="/event/createevent/">Publish</a>
-						</li>
-						{% endif %}
-					</ul>
-					<div id="commenttext">
-						Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
-					</div>
-				</div>
+				
 				<!-- Topnavigation end from here -->
 				<!-- centerarea main start from here -->
 				<div id="centerarea_main">
@@ -97,7 +112,7 @@
 									<a href="/accounts/register/">Sign Up</a>
 								{% endif %}
 							</div>
-							<div class="login_top_div" style="display: none;">
+							<div class="login_top_div" id="log_top_div" style="display: none;">
 								<form method="post" action="{% url auth_login %}">
 									{% csrf_token %}
 									<div>
