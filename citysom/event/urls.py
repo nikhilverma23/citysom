@@ -6,5 +6,6 @@ urlpatterns = patterns(
     
     (r'^createevent/$', 'eventcreation'),
     (r'^upload_image/$', 'handle_uploaded_file'),
-    (r'^event_list/$', 'event_list')
+    (r'^event_list/$', 'event_list'),
+    (r'^event_genre/$', 'get_event_genre')
 )

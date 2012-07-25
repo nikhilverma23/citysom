@@ -1,0 +1,14 @@
+<ul>
+{% for choices in genre_list %}
+	<li>
+		<label for="id_event_genre_{{forloop.counter}}">
+			<div class="checker" id="uniform-id_event_genre_{{forloop.counter}}">
+				<span class="">
+					<input type="checkbox" id="id_event_genre_{{forloop.counter}}" value="{{choices.id}}" name="event_genre">
+				</span>
+			</div> 
+			{{choices}}
+		</label>
+	</li>
+{% endfor %}
+</ul>

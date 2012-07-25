@@ -139,3 +139,12 @@ def event_list(request):
                                },
                               context_instance=RequestContext(request)
                               )    
+
+def get_event_genre(request):  
+    type = request.GET['type']
+    category_obj = Category.objects.get(id=type)
+    return render_to_response("event/event_genre.html",
+                             {"genre_list":category_obj.eventgenre_set.all()},
+                             context_instance=RequestContext(request)
+                             )
+       
