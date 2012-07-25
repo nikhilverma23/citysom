@@ -182,6 +182,7 @@ body
 		/*float:left;*/
 		height:27px;
 		margin: auto;
+		
 	}
 	
 #topnavigation ul
@@ -704,7 +705,7 @@ body
 	{
 		width:100%;
 	    margin:0px 0px 0px 0px;
-	    background-image:url(../images/footerbg.png); background-repeat:repeat-x;
+	    background-image:url(../images/footerbg.png); background-repeat:repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
 	    height:34px;
 	}
 
@@ -712,7 +713,7 @@ body
 	{
 	    width:100%;
 	    margin:0px 0px 0px 0px;
-	    background-image:url(../images/footerbg.png); background-repeat:repeat-x;
+	    background-image:url(../images/footerbg.png); background-repeat:repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
 	    height:34px;
 	}
 	
