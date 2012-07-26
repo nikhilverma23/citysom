@@ -56,7 +56,7 @@ class EventGenre(models.Model):
     """
     Describes the various genre
     """
-    
+    category = models.ForeignKey(Category, null=True, blank=True)
     genre_choices = models.CharField(max_length=255)
     
     def __unicode__(self):
