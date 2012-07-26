@@ -45,7 +45,7 @@ class PersonalProfileForm(forms.Form):
     email2 = forms.EmailField(required=False)
     email3 = forms.EmailField(required=False)
     email4 = forms.EmailField(required=False)
-    facebook_account = forms.URLField()
+    facebook_account = forms.URLField(required=False)
     
 class ProfessionalProfileForm(forms.Form):
     first_name = forms.CharField(max_length=80,required=False)

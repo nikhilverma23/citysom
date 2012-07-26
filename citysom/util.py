@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 GENDER_CHOICES = (
-        ('choices', '----------'),
+        
 	    ('mr', 'Mr'),
         ('mrs', 'Mrs'),
 	    ('mis', 'Miss'),

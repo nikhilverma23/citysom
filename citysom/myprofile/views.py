@@ -32,7 +32,7 @@ def get_account_type(request):
             userprofile_obj.account_type = acc_type
             userprofile_obj.save()
             
-            next_url = "http://"+settings.HOST
+            next_url = "/myprofile/completingprofile/"
             return HttpResponseRedirect(next_url)
     else:
         account_form = PreRegistrationForm()
@@ -62,7 +62,8 @@ def completingprofile(request):
                 userprofile_obj.email_id_4 = form.cleaned_data['email4']
                 userprofile_obj.facebook_account = form.cleaned_data['facebook_account']
                 userprofile_obj.save()
-                return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+                next_url = "http://"+settings.HOST
+                return HttpResponseRedirect(next_url)
         else:
             form = PersonalProfileForm()
             
