@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic.simple import direct_to_template
-from citysom.settings import MEDIA_ROOT
+from citysom.settings import MEDIA_ROOT, STATIC_ROOT
 from django.contrib import admin
 admin.autodiscover()
 
@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.backends.default.urls')),
 
       # Static content.
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
 )
 

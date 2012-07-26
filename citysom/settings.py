@@ -84,7 +84,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    (PROJECT_PATH + '/media/'),
+    #'/home/charleshenri/webapps/citysom_static',
         
 )
 
@@ -96,14 +96,14 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+ADMIN_MEDIA_PREFIX = '/admin/'
 
 AUTH_PROFILE_MODULE = "myprofile.UserProfile"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '_6dshm%f$m&amp;_-%=m_8i!g5gdwztdwi8!^*^piil^cgh0b_%2f!'
 
-# List of callables that know how to import templates from various sources.
+# Lis
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
