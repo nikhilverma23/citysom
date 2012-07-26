@@ -1,0 +1,41 @@
+<div id="month_section">{{ current_date|date:"F Y" }}</div>
+<div id="week_section">
+	<span class="red">Su</span>
+	<span>Mo</span>
+	<span>Tu</span>
+	<span>We</span>
+	<span>Th</span>
+	<span>Fr</span>
+	<span>Sa</span>
+	<span class="red">Su</span>
+	<span>Mo</span>
+	<span>Tu</span>
+	<span>We</span>
+	<span>Th</span>
+	<span>Fr</span>
+	<span>Sa</span>
+</div>
+<div id="days_section">
+	<div id="left_movement">
+		<div class="prev_arrow_div"><a href="/event/calendar/?year={{prev_year.year}}&month={{prev_year.month}}" class="calendar_nav_links"><img src="/static/images/prew_button.png"></a></div>
+		<div class="prev_arrow_div"><a href="/event/calendar/?year={{prev_month.year}}&month={{prev_month.month}}" class="calendar_nav_links"><img src="/static/images/clander_prewbutton.png"></a></div>
+	</div>
+	<div id="days_container">
+		{% for empty_day in weekday %}
+			<a href="javascript:void(0)">&nbsp;</a>
+		{% endfor %}
+		{{weekday.last}}
+		{% for day in daysrange %}
+			{% if check_current_month == 1 and day|add:1 == now.day %}
+				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="today calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
+			{% else %}
+				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="{{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
+			{% endif %}
+		{% endfor %}
+	</div>
+	<div id="right_movement">
+		<div class="next_arrow_div"><a href="/event/calendar/?year={{next_month.year}}&month={{next_month.month}}" class="calendar_nav_links"><img src="/static/images/clander_nextbutton.png"></a></div>
+		<div class="next_arrow_div"><a href="/event/calendar/?year={{next_year.year}}&month={{next_year.month}}" class="calendar_nav_links"><img src="/static/images/next_button.png"></a></div>
+	</div>
+	<div class="clear"></div>
+</div>

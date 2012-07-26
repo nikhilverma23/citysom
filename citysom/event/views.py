@@ -147,4 +147,45 @@ def get_event_genre(request):
                              {"genre_list":category_obj.eventgenre_set.all()},
                              context_instance=RequestContext(request)
                              )
+    
+def calendar(request):
+    import datetime
+    import dateutil
+    from dateutil.relativedelta import *
+    from calendar import monthrange
+    
+    now = datetime.datetime.now()
+    
+    try:
+        current_date = datetime.datetime(int(request.GET["year"]),int(request.GET["month"]),1)
+    except:
+        current_date = datetime.datetime(int(now.year),int(now.month),1)
+        
+    prev_month=current_date+relativedelta(months=-1)
+    prev_year=current_date+relativedelta(years=-1)
+    next_month=current_date+relativedelta(months=+1)
+    next_year=current_date+relativedelta(years=+1)
+    daysrange = monthrange(current_date.year,current_date.month)
+    weekday = current_date.isoweekday()
+    
+    if current_date.year == now.year and current_date.month == now.month:
+        check_current_month = 1
+    else:
+        check_current_month = 0
+    
+    return render_to_response("event/calendar.html",
+                             {
+                                "prev_month":prev_month,
+                                "prev_year":prev_year,
+                                "next_month":next_month,
+                                "next_year":next_year,
+                                "current_date":current_date,
+                                "daysrange":range(daysrange[1]),
+                                "check_current_month":check_current_month,
+                                "weekday":range(weekday%7),
+                                "last_weekday":(weekday%7)+1,
+                                "now":now
+                            },
+                             context_instance=RequestContext(request)
+                             )
        

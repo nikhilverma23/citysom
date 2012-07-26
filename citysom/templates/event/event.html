@@ -248,7 +248,7 @@ tinyMCE.init({
 						  	{% endif %}
                                  <h3 class="subheading">Event genre</h3>
                                  	<div class="event_genre_div">
-                                 		{{eventform.event_genre}} 
+                                 		Select Event Type 
                                  	</div>
                                  </div>
                                 <div class="event_public">
@@ -364,8 +364,8 @@ $("input[type=checkbox].uni").click(function(){
 	second_child = class_name+":eq(1)";
 	if($(this).is(":checked"))
 	{
-		$(first_child).val("09:00:00");
-		$(second_child).val("17:00:00");
+		$(first_child).val("09:00");
+		$(second_child).val("17:00");
 	}
 	else
 	{
@@ -421,10 +421,7 @@ var defaultBounds = new google.maps.LatLngBounds(
   new google.maps.LatLng(-33.8474, 151.2631));
 
 var input = document.getElementById('id_street_address');
-var options = {
-  types: ['(cities)'],
-};
 
-autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete = new google.maps.places.Autocomplete(input);
 </script>
 {% endblock %}

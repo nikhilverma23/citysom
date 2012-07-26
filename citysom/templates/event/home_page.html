@@ -8,72 +8,10 @@
             <div id="sundayarea"><img src="/static/images/sundayimg.png" width="508" height="17" alt="sunday" /></div>
         </div>	 -->
         <div class="clear"></div>
-        <div id="home_calendar">
-        	<div id="month_section">April 2012</div>
-        	<div id="week_section">
-        		<span class="red">Su</span>
-        		<span>Mo</span>
-        		<span>Tu</span>
-        		<span>We</span>
-        		<span>Th</span>
-        		<span>Fr</span>
-        		<span>Sa</span>
-        		<span class="red">Su</span>
-        		<span>Mo</span>
-        		<span>Tu</span>
-        		<span>We</span>
-        		<span>Th</span>
-        		<span>Fr</span>
-        		<span>Sa</span>
-        	</div>
-        	<div id="days_section">
-        		<div id="left_movement">
-        			<div class="prev_arrow_div"><a href="javascript:void(0)"><img src="/static/images/prew_button.png"></a></div>
-        			<div class="prev_arrow_div"><a href="javascript:void(0)"><img src="/static/images/clander_prewbutton.png"></a></div>
-        		</div>
-        		<div id="days_container">
-        			<a href="javascript:void(0)" rel="1" class="active">1</a>
-        			<a href="javascript:void(0)" rel="2" class="today">2</a>
-        			<a href="javascript:void(0)" rel="3">3</a>
-        			<a href="javascript:void(0)" rel="4">4</a>
-        			<a href="javascript:void(0)" rel="3">5</a>
-        			<a href="javascript:void(0)" rel="4">6</a>
-        			<a href="javascript:void(0)" rel="3">7</a>
-        			<a href="javascript:void(0)" rel="4">8</a>
-        			<a href="javascript:void(0)" rel="3">9</a>
-        			<a href="javascript:void(0)" rel="4">10</a>
-        			<a href="javascript:void(0)" rel="3">11</a>
-        			<a href="javascript:void(0)" rel="4">12</a>
-        			<a href="javascript:void(0)" rel="3">13</a>
-        			<a href="javascript:void(0)" rel="4" class="last_day">14</a>
-        			<a href="javascript:void(0)" rel="3">15</a>
-        			<a href="javascript:void(0)" rel="4">16</a>
-        			<a href="javascript:void(0)" rel="3">17</a>
-        			<a href="javascript:void(0)" rel="4">18</a>
-        			<a href="javascript:void(0)" rel="3">19</a>
-        			<a href="javascript:void(0)" rel="4">20</a>
-        			<a href="javascript:void(0)" rel="4">21</a>
-        			<a href="javascript:void(0)" rel="4">22</a>
-        			<a href="javascript:void(0)" rel="4">23</a>
-        			<a href="javascript:void(0)" rel="4">24</a>
-        			<a href="javascript:void(0)" rel="4">25</a>
-        			<a href="javascript:void(0)" rel="4">26</a>
-        			<a href="javascript:void(0)" rel="4">27</a>
-        			<a href="javascript:void(0)" rel="4" class="last_day">28</a>
-        			<a href="javascript:void(0)" rel="4">29</a>
-        			<a href="javascript:void(0)" rel="4">30</a>
-        			<a href="javascript:void(0)" rel="4">31</a>
-        		</div>
-        		<div id="right_movement">
-        			<div class="next_arrow_div"><a href="javascript:void(0)"><img src="/static/images/clander_nextbutton.png"></a></div>
-        			<div class="next_arrow_div"><a href="javascript:void(0)"><img src="/static/images/next_button.png"></a></div>
-        		</div>
-        		<div class="clear"></div>
-        	</div>
-        </div>
+        <div id="home_calendar"></div>
         <div class="clear"></div>
         <!-- filledarea main start from here -->
-         <div class="filledarea">
+         <div class="filter_section">
         	<div class="minprice_main">
             	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price</div>
                 <div class="minprice_heading">
@@ -96,7 +34,7 @@
             	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Start Time</div>
                 <div class="minprice_heading">
                 	<div class="nextbutton"><a href="javascript:void(0)" id="max_time_down"><img src="/static/images/button_down.png" /></a></div>
-                    <div class="textbox"><span id="max_price_span">8:00</span><input name="max_time" id="max_time" type="hidden" value="8:00" /></div>
+                    <div class="textbox"><span id="max_time_span">8:00</span><input name="max_time" id="max_time" type="hidden" value="8:00" /></div>
                     <div class="nextbutton"><a href="javascript:void(0)" id="max_time_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
@@ -175,7 +113,7 @@
       </div> 
       <script>
   		var step = 10;
-  		var timestep = 5;
+  		var timestep = 15;
   		
   		function load_events()
   		{
@@ -231,11 +169,12 @@
   			var time_val = $("#max_time").val();
   			time_val = time_val.replace(":","");
   			current_time = parseInt(time_val)-timestep;
-  			console.log(current_time);
+  			current_time = check_time(current_time);
   			if(current_time >= 0)
   			{
-  				$("#max_time").val(current_time);
-  				$("#max_time_span").html(current_time);
+  				current_formatted_time = format_time(current_time);
+  				$("#max_time").val(current_formatted_time);
+  				$("#max_time_span").html(current_formatted_time);
   				load_events();
   			}
   		});
@@ -243,14 +182,65 @@
   			var time_val = $("#max_time").val();
   			time_val = time_val.replace(":","");
   			current_time = parseInt(time_val)+timestep;
+  			current_time = check_time(current_time);
   			if(current_time < 2400)
   			{
-  				$("#max_time").val(current_time);
-  				$("#max_time_span").html(current_time);
+  				current_formatted_time = current_time;
+  				$("#max_time").val(current_formatted_time);
+  				$("#max_time_span").html(current_formatted_time);
   				load_events();
   			}
   		});
   		load_events();
+  		
+  		$.get(
+  			"/event/calendar/",
+  			function (data)
+  			{
+  				$("#home_calendar").html(data);
+  			}
+  		);
+  		$("#home_calendar").on("click", "#days_container>a", function(event){
+			$("a.calendar_active").removeClass("calendar_active");
+  			$(this).addClass("calendar_active");
+		});
+		
+		$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
+			event.preventDefault();
+			url = $(this).attr("href");
+			$.get(
+	  			url,
+	  			function (data)
+	  			{
+	  				$("#home_calendar").html(data);
+	  			}
+	  		);
+		});
+		
+		function check_time(time_value)
+		{
+			time_remainder = time_value%100;
+			if(time_remainder > 60)
+			return time_value - 40;			
+			else
+			return time_value;
+		}
+		
+		function format_time(time_value)
+		{
+			time_value = fillZero(time_value, 4);
+			time_value1 = time_value.substring(0,2);
+			time_value2 = time_value.substring(2);
+			return time_value1+":"+time_value2;
+		}
+		
+		function fillZero(s, n) {
+			var zero = [];
+			for (var i = 0; i < n; i++) {
+				zero.push('0');
+			}
+			return (zero.join('') + s).slice(-n);
+		} 
       </script>
 {% endblock %}
 

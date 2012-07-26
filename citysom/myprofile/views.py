@@ -32,7 +32,7 @@ def get_account_type(request):
             userprofile_obj.account_type = acc_type
             userprofile_obj.save()
             
-            next_url = "/myprofile/completingprofile/"
+            next_url = "http://"+settings.HOST
             return HttpResponseRedirect(next_url)
     else:
         account_form = PreRegistrationForm()
