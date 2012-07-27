@@ -845,6 +845,8 @@ h6
 .txt3{color: #000000; float: right;font-family: Calibri;font-size: 16px;margin-top:5px;margin-right:0px;width: 900px;margin-bottom: 20px;}
 .txt{color: #000000; float: left;font-family: Calibri;font-size: 16px;margin-top:0px;margin-right:19px;width: 900px;margin-bottom:-22px;}
 .txt a{color: #000000; text-decoration:none;} 
+p.long_text_body{line-height:20px; font-family: Georgia; font-size: 16px; font-weight:normal; color:#111111}
+p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weight: bold;font-style: normal; text-decoration:underline;}
 .date{color: #000000; float: right;font-family: Calibri;font-size: 16px;margin-top:5px;margin-right:19px;width: 900px;margin-bottom: 5px;}  
 .cre_event{color: #66666; font-size: 30px;float:left;margin-bottom:10px; margin-top:40px;width:auto;font-family: Georgia;font-weight: normal;font-style: normal;}
 #login{width: auto;height:auto;margin-top:10px;}
