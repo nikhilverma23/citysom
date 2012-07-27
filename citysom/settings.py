@@ -67,7 +67,7 @@ CACHES = {
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_URL =  'http://www.citysom.com/static/'
+MEDIA_URL =  'http://www.citysom.com/media/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # Absolute path to the directory static files should be collected to.
@@ -146,7 +146,7 @@ INSTALLED_APPS = (
     'tinymce',
 )
 
-TINYMCE_JS_URL = MEDIA_URL + 'js/tiny_mce/tiny_mce.js'
+TINYMCE_JS_URL = MEDIA_URL + 'tiny_mce/tiny_mce.js'
 TINYMCE_DEFAULT_CONFIG = {
     'plugins': "table,spellchecker,paste,searchreplace",
     'theme': "advanced",
