@@ -33,7 +33,8 @@ class EventForm(forms.Form):
         self.fields['end_hours_on_saturday'].widget.attrs['class'] = "timepicker saturday"
         self.fields['start_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
         self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
-        
+        if not self.fields['category'].choices[0][0] == '':
+            self.fields['category'].choices.insert(0, ('','---------' ) )
         
     title = forms.CharField(max_length=255,required=True)
     venue_name = forms.CharField(max_length=255,required=False)
