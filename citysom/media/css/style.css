@@ -411,7 +411,22 @@ body
     {
         list-style:none;
         float:left;
-        margin-left:10px;    
+        margin-left:10px;
+        display:table-cell;
+        width: 196px;
+        height: 270px;    
+    }
+#bottom_images ul li div
+    {
+    	text-align: center;
+    	vertical-align: middle;
+    	display: table-cell;
+    	height: 270px;
+    }
+#bottom_images ul li div img
+    {
+    	max-width: 196px;
+    	max-height: 270px;
     }    
 #headingtext
 	{

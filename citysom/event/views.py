@@ -165,7 +165,7 @@ def event_list(request):
     except:
         pass
     
-    events = Event.objects.filter(**kwargs)
+    events = Event.objects.filter()
     
     return render_to_response("event/event_list.html",
                                {
