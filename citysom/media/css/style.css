@@ -853,7 +853,8 @@ h6
 .bln_area{height:50px;}
 .formlist{line-height: 40px;}
 #login_form{margin-left:10px;}
-.formlist1{line-height: 30px; font-family: Helvetica; font-size:13px;}
+.formlist1{line-height: 45px; font-family: Helvetica; font-size:13px;}
+.adminformlist{line-height:15px;}
 .cal_div{width: 200px; height:100px; float:left; margin-left:52px;}
 .per_acc{width: 200px;height:auto;}
 .fltl{float: left; width:95px;height:auto;}
