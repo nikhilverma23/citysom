@@ -67,7 +67,7 @@ CACHES = {
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_URL =  '/media/'
+MEDIA_URL =  'http://www.citysom.com/static/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 
 # Absolute path to the directory static files should be collected to.
@@ -77,7 +77,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
 STATIC_ROOT = "/home/charleshenri/webapps/citysom_static/"
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://www.citysom.com/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
