@@ -101,8 +101,12 @@ def eventcreation(request):
                               context_instance=RequestContext(request)
                               )
 def home(request):
+    category = Category.objects.all()
     return render_to_response("event/home_page.html",
-                              {"request":request},
+                              {
+                               "request":request,
+                               "category":category
+                               },
                               context_instance=RequestContext(request)
                               )
     
@@ -118,6 +122,13 @@ def event_list(request):
     kwargs = {
               'status':True,
              }
+    
+    try:
+        if request.GET['event_date']:
+            kwargs['performancedetails__ticket_price__gte'] = request.GET['min_price']
+    except:
+        pass
+    
     try:
         if request.GET['min_price']:
             kwargs['performancedetails__ticket_price__gte'] = request.GET['min_price']
@@ -127,6 +138,30 @@ def event_list(request):
     try:
         if request.GET['max_price']:
             kwargs['performancedetails__ticket_price__lte'] = request.GET['max_price']
+    except:
+        pass
+    
+    try:
+        if request.GET['date_started']:
+            kwargs['performancedetails__date_started'] = request.GET['date_started']
+    except:
+        pass
+    
+    try:
+        if request.GET['date_completed']:
+            kwargs['performancedetails__date_completed'] = request.GET['date_completed']
+    except:
+        pass
+    
+    try:
+        if request.GET['start_time']:
+            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
+    except:
+        pass
+    
+    try:
+        if request.GET['category']:
+            kwargs['category'] = request.GET['category']
     except:
         pass
     

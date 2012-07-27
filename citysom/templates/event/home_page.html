@@ -42,13 +42,11 @@
             <div class="minprice_main">
                     <div class="minprice_heading">Event Type</div>
                     <div class="minprice_heading">
-                        <select name="mydropdown" style="background-color: black;width:150px; margin-top: 3px;color:white;font-weight:bold;"> 
-                                    <option value="Milk">Movies</option>
-                                    <option value="Cheese">Concerts</option>
-                                    <option value="Bread">Theater</option>
-                                    <option value="Cheese">Ballet</option>
-                                    <option value="Bread">Exhibition</option>                                
-                                    
+                        <select name="category" id="category" style="background-color: black;width:150px; margin-top: 3px;color:white;font-weight:bold;"> 
+                        		<option value="">Select Event Type</option>
+                        		{% for cat in category %}
+                        			<option value="{{cat.id}}">{{cat}}</option>
+                        		{% endfor %}
                         </select>
                     </div>
                 </div>
@@ -120,11 +118,21 @@
   			url = '/event/event_list/?view=list';
   			min_price = parseInt($("#min_price").val());
   			max_price = parseInt($("#max_price").val());
+  			event_date = $(".calendar_active").attr("rel");
+  			start_time = $("#max_time").val();
+  			category = $("#category").val();
+  			
   			if(min_price)
   				url +='&min_price='+min_price;
   			if(max_price)
   				url +='&max_price='+max_price;
-  			
+  			if(event_date)
+  				url +='&event_date='+event_date;
+  			if(start_time)
+  				url +='&start_time='+start_time;
+  			if(category)
+  				url +='&category='+category;
+  				
 	  		$.get(url,
 	  			function(data)
 	  			{
@@ -165,31 +173,25 @@
   			load_events();
   		});
   		
+  		var variable_date = new Date();
+  		variable_date.setHours(8);
+  		variable_date.setMinutes(0);
+  		variable_date.setSeconds(0);
+  		var current_formatted_date;
   		$("#max_time_down").click(function(){
-  			var time_val = $("#max_time").val();
-  			time_val = time_val.replace(":","");
-  			current_time = parseInt(time_val)-timestep;
-  			current_time = check_time(current_time);
-  			if(current_time >= 0)
-  			{
-  				current_formatted_time = format_time(current_time);
-  				$("#max_time").val(current_formatted_time);
-  				$("#max_time_span").html(current_formatted_time);
-  				load_events();
-  			}
+  			variable_date.setMinutes(variable_date.getMinutes()-timestep);
+			current_formatted_date = variable_date.getHours()+":"+variable_date.getMinutes();
+			$("#max_time").val(current_formatted_date);
+			$("#max_time_span").html(current_formatted_date);
+			load_events();
   		});
-  		$("#max_time_up").click(function(){
-  			var time_val = $("#max_time").val();
-  			time_val = time_val.replace(":","");
-  			current_time = parseInt(time_val)+timestep;
-  			current_time = check_time(current_time);
-  			if(current_time < 2400)
-  			{
-  				current_formatted_time = current_time;
-  				$("#max_time").val(current_formatted_time);
-  				$("#max_time_span").html(current_formatted_time);
-  				load_events();
-  			}
+  		$("#max_time_up").click(function()
+  		{
+			variable_date.setMinutes(variable_date.getMinutes()+timestep);
+			current_formatted_date = variable_date.getHours()+":"+variable_date.getMinutes();
+			$("#max_time").val(current_formatted_date);
+			$("#max_time_span").html(current_formatted_date);
+			load_events();
   		});
   		load_events();
   		
@@ -203,6 +205,7 @@
   		$("#home_calendar").on("click", "#days_container>a", function(event){
 			$("a.calendar_active").removeClass("calendar_active");
   			$(this).addClass("calendar_active");
+  			load_events();
 		});
 		
 		$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
@@ -217,30 +220,9 @@
 	  		);
 		});
 		
-		function check_time(time_value)
-		{
-			time_remainder = time_value%100;
-			if(time_remainder > 60)
-			return time_value - 40;			
-			else
-			return time_value;
-		}
-		
-		function format_time(time_value)
-		{
-			time_value = fillZero(time_value, 4);
-			time_value1 = time_value.substring(0,2);
-			time_value2 = time_value.substring(2);
-			return time_value1+":"+time_value2;
-		}
-		
-		function fillZero(s, n) {
-			var zero = [];
-			for (var i = 0; i < n; i++) {
-				zero.push('0');
-			}
-			return (zero.join('') + s).slice(-n);
-		} 
+		$("#category").change(function(){
+			load_events();
+		});
       </script>
 {% endblock %}
 

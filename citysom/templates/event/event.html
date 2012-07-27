@@ -405,11 +405,12 @@ $("#id_schedule_type_1").click(function(){
 });
 $( ".open_hours_div" ).hide();
 $( ".performance_hours_div" ).hide();
-$(".category_class").click(function(){
+$(".category_class").change(function(){
 	$.get(
-		'/event/event_genre/?type='+$('.category_class:checked').val(),
+		'/event/event_genre/?type='+$('.category_class').val(),
 		function(data){
 			$(".event_genre_div").html(data);
+			$(".event_genre_div input[type=checkbox]").uniform();
 		}		
 	);
 });

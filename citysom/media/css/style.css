@@ -861,7 +861,7 @@ h6
 #event_categories{width:500px; float: left; margin-left:65px;}
 #event_categories label{ width: 80px; margin-right: 5px; }
 #event_categories div.radio{ float: left; margin: 6px 0;  }
-#event_categories .event_type{width:150px;height:auto;float: left;}
+#event_categories .event_type{width:200px;height:auto;float: left;}
 #event_categories .event_genre{width: 150px;height: auto;float: left;}
 #event_categories .event_public{width: 150px;height: auto;float: left;}
 .event_type ul li{display: block;}

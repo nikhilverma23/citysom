@@ -79,7 +79,7 @@
 					<li>
 						<a href="#">Categorize</a>
 					</li>
-					{% if user.is_authenticated %}
+					{% if user.is_authenticated and user.userprofile.account_type == "professional" %}
 					<li>
 						<a href="/event/createevent/">Publish</a>
 					</li>

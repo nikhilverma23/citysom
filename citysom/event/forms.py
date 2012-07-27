@@ -18,6 +18,7 @@ class EventForm(forms.Form):
         categories = Category.objects.all()
         self.fields['category'].choices = [(c.pk,c.type) for c in categories]
         self.fields['category'].widget.attrs['class'] = "category_class"
+        self.fields['category'].widget.attrs['style'] = "width: 100px"
         self.fields['start_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
         self.fields['end_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
         self.fields['start_hours_on_tuesday'].widget.attrs['class'] = "timepicker tuesday"
@@ -54,11 +55,11 @@ class EventForm(forms.Form):
     eventwebsite = forms.URLField(required=False)
     keyword = forms.CharField(max_length=255,required=False)
     status = forms.BooleanField(required=False,
-                                initial=False)
+                                initial=True)
     description = forms.CharField(max_length=255,required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),\
                                         required=False,
-                                        widget=RadioSelect(),
+                                        #widget=RadioSelect(),
                                         )
     event_genre = forms.ModelMultipleChoiceField(
                         queryset = EventGenre.objects.all(),
