@@ -425,8 +425,8 @@ body
     }
 #bottom_images ul li div img
     {
-    	max-width: 196px;
-    	max-height: 270px;
+    	width: 196px;
+    	height: 270px;
     }    
 #headingtext
 	{
