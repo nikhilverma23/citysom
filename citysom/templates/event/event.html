@@ -29,7 +29,7 @@ tinyMCE.init({
             <div class="upload_image">
                 <img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
                 {{eventform_poster.event_poster_file}}
-                <a href="javascript:void(0)" style="text-decoration: none;color: black" id="upload_link"><h6 style="margin-top:10px;margin-left:15px;">----Upload poster----</h6></a>
+                <input type="button" id="upload_link" value="Upload Poster" >
             </div>
             </form>
             {% if form.errors %}
@@ -237,7 +237,7 @@ tinyMCE.init({
                             {{eventform.eventwebsite}} 
                         </li>
                          <li class="formlist1">
-                            <b>Category:</b>
+                            <b style="float: left;">Category:</b>
                             <div id="event_categories">
                                 <div class="event_type">
                                 	{% if eventform.category.errors %}

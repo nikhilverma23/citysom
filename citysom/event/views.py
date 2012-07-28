@@ -154,12 +154,11 @@ def event_list(request):
     except:
         pass
     
-#    try:
-#        if request.GET['keyword']:
-#            kwargs['title__istartswith'] = request.GET['keyword']
-#            #kwargs['description__istartswith'] = "%"+request.GET['keyword']
-#    except:
-#        pass
+    try:
+        if request.GET['keyword']:
+            kwargs['title__icontains'] = request.GET['keyword']
+    except:
+        pass
     
 #    try:
 #        if request.GET['start_time']:
