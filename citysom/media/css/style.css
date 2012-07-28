@@ -397,7 +397,7 @@ body
 	
 #bottom_images
     {
-        width:878px;
+        width:894px;
         margin:0px auto;
         padding:0px 0px 0px 0px;
         height: 565px;
@@ -989,3 +989,4 @@ color:#FF6600;
 }
 .filter_section{font-family: Calibri; width: 725px;}
 .event_genre_div{max-height: 200px; overflow: auto;}
+.menurecipes_content{width: 894px;}

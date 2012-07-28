@@ -121,11 +121,18 @@ def handle_uploaded_file(request):
 def event_list(request):
     kwargs = {
               'status':True,
+              #'{0}__{1}'.format('title', 'startswith'): 'keyword',
+              #'{0}__{1}'.format('description', 'endswith'): 'description',
              }
+    
+    kwargs2 = {
+              '{0}__{1}'.format('title', 'startswith'): 'keyword',
+              '{0}__{1}'.format('description', 'endswith'): 'description'
+              }
     
     try:
         if request.GET['event_date']:
-            kwargs['performancedetails__ticket_price__gte'] = request.GET['min_price']
+            kwargs['performancedetails__date_started'] = request.GET['event_date']
     except:
         pass
     
@@ -142,22 +149,23 @@ def event_list(request):
         pass
     
     try:
-        if request.GET['date_started']:
-            kwargs['performancedetails__date_started'] = request.GET['date_started']
-    except:
-        pass
-    
-    try:
         if request.GET['date_completed']:
             kwargs['performancedetails__date_completed'] = request.GET['date_completed']
     except:
         pass
     
-    try:
-        if request.GET['start_time']:
-            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
-    except:
-        pass
+#    try:
+#        if request.GET['keyword']:
+#            kwargs['title__istartswith'] = request.GET['keyword']
+#            #kwargs['description__istartswith'] = "%"+request.GET['keyword']
+#    except:
+#        pass
+    
+#    try:
+#        if request.GET['start_time']:
+#            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
+#    except:
+#        pass
     
     try:
         if request.GET['category']:
@@ -165,8 +173,8 @@ def event_list(request):
     except:
         pass
     
-    events = Event.objects.filter()
-    
+    events = Event.objects.filter(**kwargs)
+    #print events.query
     return render_to_response("event/event_list.html",
                                {
                                "request":request,

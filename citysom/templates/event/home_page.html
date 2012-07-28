@@ -43,7 +43,7 @@
                     <div class="minprice_heading">Event Type</div>
                     <div class="minprice_heading">
                         <select name="category" id="category" style="background-color: black;width:150px; margin-top: 3px;color:white;font-weight:bold;"> 
-                        		<option value="">Select Event Type</option>
+                        		<option value="">All</option>
                         		{% for cat in category %}
                         			<option value="{{cat.id}}">{{cat}}</option>
                         		{% endfor %}
@@ -121,6 +121,7 @@
   			event_date = $(".calendar_active").attr("rel");
   			start_time = $("#max_time").val();
   			category = $("#category").val();
+  			keyword = $("#searchtextarea").val();
   			
   			if(min_price)
   				url +='&min_price='+min_price;
@@ -132,6 +133,8 @@
   				url +='&start_time='+start_time;
   			if(category)
   				url +='&category='+category;
+  			if(keyword)
+  				url +='&keyword='+keyword;
   				
 	  		$.get(url,
 	  			function(data)
@@ -193,13 +196,13 @@
 			$("#max_time_span").html(current_formatted_date);
 			load_events();
   		});
-  		load_events();
   		
   		$.get(
   			"/event/calendar/",
   			function (data)
   			{
   				$("#home_calendar").html(data);
+  				load_events();
   			}
   		);
   		$("#home_calendar").on("click", "#days_container>a", function(event){
