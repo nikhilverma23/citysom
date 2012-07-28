@@ -1,4 +1,4 @@
-html, body, div, span, applet, object, iframe,
+body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
@@ -6,16 +6,25 @@ small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0 auto; padding: 0; border: 0; outline: 0;  font-weight: inherit; font-style: inherit; font-size: 14px;  font-family: Helvetica;  vertical-align: baseline;}
+    margin: 0 auto; padding: 0; border: 0; outline: 0;  font-weight: inherit; font-style: inherit; font-size: 15px;  font-family: Helvetica;  vertical-align: baseline;}
 /* remember to define focus styles! */
 :focus {outline: 0;}
-body {line-height: 1; color: black; background: white;}
+body {margin: 0; font-size: 1em; line-height:1; color: black; background: transparent;}     
 ol, ul{ list-style: none;}
 /* tables still need 'cellspacing="0"' in the markup */
 table { border-collapse: separate; border-spacing: 0;}
 caption, th, td {text-align: left; font-weight: normal;}
 blockquote:before, blockquote:after, q:before, q:after { content: "";}
-blockquote, q { quotes: "" "";}                                                         
+blockquote, q { quotes: "" "";}  
+
+html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  
+html {font-family: Helvetica;}
+
+::-moz-selection { background: #121252; color: #fff; text-shadow: none; }
+::selection { background: #121252; color: #fff; text-shadow: none; }
+                                                         
+
+
 /* Reset CSS */
 
 /*
@@ -87,7 +96,7 @@ div.button span{margin-left:13px;height:22px;padding-top:8px;font-weight:bold;fo
 div.selector{width:190px;font-size:12px;}
 div.selector select{min-width:190px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-size:12px;border:solid 1px #fff;}
 div.selector span{padding:0px 25px 0px 2px;cursor:pointer;}
-div.selector span{color:#666;width:158px;text-shadow:0 1px 0 #fff;}
+div.selector span{color:#666;width:120px;text-shadow:0 1px 0 #fff;}
 div.selector.disabled span{color:#bbb;} 
 div.checker{margin-right:5px;} 
 div.radio{margin-right:3px;} 
@@ -355,10 +364,9 @@ body
 
 #logouttext a:hover
 {
-	text-decoration: underline;
+	text-decoration: none;
 	color: #FF6600;
-	font-size:13px;
-	font-weight: bold;
+	font-weight: normal;
 	font-size:12px;
 }
 .subheading{
