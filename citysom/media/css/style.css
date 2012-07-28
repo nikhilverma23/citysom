@@ -17,12 +17,13 @@ caption, th, td {text-align: left; font-weight: normal;}
 blockquote:before, blockquote:after, q:before, q:after { content: "";}
 blockquote, q { quotes: "" "";}  
 
+/* Reset CSS */
 html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  
 html {font-family: Helvetica;}
 
 ::-moz-selection { background: #121252; color: #fff; text-shadow: none; }
 ::selection { background: #121252; color: #fff; text-shadow: none; }
-                                                         
+                                                        
 
 
 /* Reset CSS */
