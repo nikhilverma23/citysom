@@ -421,20 +421,21 @@ body
         float:left;
         margin-left:10px;
         display:table-cell;
-        width: 196px;
-        height: 270px;    
+        width: 164px;
+        height: 240px;    
+        margin-bottom: 15px;
     }
 #bottom_images ul li div
     {
     	text-align: center;
     	vertical-align: middle;
     	display: table-cell;
-    	height: 270px;
+    	height: 240px;
     }
 #bottom_images ul li div img
     {
-    	width: 196px;
-    	height: 270px;
+    	width: 164px;
+    	height: 240px;
     }    
 #headingtext
 	{
