@@ -74,8 +74,9 @@ def eventcreation(request):
                                event = event_obj,
                                place = place_obj,
                                frequency = event_form.cleaned_data['frequency'],
-                               interval = event_form.cleaned_data['interval']
-                                                 
+                               interval = event_form.cleaned_data['interval'],
+                               showtimes_start = event_form.cleaned_data['event_start_hours'], 
+                               showtimes_end = event_form.cleaned_data['event_end_hours'],                 
                                )
             performance_obj.save()
             for days in event_form.cleaned_data['repeat_on']:
@@ -94,10 +95,13 @@ def eventcreation(request):
         eventposter_form = EventPosterForm()
         event_form = EventForm()
         
-        
+    frequency_range = {"daily":range(6),"weekly":range(4),"monthly":range(12)}
     return render_to_response('event/event.html',
-                              {'eventform':event_form,
-                               'eventform_poster':eventposter_form},
+                              {
+                               'eventform':event_form,
+                               'eventform_poster':eventposter_form,
+                               'frequency_range':frequency_range
+                               },
                               context_instance=RequestContext(request)
                               )
 def home(request):

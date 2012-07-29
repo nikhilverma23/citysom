@@ -35,6 +35,8 @@ class EventForm(forms.Form):
         self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
         if not self.fields['category'].choices[0][0] == '':
             self.fields['category'].choices.insert(0, ('','---------' ) )
+        self.fields['event_start_hours'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours'].widget.attrs['class'] = "timepicker"
         
     title = forms.CharField(max_length=255,required=True)
     venue_name = forms.CharField(max_length=255,required=False)
@@ -105,6 +107,8 @@ class EventForm(forms.Form):
                                  required=True,
                                  help_text="basically the count"
                                 )
+    event_start_hours = forms.TimeField(required=False)
+    event_end_hours = forms.TimeField(required=False)
     repeat_on = forms.ModelMultipleChoiceField(
                         queryset = Days.objects.all(),                          
                         widget=CheckboxSelectMultiple,

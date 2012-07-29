@@ -211,6 +211,7 @@ tinyMCE.init({
 						  	{% endif %}
                             <b>Repeat Every:</b>
                             {{eventform.interval}} 
+                        	
                         </li>
                         
                         <li class="formlist1 performance_hours_div">
@@ -221,6 +222,21 @@ tinyMCE.init({
                             {{eventform.repeat_on}} 
                         </li>
              
+                        <li class="formlist1 performance_hours_div">
+                        	{% if eventform.event_start_hours.errors %}
+						    	<p class="error">{{ eventform.event_start_hours.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Start Hours:</b>
+                            {{eventform.event_start_hours}} 
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div">
+                        	{% if eventform.event_end_hours.errors %}
+						    	<p class="error">{{ eventform.event_end_hours.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event End hours:</b>
+                            {{eventform.event_end_hours}} 
+                        </li>
                         
                         <li class="formlist1">
                         	{% if eventform.event_ticket_price.errors %}
@@ -420,6 +436,31 @@ $(".category_class").change(function(){
 			}		
 		);
 	}
+});
+$("#id_frequency").change(function(){
+	var options_html;
+	if($(this).val() == "once")
+	{
+	}
+	else if($(this).val() == "daily")
+	{
+		{% for frequency_val in frequency_range.daily %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}	
+	}
+	else if($(this).val() == "weekly")
+	{
+		{% for frequency_val in frequency_range.weekly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	else if($(this).val() == "monthly")
+	{
+		{% for frequency_val in frequency_range.monthly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	$("#id_interval").html(options_html);
 });
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
