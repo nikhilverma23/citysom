@@ -113,13 +113,75 @@ def home(request):
                                },
                               context_instance=RequestContext(request)
                               )
-    
+
 def handle_uploaded_file(request):
+    from PIL import Image
+    THUMBSIZE = 240, 164
+    
     event_poster = request.FILES['event_poster_file']
     destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
     for chunk in event_poster.chunks():
         destination.write(chunk)
+    
+    
+    
+    img = Image.open(destination)
+    if img.mode not in ('L', 'RGB'):
+        img = img.convert('RGB')
 
+    width, height = img.size
+    if width == height:
+        img.thumbnail(THUMBSIZE, Image.ANTIALIAS)
+    elif width > height:
+        ratio = floor(width / height)
+        newwidth = ratio * 150
+        newwidthhalf = floor(newwidth / 2)
+        img.resize((newwidth, 150), Image.ANTIALIAS)
+        box = 1
+        img.crop((newwidthhalf, 0, 150, 150))
+    elif height > width:
+        ratio = floor(height / width)
+        newheight = ratio * 150
+        newheighthalf = floor(newheight / 2)
+        img.resize((150, newheight), image.ANTIALIAS)
+        box = 1 
+        img.crop((0, newheighthalf, 240, 164))
+    
+    
+    img.save(path, format='JPEG')
+    
+    return HttpResponse(str(event_poster))
+
+def handle_uploaded_file(request):
+    # resize image  
+    from PIL import Image
+    THUMBSIZE = 240, 164
+    import pdb;pdb.set_trace();
+    event_poster = request.FILES['event_poster_file']
+    destination = open(MEDIA_ROOT + '/images/'+ str(event_poster), 'wb+')
+    img = Image.open(destination)
+    if img.mode not in ('L', 'RGB'):
+        img = img.convert('RGB')
+
+    width, height = img.size
+    if width == height:
+        img.thumbnail(THUMBSIZE, Image.ANTIALIAS)
+    elif width > height:
+        ratio = floor(width / height)
+        newwidth = ratio * 150
+        newwidthhalf = floor(newwidth / 2)
+        img.resize((newwidth, 150), Image.ANTIALIAS)
+        box = 1
+        img.crop((newwidthhalf, 0, 150, 150))
+    elif height > width:
+        ratio = floor(height / width)
+        newheight = ratio * 150
+        newheighthalf = floor(newheight / 2)
+        img.resize((150, newheight), image.ANTIALIAS)
+        box = 1 
+        img.crop((0, newheighthalf, 240, 164))
+    
+    img.save(path, format='JPEG')
     return HttpResponse(str(event_poster))
 
 def event_list(request):
@@ -129,14 +191,17 @@ def event_list(request):
               #'{0}__{1}'.format('description', 'endswith'): 'description',
              }
     
-    kwargs2 = {
-              '{0}__{1}'.format('title', 'startswith'): 'keyword',
-              '{0}__{1}'.format('description', 'endswith'): 'description'
-              }
-    
     try:
         if request.GET['event_date']:
-            kwargs['performancedetails__date_started'] = request.GET['event_date']
+            kwargs['performancedetails__date_started__gte'] = request.GET['event_date']
+            kwargs['performancedetails__date_completed__lte'] = request.GET['event_date']
+    except:
+        pass
+    
+    try:
+        if request.GET['event_date_end']:
+            kwargs['performancedetails__date_started__gte'] = request.GET['event_date_end']
+            kwargs['performancedetails__date_completed__lte'] = request.GET['event_date_end']
     except:
         pass
     
@@ -149,12 +214,6 @@ def event_list(request):
     try:
         if request.GET['max_price']:
             kwargs['performancedetails__ticket_price__lte'] = request.GET['max_price']
-    except:
-        pass
-    
-    try:
-        if request.GET['date_completed']:
-            kwargs['performancedetails__date_completed'] = request.GET['date_completed']
     except:
         pass
     
@@ -177,7 +236,7 @@ def event_list(request):
         pass
     
     events = Event.objects.filter(**kwargs)
-    #print events.query
+   
     return render_to_response("event/event_list.html",
                                {
                                "request":request,

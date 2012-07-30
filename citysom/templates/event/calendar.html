@@ -32,6 +32,7 @@
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="{{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
 			{% endif %}
 		{% endfor %}
+		<div class="clear"></div>
 	</div>
 	<div id="right_movement">
 		<div class="next_arrow_div"><a href="/event/calendar/?year={{next_month.year}}&month={{next_month.month}}" class="calendar_nav_links"><img src="/static/images/clander_nextbutton.png"></a></div>

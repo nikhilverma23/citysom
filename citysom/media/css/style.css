@@ -981,21 +981,34 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 	font-weight: bold;
 	display: inline-block;
 	width: 18px;
-	margin-right: 12px;
 	text-align: center;
+	padding: 2px 8px;
+	float: left;
 	margin-bottom: 5px;
 }
 #days_container a.calendar_active{
-border-radius:12px;
-background-color:#000000;
-color:#FFFFFF;
+	border-radius:12px;
+	background-color:#000000 !important;
+	color:#FFFFFF;
+}
+#days_container a.calendar_hover{
+	background-color:#FF6600;
+	color:#FFFFFF !important;
+}
+#days_container a.calendar_start
+{
+	border-radius:12px 0px 0px 12px !important;
+}
+#days_container a.calendar_end
+{
+	border-radius:0px 12px 12px 0px !important;
 }
 #days_container a.today{
 color:#FF6600;
 }
 .last_day
 {
-	margin-right:0px !important;
+	padding:2px 3px !important;
 }
 .filter_section{font-family: Calibri; width: 725px;}
 .event_genre_div{max-height: 200px; overflow: auto;}

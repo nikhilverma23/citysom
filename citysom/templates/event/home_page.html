@@ -109,6 +109,8 @@
            </div>
            <div id="concerts">
            </div>
+           <div class="clickstatus"></div>
+     <div class="movestatus"></div>
       </div> 
       <script>
   		var step = 10;
@@ -119,7 +121,8 @@
   			url = '/event/event_list/?view=list';
   			min_price = parseInt($("#min_price").val());
   			max_price = parseInt($("#max_price").val());
-  			event_date = $(".calendar_active").attr("rel");
+  			event_date = $(".calendar_start").attr("rel");
+  			event_date_end = $(".calendar_end").attr("rel");
   			start_time = $("#max_time").val();
   			category = $("#category").val();
   			keyword = $("#searchtextarea").val();
@@ -130,6 +133,8 @@
   				url +='&max_price='+max_price;
   			if(event_date)
   				url +='&event_date='+event_date;
+  			if(event_date_end)
+  				url +='&event_date_end='+event_date_end;
   			if(start_time)
   				url +='&start_time='+start_time;
   			if(category)
@@ -206,11 +211,11 @@
   				load_events();
   			}
   		);
-  		$("#home_calendar").on("click", "#days_container>a", function(event){
+  		/*$("#home_calendar").on("click", "#days_container>a", function(event){
 			$("a.calendar_active").removeClass("calendar_active");
   			$(this).addClass("calendar_active");
   			load_events();
-		});
+		});*/
 		
 		$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
 			event.preventDefault();
@@ -230,6 +235,53 @@
 		$("#searchbutton").click(function(){
 			load_events();
 		});
+		
+		var clicking = false;
+		
+		$("#home_calendar").on("mousedown", "#days_container>a", function(event){
+		    clicking = true;
+		    $(".calendar_active").removeClass("calendar_active");
+		    $(".calendar_hover").removeClass("calendar_hover");
+		    $(".calendar_start").removeClass("calendar_start");
+		    $(".calendar_end").removeClass("calendar_end");
+		    $(this).addClass("calendar_active");
+		    $(this).addClass("calendar_start");
+		    return false;
+		});
+		
+		$("#home_calendar").on("mouseup", "#days_container>a", function(event){
+			clicking = false;
+		    $(this).addClass("calendar_active");
+		    $(this).addClass("calendar_end");
+		    calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+		    $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+		    load_events();
+		    return false;
+		});
+		
+		$("#home_calendar").on("mousemove", "#days_container>a", function(event){
+			if(clicking == false) return;
+		    $(this).addClass("calendar_hover");
+		    return false;
+		});
+		
+		function getAllBetween(firstEl,lastEl) {
+		    var firstElement = $(firstEl);
+		    var lastElement = $(lastEl);
+		    var collection = new Array();
+		    collection.push(firstElement);
+		    $(firstEl).nextAll().each(function(){
+		        var siblingID  = $(this).attr("rel");
+		        if (siblingID != $(lastElement).attr("rel")) {
+		                collection.push($(this));
+		        } else {
+		                return false;
+		        }
+		    });  
+		    collection.push(lastElement);       
+		    return collection;
+		}
+
       </script>
 {% endblock %}
 
