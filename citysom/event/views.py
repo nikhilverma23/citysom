@@ -153,35 +153,11 @@ def handle_uploaded_file(request):
     return HttpResponse(str(event_poster))
 
 def handle_uploaded_file(request):
-    # resize image  
-    from PIL import Image
-    THUMBSIZE = 240, 164
-    import pdb;pdb.set_trace();
     event_poster = request.FILES['event_poster_file']
-    destination = open(MEDIA_ROOT + '/images/'+ str(event_poster), 'wb+')
-    img = Image.open(destination)
-    if img.mode not in ('L', 'RGB'):
-        img = img.convert('RGB')
+    destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
+    for chunk in event_poster.chunks():
+        destination.write(chunk)
 
-    width, height = img.size
-    if width == height:
-        img.thumbnail(THUMBSIZE, Image.ANTIALIAS)
-    elif width > height:
-        ratio = floor(width / height)
-        newwidth = ratio * 150
-        newwidthhalf = floor(newwidth / 2)
-        img.resize((newwidth, 150), Image.ANTIALIAS)
-        box = 1
-        img.crop((newwidthhalf, 0, 150, 150))
-    elif height > width:
-        ratio = floor(height / width)
-        newheight = ratio * 150
-        newheighthalf = floor(newheight / 2)
-        img.resize((150, newheight), image.ANTIALIAS)
-        box = 1 
-        img.crop((0, newheighthalf, 240, 164))
-    
-    img.save(path, format='JPEG')
     return HttpResponse(str(event_poster))
 
 def event_list(request):

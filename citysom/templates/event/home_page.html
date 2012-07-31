@@ -121,7 +121,7 @@
   			url = '/event/event_list/?view=list';
   			min_price = parseInt($("#min_price").val());
   			max_price = parseInt($("#max_price").val());
-  			event_date = $(".calendar_start").attr("rel");
+  			event_date = $(".calendar_start").attr("rel")?$(".calendar_start").attr("rel"):$(".calendar_active").attr("rel");
   			event_date_end = $(".calendar_end").attr("rel");
   			start_time = $("#max_time").val();
   			category = $("#category").val();
@@ -253,8 +253,19 @@
 			clicking = false;
 		    $(this).addClass("calendar_active");
 		    $(this).addClass("calendar_end");
-		    calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
-		    $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+		    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
+		    {
+		     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+		     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+		    }
+		    else
+		    {
+		     $(".calendar_active").removeClass("calendar_active");
+		     $(".calendar_hover").removeClass("calendar_hover");
+		     $(".calendar_start").removeClass("calendar_start");
+		     $(".calendar_end").removeClass("calendar_end");
+		     $(this).addClass("calendar_active");
+		    }
 		    load_events();
 		    return false;
 		});
