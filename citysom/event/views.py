@@ -115,44 +115,6 @@ def home(request):
                               )
 
 def handle_uploaded_file(request):
-    from PIL import Image
-    THUMBSIZE = 240, 164
-    
-    event_poster = request.FILES['event_poster_file']
-    destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
-    for chunk in event_poster.chunks():
-        destination.write(chunk)
-    
-    
-    
-    img = Image.open(destination)
-    if img.mode not in ('L', 'RGB'):
-        img = img.convert('RGB')
-
-    width, height = img.size
-    if width == height:
-        img.thumbnail(THUMBSIZE, Image.ANTIALIAS)
-    elif width > height:
-        ratio = floor(width / height)
-        newwidth = ratio * 150
-        newwidthhalf = floor(newwidth / 2)
-        img.resize((newwidth, 150), Image.ANTIALIAS)
-        box = 1
-        img.crop((newwidthhalf, 0, 150, 150))
-    elif height > width:
-        ratio = floor(height / width)
-        newheight = ratio * 150
-        newheighthalf = floor(newheight / 2)
-        img.resize((150, newheight), image.ANTIALIAS)
-        box = 1 
-        img.crop((0, newheighthalf, 240, 164))
-    
-    
-    img.save(path, format='JPEG')
-    
-    return HttpResponse(str(event_poster))
-
-def handle_uploaded_file(request):
     event_poster = request.FILES['event_poster_file']
     destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
     for chunk in event_poster.chunks():
@@ -160,27 +122,39 @@ def handle_uploaded_file(request):
 
     return HttpResponse(str(event_poster))
 
+from django.db.models import Q
 def event_list(request):
     kwargs = {
               'status':True,
-              #'{0}__{1}'.format('title', 'startswith'): 'keyword',
-              #'{0}__{1}'.format('description', 'endswith'): 'description',
              }
+    
+    kwargs1 = {}
+    kwargs2 = {}
+    
+    event_date = ""
+    event_date_end = ""
     
     try:
         if request.GET['event_date']:
-            kwargs['performancedetails__date_started__gte'] = request.GET['event_date']
-            kwargs['performancedetails__date_completed__lte'] = request.GET['event_date']
+            event_date = request.GET['event_date'];
     except:
         pass
     
     try:
         if request.GET['event_date_end']:
-            kwargs['performancedetails__date_started__gte'] = request.GET['event_date_end']
-            kwargs['performancedetails__date_completed__lte'] = request.GET['event_date_end']
+            event_date_end = request.GET['event_date_end'];
     except:
         pass
     
+    if event_date!="" and event_date_end!="":
+        kwargs1['performancedetails__date_started__gte'] = request.GET['event_date']
+        kwargs1['performancedetails__date_started__lte'] = request.GET['event_date_end']
+        kwargs2['performancedetails__date_completed__gte'] = request.GET['event_date']
+        kwargs2['performancedetails__date_completed__lte'] = request.GET['event_date_end']
+    elif event_date!="":
+        kwargs1['performancedetails__date_started__lte'] = request.GET['event_date']
+        kwargs1['performancedetails__date_completed__gte'] = request.GET['event_date']
+        
     try:
         if request.GET['min_price']:
             kwargs['performancedetails__ticket_price__gte'] = request.GET['min_price']
@@ -211,8 +185,8 @@ def event_list(request):
     except:
         pass
     
-    events = Event.objects.filter(**kwargs)
-   
+    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs))
+    print events.query
     return render_to_response("event/event_list.html",
                                {
                                "request":request,
