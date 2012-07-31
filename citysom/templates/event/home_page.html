@@ -255,6 +255,7 @@
 		    $(this).addClass("calendar_end");
 		    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
 		    {
+		     $(".calendar_hover").removeClass("calendar_hover");
 		     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
 		     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
 		    }
