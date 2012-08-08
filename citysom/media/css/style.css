@@ -164,6 +164,7 @@ body
 	{
 		width:100%;
 		margin:auto;
+		position:relative;
 		background:#ffffff url(../images/bg01.jpg) repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
 	}
 
@@ -182,8 +183,9 @@ body
     
 #container2
 	{
-		width:974px;
+		width:990px;
 		margin:auto;
+		position: relative;
 	}
 	
 #topnavigation
@@ -305,7 +307,7 @@ body
 	
 #centerarea_main
 	{
-		width:995px;
+		width:990px;
 		float:left;
 		margin:0px 0px 15px 0px;
 		padding:0px 0px 0px 0px;
@@ -328,23 +330,28 @@ body
 		margin:5px 0px 0px 30px;
 		position: relative;
 	}
-	
+
+/* Start Search box */
 #searchbox
 	{
-		width:730px;
-		float:left;
+		width:500px;
+		float:right;
 		height:41px;
-		background-image:url(../images/searchbox.png); background-repeat:no-repeat;
-		margin:5px 0px 0px 0px;
+		background-image:url(../images/searchbox500.png); background-repeat:no-repeat;
+		margin:-3px 0px 0px 0px;
 	}
 	
 #searchtextarea {
     float: left;
     height: 26px;
     margin: 7px 0 0 9px;
-    width: 685px;
-}			
-	
+    width: 455px;
+}	
+
+.placeholder {
+	color: #AAAAAA;
+}		
+/*End Search box */
 
 #logouttext
 	{
@@ -623,9 +630,169 @@ body
 .everything_area ul li:nth-child(3):hover ~ li:last-child::after{left:6em;width:4em;}
 .everything_area ul li:nth-child(4):hover ~ li:last-child::after{left:10em;width:12em;}
 .everything_area ul li:last-child:hover::after{left:22em;width:5em;}	
+
+
+
+/* Start Home page filtering paragraphs */
+p.nav_menu{
+	margin: 0 0 25px;
+	position: relative;
+	text-align: center;
+}
+
+/* End Home page filtering paragraphs */
+
+/* Start Home page filtering div */
+.nav_div{
+	display:none;
+	width: 175px;
+	position: relative;
+	margin-bottom: 25px;
+	margin-top:-24px;
+	background: #F2F2F2;
+	background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#F2F2F2));
+   	background: -webkit-linear-gradient(top, #FAFAFA, #F2F2F2);
+   	background: -moz-linear-gradient(top, #FAFAFA, #F2F2F2);
+	background: -ms-linear-gradient(top, #FAFAFA, #F2F2F2);
+	background: -o-linear-gradient(top, #FAFAFA, #F2F2F2);
+	-webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;	
+    -webkit-box-shadow: #C2C2C2 0 1px 0;
+    -moz-box-shadow: #C2C2C2 0 1px 0;
+    box-shadow: #C2C2C2 0 1px 0;
+    text-shadow: #C2C2C2 0 1px 0;
+    font-size: 0.85em;
+    overflow: auto;
+}
+
+/* End Home page filtering div */
+
+
+/* Start Home page filtering buttons */	
+
+.nav_div_choices {
+	margin-top: 10px;
+	margin-bottom:10px;
+}
+
+button.nav_button {
+   height: 30px;
+   width: 175px;
+   border-top: 0px solid #ffffff;
+   background: #475474;
+   background: -webkit-gradient(linear, left top, left bottom, from(#586381), to(#475474));
+   background: -webkit-linear-gradient(top, #586381, #475474);
+   background: -moz-linear-gradient(top, #586381, #475474);
+   background: -ms-linear-gradient(top, #586381, #475474);
+   background: -o-linear-gradient(top, #586381, #475474);
+   padding: 8.5px 17px;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 13px;
+   font-weight: bold;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   cursor: pointer;
+   }
+button.nav_button:hover {
+   border-top-color: #fff;
+   background: #ff6600;
+   color: #fff;
+   }
+button.nav_button:active {
+   border-top-color: #fff;
+   background: #ff6600;
+   }
+
+button.nav_button_choice {
+   height: 27px;
+   width: 64px;
+   border-top: 0px solid #ffffff;
+   background: #475474;
+   -webkit-border-radius: 12px;
+   -moz-border-radius: 12px;
+   border-radius: 12px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 0.8em;
+   font-weight: normal;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   cursor: pointer;
+   margin-bottom:5px;
+   }
+
+button.nav_button_choice:hover{
+	border:1px solid #586381;
+	background: #586381;
+	color:#ff6600;
+}
+
+
+/* Start Home page filtering checkbox */
+
+.nav_div input[type=checkbox]{
+	display: inline-block;
+	font-size: 0.95em;
+	line-height: 1.5em;
+	margin: 0 0.25em 0 0; 
+	width: 0.95em;
+	height: 0.95em;
+	-webkit-border-radius: 0.25em;
+	-moz-border-radius: 0.25em;
+	border-radius: 0.25em;
+	vertical-align: middle;
+	margin-left: 10px;
+	margin-right: 5px;
+}
 	
-	
-	
+/* Start Home page filtering labels */
+
+.nav_div label{
+	font-size: 0.95em;
+	font-weight: normal;
+	margin-left: 10px;
+}
+
+/* Start Home page filtering drop-down */
+
+.nav_div select{
+	background: transparent;
+	-webkit-appearance:button;
+	-moz-appearance:button;
+}
+
+.nav_div select option{
+	font-size: 0.85em;
+	font-weight:normal;
+}
+
+/* Start Home page hours display */
+.hours_display{
+	float:right; 
+	width:100px; 
+	margin: 20px 0 0 0;
+}
+
+#hours_range_select label{
+	float:left; 
+	width:75px;
+	text-align:left;
+	margin: 24px 0 0 0;
+}
+
+/* Other CSS */
 .everything
 	{
 	float: left;

@@ -178,10 +178,23 @@ def event_list(request):
 #            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
 #    except:
 #        pass
+
+#    try:
+#        if request.GET['end_time']:
+#            kwargs['performancedetails__showtimes_end'] = request.GET['end_time']
+#    except:
+#        pass
+
     
     try:
         if request.GET['category']:
             kwargs['category'] = request.GET['category']
+    except:
+        pass
+    
+    try:
+        if request.GET['audience']:
+            kwargs['event_public__icontiains'] = request.GET['audience']
     except:
         pass
     
