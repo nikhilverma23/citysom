@@ -75,7 +75,7 @@ def completingprofile(request):
     else:
         if request.method == "POST":
             form = ProfessionalProfileForm(request.POST)
-            if form.is_valid():
+            if form.is_valid():               
                 userprofile_obj.first_name = form.cleaned_data['first_name']
                 userprofile_obj.last_name = form.cleaned_data['last_name']
                 userprofile_obj.gender = form.cleaned_data['gender']
@@ -155,7 +155,7 @@ def editprofile(request):
         context['form'].fields['start_hours_on_thursday'].initial = profile.start_hours_on_thursday
         context['form'].fields['end_hours_on_thursday'].initial = profile.end_hours_on_thursday
         context['form'].fields['start_hours_on_friday'].initial = profile.start_hours_on_friday
-        context['form'].fields['end_hours_on_saturday'].initial = profile.end_hours_on_friday
+        context['form'].fields['end_hours_on_friday'].initial = profile.end_hours_on_friday
         context['form'].fields['start_hours_on_saturday'].initial = profile.start_hours_on_saturday
         context['form'].fields['end_hours_on_saturday'].initial = profile.end_hours_on_saturday
         context['form'].fields['end_hours_on_sunday'].initial = profile.end_hours_on_sunday

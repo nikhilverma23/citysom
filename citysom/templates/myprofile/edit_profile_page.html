@@ -15,7 +15,7 @@
     <fieldset>
     {% if account_type == "personal" %}
     
-    <p style=",margin-bottom: 25px; font-family: Georgia; font-color:#111111; font-size:20px; font-weight:bold;">How shall we call you?</p>    	
+    <p><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">1.</span> How shall we call you?</p>    	
 	
 	<div class="form_fields">
       	{% if form.gender.errors %}
@@ -93,7 +93,7 @@
     
     {% else %}
     
-    <p style="margin-bottom: 20px; font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">How shall we contact you?</p>      
+    <p><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">1.</span> How shall we contact you?</p>      
     <div class="form_fields">
       	{% if form.gender.errors %}
         	<p class="error">{{ form.gender.errors|join:", "  }}</p>
@@ -131,7 +131,7 @@
       <div class="clear"></div>
     </div>
     
-    <p style="margin-top: 30px; margin-bottom: 30px;font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">How can we find you?</p>    
+    <p style="margin-top: 2.5em;"><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">2.</span> How can we find you?</p>    
     <div class="form_fields">
       {% if form.institution_name.errors %}
         <p class="error">{{ form.institution_name.errors|join:", "  }}</p>
@@ -183,96 +183,104 @@
       {{ form.institution_website }}
       <div class="clear"></div>
     </div>
-    <div class="institute_operation_left ">
-    	<p style="margin-top: 30px; margin-bottom: 30px; font-family: Georgia; color:#FF6600; font-size:20px; font-weight:bold;">When shall we come and visit?</p>  
-    </div>
-    <div id="start_hour" class="form_fields">
+  
+    <p style="margin-top: 2.5em;"><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">3.</span> When shall we come and visit?</p>  
 
-                       <div class="start_left">
-                           <span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
-                            <div class="clear"></div>
-                             {% if form.start_hours_on_monday.errors %}
-				    			<p class="error">{{ form.start_hours_on_monday.errors|join:", "  }}</p>
-				  			 {% endif %}
-				  			 {% if form.end_hours_on_monday.errors %}
-				    		 <p class="error">{{ form.end_hours_on_monday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Mondays:</label>
-                             {{form.start_hours_on_monday}} 
-				    	     {{form.end_hours_on_monday}} 
-                             <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
-                             
-                             
-                             {% if form.start_hours_on_tuesday.errors %}
-				    			<p class="error">{{ form.start_hours_on_tuesday.errors|join:", "  }}</p>
-				  			 {% endif %}
-                             {% if form.end_hours_on_tuesday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_tuesday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Tuesdays:</label>
-                             {{form.start_hours_on_tuesday}}
-                             {{form.end_hours_on_tuesday}} 
-                             <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday"/><br />
-                            
-							 {% if form.start_hours_on_wednesday.errors %}
-				    			<p class="error">{{ form.start_hours_on_wednesday.errors|join:", "  }}</p>
-				  			 {% endif %}
-                             {% if form.end_hours_on_wednesday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_wednesday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Wednesdays:</label>
-                             {{form.start_hours_on_wednesday}} 
-                             {{form.end_hours_on_wednesday}} 
-                             <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday"/><br />
-				  		</div>
-				  		<div class="start_right">
-				  			<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
-                            <div class="clear"></div>
-				  			 {% if form.start_hours_on_thursday.errors %}
-				    			<p class="error">{{ form.start_hours_on_thursday.errors|join:", "  }}</p>
-				  			 {% endif %}
-				  			 {% if form.end_hours_on_thursday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_thursday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Thursdays:</label>
-                             {{form.start_hours_on_thursday}} 
-				    	     {{form.end_hours_on_thursday}} 
-                             <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday"/><br />
-							 
-							 {% if form.start_hours_on_friday.errors %}
-				    			<p class="error">{{ form.start_hours_on_friday.errors|join:", "  }}</p>
-				  			 {% endif %}
-                             {% if form.end_hours_on_friday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_friday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Fridays:</label>
-                             {{form.start_hours_on_friday}} 
-                             {{form.end_hours_on_friday}} 
-                             <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday"/><br />
-							 
-							 {% if form.start_hours_on_saturday.errors %}
-				    			<p class="error">{{ form.start_hours_on_saturday.errors|join:", "  }}</p>
-				  			 {% endif %}
-                             {% if form.end_hours_on_saturday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_saturday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Saturdays:</label>
-                             {{form.start_hours_on_saturday}} 
-                             {{form.end_hours_on_saturday}} 
-                             <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday"/><br />
-							 
-							 {% if form.start_hours_on_sunday.errors %}
-				    			<p class="error">{{ form.start_hours_on_sunday.errors|join:", "  }}</p>
-				  			 {% endif %}
-                             {% if form.end_hours_on_sunday.errors %}
-				    		 	<p class="error">{{ form.end_hours_on_sunday.errors|join:", "  }}</p>
-				    	     {% endif %}
-                             <label>Sundays:</label>
-                             {{form.start_hours_on_sunday}} 
-                             {{form.end_hours_on_sunday}} 
-                             <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday"/><br />
-						</div>
-                   </div>
+   
+    	<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px; margin-right:285px;">Full day</span>
+     <div id="start_hour mo" class="form_fields start_hour">
+        <div class="clear"></div>
+        {% if form.start_hours_on_monday.errors %}
+		<p class="error">{{ form.start_hours_on_monday.errors|join:", "  }}</p>
+		{% endif %}
+		{% if form.end_hours_on_monday.errors %}
+		<p class="error">{{ form.end_hours_on_monday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Mondays:</label>
+        {{form.start_hours_on_monday}} 
+		{{form.end_hours_on_monday}} 
+        <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
+     	</div>                        
+        
+        
+       <div id="start_hour tu" class="form_fields start_hour">                      
+        {% if form.start_hours_on_tuesday.errors %}
+		<p class="error">{{ form.start_hours_on_tuesday.errors|join:", "  }}</p>
+		{% endif %}
+	    {% if form.end_hours_on_tuesday.errors %}
+		<p class="error">{{ form.end_hours_on_tuesday.errors|join:", "  }}</p>
+	    {% endif %}
+	    <label>Tuesdays:</label>
+	    {{form.start_hours_on_tuesday}}
+	    {{form.end_hours_on_tuesday}} 
+        <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday"/><br />
+     	</div>
+      
+       <div id="start_hour we" class="form_fields start_hour">                   
+		{% if form.start_hours_on_wednesday.errors %}
+		<p class="error">{{ form.start_hours_on_wednesday.errors|join:", "  }}</p>
+		{% endif %}
+        {% if form.end_hours_on_wednesday.errors %}
+		<p class="error">{{ form.end_hours_on_wednesday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Wednesdays:</label>
+        {{form.start_hours_on_wednesday}} 
+        {{form.end_hours_on_wednesday}} 
+        <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday"/><br />
+      	</div>
+        
+       <div id="start_hour th" class="form_fields start_hour">
+		{% if form.start_hours_on_thursday.errors %}
+		<p class="error">{{ form.start_hours_on_thursday.errors|join:", "  }}</p>
+		{% endif %}
+		{% if form.end_hours_on_thursday.errors %}
+		<p class="error">{{ form.end_hours_on_thursday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Thursdays:</label>
+        {{form.start_hours_on_thursday}} 
+		{{form.end_hours_on_thursday}} 
+        <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday"/><br />
+		</div>
+	
+		<div id="start_hour fr" class="form_fields start_hour">		 
+		{% if form.start_hours_on_friday.errors %}
+		<p class="error">{{ form.start_hours_on_friday.errors|join:", "  }}</p>
+		{% endif %}
+        {% if form.end_hours_on_friday.errors %}
+		<p class="error">{{ form.end_hours_on_friday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Fridays:</label>
+        {{form.start_hours_on_friday}} 
+        {{form.end_hours_on_friday}} 
+        <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday"/><br />
+		</div>
+		
+		<div id="start_hour sa" class="form_fields start_hour">					 
+		{% if form.start_hours_on_saturday.errors %}
+		<p class="error">{{ form.start_hours_on_saturday.errors|join:", "  }}</p>
+		{% endif %}
+        {% if form.end_hours_on_saturday.errors %}
+		<p class="error">{{ form.end_hours_on_saturday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Saturdays:</label>
+        {{form.start_hours_on_saturday}} 
+        {{form.end_hours_on_saturday}} 
+        <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday"/><br />
+		</div>
+		
+		<div id="start_hour su" class="form_fields start_hour">				 
+		{% if form.start_hours_on_sunday.errors %}
+		<p class="error">{{ form.start_hours_on_sunday.errors|join:", "  }}</p>
+		{% endif %}
+        {% if form.end_hours_on_sunday.errors %}
+		<p class="error">{{ form.end_hours_on_sunday.errors|join:", "  }}</p>
+		{% endif %}
+        <label>Sundays:</label>
+        {{form.start_hours_on_sunday}} 
+        {{form.end_hours_on_sunday}} 
+        <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday"/><br />	
+		</div>
+				 
 	<div class="clear"></div>   
 	    
   
@@ -283,4 +291,21 @@
 	<input id="submit_profiledetails" type="submit"  value="" name="submit" class="continue_button"/>
 </form>
 </div>
+<script>
+	$("input[type=checkbox].uni").click(function(){
+	date_name = $(this).attr("rel");
+	first_child = "#id_start_hours_on_"+date_name;
+	second_child = "#id_end_hours_on_"+date_name;
+	if($(this).is(":checked"))
+	{
+		$(first_child).val("09:00");
+		$(second_child).val("17:00");
+	}
+	else
+	{
+		$(first_child).val("");
+		$(second_child).val("");
+	}
+});
+</script>
 {% endblock %}

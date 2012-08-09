@@ -1042,7 +1042,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .date{color: #000000; float: right;font-family: Calibri;font-size: 16px;margin-top:5px;margin-right:19px;width: 900px;margin-bottom: 5px;}  
 .cre_event{color: #66666; font-size: 30px;float:left;margin-bottom:10px; margin-top:40px;width:auto;font-family: Georgia;font-weight: normal;font-style: normal;}
 #login{width: auto;height:auto;margin-top:10px;}
-.login_content{float: right;width:710px;}
+.login_content{float:left;width:890px; margin-left:100px;}
 .upload_image{float:left;width:150px ;}
 .bln_area{height:50px;}
 .formlist{line-height: 40px;}
@@ -1107,20 +1107,24 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .login_top_div label[for=id_username]{font-family:Helvetica; font-size:12px; font-weight:bold; color:#111111;}
 .login_top_div label[for=id_password]{font-family:Helvetica; font-size:12px; font-weight:bold; color:#111111;}
 .login_top_div .login_submit{background: #FFFFFF; border-radius: 5px; border: 1px solid #BEBEBE; padding:5px; color: #FF6000; margin: 10px 110px 5px; font-family: Helvetica; font-size: 12px; font-weight: bold; width: 100px;}
-.login_content .form_fields{clear: both; margin-bottom: 20px;}
+.start_hour input[type=text]{display:block; width: 150px !important; float:left; font-size:0.9em; font-family:Helvetica; font-weight:normal;}
+.login_content p{margin-bottom:1.7em; font-family:Helvetica; font-size:1.8em; font-weight: normal; color:#FF8C00; font-style:italic;}
+.login_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
 .login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
 .login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;margin-left:5px; background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
 .login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
+
 p.error{display: block; height: 30px; color: #FF0000; padding-left: 30px; padding-top: 5px; background: url("../images/cross_icon.png") no-repeat; margin: 10px 0px 0px 120px;}
 p.mainerror{display: block; height: 35px; color: #FF0000;}
-.continue_button{border: none; background: url(../images/cont.png) no-repeat; width: 265px; height: 45px; margin-left: 36px; margin-top: 30px;}
+.profile_nav_index{display: block; width:20px; height:20px; font-weight:bold; color:#FFFFFF; background:#FF6600;}
+.continue_button{border: none; background: url(../images/cont.png) no-repeat; width: 20em; height: 5em; margin-left: 21em; margin-top: 2em;}
 .continue_button_personal{border: none; background: url(../images/cont.png) no-repeat; width: 265px; height: 45px; margin-left: 326px; margin-top: 180px;}
 .login_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:32px; width: 350px;font-size:13px;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;background-color: transparent;outline:0;}
 .login_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
 .login_content .formlist1 b{display: inline-block; width: 150px;}
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}
 .submitButton{border: none; background: url(../images/submit.png) no-repeat; width: 265px; height: 45px; margin-left: 100px; margin-top: 30px;}
-.profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:13px; margin-left:10px}
+.profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:0.89em; margin-left:10px}
 .institute_operation_left{float: left;}
 .institute_operation_right{float: left; margin-left: 10px;}
 .institute_operation_left input[type=text],.institute_operation_right input[type=text]{width: 100px !important;}
