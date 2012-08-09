@@ -9,6 +9,7 @@ from django.template import loader, Context
 from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
+from operator import or_
 
 def server_error(request, template_name='500.html'):
     """
@@ -130,9 +131,14 @@ def event_list(request):
     
     kwargs1 = {}
     kwargs2 = {}
+    final_q = Q()
+    
     
     event_date = ""
     event_date_end = ""
+    
+#    import pdb
+#    pdb.set_trace()
     
     try:
         if request.GET['event_date']:
@@ -168,8 +174,14 @@ def event_list(request):
         pass
     
     try:
-        if request.GET['keyword']:
-            kwargs['title__icontains'] = request.GET['keyword']
+        if request.GET['search_text']:
+            word_list=request.GET['search_text'].split()
+            list_title_qs=[Q(title__icontains=x) for x in word_list]
+            list_description_qs=[Q(description__icontains=x) for x in word_list]
+#            list_location_qs=[Q(location__icontains=x) for x in word_list] // FOREIGN FIELD NEEDS Place__location etc.
+            
+            final_q=reduce(or_, list_title_qs + list_description_qs + list_location_qs)
+#            kwargs['title__icontains'] = request.GET['search_text']
     except:
         pass
     
@@ -194,11 +206,12 @@ def event_list(request):
     
     try:
         if request.GET['audience']:
-            kwargs['event_public__icontiains'] = request.GET['audience']
+            kwargs['event_public__icontains'] = request.GET['audience']
     except:
         pass
     
-    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs))
+    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs)&final_q)
+    
     print events.query
     return render_to_response("event/event_list.html",
                                {
