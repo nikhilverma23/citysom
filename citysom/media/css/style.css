@@ -18,7 +18,7 @@ blockquote:before, blockquote:after, q:before, q:after { content: "";}
 blockquote, q { quotes: "" "";}  
 
 /* Reset CSS */
-html {font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }  
+html {font-size: 100%; -webkit-text-size-adjust: 100%; -mz-text-size-adjust: 100%; }  
 html {font-family: Helvetica;}
 
 ::-moz-selection { background: #121252; color: #fff; text-shadow: none; }
@@ -676,6 +676,7 @@ p.nav_menu{
 	margin-bottom:10px;
 }
 
+
 button.nav_button {
    height: 30px;
    width: 175px;
@@ -771,6 +772,8 @@ button.nav_button_choice:hover{
 	background: transparent;
 	-webkit-appearance:button;
 	-moz-appearance:button;
+  	color: #555;
+  	font-size: 0.85em;
 }
 
 .nav_div select option{
@@ -1002,6 +1005,14 @@ button.nav_button_choice:hover{
     float: left;
 }
 
+.event_type select{
+	background: transparent;
+	-webkit-appearance:button;
+	-moz-appearance:button;
+  	color: #555;
+  	font-size: 0.85em;
+}
+
 .event_type h6
 {
 	font-weight: bold; 
@@ -1042,12 +1053,15 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .date{color: #000000; float: right;font-family: Calibri;font-size: 16px;margin-top:5px;margin-right:19px;width: 900px;margin-bottom: 5px;}  
 .cre_event{color: #66666; font-size: 30px;float:left;margin-bottom:10px; margin-top:40px;width:auto;font-family: Georgia;font-weight: normal;font-style: normal;}
 #login{width: auto;height:auto;margin-top:10px;}
-.login_content{float:left;width:890px; margin-left:100px;}
+
+.login_content{float:left;width:890px; margin-left:9em;}
+.cre_event_content{float:right;width:46em; margin-left:100px;}
+
 .upload_image{float:left;width:150px ;}
 .bln_area{height:50px;}
 .formlist{line-height: 40px;}
 #login_form{margin-left:10px;}
-.formlist1{line-height: 45px; font-family: Helvetica; font-size:13px;}
+.formlist1{line-height: 4em; font-family: Helvetica; font-size:0.9em; color:#444444;}
 .adminformlist{line-height:15px;}
 .cal_div{width: 200px; height:100px; float:left; margin-left:52px;}
 .per_acc{width: 200px;height:auto;}
@@ -1057,10 +1071,9 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 #event_categories label{ width: 80px; margin-right: 5px; }
 #event_categories div.radio{ float: left; margin: 6px 0;  }
 #event_categories .event_type{width:200px;height:auto;float: left;}
-#event_categories .event_genre{width: 150px;height: auto;float: left;}
-#event_categories .event_public{width: 150px;height: auto;float: left;}
+
 .event_type ul li{display: block;}
-.event_genre ul li{display: block;}
+
 
 
 #start_hour{width:540px;height:auto;margin-left:0px; float:left;}
@@ -1108,21 +1121,80 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .login_top_div label[for=id_password]{font-family:Helvetica; font-size:12px; font-weight:bold; color:#111111;}
 .login_top_div .login_submit{background: #FFFFFF; border-radius: 5px; border: 1px solid #BEBEBE; padding:5px; color: #FF6000; margin: 10px 110px 5px; font-family: Helvetica; font-size: 12px; font-weight: bold; width: 100px;}
 .start_hour input[type=text]{display:block; width: 150px !important; float:left; font-size:0.9em; font-family:Helvetica; font-weight:normal;}
-.login_content p{margin-bottom:1.7em; font-family:Helvetica; font-size:1.8em; font-weight: normal; color:#FF8C00; font-style:italic;}
-.login_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
-.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
-.login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;margin-left:5px; background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
-.login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
 
 p.error{display: block; height: 30px; color: #FF0000; padding-left: 30px; padding-top: 5px; background: url("../images/cross_icon.png") no-repeat; margin: 10px 0px 0px 120px;}
 p.mainerror{display: block; height: 35px; color: #FF0000;}
 .profile_nav_index{display: block; width:20px; height:20px; font-weight:bold; color:#FFFFFF; background:#FF6600;}
 .continue_button{border: none; background: url(../images/cont.png) no-repeat; width: 20em; height: 5em; margin-left: 21em; margin-top: 2em;}
 .continue_button_personal{border: none; background: url(../images/cont.png) no-repeat; width: 265px; height: 45px; margin-left: 326px; margin-top: 180px;}
-.login_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:32px; width: 350px;font-size:13px;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;background-color: transparent;outline:0;}
+
+.login_content p{margin-bottom:1.5em; font-family:Helvetica; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}
+.cre_event_content p{margin-bottom:1.5em; font-family:Helvetica; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}
+
+.login_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
+.cre_event_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
+
+.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
+.cre_event_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
+
+.login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;margin-left:5px; background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
+.cre_event_content .form_fields input[type=text],.login_content .form_fields input[type=password]{display: block; width: 300px; float: left;font-size:13px;font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#666666;margin-left:5px; background-color: transparent;outline:0;border-bottom: 1px solid #CCCCCC;}
+
+.login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
+.cre_event_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
+
+.login_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:3em; width: 350px;font-size:1em;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#030303;background-color: transparent;outline:0;}
+.cre_event_content .formlist1 input[type=text]{border-bottom: 1px solid #CCCCCC; margin-left:3em; width: 350px;font-size:1em;font-family:Helvetica, Arial, sans-serif;font-weight:normal;padding:3px;color:#030303;background-color: transparent;outline:0;}
+
 .login_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
+.cre_event_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
+
 .login_content .formlist1 b{display: inline-block; width: 150px;}
+.cre_event_content .formlist1 b{display: inline-block; width: 150px;}
+
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}
+.cre_event_content formlist1 #start_hour label{display: inline-block; width: 80px;}
+
+button.uploader{
+	height: 1.6em;
+   	width: 15.5em;
+   	border: 1px solid #CCCCCC;
+   	background: #DDDDDD;
+   	background: -webkit-gradient(linear, left top, left bottom, from(#EEEEEE), to(#DDDDDD));
+   	background: -webkit-linear-gradient(top, #EEEEEE, #DDDDDD);
+   	background: -moz-linear-gradient(top, #EEEEEE, #DDDDDD);
+   	background: -ms-linear-gradient(top, #EEEEEE, #DDDDDD);
+   	background: -o-linear-gradient(top, #EEEEEE, #DDDDDD);
+   	padding: 0px 10px;
+   	-webkit-border-radius: 12px;
+   	-moz-border-radius: 12px;
+   	border-radius: 12px;
+   	-webkit-box-shadow: rgba(0,0,0,0.1) 0 1px 0;
+   	-moz-box-shadow: rgba(0,0,0,0.1) 0 1px 0;
+   	box-shadow: rgba(0,0,0,0.1) 0 1px 0;
+   	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   	color: #333333;
+   	font-size: 0.85em;
+   	font-weight: normal;
+   	font-family: Helvetica, Arial, Sans-Serif;
+   	text-decoration: none;
+   	vertical-align: middle;
+   	cursor: pointer;
+   	margin-top:0.5em;
+}
+
+button.uploader:hover{
+	background: #FF6600;
+	color:white;
+	border: 1px solid #FF6600;
+}
+
+button.uploader:active{
+	background: #FF6600;
+	color:white;
+	border: 1px solid #FF6600;
+}
+
 .submitButton{border: none; background: url(../images/submit.png) no-repeat; width: 265px; height: 45px; margin-left: 100px; margin-top: 30px;}
 .profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:0.89em; margin-left:10px}
 .institute_operation_left{float: left;}
@@ -1182,9 +1254,19 @@ color:#FF6600;
 	padding:2px 3px !important;
 }
 .filter_section{font-family: Calibri; width: 725px;}
-.event_genre_div{max-height: 200px; overflow: auto;}
+
+#event_categories h3{font-size: 0.8em;font-weight:bold;}
+
+#event_categories .event_genre{width: 150px;height: auto;float: left;}
+.event_genre_div{max-height: 200px; overflow: auto; font-size:0.85em; margin-top:-1.1em;}
+.event_genre ul li{display: block; font-size:0.85em;}
+
+#event_categories .event_public{width: 150px;height: auto;float: left;}
+.event_public ul li{display: block; font-size: 0.85em; line-height:2.2em;}
+.event_public label{font-size:inherit;}
+
 #searchbutton{}
 .menurecipes_content{width: 894px;}
 #searchbutton{background-image:url(../images/searchbox_button.png); height: 25px; width: 24px; margin-top: 8px;}
-#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}
+/*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 .left_aligned_radios ul{margin-left: 32px;}

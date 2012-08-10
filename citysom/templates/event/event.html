@@ -29,13 +29,13 @@ tinyMCE.init({
             <div class="upload_image">
                 <img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
                 {{eventform_poster.event_poster_file}}
-                <input type="button" id="upload_link" value="Upload Poster" >
+                <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
             </div>
             </form>
             {% if form.errors %}
 			<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
 			{% endif %}
-            <div class="login_content">
+            <div class="cre_event_content">
                   <form id="event-form" action="" method="POST" enctype="multipart/form-data">
                   	{% csrf_token %}
                     <div class="width-60 fltlft">
