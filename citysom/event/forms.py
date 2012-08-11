@@ -59,7 +59,7 @@ class EventForm(forms.Form):
     keyword = forms.CharField(max_length=255,required=False)
     status = forms.BooleanField(required=False,
                                 initial=True)
-    description = forms.CharField(max_length=255,required=False)
+    description = forms.CharField(widget=TinyMCE(attrs={'cols':80, 'rows':15}),required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),\
                                         required=False,
                                         #widget=RadioSelect(),

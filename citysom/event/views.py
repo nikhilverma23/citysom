@@ -10,6 +10,7 @@ from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from operator import or_
+from django.db.models import Q
 
 def server_error(request, template_name='500.html'):
     """
@@ -52,11 +53,15 @@ def eventcreation(request):
                             end_hours_on_sunday = event_form.cleaned_data['end_hours_on_sunday'],
                             )
             place_obj.save()
+            
+            import pdb
+            pdb.set_trace()
+            
+            print event_form.data['description']
+            
             event_obj = Event(
             user = request.user,
-            title = event_form.cleaned_data['title'],
-           
-            
+            title = event_form.cleaned_data['title'],            
             
             eventwebsite = event_form.cleaned_data['eventwebsite'],
             keyword = event_form.cleaned_data['keyword'],
@@ -123,7 +128,7 @@ def handle_uploaded_file(request):
 
     return HttpResponse(str(event_poster))
 
-from django.db.models import Q
+
 def event_list(request):
     kwargs = {
               'status':True,
@@ -131,14 +136,12 @@ def event_list(request):
     
     kwargs1 = {}
     kwargs2 = {}
-    final_q = Q()
-    
+    searchbox_q = Q()
+    category_q = Q()
+    audience_q = Q()
     
     event_date = ""
     event_date_end = ""
-    
-#    import pdb
-#    pdb.set_trace()
     
     try:
         if request.GET['event_date']:
@@ -180,12 +183,13 @@ def event_list(request):
             list_description_qs=[Q(description__icontains=x) for x in word_list]
 #            list_location_qs=[Q(location__icontains=x) for x in word_list] // FOREIGN FIELD NEEDS Place__location etc.
             
-            final_q=reduce(or_, list_title_qs + list_description_qs + list_location_qs)
+            searchbox_q=reduce(or_, list_title_qs + list_description_qs)
 #            kwargs['title__icontains'] = request.GET['search_text']
     except:
         pass
     
 #    try:
+
 #        if request.GET['start_time']:
 #            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
 #    except:
@@ -200,17 +204,21 @@ def event_list(request):
     
     try:
         if request.GET['category']:
-            kwargs['category'] = request.GET['category']
+            l_cat = request.GET.getlist('category')
+            list_category_qs=[Q(category__exact=x) for x in l_cat]
+            category_q=reduce(or_, list_category_qs)
     except:
         pass
     
     try:
-        if request.GET['audience']:
-            kwargs['event_public__icontains'] = request.GET['audience']
+        if request.GET['audience']:          
+            l_aud = request.GET.getlist('audience')
+            list_audience_qs=[Q(event_public__exact=x) for x in l_aud]
+            audience_q=reduce(or_, list_audience_qs)
     except:
         pass
     
-    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs)&final_q)
+    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs)&searchbox_q&category_q&audience_q)
     
     print events.query
     return render_to_response("event/event_list.html",

@@ -141,7 +141,7 @@
          			<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>
          			<div class="textbox_nav" style="float:right; width:132px; font-size:15px; background:transparent;">$<input name="max_price" id="max_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="0"/></div>
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_price_range" onclick="$("#max_price").val(''); $("#min_price").val('');" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="cancel_price_range" onclick="$('#max_price').val('---'); $('#min_price').val('---'); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          				<button class="nav_button_choice" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
@@ -169,7 +169,7 @@
          			<input type="checkbox" id="checkbox_party" value="17" name="category"><span style="font-size: 0.91em; font-weight: normal;">Party</span><BR>
          			<input type="checkbox" id="checkbox_other" value="18" name="category"><span style="font-size: 0.91em; font-weight: normal;">Other</span><BR>
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked');" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          				<button class="nav_button_choice" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
@@ -254,7 +254,7 @@
          			</div>
          			<br>
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val('');" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          				<button class="nav_button_choice" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
@@ -271,7 +271,7 @@
          			<input type="checkbox" id="checkbox_adults" value="5" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Adults</span><BR>
          			<input type="checkbox" id="checkbox_seniors" value="6" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Seniors</span><BR>
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_audience_select').find('input[type=checkbox]:checked').removeAttr('checked');" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_audience_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_audience_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          				<button class="nav_button_choice" id="valid_type_select" onclick="var tmp_aud=[];$('#event_audience_select :checked').each(function(){tmp_aud.push($(this).val());}); $('#event_audience_select').val(tmp_aud); load_events(); " style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
