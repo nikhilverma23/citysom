@@ -6,6 +6,9 @@ from django.template import RequestContext
 from citysom.event.forms import EventForm, EventPosterForm
 from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
 from django.template import loader, Context
+import datetime
+import dateutil
+from dateutil import rrule
 from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
@@ -34,59 +37,209 @@ def eventcreation(request):
 
                          
         if event_form.is_valid():
-            place_obj = Place(
-                            venue_name = event_form.cleaned_data['venue_name'],
-                            street = event_form.cleaned_data['street_address'],
-                            start_hours_on_monday = event_form.cleaned_data['start_hours_on_monday'],
-                            end_hours_on_monday = event_form.cleaned_data['end_hours_on_monday'],
-                            start_hours_on_tuesday = event_form.cleaned_data['start_hours_on_tuesday'],
-                            end_hours_on_tuesday = event_form.cleaned_data['end_hours_on_monday'],
-                            start_hours_on_wednesday = event_form.cleaned_data['start_hours_on_wednesday'],
-                            end_hours_on_wednesday = event_form.cleaned_data['end_hours_on_wednesday'],
-                            start_hours_on_thursday = event_form.cleaned_data['start_hours_on_thursday'],
-                            end_hours_on_thursday = event_form.cleaned_data['end_hours_on_thursday'],
-                            start_hours_on_friday = event_form.cleaned_data['start_hours_on_friday'],
-                            end_hours_on_friday = event_form.cleaned_data['end_hours_on_friday'],
-                            start_hours_on_saturday = event_form.cleaned_data['start_hours_on_saturday'],
-                            end_hours_on_saturday = event_form.cleaned_data['end_hours_on_saturday'],
-                            start_hours_on_sunday = event_form.cleaned_data['start_hours_on_sunday'],
-                            end_hours_on_sunday = event_form.cleaned_data['end_hours_on_sunday'],
-                            )
-            place_obj.save()
-            
-            import pdb
-            pdb.set_trace()
-            
+            place_obj, created = Place.objects.get_or_create(
+                                                             venue_name = event_form.cleaned_data['venue_name'],
+                                                             street = event_form.cleaned_data['street_address'],
+                                                             start_hours_on_monday = event_form.cleaned_data['start_hours_on_monday'],
+                                                             end_hours_on_monday = event_form.cleaned_data['end_hours_on_monday'],
+                                                             start_hours_on_tuesday = event_form.cleaned_data['start_hours_on_tuesday'],
+                                                             end_hours_on_tuesday = event_form.cleaned_data['end_hours_on_monday'],
+                                                             start_hours_on_wednesday = event_form.cleaned_data['start_hours_on_wednesday'],
+                                                             end_hours_on_wednesday = event_form.cleaned_data['end_hours_on_wednesday'],
+                                                             start_hours_on_thursday = event_form.cleaned_data['start_hours_on_thursday'],
+                                                             end_hours_on_thursday = event_form.cleaned_data['end_hours_on_thursday'],
+                                                             start_hours_on_friday = event_form.cleaned_data['start_hours_on_friday'],
+                                                             end_hours_on_friday = event_form.cleaned_data['end_hours_on_friday'],
+                                                             start_hours_on_saturday = event_form.cleaned_data['start_hours_on_saturday'],
+                                                             end_hours_on_saturday = event_form.cleaned_data['end_hours_on_saturday'],
+                                                             start_hours_on_sunday = event_form.cleaned_data['start_hours_on_sunday'],
+                                                             end_hours_on_sunday = event_form.cleaned_data['end_hours_on_sunday'],
+                                                             )
+                       
             print event_form.data['description']
             
-            event_obj = Event(
-            user = request.user,
-            title = event_form.cleaned_data['title'],            
+            event_obj, created = Event.objects.get_or_create(
+                                                             user = request.user,
+                                                             title = event_form.cleaned_data['title'],            
+                                                             eventwebsite = event_form.cleaned_data['eventwebsite'],
+                                                             keyword = event_form.cleaned_data['keyword'],
+                                                             description = event_form.cleaned_data['description'],
+                                                             status = event_form.cleaned_data['status'],
+                                                             event_poster = event_form.cleaned_data['event_poster'],
+                                                             location = place_obj,
+                                                             category = event_form.cleaned_data['category'], 
+                                                             schedule_type = event_form.cleaned_data['schedule_type'],
+                                                             )
+
+            print event_form.cleaned_data['repeat_on']
             
-            eventwebsite = event_form.cleaned_data['eventwebsite'],
-            keyword = event_form.cleaned_data['keyword'],
-            description = event_form.cleaned_data['description'],
-            status = event_form.cleaned_data['status'],
-            event_poster = event_form.cleaned_data['event_poster'],
-            location = place_obj,
-            category = event_form.cleaned_data['category'], 
-            schedule_type = event_form.cleaned_data['schedule_type'],
-            )
-            event_obj.save()
-            performance_obj = PerformanceDetails(
-                               ticket_price = event_form.cleaned_data['event_ticket_price'],
-                               date_started = event_form.cleaned_data['date_started'],
-                               date_completed = event_form.cleaned_data['date_completed'],                  
-                               event = event_obj,
-                               place = place_obj,
-                               frequency = event_form.cleaned_data['frequency'],
-                               interval = event_form.cleaned_data['interval'],
-                               showtimes_start = event_form.cleaned_data['event_start_hours'], 
-                               showtimes_end = event_form.cleaned_data['event_end_hours'],                 
-                               )
-            performance_obj.save()
-            for days in event_form.cleaned_data['repeat_on']:
-                performance_obj.by_day.add(days.id)
+            inter=int(event_form.cleaned_data['interval'])
+            freq=event_form.cleaned_data['frequency']
+            dicto={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
+            L=[i.week_day for i in event_form.cleaned_data['repeat_on']]
+            T=tuple([dicto[i] for i in L])
+            
+            #Performance Based events Performance records           
+            if event_form.cleaned_data['schedule_type']=='performance_based':
+                if freq == "once":
+                    performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                        ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                        date_started = event_form.cleaned_data['date_started'],
+                                                                                        date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                        event = event_obj,
+                                                                                        place = place_obj,
+                                                                                        frequency = event_form.cleaned_data['frequency'],
+                                                                                        interval = event_form.cleaned_data['interval'],
+                                                                                        showtimes_start = event_form.cleaned_data['event_start_hours'], 
+                                                                                        showtimes_end = event_form.cleaned_data['event_end_hours'],                 
+                                                                                        )
+                if freq == "daily":
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                            date_started = date_show,
+                                                                                            date_completed = date_show,                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            frequency = event_form.cleaned_data['frequency'],
+                                                                                            interval = event_form.cleaned_data['interval'],
+                                                                                            showtimes_start = event_form.cleaned_data['event_start_hours'], 
+                                                                                            showtimes_end = event_form.cleaned_data['event_end_hours'],
+                                                                                            )
+                if freq == "weekly":
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=T):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                            date_started = date_show,
+                                                                                            date_completed = date_show,                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            frequency = event_form.cleaned_data['frequency'],
+                                                                                            interval = event_form.cleaned_data['interval'],
+                                                                                            showtimes_start = event_form.cleaned_data['event_start_hours'], 
+                                                                                            showtimes_end = event_form.cleaned_data['event_end_hours'],
+                                                                                            )
+                if freq == "monthly":
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter):
+                        #FINISH MONTHLY WITH ADAPTED UI
+                        pass
+            
+            #Open Hour Based Performance Records
+            if event_form.cleaned_data['schedule_type']=='open_hour_based':
+                if (event_form.cleaned_data['start_hours_on_monday'] != None) and (event_form.cleaned_data['end_hours_on_monday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.MO):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_monday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_monday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_tuesday'] != None) and (event_form.cleaned_data['end_hours_on_tuesday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.TU):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_tuesday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_tuesday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_wednesday'] != None) and (event_form.cleaned_data['end_hours_on_wednesday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.WE):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_wednesday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_wednesday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_thursday'] != None) and (event_form.cleaned_data['end_hours_on_thursday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.TH):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_thursday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_thursday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_friday'] != None) and (event_form.cleaned_data['end_hours_on_friday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.FR):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_friday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_friday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_saturday'] != None) and (event_form.cleaned_data['end_hours_on_saturday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.SA):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_saturday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_saturday'],
+                                                                                                )
+                if (event_form.cleaned_data['start_hours_on_sunday'] != None) and (event_form.cleaned_data['end_hours_on_sunday'] != None):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=rrule.SU):
+                            date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = event_form.cleaned_data['event_ticket_price'],
+                                                                                                date_started = date_show,
+                                                                                                date_completed = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                frequency = event_form.cleaned_data['frequency'],
+                                                                                                interval = event_form.cleaned_data['interval'],
+                                                                                                showtimes_start = event_form.cleaned_data['start_hours_on_sunday'], 
+                                                                                                showtimes_end = event_form.cleaned_data['end_hours_on_sunday'],
+                                                                                                )
+#            performance_obj, created = PerformanceDetails.objects.get_or_create(
+#                                                          ticket_price = event_form.cleaned_data['event_ticket_price'],
+#                                                          date_started = event_form.cleaned_data['date_started'],
+#                                                          date_completed = event_form.cleaned_data['date_completed'],                  
+#                                                          event = event_obj,
+#                                                          place = place_obj,
+#                                                          frequency = event_form.cleaned_data['frequency'],
+#                                                          interval = event_form.cleaned_data['interval'],
+#                                                          showtimes_start = event_form.cleaned_data['event_start_hours'], 
+#                                                          showtimes_end = event_form.cleaned_data['event_end_hours'],                 
+#                                                          )
+#            
+#            for days in event_form.cleaned_data['repeat_on']:
+#                performance_obj.by_day.add(days.id)
             for genre in event_form.cleaned_data['event_genre']:
                 event_obj.event_genre.add(genre.id)
             for public in event_form.cleaned_data['event_public']:
@@ -122,9 +275,30 @@ def home(request):
 
 def handle_uploaded_file(request):
     event_poster = request.FILES['event_poster_file']
-    destination = open(STATIC_ROOT + '/images/'+ str(event_poster), 'wb+')
-    for chunk in event_poster.chunks():
+    
+    import PIL
+    from PIL import Image
+    import pdb
+    from cStringIO import StringIO
+    from django.core.files.uploadedfile import InMemoryUploadedFile
+    
+    pdb.set_trace()
+    
+    poster_wip = Image.open(event_poster)
+    
+    maxSize=(150,200)
+    poster_wip.thumbnail(maxSize, Image.ANTIALIAS)
+    
+    resized_posterFile = StringIO()
+    poster_wip.save(resized_posterFile, "JPEG")
+    resized_posterFile.seek(0)
+    
+    posterFile=InMemoryUploadedFile(resized_posterFile, None, str(event_poster), 'image/jpeg', len(resized_posterFile.getvalue()), None)
+    destination = open(MEDIA_ROOT + '/images/'+ str(event_poster), 'wb+')
+    for chunk in posterFile.chunks():
         destination.write(chunk)
+    
+    destination.close()
 
     return HttpResponse(str(event_poster))
 

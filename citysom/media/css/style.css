@@ -132,6 +132,21 @@ END CSS LIBS
 =========================================================================================
 */
 
+/*Dynamic CSS */
+
+@media screen and (max-width=990px){
+	#headerbg{width: 990px;}
+	#container{width: 990px;}
+	#container2{width: 100%;}
+	#footerbg{width: 990px;}
+}
+
+@media screen and (max-width=700px){
+	#headerbg{width: 990px; float:none;}
+	#container{width: 990px; float:none;}
+	#container2{width: 990px; float:none;}
+	#footerbg{width: 990px; float:none;}
+}
 
 
 /* CSS Document */
@@ -163,6 +178,7 @@ body
 #container
 	{
 		width:100%;
+		min-width:990px;
 		margin:auto;
 		position:relative;
 		background:#ffffff url(../images/bg01.jpg) repeat-x; -webkit-background-size:cover; -moz-background-size:cover; o-background-size:cover; background-size:cover;
@@ -413,10 +429,13 @@ body
 	
 #bottom_images
     {
-        width:894px;
+        width:790px;
+        margin-top:11px;
+        float:left;
         margin:0px auto;
         padding:0px 0px 0px 0px;
-        height: 565px;
+        height: auto;
+        min-height:565px;
     }
 #bottom_images ul
     {
@@ -427,11 +446,12 @@ body
     {
         list-style:none;
         float:left;
-        margin-left:10px;
+        margin-left:0px;
         display:table-cell;
         width: 164px;
         height: 240px;    
         margin-bottom: 15px;
+        margin-right:1.4em;
     }
 #bottom_images ul li div
     {
@@ -442,9 +462,14 @@ body
     }
 #bottom_images ul li div img
     {
-    	width: 164px;
-    	height: 240px;
+    	max-width: 150px;
+    	max-height: 200px;
     }    
+    
+#bottom_images img{border:1px solid #333;}
+
+#bottom_images img:hover{border:1px solid #ff6600;}
+
 #headingtext
 	{
 		padding:0px 0px 0px 0px;
@@ -792,7 +817,7 @@ button.nav_button_choice:hover{
 	float:left; 
 	width:75px;
 	text-align:left;
-	margin: 24px 0 0 0;
+	margin: 23px 0 0 0;
 }
 
 /* Other CSS */
@@ -899,6 +924,7 @@ button.nav_button_choice:hover{
 #headerbg
 	{
 		width:100%;
+		min-width:990px;
 	    margin:0px 0px 0px 0px;
 	    background-image:url(../images/footerbg.png); 
 	    height:34px;
@@ -907,6 +933,7 @@ button.nav_button_choice:hover{
 #footerbg
 	{
 	    width:100%;
+	    min-width:990px;
 	    margin:0px 0px 0px 0px;
 	    background-image:url(../images/footerbg.png); background-repeat:repeat-x;
 	    height:34px;
@@ -1061,7 +1088,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .bln_area{height:50px;}
 .formlist{line-height: 40px;}
 #login_form{margin-left:10px;}
-.formlist1{line-height: 4em; font-family: Helvetica; font-size:0.9em; color:#444444;}
+.formlist1{line-height: 4em; font-family: Helvetica; font-size:0.9em; color:#444444; list-style:none;}
 .adminformlist{line-height:15px;}
 .cal_div{width: 200px; height:100px; float:left; margin-left:52px;}
 .per_acc{width: 200px;height:auto;}
@@ -1076,9 +1103,11 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 
 
 
-#start_hour{width:540px;height:auto;margin-left:0px; float:left;}
+#start_hour{width:540px;height:auto;margin-left:4em; float:left;}
 .start_left{width: 260px;height: auto;float:left;margin-top:-30px;margin-left:3px;}
-.start_right{width: 260px;height: auto;float:left; margin-left: 11px;margin-top: -30px;}
+.start_left label{font-size:0.85em; width:5.5em; display:inline-block;}
+.start_right{width: 260px;height: auto;float:left; margin-left: 1.1em;margin-top: -30px;}
+.start_right label{font-size:0.85em; width:5.5em; display:inline-block;}
 
 /*css for event_create*/
 .event_prev{margin-top:17px;width:960px;height:auto;margin-left:25px;}
@@ -1149,8 +1178,8 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .login_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
 .cre_event_content .formlist1 #start_hour input[type=text]{width: 50px !important; margin-left: 16px;}
 
-.login_content .formlist1 b{display: inline-block; width: 150px;}
-.cre_event_content .formlist1 b{display: inline-block; width: 150px;}
+.login_content .formlist1 b{display: inline-block; width: 120px;}
+.cre_event_content .formlist1 b{display: inline-block; width: 130px; margin-left:20px;}
 
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}
 .cre_event_content formlist1 #start_hour label{display: inline-block; width: 80px;}
@@ -1195,12 +1224,71 @@ button.uploader:active{
 	border: 1px solid #FF6600;
 }
 
+
+.performance_fs{
+	border: 2px solid #A0A0A0;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+}
+
+.showtime_fs{
+	border: 1px solid #ff6600;
+	border-radius:15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	margin-left:2em;
+	margin-right:2em;
+	margin-bottom:1em;
+	background-color:#FDF1E7;
+}
+
+.showtime_select_div{
+	width:17em;
+	display: inline-block;
+	float:left;
+	margin-right:3em;
+}
+
+.showtime_select_div b{
+	font-size:0.8em;
+	color:#111;
+}
+.performance_fs legend{
+	font-size:0.9em;
+	font-weight:normal;
+	font-style:italic;
+	color: #333333;
+	padding: 1em;
+	margin-left:2em;
+}
+
+.showtime_fs legend{
+	font-size:1.1em;
+	font-weight:normal;
+	font-style:italic;
+	color: #333333;
+	padding: 0.5em 0.5em 1em;
+	margin-left:2em;
+}
+
+
+.formlist1_div{
+	display: inline-block;
+	width:20em;
+	float:left;
+	margin-right:2em;
+}
+
+.cre_event_content .formlist1 .formlist1_div input[type="text"]{width: 100px; margin-left:2px; text-align:center;}
+.cre_event_content .formlist1 .showtime_select_div input[type="text"]{width: 6em; margin-left:2px; margin-bottom:1em; text-align:center;}
+
 .submitButton{border: none; background: url(../images/submit.png) no-repeat; width: 265px; height: 45px; margin-left: 100px; margin-top: 30px;}
 .profile_content .form_fields label{font-weight: 700; font-family:Helvetica, Arial, sans-serif; font-size:0.89em; margin-left:10px}
 .institute_operation_left{float: left;}
 .institute_operation_right{float: left; margin-left: 10px;}
 .institute_operation_left input[type=text],.institute_operation_right input[type=text]{width: 100px !important;}
-.ui-datepicker-trigger{vertical-align: bottom; 	}
+.ui-datepicker-trigger{vertical-align: middle; 	}
 .left_aligned_radios ul,.left_aligned_radios li{display: inline-block;}
 #start_hour input[type=text]{width: 100px;}
 
@@ -1269,4 +1357,78 @@ color:#FF6600;
 .menurecipes_content{width: 894px;}
 #searchbutton{background-image:url(../images/searchbox_button.png); height: 25px; width: 24px; margin-top: 8px;}
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
-.left_aligned_radios ul{margin-left: 32px;}
+.left_aligned_radios li{margin-left: 2.5em; margin-right:2.5em;}
+.left_aligned_radios li label{font-size:0.9em;}
+
+.performance_hours_div{
+	margin-left:2.5em;
+	font-size:0.8em;
+	line-height:3em;
+	color:#111;
+	display:none;
+}
+
+.performance_hours_div_wmonly{
+	margin-left:2.5em;
+	font-size:0.8em;
+	line-height:3em;
+	color:#111;
+	display:none;
+}
+
+
+
+.performance_hours_div ul li{
+	margin-left:0.5em;
+	color: #111;
+	font-size:0.75em;
+	font-weight: bold;
+	font-family:Helevetica;
+	line-height: 1em;	
+}
+
+.performance_hours_div_wmonly li {
+	float:left;
+	margin-left:1.5em;
+}
+
+.performance_hours_div_wmonly label {
+	font-size:0.8em;
+	color:#111;
+}
+
+
+
+.performance_hours_div select{
+	background: transparent;
+	-webkit-appearance:button;
+	-moz-appearance:button;
+  	color: #555;
+  	font-size: 1em;
+
+}
+
+.performance_hours_div_dmwonly{
+	margin-left:2.5em;
+	font-size:0.8em;
+	line-height:3em;
+	color:#111;
+	display:none;
+}
+
+.performance_hours_div_dmwonly select{
+	background: transparent;
+	-webkit-appearance:button;
+	-moz-appearance:button;
+  	color: #555;
+  	font-size: 1em;
+}
+
+
+.performance_hours_div_dmwonly label {
+	font-size:0.8em;
+	color:#111;
+}
+#frequency_label{
+	margin-left:1em;
+}
