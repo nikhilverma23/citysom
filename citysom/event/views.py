@@ -76,10 +76,6 @@ def eventcreation(request):
             freq=event_form.cleaned_data['frequency']
             dicto={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
             
-            
-            import pdb
-            pdb.set_trace()
-            
             #BUILD MULTIPLE SHOWTIMES FUNCTIONALITY
             
             #Performance Based events Performance records           
