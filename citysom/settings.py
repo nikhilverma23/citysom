@@ -85,7 +85,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/charleshenri/webapps/django/citysom/citysom/media/css',
-    '/home/charleshenri/webapps/django/citysom/cistysom/media/js',
+    '/home/charleshenri/webapps/django/citysom/citysom/media/js',
         
 )
 
