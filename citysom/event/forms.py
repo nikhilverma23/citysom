@@ -4,7 +4,7 @@ from django.forms.widgets import *
 from citysom.event.models import *
 from django.contrib.admin import widgets 
 from citysom.util import FREQUENCY_CHOICES,\
-WEEKS_COUNT
+WEEKS_COUNT, ORDINAL_CHOICES, DAYS_OF_WEEK
 from tinymce.widgets import TinyMCE
 
 class EventForm(forms.Form):
@@ -35,31 +35,87 @@ class EventForm(forms.Form):
         self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
         if not self.fields['category'].choices[0][0] == '':
             self.fields['category'].choices.insert(0, ('','---------' ) )
-        self.fields['event_start_hours'].widget.attrs['class'] = "timepicker"
-        self.fields['event_end_hours'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_1'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_2'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_3'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_4'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_5'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_6'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_1'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_2'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_3'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_4'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_5'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_6'].widget.attrs['class'] = "timepicker"
         
-    title = forms.CharField(max_length=255,required=True)
-    venue_name = forms.CharField(max_length=255,required=False)
-    street_address = forms.CharField(max_length=255,required=True)
+    title = forms.CharField(max_length=255,required=True,widget=forms.TextInput(attrs={'placeholder': 'Your event title'}))
     
-    date_started = forms.DateField(required=True)
+    venue_name = forms.CharField(max_length=255,required=False, widget=forms.TextInput(attrs={'placeholder': 'Venue name (optional)'}))
+    
+    street_address = forms.CharField(max_length=255,required=True, widget=forms.TextInput(attrs={'placeholder': 'The address of the event'}))
+    
+    date_started = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_completed = forms.DateField(required=True)
+    date_completed = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
     event_duration = forms.DateField(required=False)
  
     event_poster = forms.CharField(required=False)
-    event_ticket_price = forms.DecimalField(label="Price Full Ticket",\
+    
+    event_ticket_price = forms.DecimalField(label="Price of a full-price ticket",\
                                     max_digits=12,\
                                     decimal_places=2,
-                                    required=False
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
                                     )
     
-    eventwebsite = forms.URLField(required=False)
+    event_ticket_price_1 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    event_ticket_price_2 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    event_ticket_price_3 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    event_ticket_price_4 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    event_ticket_price_5 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    event_ticket_price_6 = forms.DecimalField(label="Price of a full-price ticket",\
+                                    max_digits=12,\
+                                    decimal_places=2,
+                                    required=False,
+                                    widget=forms.TextInput(attrs={'placeholder': 'e.g 20 for $20'})
+                                    )
+    
+    eventwebsite = forms.URLField(required=False, widget=forms.TextInput(attrs={'placeholder': 'www.'}))
     keyword = forms.CharField(max_length=255,required=False)
     status = forms.BooleanField(required=False,
                                 initial=True)
-    description = forms.CharField(widget=TinyMCE(attrs={'cols':80, 'rows':15}),required=False)
+    description = forms.CharField(widget=TinyMCE(attrs={'cols':80, 'rows':15, 'placeholder':'Let us know more about this great event!'}),required=False)
     category = forms.ModelChoiceField(queryset=Category.objects.all(),\
                                         required=False,
                                         #widget=RadioSelect(),
@@ -80,20 +136,20 @@ class EventForm(forms.Form):
     """
     events starting hours
     """
-    start_hours_on_monday = forms.TimeField(required=False)
-    end_hours_on_monday = forms.TimeField(required=False)
-    start_hours_on_tuesday = forms.TimeField(required=False)
-    end_hours_on_tuesday = forms.TimeField(required=False)
-    start_hours_on_wednesday = forms.TimeField(required=False)
-    end_hours_on_wednesday = forms.TimeField(required=False)
-    start_hours_on_thursday = forms.TimeField(required=False)
-    end_hours_on_thursday = forms.TimeField(required=False)
-    start_hours_on_friday = forms.TimeField(required=False)
-    end_hours_on_friday = forms.TimeField(required=False)
-    start_hours_on_saturday = forms.TimeField(required=False)
-    end_hours_on_saturday = forms.TimeField(required=False)
-    start_hours_on_sunday = forms.TimeField(required=False)
-    end_hours_on_sunday = forms.TimeField(required=False)
+    start_hours_on_monday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_monday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_tuesday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_tuesday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_wednesday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_wednesday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_thursday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_thursday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_friday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_friday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_saturday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_saturday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    start_hours_on_sunday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    end_hours_on_sunday = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
 
     frequency = forms.ChoiceField(label="Events Repeats",\
                                   choices=FREQUENCY_CHOICES,\
@@ -107,14 +163,41 @@ class EventForm(forms.Form):
                                  required=True,
                                  help_text="basically the count"
                                 )
-    event_start_hours = forms.TimeField(required=False)
-    event_end_hours = forms.TimeField(required=False)
+    
+    event_start_hours_1 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_start_hours_2 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_start_hours_3 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_start_hours_4 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_start_hours_5 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_start_hours_6 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    
+    
+    event_end_hours_1 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_end_hours_2 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_end_hours_3 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_end_hours_4 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_end_hours_5 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    event_end_hours_6 = forms.TimeField(required=False, widget=forms.TextInput(attrs={'placeholder': 'hh:mm'}))
+    
+    
     repeat_on = forms.ModelMultipleChoiceField(
                         queryset = Days.objects.all(),                          
                         widget=CheckboxSelectMultiple,
                         required=False,
                         initial = "Event Repeats"
                         )
+    ordinal = forms.ChoiceField(label='',
+                                choices=ORDINAL_CHOICES,
+                                widget=forms.Select(),
+                                required=False,
+                                help_text="Ordinal value for monthly repetitions")
+    
+    ordinal_day = forms.ChoiceField(label='',
+                                    choices=DAYS_OF_WEEK,
+                                    widget=forms.Select(),
+                                    required=False,
+                                    help_text="Weekday of repetition for monthly recurrences")
+    
     schedule_type = forms.CharField(max_length=40,widget=RadioSelect(choices=SCHEDULE_TYPE),
                                     required=False)
     
