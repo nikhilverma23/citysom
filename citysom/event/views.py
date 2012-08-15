@@ -12,7 +12,7 @@ from dateutil import rrule
 from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
-from operator import or_
+from operator import or_, and_
 from django.db.models import Q
 
 def server_error(request, template_name='500.html'):
@@ -443,10 +443,13 @@ def event_list(request):
     searchbox_q = Q()
     category_q = Q()
     audience_q = Q()
+    start_time_q = Q()
+    end_time_q = Q()
     
     event_date = ""
     event_date_end = ""
     
+
     try:
         if request.GET['event_date']:
             event_date = request.GET['event_date'];
@@ -467,7 +470,7 @@ def event_list(request):
     elif event_date!="":
         kwargs1['performancedetails__date_started__lte'] = request.GET['event_date']
         kwargs1['performancedetails__date_completed__gte'] = request.GET['event_date']
-        
+         
     try:
         if request.GET['min_price']:
             kwargs['performancedetails__ticket_price__gte'] = request.GET['min_price']
@@ -492,18 +495,28 @@ def event_list(request):
     except:
         pass
     
-#    try:
+    try:
 
-#        if request.GET['start_time']:
-#            kwargs['performancedetails__showtimes_start'] = request.GET['start_time']
-#    except:
-#        pass
+        if request.GET['start_time']:
+            spl = [Q(schedule_type='performance_based'), Q(performancedetails__showtimes_start__gte=request.GET['start_time'])]
+            spl_qs = reduce(and_, spl)
+            sol = [Q(schedule_type='open_hour_based'), Q(performancedetails__showtimes_start__lte=request.GET['start_time']), Q(performancedetails__showtimes_end__gte=request.GET['start_time'])]
+            sol_qs = reduce(and_, sol)
+            start_time_q = reduce(or_, (spl_qs , sol_qs))
+#            kwargs['performancedetails__showtimes_start__gte'] = request.GET['start_time']
+    except:
+        pass
 
-#    try:
-#        if request.GET['end_time']:
-#            kwargs['performancedetails__showtimes_end'] = request.GET['end_time']
-#    except:
-#        pass
+    try:
+        if request.GET['end_time']:
+            epl = [Q(schedule_type='performance_based'), Q(performancedetails__showtimes_end__lte=request.GET['end_time'])]
+            epl_qs = reduce(and_, epl)
+            eol = [Q(schedule_type='open_hour_based'), Q(performancedetails__showtimes_start__lte=request.GET['end_time'])]
+            eol_qs = reduce(and_, eol)
+            end_time_q = reduce(or_, (epl_qs , eol_qs))
+#            kwargs['performancedetails__showtimes_end__lte'] = request.GET['end_time']
+    except:
+        pass
 
     
     try:
@@ -522,7 +535,7 @@ def event_list(request):
     except:
         pass
     
-    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&Q(**kwargs)&searchbox_q&category_q&audience_q).distinct()
+    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
     
     print events.query
     return render_to_response("event/event_list.html",
