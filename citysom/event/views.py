@@ -9,6 +9,7 @@ from django.template import loader, Context
 import datetime
 import dateutil
 from dateutil import rrule
+import shutil
 from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
@@ -34,6 +35,8 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
+        
+        
 
                          
         if event_form.is_valid():
@@ -69,6 +72,14 @@ def eventcreation(request):
                                                              category = event_form.cleaned_data['category'], 
                                                              schedule_type = event_form.cleaned_data['schedule_type'],
                                                              )
+          
+            #Copy last uploaded image to 'images' directory
+            try:
+                src= MEDIA_ROOT + '/images/tmp/'+ str(event_form.cleaned_data['event_poster'])
+                dst= MEDIA_ROOT + '/images/'
+                shutil.move(src,dst)
+            except:
+                pass
 
 
             #Variables used in all recurrences
@@ -407,6 +418,7 @@ def home(request):
                               )
 
 def handle_uploaded_file(request):
+    
     event_poster = request.FILES['event_poster_file']
     
     import PIL
@@ -424,7 +436,7 @@ def handle_uploaded_file(request):
     resized_posterFile.seek(0)
     
     posterFile=InMemoryUploadedFile(resized_posterFile, None, str(event_poster), 'image/jpeg', len(resized_posterFile.getvalue()), None)
-    destination = open(MEDIA_ROOT + '/images/'+ str(event_poster), 'wb+')
+    destination = open(MEDIA_ROOT + '/images/tmp/'+ str(event_poster), 'wb+')
     for chunk in posterFile.chunks():
         destination.write(chunk)
     
