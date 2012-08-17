@@ -1,0 +1,398 @@
+{% if events_mov %}
+<div id="carousel_pres_mov" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Movies
+		</label>
+	</div>
+	<div id="carousel_mov" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_mov %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_exh %}
+<div id="carousel_pres_exh" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Exhibitions
+		</label>
+	</div>
+	<div id="carousel_exh" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_exh %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_lec %}
+<div id="carousel_pres_lec" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Lectures/ Talks
+		</label>
+	</div>
+	<div id="carousel_lec" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_lec %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_con %}
+<div id="carousel_pres_con" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Concerts
+		</label>
+	</div>
+	<div id="carousel_con" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_con %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_spo %}
+<div id="carousel_pres_spo" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Sports
+		</label>
+	</div>
+	<div id="carousel_spo" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_spo %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_the %}
+<div id="carousel_pres_the" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Theater/ Readings
+		</label>
+	</div>
+	<div id="carousel_the" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_the %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_ope %}
+<div id="carousel_pres_ope" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Operas
+		</label>
+	</div>
+	<div id="carousel_ope" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_ope %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_dan %}
+<div id="carousel_pres_dan" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Dance
+		</label>
+	</div>
+	<div id="carousel_dan" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_dan %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_mus %}
+<div id="carousel_pres_mus" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Musical/ Shows
+		</label>
+	</div>
+	<div id="carousel_mus" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_mus %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_out %}
+<div id="carousel_pres_out" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Outdoors
+		</label>
+	</div>
+	<div id="carousel_out" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_out %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_fes %}
+<div id="carousel_pres_fes" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Festivals
+		</label>
+	</div>
+	<div id="carousel_fes" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_fes %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_sta %}
+<div id="carousel_pres_sta" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Stand-up
+		</label>
+	</div>
+	<div id="carousel_sta" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_sta %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_cou %}
+<div id="carousel_pres_cou" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Courses
+		</label>
+	</div>
+	<div id="carousel_cou" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_cou %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_cit %}
+<div id="carousel_pres_cit" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			City activities
+		</label>
+	</div>
+	<div id="carousel_cit" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_cit %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_fai %}
+<div id="carousel_pres_fai" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Fairs
+		</label>
+	</div>
+	<div id="carousel_fai" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_fai %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_fun %}
+<div id="carousel_pres_fun" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Fundraisers
+		</label>
+	</div>
+	<div id="carousel_fun" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_fun %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% if events_par %}
+<div id="carousel_pres_par" class="carousel_pres">
+	<div class="cat_head">
+		<label>
+			Parties
+		</label>
+	</div>
+	<div id="carousel_par" class="touchcarousel grey-blue">     
+		<ul class="touchcarousel-container">
+	    	{% for event in events_par %}
+	    	<li class="touchcarousel-item">
+	    		<a href="{{event.id}}">
+	    			<div class="image_c">
+	    				<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+	    			</div>
+	    			<h4>{{event.title}}</h4>
+	    		</a>
+	    	</li>
+	    	{% endfor %}
+		</ul>
+	</div>
+</div>
+{% endif %}
+
+
+
+
+
+
+
