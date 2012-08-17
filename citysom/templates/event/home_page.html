@@ -75,7 +75,7 @@
          	<!--Div for posters -->
          	<div id="poster_container" style="width:770px !important; float: left; position: relative;">
          		
-         		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events();} if(togl==1){togl=0; load_events();}"> Toggle view </button>
+         		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events(); return false;} else{togl=0; load_events(); return false;}"> Toggle view </button>
          		
          		<div id="searchbox">
          			<input name="searchtextarea" id="searchtextarea" type="text" placeholder="Search for an artist, a place, an event etc." onblur="if( this.value.length == 0 ) { this.value = 'Search for an artist, a place, an event etc.'; }" onfocus="if(this.value == 'Search for an artist, a place, an event etc.') { this.value = ''; }"/>

@@ -1,5 +1,6 @@
-var togl
-if (typeof togl == "undefined") togl=0;
+window.togl
+if(typeof togl == "undefined"){togl=0;} 
+
 
 var step = 10;
 var timestep = 15;
@@ -112,7 +113,7 @@ function load_events(){
 		console.log("dede");
 		//alert('ok');
 		$("#bottom_images").html(data);
-		console.log("asdasd");
+		console.log(togl);
 		
 		
 		});
@@ -195,10 +196,3 @@ $("#max_time_up").click(function()
 	$("#max_time_span").html(current_formatted_date);
 	load_events();
 });*/
-
-
-
-$('#toggle_view').click(function(){
-	if(togl==0){togl=1; return false;}
-	if(togl==1){togl=0; return false;}
-});
