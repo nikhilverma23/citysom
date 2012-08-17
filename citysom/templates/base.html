@@ -5,6 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=9" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/touchcarousel.css" />
+		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/grey-blue-skin/grey-blue-skin.css" />
 		<link rel="icon" type="image/png" href="/static/images/citysom_icon.png"/>
 		<title>{% block title %}Citysom{% endblock %}</title>
 		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
@@ -12,6 +14,7 @@
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
+		<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-timepicker.js"></script>
 		<script type="text/javascript" src="/static/js/jquery/js/jquery.form.js"></script>
@@ -19,61 +22,12 @@
 		<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
 		<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				var loc = window.location.toString()
-				var page = loc.substring(loc.indexOf('/', 8), loc.length);
-				$('#topnavigation>ul>li>a[href="' + page + '"]').parent().addClass("current");
-				if(page =='/myprofile/home/'){$('#topnavigation>ul>li>a[href="/"]').parent().addClass("current");}
-				
-				var mouse_is_inside=false;
-				
-				$('.login_top_div').hover(function(){
-					mouse_is_inside=true;
-					}, function(){
-						mouse_is_inside=false;
-					});
-				
-				$(document).mouseup(function(){
-					if(!mouse_is_inside) $('.login_top_div').hide();	
-				});
+		<script type="text/javascript" src="/static/js/touchcarousel/jquery.touchcarousel-1.1.min.js"></script>
 		
-				jQuery("#menu > li a").click(function(e) {
-
-					jQuery("#everything1, #categories, #concerts, #more").hide();
-
-					jQuery(this).parent().addClass('active');
-					jQuery(jQuery(this).attr('href')).show();
-					return false;
-				});
-				
-				//jQuery("#topnavigation > ul li").click(function(){
-				//	jQuery(this).addClass("current");
-				//});
-
-				jQuery("#bottom_images").jScrollPane({
-					showArrows : true
-				});
-
-				$(".search_link").click(function() {
-					$("#searchtextarea").val("Search Here...");
-					$("#searchtextarea").focus();
-					$("#searchtextarea").click(function() {
-						$(this).val('');
-					});
-				});
-				$(".login_top_link").click(function(){
-					$(".login_top_div").toggle();
-				});
-				
-				$(document).ready(function(){
-			        $(".login_content input[type=text],.login_content input[type=checkbox],.login_content input[type=radio],.login_content input[type=password], .login_content textarea, .login_content select").uniform();
-			    });
-			});
-
-		</script>
+		
 		{% block head %}
 		{% endblock %}
+		
 	</head>
 	<body>
 		<!-- Container start from here -->
@@ -232,6 +186,150 @@
       }
 		</script>
 
-</script>
+ <script type="text/javascript">
+      $(document).ready(function(){
+      	console.log('hello');
+      });
+
+      </script>
+      <script>
+      	$.get("/event/calendar/",function (data){
+	$("#home_calendar").html(data);
+	load_events();
+	}
+);
+/*$("#home_calendar").on("click", "#days_container>a", function(event){
+	$("a.calendar_active").removeClass("calendar_active");
+	$(this).addClass("calendar_active");
+	load_events();
+});*/
+		
+$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
+	event.preventDefault();
+	url = $(this).attr("href");
+	$.get(url,function (data){
+		$("#home_calendar").html(data);
+		}
+	);
+});
+		
+$("#category").change(function(){
+	load_events();
+});
+		
+$('#searchtextarea').keyup(function(e){
+	e = e || event;
+	if (e.keyCode===13){
+		load_events();
+	}
+	return true;
+});
+		
+$("#searchbutton").click(function(){
+	load_events();
+});
+		
+var clicking = false;
+var started = 0
+
+$("#home_calendar").on("mousedown", "#days_container>a", function(event){
+    if(started == 0){
+    	clicking = true;
+    $(".calendar_active").removeClass("calendar_active");
+    $(".calendar_hover").removeClass("calendar_hover");
+    $(".calendar_start").removeClass("calendar_start");
+    $(".calendar_end").removeClass("calendar_end");
+    $(this).addClass("calendar_active");
+    $(this).addClass("calendar_start");
+    started = 1;
+    return false;
+    }
+    if(started ==1){
+    	clicking = false;
+    	
+    	$(this).addClass("calendar_tentative");
+    	
+    	if(parseInt($(".calendar_start").text()) > parseInt($(".calendar_tentative").text())){
+    		$(".calendar_tentative").removeClass("calendar_tentative");
+    		started = 1;
+    		clicking = 1;
+    		return;
+    		}
+    	else{
+    		$(".calendar_tentative").removeClass("calendar_tentative");
+    		$(this).addClass("calendar_active");
+    		$(this).addClass("calendar_end");
+    		
+    		if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel")) {
+    			$(".calendar_hover").removeClass("calendar_hover");
+     			calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+     			$.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+    			}
+    		else {
+	    		$(".calendar_active").removeClass("calendar_active");
+	     		$(".calendar_hover").removeClass("calendar_hover");
+			    $(".calendar_start").removeClass("calendar_start");
+			    $(".calendar_end").removeClass("calendar_end");
+			    $(this).addClass("calendar_active");
+    			}
+    		load_events();
+    		started = 0;	
+    		}
+    	return false;
+    	}
+});
+		
+/*$("#home_calendar").on("mouseup", "#days_container>a", function(event){
+	clicking = false;
+    $(this).addClass("calendar_active");
+    $(this).addClass("calendar_end");
+    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
+    {
+     $(".calendar_hover").removeClass("calendar_hover");
+     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+    }
+    else
+    {
+     $(".calendar_active").removeClass("calendar_active");
+     $(".calendar_hover").removeClass("calendar_hover");
+     $(".calendar_start").removeClass("calendar_start");
+     $(".calendar_end").removeClass("calendar_end");
+     $(this).addClass("calendar_active");
+    }
+    load_events();
+    return false;
+});*/
+		
+$("#home_calendar").on("mouseover", "#days_container>a", function(event){
+	if(clicking == 0){return}
+	else{
+		$(".calendar_hover").removeClass("calendar_hover");
+		$(this).addClass("calendar_hover");
+		if(parseInt($(".calendar_hover").text()) > parseInt($(".calendar_start").text())){
+			return;
+		}
+		else{ $(".calendar_hover").removeClass("calendar_hover"); }
+		}
+    return false;
+});
+
+function getAllBetween(firstEl,lastEl) {
+    var firstElement = $(firstEl);
+    var lastElement = $(lastEl);
+    var collection = new Array();
+    collection.push(firstElement);
+    $(firstEl).nextAll().each(function(){
+        var siblingID  = $(this).attr("rel");
+        if (siblingID != $(lastElement).attr("rel")) {
+                collection.push($(this));
+        } else {
+                return false;
+        }
+    });  
+    collection.push(lastElement);       
+    return collection;
+}
+      </script>
 	</body>
 </html>

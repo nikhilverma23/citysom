@@ -449,22 +449,28 @@ body
         float:left;
         margin-left:0px;
         display:table-cell;
-        width: 150px;
-        height: 200px;    
+        width: -moz-min-content !important;
+        width: -webkit-min-content;
+        width: auto;
+        height: 175px;    
         margin-bottom: 15px;
         margin-right:2.1em;
+        text-overflow:ellipsis;
+        overflow:hidden;
     }
 #bottom_images ul li div
     {
     	text-align: center;
     	vertical-align: middle;
-    	display: table-cell;
-    	height: 200px;
+    	display: block;
+    	height: 153px;
+    	width:100%;
     }
 #bottom_images ul li div img
     {
     	max-width: 150px;
-    	max-height: 200px;
+    	max-height: 130px;
+    	margin-top: 5px;
     }    
     
 #bottom_images img{border:1px solid #C0C0C0;}
@@ -1479,3 +1485,83 @@ color:#FF6600;
   	color: #555;
   	font-size: 0.85em;
   }
+
+
+/*Carousel*/ 
+
+.cat_head{
+	font-size:0.8em;
+	font-family: Helvetica;
+	background-color: #45A8CE;
+	font-weight:bold;
+	border-top: 0px solid #ffffff;
+   	background: #475474;
+   	background: -webkit-gradient(linear, left top, left bottom, from(#586381), to(#475474));
+   	background: -webkit-linear-gradient(top, #586381, #475474);
+   	background: -moz-linear-gradient(top, #586381, #475474);
+   	background: -ms-linear-gradient(top, #586381, #475474);
+   	background: -o-linear-gradient(top, #586381, #475474);
+   	-webkit-border-radius: 12px;
+   	-moz-border-radius: 12px;
+   	border-radius: 12px;
+   	-webkit-box-shadow: inset 0 0 15px #BDBDBD;
+   	-moz-box-shadow: inset 0 0 15px #BDBDBD;
+   	box-shadow: inset 0 0 15px #BDBDBD;
+   	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   	color: white;
+   	text-decoration: none;
+	height:170px;
+	width: 120px;
+	margin-top:1em;
+	margin-bottom:3em;
+	padding:0 12px;
+	vertical-align:middle;
+	text-align:center;
+	float:left;
+	border-bottom: 0.1px solid #010101;
+	
+}
+
+.cat_head label{
+	margin-top: 70px;
+	font-size:1.15em;
+	display:block;
+}
+
+
+
+.carousel_pres{
+	margin-bottom:1em;
+	margin-top:1em;
+}
+
+.carousel_pres img{
+	max-height:130px;
+	display:block;
+	margin-right:auto;
+	margin-left:auto;
+	margin-top:auto;
+	margin-bottom:auto;
+}
+
+.carousel_pres ul li{
+	margin-right:0.5em !important;
+	font-size:0.8em;
+	color: #333;
+	font-weight: bold;
+}
+
+.carousel_pres a{
+	text-decoration:none !important;
+}
+
+.carousel_pres h4{
+	font-size: 0.8em !important;
+	color: #313131;
+	text-align: center;
+	max-width:150px;
+}
+
+.image_c{
+	height:130px;
+}

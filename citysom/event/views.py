@@ -462,6 +462,8 @@ def event_list(request):
     event_date_end = ""
     
 
+    
+
     try:
         if request.GET['event_date']:
             event_date = request.GET['event_date'];
@@ -523,7 +525,7 @@ def event_list(request):
         if request.GET['end_time']:
             epl = [Q(schedule_type='performance_based'), Q(performancedetails__showtimes_end__lte=request.GET['end_time'])]
             epl_qs = reduce(and_, epl)
-            eol = [Q(schedule_type='open_hour_based'), Q(performancedetails__showtimes_start__lte=request.GET['end_time'])]
+            eol = [Q(schedule_type='open_hour_based'), Q(performancedetails__showtimes_start__lt=request.GET['end_time'])]
             eol_qs = reduce(and_, eol)
             end_time_q = reduce(or_, (epl_qs , eol_qs))
 #            kwargs['performancedetails__showtimes_end__lte'] = request.GET['end_time']
@@ -547,16 +549,85 @@ def event_list(request):
     except:
         pass
     
-    events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+    try:
+        #If there is a mistake with the hours submitted by user
+        if request.GET['ctrl']:
+            return render_to_response("event/event_list.html")
+#        else:
+#            events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+#            print events.query
+#            return render_to_response("event/event_list.html",
+#                               {
+#                               "request":request,
+#                               "events":events,
+#                               },
+#                              context_instance=RequestContext(request)
+#                              )    
+    except:
+        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+
+#    import pdb
+#    pdb.set_trace()
+    #If view requested is 'by category'
+    if (request.GET['tgl']!="0"):
+        events_mov=events.filter(category=1)
+        events_exh=events.filter(category=2)
+        events_lec=events.filter(category=3)
+        events_con=events.filter(category=4)
+        events_spo=events.filter(category=5)
+        events_the=events.filter(category=6)
+        events_ope=events.filter(category=7)
+        events_dan=events.filter(category=8)
+        events_mus=events.filter(category=9)
+        events_out=events.filter(category=10)
+        events_fes=events.filter(category=11)
+        events_sta=events.filter(category=12)
+        events_cou=events.filter(category=13)
+        events_cit=events.filter(category=14)
+        events_fai=events.filter(category=15)
+        events_fun=events.filter(category=16)
+        events_par=events.filter(category=17)
     
-    print events.query
-    return render_to_response("event/event_list.html",
-                               {
-                               "request":request,
-                               "events":events,
-                               },
-                              context_instance=RequestContext(request)
-                              )    
+        return render_to_response("event/event_list_cat.html",
+                           {
+                           "request":request,
+                           "events_mov":events_mov,
+                           "events_exh":events_exh,
+                           "events_lec":events_lec,
+                           "events_con":events_con,
+                           "events_spo":events_spo,
+                           "events_the":events_the,
+                           "events_ope":events_ope,
+                           "events_dan":events_dan,
+                           "events_mus":events_mus,
+                           "events_out":events_out,
+                           "events_fes":events_fes,
+                           "events_sta":events_sta,
+                           "events_cou":events_cou,
+                           "events_cit":events_cit,
+                           "events_fai":events_fai,
+                           "events_fun":events_fun,
+                           "events_par":events_par,
+                           },
+                          context_instance=RequestContext(request)
+                          ) 
+    else:
+        return render_to_response("event/event_list.html",
+                           {
+                           "request":request,
+                           "events":events,
+                           },
+                          context_instance=RequestContext(request)
+                          )
+     
+#        return render_to_response("event/event_list_cat.html",
+#                               {
+#                               "request":request,
+#                               "events":events,
+#                               },
+#                              context_instance=RequestContext(request)
+#                              ) 
+    
 
 def get_event_genre(request):  
     type = request.GET['type']

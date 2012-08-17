@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% block head %}<script src="/static/js/home_page_specific.js" type="text/javascript"></script>{% endblock %}
 {% block title %}Citysom: Make the most of your city! {% endblock %}
 
 {% block content %}
@@ -74,7 +75,7 @@
          	<!--Div for posters -->
          	<div id="poster_container" style="width:770px !important; float: left; position: relative;">
          		
-         		<button class="nav_button"> Toggle view </button>
+         		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events();} if(togl==1){togl=0; load_events();}"> Toggle view </button>
          		
          		<div id="searchbox">
          			<input name="searchtextarea" id="searchtextarea" type="text" placeholder="Search for an artist, a place, an event etc." onblur="if( this.value.length == 0 ) { this.value = 'Search for an artist, a place, an event etc.'; }" onfocus="if(this.value == 'Search for an artist, a place, an event etc.') { this.value = ''; }"/>
@@ -137,11 +138,11 @@
          		</p>
          		<div id="price_range_select" class="nav_div">
          			<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>
-         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px;">$<input name="min_price" id="min_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="---"/></div>
+         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px;">$<input name="min_price" id="min_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
          			<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>
-         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px; background:transparent;">$<input name="max_price" id="max_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="---"/></div>
+         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px; background:transparent;">$<input name="max_price" id="max_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_price_range" onclick="$('#max_price').val('---'); $('#min_price').val('---'); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="cancel_price_range" onclick="$('#max_price').val('-'); $('#min_price').val('-'); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          				<button class="nav_button_choice" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
@@ -181,6 +182,7 @@
          			<div class="hours_display">
          				<select id="start_hours">
          					<option value="">--</option>
+         					<option value="00">00</option>
          					<option value="01">01</option>
          					<option value="02">02</option>
          					<option value="03">03</option>
@@ -219,6 +221,7 @@
          			<div class="hours_display" style="margin-bottom:15px;">
          				<select id="end_hours">
          					<option value="">--</option>
+         					<option value="00">00</option>
          					<option value="01">01</option>
          					<option value="02">02</option>
          					<option value="03">03</option>
@@ -278,302 +281,4 @@
          	</div>
         
       </div>     
-      <script>
-  		var step = 10;
-  		var timestep = 15;
-  		
-  		function load_events()
-  		{
-  			url = '/event/event_list/?view=list';
-  			min_price = parseInt($("#min_price").val());
-  			max_price = parseInt($("#max_price").val());
-  			event_date = $(".calendar_start").attr("rel")?$(".calendar_start").attr("rel"):$(".calendar_active").attr("rel");
-  			event_date_end = $(".calendar_end").attr("rel");
-  			filter_time = $("#hours_range_select").val();
-  			category = $("#event_type_select").val();
-  			audience = $('#event_audience_select').val()
-  			search_text = $("#searchtextarea").val();
-  			
-  			if(!isNaN(min_price))
-  				url +='&min_price='+min_price;
-  			if(!isNaN(max_price))
-  				url +='&max_price='+max_price;
-  			if(event_date)
-  				url +='&event_date='+event_date;
-  			if(event_date_end)
-  				url +='&event_date_end='+event_date_end;
-  			if(filter_time)
-  				var str=''
-  				var st_str=''
-  				var ed_str=''
-  				if(filter_time==''){
-  					str='';
-  				}
-  				else{
-  					
-	  				if(filter_time[0]==''){
-	  					st_str='';
-	  				}
-	  				else{
-	  					if(filter_time[1]==''){
-	  						st_str=filter_time[0]+':'+'00';
-	  					}
-	  					else{
-	  						st_str=filter_time[0]+':'+filter_time[1];
-	  					}
-	  				}
-	  				if(filter_time[2]==''){
-	  					ed_str='';
-	  				}
-	  				else{
-	  					if(filter_time[3]==''){
-	  						ed_str=filter_time[2]+':'+'00';	
-	  					}
-	  					else{
-	  						ed_str=filter_time[2]+':'+filter_time[3];
-	  					}	
-	  				}
-	  				if(st_str=='' && ed_str==''){
-	  					str='';
-	  				}
-	  				else if(st_str==''){
-	  					str='&end_time='+ed_str;
-	  				}
-	  				else if(ed_str==''){
-	  					str='&start_time='+st_str;
-	  				}
-	  				else{
-	  					str='&start_time='+st_str+'&end_time='+ed_str;
-	  				}
-	  			}
-  				url +=str;
-  			
-  			if(category)
-  				var i=0
-  				var str=''
-  				while(i<category.length){
-  					str +='&category='+category[i];
-  					i+=1;
-  				}
-  				url +=str;
-  				
-  			if(audience)
-  				var j=0
-  				var stg=''
-  				while(j<audience.length){
-  					stg +='&audience='+audience[j];
-  					j+=1;
-  				}
-  				url +=stg;
-  					
-  			if(search_text)
-  				url +='&search_text='+search_text;
-  				
-	  		$.get(url,
-	  			function(data)
-	  			{
-					$("#bottom_images").html(data);
-	  			}
-	  		);
-	  	}
-  		
-  		
-  		$("#min_price_down").click(function(){
-  			var current_price = parseInt($("#min_price").val())-step;
-  			if(current_price >= 0)
-  			{
-  				$("#min_price").val(current_price);
-  				$("#min_price_span").html(current_price);
-  				load_events();
-  			}
-  		});
-  		$("#min_price_up").click(function(){
-  			var current_price = parseInt($("#min_price").val())+step;
-  			$("#min_price").val(current_price);
-  			$("#min_price_span").html(current_price);
-  			load_events();
-  		});
-  		
-  		$("#max_price_down").click(function(){
-  			var current_max_price = parseInt($("#max_price").val())-step;
-  			if(current_max_price >= 0)
-  			{
-  				$("#max_price").val(current_max_price);
-  				$("#max_price_span").html(current_max_price);
-  				load_events();
-  			}
-  		});
-  		$("#max_price_up").click(function(){
-  			var current_max_price = parseInt($("#max_price").val())+step;
-  			$("#max_price").val(current_max_price);
-  			$("#max_price_span").html(current_max_price);
-  			load_events();
-  		});
-  		
-  		var variable_date = new Date();
-  		variable_date.setHours(8);
-  		variable_date.setMinutes(0);
-  		variable_date.setSeconds(0);
-  		var current_formatted_date;
-  		$("#max_time_down").click(function(){
-  			variable_date.setMinutes(variable_date.getMinutes()-timestep);
-			current_formatted_date = variable_date.getHours()+":"+variable_date.getMinutes();
-			$("#max_time").val(current_formatted_date);
-			$("#max_time_span").html(current_formatted_date);
-			load_events();
-  		});
-  		$("#max_time_up").click(function()
-  		{
-			variable_date.setMinutes(variable_date.getMinutes()+timestep);
-			current_formatted_date = variable_date.getHours()+":"+variable_date.getMinutes();
-			$("#max_time").val(current_formatted_date);
-			$("#max_time_span").html(current_formatted_date);
-			load_events();
-  		});
-  		
-  		$.get(
-  			"/event/calendar/",
-  			function (data)
-  			{
-  				$("#home_calendar").html(data);
-  				load_events();
-  			}
-  		);
-  		/*$("#home_calendar").on("click", "#days_container>a", function(event){
-			$("a.calendar_active").removeClass("calendar_active");
-  			$(this).addClass("calendar_active");
-  			load_events();
-		});*/
-		
-		$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
-			event.preventDefault();
-			url = $(this).attr("href");
-			$.get(
-	  			url,
-	  			function (data)
-	  			{
-	  				$("#home_calendar").html(data);
-	  			}
-	  		);
-		});
-		
-		$("#category").change(function(){
-			load_events();
-		});
-		
-		$('#searchtextarea').keyup(function(e){
-			e = e || event;
-			if (e.keyCode===13){
-				load_events();
-			}
-			return true;
-		});
-		
-		$("#searchbutton").click(function(){
-			load_events();
-		});
-		
-		var clicking = false;
-		var started = 0
-		
-		$("#home_calendar").on("mousedown", "#days_container>a", function(event){
-		    if(started == 0){
-		    	clicking = true;
-		    $(".calendar_active").removeClass("calendar_active");
-		    $(".calendar_hover").removeClass("calendar_hover");
-		    $(".calendar_start").removeClass("calendar_start");
-		    $(".calendar_end").removeClass("calendar_end");
-		    $(this).addClass("calendar_active");
-		    $(this).addClass("calendar_start");
-		    started = 1;
-		    return false;
-		    }
-		    if(started ==1){
-		    	clicking = false;
-		    	
-		    	$(this).addClass("calendar_tentative");
-		    	
-		    	if(parseInt($(".calendar_start").text()) > parseInt($(".calendar_tentative").text())){
-		    		$(".calendar_tentative").removeClass("calendar_tentative");
-		    		started = 1;
-		    		clicking = 1;
-		    		return;
-		    		}
-		    	else{
-		    		$(".calendar_tentative").removeClass("calendar_tentative");
-		    		$(this).addClass("calendar_active");
-		    		$(this).addClass("calendar_end");
-		    		
-		    		if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel")) {
-		    			$(".calendar_hover").removeClass("calendar_hover");
-		     			calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
-		     			$.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
-		    			}
-		    		else {
-			    		$(".calendar_active").removeClass("calendar_active");
-			     		$(".calendar_hover").removeClass("calendar_hover");
-					    $(".calendar_start").removeClass("calendar_start");
-					    $(".calendar_end").removeClass("calendar_end");
-					    $(this).addClass("calendar_active");
-		    			}
-		    		load_events();
-		    		started = 0;	
-		    		}
-		    	return false;
-		    	}
-		});
-		
-		/*$("#home_calendar").on("mouseup", "#days_container>a", function(event){
-			clicking = false;
-		    $(this).addClass("calendar_active");
-		    $(this).addClass("calendar_end");
-		    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
-		    {
-		     $(".calendar_hover").removeClass("calendar_hover");
-		     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
-		     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
-		    }
-		    else
-		    {
-		     $(".calendar_active").removeClass("calendar_active");
-		     $(".calendar_hover").removeClass("calendar_hover");
-		     $(".calendar_start").removeClass("calendar_start");
-		     $(".calendar_end").removeClass("calendar_end");
-		     $(this).addClass("calendar_active");
-		    }
-		    load_events();
-		    return false;
-		});*/
-		
-		$("#home_calendar").on("mouseover", "#days_container>a", function(event){
-			if(clicking == 0){return}
-			else{
-				$(".calendar_hover").removeClass("calendar_hover");
-				$(this).addClass("calendar_hover");
-				if(parseInt($(".calendar_hover").text()) > parseInt($(".calendar_start").text())){
-					return;
-				}
-				else{ $(".calendar_hover").removeClass("calendar_hover"); }
-				}
-		    return false;
-		});
-		
-		function getAllBetween(firstEl,lastEl) {
-		    var firstElement = $(firstEl);
-		    var lastElement = $(lastEl);
-		    var collection = new Array();
-		    collection.push(firstElement);
-		    $(firstEl).nextAll().each(function(){
-		        var siblingID  = $(this).attr("rel");
-		        if (siblingID != $(lastElement).attr("rel")) {
-		                collection.push($(this));
-		        } else {
-		                return false;
-		        }
-		    });  
-		    collection.push(lastElement);       
-		    return collection;
-		}
-
-      </script>
 {% endblock %}
