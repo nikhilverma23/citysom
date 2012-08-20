@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}List of my events{% endblock %}
+{% block content %}
+<div class="cre_event">List of my registered events</div>
+<div class="datearea"></div>
+<div class="clear"></div>
+<div class="bln_area"></div>
+<ul>
+ 	{% for event in events %}
+		<li class="ue_list">
+			<div class="ue_img">
+				<a href="{{event.id}}">
+					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}" class="ue_im"/>
+				</a>
+			</div>
+			<div class="ue_details">
+				<p><span style="font-weight:bold;">Title: </span>{{event.title}}<BR>
+				<span style="font-weight:bold;">Category: </span>{{event.category}}<BR>
+				<span style="font-weight:bold;">Location: </span>{{event.location}}<BR>
+				<span style="font-weight:bold;">Show times:</span> {% for p in pdet %} {% ifequal p.event event%} --{{p.date_started}}-({{p.showtimes_start}},{{p.showtimes_end}}) {% endifequal %} {% endfor %}
+				</p>
+			</div>
+			<br>
+		</li>             		
+ 	{% endfor %}
+</ul>
+{% endblock %}

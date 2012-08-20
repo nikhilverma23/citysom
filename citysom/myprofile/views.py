@@ -1,6 +1,7 @@
 # Create your views here.
 from citysom.myprofile.forms import UserProfileForm, EditUserProfileForm,\
 PreRegistrationForm, PersonalProfileForm, ProfessionalProfileForm
+from citysom.event.models import Event, PerformanceDetails
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from myprofile.models import UserProfile
@@ -200,3 +201,44 @@ def logout_user(request):
     else:
         return HttpResponseNotAllowed(['POST'])
 ###############################################################################            
+
+def user_events(request):
+    """
+    Creating the view that lists the events a professional user has published
+    and Personal user have added to their "wish list"
+    """
+    import pdb
+    pdb.set_trace()
+    
+    context=RequestContext(request)
+    userprofile_obj = UserProfile.objects.get(user=request.user)
+    if userprofile_obj.account_type == "personal":
+        pass
+#        context['form']= EditUserProfileForm()
+#        user = request.user
+#        profile=request.user.get_profile()
+#        context['form'].fields['first_name'].initial = profile.first_name
+#        context['form'].fields['last_name'].initial = profile.last_name
+#        context['form'].fields['gender'].initial = profile.gender
+#        context['form'].fields['mobile'].initial = profile.mobile
+#        
+#        context['form'].fields['email_id_2'].initial = profile.email_id_2
+#        context['form'].fields['email_id_3'].initial = profile.email_id_3
+#        context['form'].fields['email_id_4'].initial = profile.email_id_4
+#        context['form'].fields['facebook_account'].initial = profile.facebook_account
+
+
+    else:
+        user = request.user
+        
+        user_events = Event.objects.filter(user=user).distinct().order_by('-id')
+        events_performance_details = PerformanceDetails.objects.filter(event__user__exact=user)
+        
+    return render_to_response(
+                              "myprofile/my_events.html",
+                              {'account_type':userprofile_obj.account_type,
+                               'events':user_events,
+                               'pdet':events_performance_details,   
+                               },
+                               context_instance=context
+                              )

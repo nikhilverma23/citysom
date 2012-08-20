@@ -7,6 +7,7 @@ urlpatterns = patterns(
     url(r'^completingprofile/$', 'completingprofile', name="profile"),
     (r'^get_account_type/$', 'get_account_type'),
     url(r'^editprofile/$', 'editprofile',  name="editprofile"),
+    url(r'^myevents/$', 'user_events', name="user_events")
     
     
 )
