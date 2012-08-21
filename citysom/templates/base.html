@@ -24,6 +24,7 @@
 		<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="/static/js/touchcarousel/jquery.touchcarousel-1.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/jquery/base_specific.js"></script>
+		<script src="/static/js/home_page_specific.js" type="text/javascript"></script>
 		<script>
 			jQuery(document).ready(function() {
 	var loc = window.location.toString()
@@ -79,8 +80,8 @@
 });
 		</script>
 		
-		{% block head %}
-		{% endblock %}
+{% block head %}
+{% endblock %}
 		
 	</head>
 	<body>
@@ -384,6 +385,29 @@ function getAllBetween(firstEl,lastEl) {
     collection.push(lastElement);       
     return collection;
 }
+
+$(".timepicker").timepicker(
+	{
+	timeFormat:"hh:mm",
+	stepMinute: 5
+	}
+);
+
+$("input[type=checkbox].uni").click(function(){
+	date_name = $(this).attr("rel");
+	first_child = "#id_start_hours_on_"+date_name;
+	second_child = "#id_end_hours_on_"+date_name;
+	if($(this).is(":checked"))
+	{
+		$(first_child).val("09:00");
+		$(second_child).val("17:00");
+	}
+	else
+	{
+		$(first_child).val("");
+		$(second_child).val("");
+	}
+});
       </script>
 	</body>
 </html>

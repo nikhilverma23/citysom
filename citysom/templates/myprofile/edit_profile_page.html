@@ -131,7 +131,7 @@
       <div class="clear"></div>
     </div>
     
-    <p style="margin-top: 2.5em;"><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">2.</span> How can we find you?</p>    
+    <p style="margin-top: 2.5em;"><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">2.</span> How can we find your institution?</p>    
     <div class="form_fields">
       {% if form.institution_name.errors %}
         <p class="error">{{ form.institution_name.errors|join:", "  }}</p>
@@ -291,21 +291,4 @@
 	<input id="submit_profiledetails" type="submit"  value="" name="submit" class="continue_button"/>
 </form>
 </div>
-<script>
-	$("input[type=checkbox].uni").click(function(){
-	date_name = $(this).attr("rel");
-	first_child = "#id_start_hours_on_"+date_name;
-	second_child = "#id_end_hours_on_"+date_name;
-	if($(this).is(":checked"))
-	{
-		$(first_child).val("09:00");
-		$(second_child).val("17:00");
-	}
-	else
-	{
-		$(first_child).val("");
-		$(second_child).val("");
-	}
-});
-</script>
 {% endblock %}

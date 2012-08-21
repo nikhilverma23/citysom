@@ -48,6 +48,24 @@ class PersonalProfileForm(forms.Form):
     facebook_account = forms.URLField(required=False)
     
 class ProfessionalProfileForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(ProfessionalProfileForm, self).__init__(*args, **kwargs)
+        self.fields['start_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
+        self.fields['end_hours_on_monday'].widget.attrs['class'] = "timepicker monday"
+        self.fields['start_hours_on_tuesday'].widget.attrs['class'] = "timepicker tuesday"
+        self.fields['end_hours_on_tuesday'].widget.attrs['class'] = "timepicker tuesday"
+        self.fields['start_hours_on_wednesday'].widget.attrs['class'] = "timepicker wednesday"
+        self.fields['end_hours_on_wednesday'].widget.attrs['class'] = "timepicker wednesday"
+        self.fields['start_hours_on_thursday'].widget.attrs['class'] = "timepicker thursday"
+        self.fields['end_hours_on_thursday'].widget.attrs['class'] = "timepicker thursday"
+        self.fields['start_hours_on_friday'].widget.attrs['class'] = "timepicker friday"
+        self.fields['end_hours_on_friday'].widget.attrs['class'] = "timepicker friday"
+        self.fields['start_hours_on_saturday'].widget.attrs['class'] = "timepicker saturday"
+        self.fields['end_hours_on_saturday'].widget.attrs['class'] = "timepicker saturday"
+        self.fields['start_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
+        self.fields['end_hours_on_sunday'].widget.attrs['class'] = "timepicker sunday"
+       
+        
     first_name = forms.CharField(max_length=80,required=False)
     last_name = forms.CharField(max_length=80,required=False)
     gender = forms.CharField(max_length=20,widget=Select(choices=GENDER_CHOICES))
