@@ -1,0 +1,823 @@
+{% extends "base.html" %}
+
+{% block title %}Create an event{% endblock %}
+
+{% block content %}
+<script type="text/javascript" src="/static/js/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+/*tinyMCE.init({
+        mode : "exact",
+        theme : "advanced",
+        plugins:"table",
+        theme_advanced_buttons1:"bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,undo,redo,bullist,numlist,outdent,indent,cut,copy,paste,image",
+        theme_advanced_buttons2: "tablecontrols",
+        theme_advanced_buttons3:"",
+        skin : "o2k7",
+        skin_variant : "silver"
+});*/
+</script>
+<div class="cre_event">Create an event</div>
+ 
+        <div class="datearea">
+                
+                
+        </div>
+        <div class="clear"></div>
+<div id="login">
+			<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="upload_image">
+                <img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+                {{eventform_poster.event_poster_file}}
+                <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
+            </div>
+            </form>
+            {% if form.errors %}
+			<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
+			{% endif %}
+            <div class="cre_event_content">
+                  <form id="event-form" action="" method="POST" enctype="multipart/form-data">
+                  	{% csrf_token %}
+                    <div class="width-60 fltlft">
+                         <fieldset class="adminform">
+                            <ul class="adminformlist" style="list-style: none;">
+                            	<li class="formlist1">
+                                	{% if eventform.title.errors %}
+								    	<p class="error">{{ eventform.title.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event Title:</b>
+                                    {{eventform.title}}
+                                </li>
+                                <li class="formlist1">
+                                	{% if eventform.venue_name.errors %}
+								    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Venue Name:</b>
+                                    {{eventform.venue_name}}
+                                </li>
+                                
+                                <li class="formlist1">
+                                	{% if eventform.street_address.errors %}
+								    	<p class="error">{{ eventform.street_address.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Street Address:</b>
+                                    {{eventform.street_address}}
+                                </li>
+                                
+                                <li class="formlist1">
+                                		<div id="venue_map" style="margin: 10px; height: 300px;"></div>
+                                </li>
+                               
+                                	<li class="formlist1">
+                                		<div class="formlist1_div">
+                                		{% if eventform.date_started.errors %}
+								    		<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
+								  		{% endif %}
+                                   		<b>Event start date:</b>
+                                   		{{eventform.date_started}}	
+                                		</div>
+                                		<div class="formlist1_div">
+                                		{% if eventform.date_completed.errors %}
+								    		<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
+								  		{% endif %}
+                                    	<b>Event end date:</b>
+                                    	{{eventform.date_completed}} 	
+                                		</div>
+                                	</li>
+                                	                          
+                                 	<li class="formlist1 left_aligned_radios">
+                                		{% if eventform.schedule_type.errors %}
+								    		<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
+								  		{% endif %}
+                                  		<b>Type of schedule:</b>
+                                   		{{eventform.schedule_type}} 
+                                	</li>
+                                	
+                                	<li class="formlist1 open_hours_div">
+                            			<b style="float:left;">Event open hours:</b>
+                                		<div id="start_hour">
+                                 			<div class="start_left">
+                                 				<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            					<div class="clear"></div>
+                            					{% if eventform.start_hours_on_monday.errors %}
+				    								<p class="error">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
+						  			 			{% endif %}
+						  			 			{% if eventform.end_hours_on_monday.errors %}
+						    		 				<p class="error">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
+						    	     			{% endif %}
+		                             			<label>Mondays:</label>
+				                            	{{eventform.start_hours_on_monday}} 
+								    	    	{{eventform.end_hours_on_monday}} 
+				                            	<input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
+		                             
+                             
+			                             		{% if eventform.start_hours_on_tuesday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_tuesday.errors|join:", "  }}</p>
+							  			 		{% endif %}
+			                             		{% if eventform.end_hours_on_tuesday.errors %}
+							    		 			<p class="error">{{ eventform.end_hours_on_tuesday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Tuesdays:</label>
+			                             		{{eventform.start_hours_on_tuesday}}
+			                             		{{eventform.end_hours_on_tuesday}} 
+			                             		<input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday"/><br />
+                            
+										 		{% if eventform.start_hours_on_wednesday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_wednesday.errors|join:", "  }}</p>
+							  			 		{% endif %}
+			                             		{% if eventform.end_hours_on_wednesday.errors %}
+							    		 			<p class="error">{{ eventform.end_hours_on_wednesday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Wednesdays:</label>
+			                             		{{eventform.start_hours_on_wednesday}} 
+			                             		{{eventform.end_hours_on_wednesday}} 
+			                             		<input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday"/><br />
+				  							</div>
+                                			<div class="start_right">
+                                				<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            					<div class="clear"></div>
+							  			 		{% if eventform.start_hours_on_thursday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_thursday.errors|join:", "  }}</p>
+							  					{% endif %}
+							  			 		{% if eventform.end_hours_on_thursday.errors %}
+						    		 				<p class="error">{{ eventform.end_hours_on_thursday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Thursdays:</label>
+			                             		{{eventform.start_hours_on_thursday}} 
+							    	     		{{eventform.end_hours_on_thursday}} 
+			                             		<input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday"/><br />
+								 
+										 		{% if eventform.start_hours_on_friday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_friday.errors|join:", "  }}</p>
+							  			 		{% endif %}
+			                             		{% if eventform.end_hours_on_friday.errors %}
+							    		 			<p class="error">{{ eventform.end_hours_on_friday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Fridays:</label>
+			                             		{{eventform.start_hours_on_friday}} 
+			                             		{{eventform.end_hours_on_friday}} 
+			                             		<input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday"/><br />
+								 
+										 		{% if eventform.start_hours_on_saturday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_saturday.errors|join:", "  }}</p>
+							  			 		{% endif %}
+			                             		{% if eventform.end_hours_on_saturday.errors %}
+							    		 			<p class="error">{{ eventform.end_hours_on_saturday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Saturdays:</label>
+			                             		{{eventform.start_hours_on_saturday}} 
+			                             		{{eventform.end_hours_on_saturday}} 
+			                             		<input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday"/><br />
+								 
+										 		{% if eventform.start_hours_on_sunday.errors %}
+							    					<p class="error">{{ eventform.start_hours_on_sunday.errors|join:", "  }}</p>
+							  			 		{% endif %}
+			                             		{% if eventform.end_hours_on_sunday.errors %}
+							    		 			<p class="error">{{ eventform.end_hours_on_sunday.errors|join:", "  }}</p>
+							    	     		{% endif %}
+			                             		<label>Sundays:</label>
+			                             		{{eventform.start_hours_on_sunday}} 
+			                             		{{eventform.end_hours_on_sunday}} 
+			                             		<input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday"/><br />
+											</div>
+                             				<li class="formlist1 open_hours_div">
+                             					<div class="formlist1_div">
+                             					{% if eventform.event_ticket_price.errors %}
+						    						<p class="error">{{ eventform.event_ticket_price.errors|join:", "  }}</p>
+						  						{% endif %}
+                            					<b>Ticket price ($):</b>
+                            					{{eventform.event_ticket_price}}
+                             					</div>
+                        					</li>
+                             			</div>
+                             
+                             			<div class="clear"></div>
+                             	
+                             			<div class="performance_hours_div">
+                             				<li class="performance_hours_div">
+                             				{% if eventform.frequency.errors %}
+						    					<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
+						  					{% endif %}
+                            				<b>Performance repeats:</b>
+                            				{{eventform.frequency}} 
+                        					</li>
+                        					<li class="performance_hours_div_dmwonly">
+			                        		{% if eventform.interval.errors %}
+									    		<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
+									  		{% endif %}
+			                            	<b>Repeat every:</b>
+			                            	{{eventform.interval}}
+			                            	<b id="frequency_label"></b> 
+			                        		</li>
+			                        		<li class="performance_hours_div_wonly" id="days_repeat">
+			                        		{% if eventform.frequency.errors %}
+									    		<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+									  		{% endif %}
+			                            	<b>Repeat On:</b>
+			                            	{{eventform.repeat_on}}
+			                            	<br> 
+			                        		</li>
+			                        		<li class="performance_hours_div_monly" id="days_repeat_monthly">
+			                        		{% if eventform.frequency.errors %}
+									    		<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+									  		{% endif %}
+			                            	<b>Repeat on the:</b>
+			                            	{{eventform.ordinal}}
+			                            	{{eventform.ordinal_day}}
+			                            	<b> of the month</b>
+			                        		</li>
+                        					<!--Showtime hours -->
+                        					<fieldset class="showtime_fs performance_hours_div" id="showtimes_1">
+                        						<legend>Showtime</legend>
+                        			
+                        						<li class="formlist1 performance_hours_div">
+                        							<div class="showtime_select_div">
+		                        						{% if eventform.event_start_hours_1.errors %}
+								    						<p class="error">{{ eventform.event_start_hours_1.errors|join:", "  }}</p>
+								  						{% endif %}
+		                            					<b>Show starts at:</b>
+		                            					{{eventform.event_start_hours_1}} 	
+                        							</div>
+			                 						<div class="showtime_select_div">
+			                        					{% if eventform.event_end_hours_1.errors %}
+									    					<p class="error">{{ eventform.event_end_hours_1.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Show ends at:</b>
+			                            				{{eventform.event_end_hours_1}} 
+			                        				</div>
+                        						</li>
+                        						<li class="formlist1 performance_hours_div">
+			                        				<div class="showtime_select_div">
+			                        					{% if eventform.event_ticket_price_1.errors %}
+									    					<p class="error">{{ eventform.event_ticket_price_1.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Full price ticket is ($):</b>
+			                            				{{eventform.event_ticket_price_1}}
+			                        				</div>
+                        						</li>
+                        					</fieldset>	
+                        					<div class="check_box" id="add_shw_1">
+                        						<label> 
+                        							<input type="checkbox" id="chk_add_shw_1" value="1" name="add_showtime_1">
+                        							Add showtime
+                        						</label>	
+                        					</div>
+                        					<BR> 	
+                        					                  					
+                        		
+			                        		<fieldset class="showtime_fs performance_hours_div" id="showtimes_2">
+			                        			<legend>Showtime 2</legend>
+                        			
+			                        			<li class="formlist1 performance_hours_div">
+			                        				<div class="showtime_select_div">
+			                        					{% if eventform.event_start_hours_2.errors %}
+									    					<p class="error">{{ eventform.event_start_hours_2.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Show starts at:</b>
+			                            				{{eventform.event_start_hours_2}} 	
+			                        				</div>
+			                 						<div class="showtime_select_div">
+			                        					{% if eventform.event_end_hours_2.errors %}
+									    					<p class="error">{{ eventform.event_end_hours_2.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Show ends at:</b>
+			                            				{{eventform.event_end_hours_2}} 
+			                        				</div>
+			                        			</li>
+			                        			<li class="formlist1 performance_hours_div">
+			                        				<div class="showtime_select_div">
+			                        					{% if eventform.event_ticket_price_2.errors %}
+									    					<p class="error">{{ eventform.event_ticket_price_2.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Full price ticket is ($):</b>
+			                            				{{eventform.event_ticket_price_2}}
+			                        				</div>
+			                        			</li>
+                        					</fieldset>
+                        					<div class="check_box" id="add_shw_2">
+                        						<label> 
+                        							<input type="checkbox" id="chk_add_shw_2" value="1" name="add_showtime_2">
+                        							Add showtime
+                        						</label>
+                        					</div>
+                        					<BR>
+                        		
+			                        		<fieldset class="showtime_fs performance_hours_div" id="showtimes_3">
+			                        			<legend>Showtime 3</legend>
+			                        			
+			                        			<li class="formlist1 performance_hours_div">
+			                        				<div class="showtime_select_div">
+			                        					{% if eventform.event_start_hours_3.errors %}
+									    					<p class="error">{{ eventform.event_start_hours_3.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Show starts at:</b>
+			                            				{{eventform.event_start_hours_3}} 	
+			                        				</div>
+			                 						<div class="showtime_select_div">
+			                        					{% if eventform.event_end_hours_3.errors %}
+									    					<p class="error">{{ eventform.event_end_hours_3.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Show ends at:</b>
+			                            				{{eventform.event_end_hours_3}} 
+			                        				</div>
+			                        			</li>
+			                        			<li class="formlist1 performance_hours_div">
+			                        				<div class="showtime_select_div">
+			                        					{% if eventform.event_ticket_price_3.errors %}
+									    					<p class="error">{{ eventform.event_ticket_price_3.errors|join:", "  }}</p>
+									  					{% endif %}
+			                            				<b>Full price ticket is ($):</b>
+			                            				{{eventform.event_ticket_price_3}}
+			                        				</div>
+			                        			</li>
+			                        		</fieldset>	
+                             			</div>
+                             
+                                 
+                                
+                                <!--<li class="formlist1">
+                                	{% if eventform.event_duration.errors %}
+								    	<p class="error">{{ eventform.event_duration.errors|join:", "  }}</p>
+								  	{% endif %}
+                                  <b>Event Duration:</b>
+                                   {{eventform.event_duration}} 
+                                </li>-->
+                               
+
+                      <!--<li class="formlist1">
+                                	{% if eventform.event_poster.errors %}
+								    	<p class="error">{{ eventform.event_poster.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event end date:</b>
+                                    {{eventform.event_poster}} 
+                       </li>-->       
+
+                        
+                        <li class="formlist1">
+                        	{% if eventform.eventwebsite.errors %}
+						    	<p class="error">{{ eventform.eventwebsite.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event website:</b>
+                            {{eventform.eventwebsite}} 
+                        </li>
+                         <li class="formlist1">
+                            <b style="float: left;">Category:</b>
+                            <div id="event_categories">
+                                <div class="event_type">
+                                	{% if eventform.category.errors %}
+						    		<p class="error">{{ eventform.category.errors|join:", "  }}</p>
+						  			{% endif %}
+                                    <h3 class="subheading">Event type</h3>
+									{{eventform.category}}
+                                </div>
+                                <div class="event_genre">
+                                	{% if eventform.venue_name.errors %}
+						    		<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  			{% endif %}
+                                 	<h3 class="subheading">Event genre</h3>
+                                 	<div class="event_genre_div">
+                                 		<label id="select_event_type">Select Event Type</label> 
+                                 		<select id="genre_movie" class="genre_choice">
+					         				<option value="1">Action/ Adventure</option>
+					         				<option value="2">Comedy</option>
+					         				<option value="3">Drama</option>
+					         				<option value="4">Foreign</option>
+					         				<option value="5">Horror</option>
+					         				<option value="6">Independent</option>
+					         				<option value="7">Kids/ Family</option>
+					         				<option value="8">Romance</option>
+					         				<option value="9">Sci-Fi/ Fantasy</option>
+					         				<option value="10">Western</option>
+					         				<option value="11">Animation</option>
+					         				<option value="12">Documentary</option>
+					         				<option value="13">Mystery/ Suspense</option>
+					         				<option value="14">Romance</option>
+					         				<option value="15">Other</option>
+         								</select>
+         								<select id="genre_exhibition" class="genre_choice">>
+					         				<option value="16">Painting</option>
+					         				<option value="17">Drawing</option>
+					         				<option value="18">Printmaking</option>
+					         				<option value="19">Photography</option>
+					         				<option value="20">Graphic Design</option>
+					         				<option value="21">Illustration</option>
+					         				<option value="22">Sculpture</option>
+					         				<option value="23">Ceramics</option>
+					         				<option value="24">Film</option>
+					         				<option value="25">Video</option>
+					         				<option value="26">Other</option>
+					         			</select>
+					         			<select id="genre_lecture" class="genre_choice">>
+					         				<option value="27">Conference</option>
+					         				<option value="28">Talk</option>
+					         				<option value="29">Other</option>
+					         			</select>
+					         			<select id="genre_concert" class="genre_choice">>
+					         				<option value="30">Alternative</option>
+					         				<option value="31">Country</option>
+					         				<option value="32">Dance/ Electronic</option>
+					         				<option value="33">Heavy Metal</option>
+					         				<option value="34">Hip Hop/ Rap</option>
+					         				<option value="35">Latino</option>
+					         				<option value="36">Pop</option>
+					         				<option value="37">RnB/ Soul</option>
+					         				<option value="38">Rock/ Folk</option>
+					         				<option value="39">Classical</option>
+					         				<option value="40">Jazz/ Blues</option>
+					         				<option value="41">Acoustic</option>
+					         				<option value="42">Christian/ Gospel</option>
+					         				<option value="43">Reggae</option>
+					         				<option value="44">Other</option>
+					         			</select>
+					         			<select id="genre_sport" class="genre_choice">>
+					         				<option value="45">Basketball</option>
+					         				<option value="46">Baseball</option>
+					         				<option value="47">Football</option>
+					         				<option value="48">Soccer</option>
+					         				<option value="49">Tennis</option>
+					         				<option value="50">Running</option>
+					         				<option value="51">LaCrosse</option>
+					         				<option value="52">Swimming</option>
+					         				<option value="53">Ice Hockey</option>
+					         				<option value="54">Field Hockey</option>
+					         				<option value="55">Rugby</option>
+					         				<option value="56">Volleyball</option>
+					         				<option value="57">Golf</option>
+					         				<option value="58">Athletics</option>
+					         				<option value="59">Other</option>
+					         			</select>
+					         			<select id="genre_theater" class="genre_choice">>
+					         				<option value="60">Theater</option>
+					         				<option value="61">Reading</option>
+					         				<option value="62">Improv</option>
+					         			</select>
+					         			<select id="genre_opera" class="genre_choice">>
+					         				<option value="63">Opera</option>
+					         			</select>
+					         			<select id="genre_dance">
+					         				<option value="64">Ballet</option>
+					         				<option value="65">Jazz</option>
+					         				<option value="66">Tap</option>
+					         				<option value="67">Hip-Hop</option>
+					         				<option value="68">Modern</option>
+					         				<option value="69">Swing</option>
+					         				<option value="70">Country</option>
+					         				<option value="71">Belly dance</option>
+					         				<option value="72">Flamenco</option>
+					         				<option value="73">Latin</option>
+					         				<option value="74">Folk</option>
+					         				<option value="75">Other</option>
+					         			</select>
+					         			<select id="genre_musical" class="genre_choice">>
+					         				<option value="76">Musical</option>
+					         				<option value="77">Show</option>
+					         			</select>
+					         			<select id="genre_outdoor" class="genre_choice">>
+					         				<option value="78">Hiking</option>
+					         				<option value="79">Camping</option>
+					         				<option value="80">Mountain climbing</option>
+					         				<option value="81">Other</option>
+					         			</select>
+					         			<select id="genre_festival" class="genre_choice">>
+					         				<option value="82">Festival</option>
+					         			</select>
+					         			<select id="genre_standup" class="genre_choice">>
+					         				<option value="83">Stand-up</option>
+					         			</select>
+					         			<select id="genre_course" class="genre_choice">>
+					         				<option value="84">Course</option>
+					         			</select>
+					         			<select id="genre_city" class="genre_choice">>
+					         				<option value="85">City activity</option>
+					         			</select>
+					         			<select id="genre_fair" class="genre_choice">>
+					         				<option value="86">Farmers Market</option>
+					         				<option value="87">Arts/ Craft</option>
+					         				<option value="88">Food</option>
+					         				<option value="89">Other</option>
+					         			</select>
+					         			<select id="genre_fundraiser" class="genre_choice">>
+					         				<option value="90">Fundraiser</option>
+					         				<option value="91">Other</option>
+					         			</select>
+					         			<select id="genre_party" class="genre_choice">>
+					         				<option value="92">Clubs</option>
+					         				<option value="93">Other</option>
+					         			</select>
+                                 	</div>
+                                 </div>
+                              
+                                	<div class="event_public">
+                                	{% if eventform.venue_name.errors %}
+						    			<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  			{% endif %}
+                              		<h3 class="subheading">Event audience</h3> 
+                              		<span class="">
+                              			{{eventform.event_public}}
+                              		</span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                    </li>
+                    <div class="clear"></div>
+                        <!--<li class="formlist1">
+                        	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Keywords:</b>
+                            <input type="text" name="keywords" class="uni" value="Max 10 words,seperated by commas" style="border-bottom: 2px solid #000; margin-left:52px; width:300px;background: none;" />
+                        </li>-->
+                         <li class="formlist1">
+                         	{% if eventform.venue_name.errors %}
+						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+						  	{% endif %}
+                         <b>Description:</b>
+                         {{eventform.description}}
+                         <!--<textarea  class="uni" style="width: 100%; height: 300px;" ></textarea>-->
+                         </li>
+					</ul>  
+                </fieldset>
+             </div>   
+             	{% if eventform.status.errors %}
+					<p class="error">{{ eventform.status.errors|join:", "  }}</p>
+				{% endif %}
+             	{{eventform.status.as_hidden}}
+             	{{eventform.location.as_hidden}}
+             	{{eventform.event_poster.as_hidden}}
+             <input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>
+          </form>
+       </div>
+       </div> 
+
+
+<!--<script src="https://maps.googleapis.com/maps/api/js?sensor=false" type="text/javascript"></script> -->
+<script type="text/javascript">
+$(".datepicker").datepicker(
+	{
+		dateFormat:"yy-mm-dd",
+		showOn: "button",
+		buttonImage: "/static/images/calendar_icon.png",
+		buttonImageOnly: true
+	}
+);
+$(".timepicker").timepicker(
+	{
+		timeFormat:"hh:mm",
+		stepMinute: 5
+	}
+);
+/*
+var geocoder;
+var map;
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("venue_map"), myOptions);
+}
+*/
+/*
+function codeAddress(address)
+{
+	if(address)
+	{
+	    geocoder.geocode( { 'address': address}, function(results, status) 
+	    {
+	    	if (status == google.maps.GeocoderStatus.OK) 
+	    	{
+	       		map.setCenter(results[0].geometry.location);
+	        	var marker = new google.maps.Marker(
+	        	{
+	           		map: map, 
+	            	position: results[0].geometry.location
+	        	}
+	        	);
+	      } 
+	      else 
+	      {
+	      	alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	}
+}*/
+
+/*initialize();*/
+$("#venue_map").hide();
+
+$("#id_venue_name").blur(function(){
+	/*if($(this).val())
+	{
+		$("#venue_map").show();
+		codeAddress($(this).val());
+	}*/
+});
+$("#id_venue_name").focus(function(){
+	/*if(!$(this).val())
+	{
+		$("#venue_map").hide();
+	}*/
+});
+
+
+
+
+$("input[type=checkbox].uni").click(function(){
+	class_name = "."+$(this).attr("rel");
+	first_child = class_name+":eq(0)";
+	second_child = class_name+":eq(1)";
+	if($(this).is(":checked"))
+	{
+		$(first_child).val("09:00");
+		$(second_child).val("17:00");
+	}
+	else
+	{
+		$(first_child).val("");
+		$(second_child).val("");
+	}
+});
+$("#eventposter-form").ajaxForm(
+	{
+		success: function(data) 
+		{ 
+			$("#id_event_poster").val(data);
+			$("#poster_image").attr("src",'/media/images/tmp/'+data);			
+		}
+   	}
+);
+$("#id_event_poster_file").hide();
+$("#upload_link").click(function(){
+	$("#id_event_poster_file").click();
+});
+$("#id_event_poster_file").change(function(){
+	$("#eventposter-form").submit();
+});
+$("#id_schedule_type_1").click(function(){
+	if($(this).is(":checked"))
+	{
+		$( ".open_hours_div" ).show();
+		$( ".performance_hours_div" ).hide();
+		$(".performance_hours_div_wonly").hide();
+		$(".performance_hours_div_monly").hide();
+	}
+});
+$("#id_schedule_type_0").click(function(){
+	if($(this).is(":checked"))
+	{
+		$( ".performance_hours_div" ).show();
+		$(".performance_hours_div_wonly").hide();
+		$(".performance_hours_div_monly").hide();
+		$( ".open_hours_div" ).hide();
+		$('#add_shw_1').hide();
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+});
+
+$( ".open_hours_div" ).hide();
+$(".performance_hours_div_dmwonly").hide();
+
+
+/*$( ".performance_hours_div" ).hide();*/
+
+/*$( ".performance_hours_div_wmonly" ).hide();*/
+
+$('#genre_movie').hide();
+$('#genre_exhibition').hide();
+$('#genre_lecture').hide();
+$('#genre_concert').hide();
+$('#genre_sport').hide();
+$('#genre_theater').hide();
+$('#genre_opera').hide();
+$('#genre_dance').hide();
+$('#genre_musical').hide();
+$('#genre_outdoor').hide();
+$('#genre_festival').hide();
+$('#genre_standup').hide();
+$('#genre_course').hide();
+$('#genre_city').hide();
+$('#genre_fair').hide();
+$('#genre_fundraiser').hide();
+$('#genre_party').hide();
+
+$(".category_class").change(function(){
+	if($('.category_class').val()==""){$('#select_event_type').show();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="1"){$('#select_event_type').hide();$('#genre_movie').show();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="2"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').show();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="3"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').show();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="4"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').show();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="5"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').show();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="6"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').show();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="7"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').show();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}
+	if($('.category_class').val()=="8"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').show();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="9"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').show();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="10"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').show();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="11"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').show();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="12"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').show();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="13"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').show();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="14"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').show();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="15"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').show();$('#genre_fundraiser').hide();$('#genre_party').hide();}	
+	if($('.category_class').val()=="16"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').show();;$('#genre_party').hide();}	
+	if($('.category_class').val()=="17"){$('#select_event_type').hide();$('#genre_movie').hide();$('#genre_exhibition').hide();$('#genre_lecture').hide();$('#genre_concert').hide();$('#genre_sport').hide();$('#genre_theater').hide();$('#genre_opera').hide();$('#genre_dance').hide();$('#genre_musical').hide();$('#genre_outdoor').hide();$('#genre_festival').hide();$('#genre_standup').hide();$('#genre_course').hide();$('#genre_city').hide();$('#genre_fair').hide();$('#genre_fundraiser').hide();$('#genre_party').show();}
+});
+
+
+
+$("#id_frequency").change(function(){
+	var options_html;
+	if($(this).val() == "once")
+	{
+		$('.performance_hours_div_dmwonly').hide();
+		$('.performance_hours_div_wonly').hide();
+		$('.performance_hours_div_monly').hide();
+		$('#add_shw_1').hide();
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+	else if($(this).val() == "daily")
+	{
+		{% for frequency_val in frequency_range.daily %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+		$('#frequency_label').text("day");
+		$(".performance_hours_div_wonly").hide();
+		$('.performance_hours_div_monly').hide();	
+		$('.performance_hours_div_dmwonly').show();
+		$('#add_shw_1').show();
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+	else if($(this).val() == "weekly")
+	{
+		{% for frequency_val in frequency_range.weekly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+		$('#frequency_label').text("week");
+		$(".performance_hours_div_wonly").show();
+		$('.performance_hours_div_monly').hide();
+		$('.performance_hours_div_dmwonly').show();
+		$('#add_shw_1').show();
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+	else if($(this).val() == "monthly")
+	{
+		{% for frequency_val in frequency_range.monthly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+		$('#frequency_label').text("month");
+		$(".performance_hours_div_wonly").hide();
+		$('.performance_hours_div_dmwonly').show();
+		$('.performance_hours_div_monly').show();
+		$('#add_shw_1').show();
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+	$("#id_interval").html(options_html);
+});
+
+$("#chk_add_shw_1").click(function(){
+	if($(this).is(":checked"))
+	{
+		$('#showtimes_2').show();
+		$('#add_shw_2').show();
+		$('#showtimes_3').hide();
+	}
+	else{
+		$('#showtimes_2').hide();
+		$('#add_shw_2').hide();
+		$('#showtimes_3').hide();
+	}
+});
+
+$("#chk_add_shw_2").click(function(){
+	if($(this).is(":checked"))
+	{
+		$('#showtimes_3').show();
+	}
+	else{
+		$('#showtimes_3').hide();
+	}
+});
+
+</script>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+<script>
+var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-33.8902, 151.1759),
+  new google.maps.LatLng(-33.8474, 151.2631));
+
+var input = document.getElementById('id_street_address');
+
+autocomplete = new google.maps.places.Autocomplete(input);
+</script>
+{% endblock %}

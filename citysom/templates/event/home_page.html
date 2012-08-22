@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+
+{% block head %}<script src="/static/js/home_page_specific.js" type="text/javascript"></script>{% endblock %}
+{% block title %}Citysom: Make the most of your city! {% endblock %}
+
+{% block content %}
+<!--        <div class="filledarea">
+        	<div id="headingtext">April 2012</div>
+            <div id="sundayarea"><img src="/static/images/sundayimg.png" width="508" height="17" alt="sunday" /></div>
+        </div>	 -->
+        <div class="clear"></div>
+        <div id="home_calendar"></div>
+        <div class="clear"></div>
+        <!-- filledarea main start from here -->
+        <!-- HIDE CURRENT FILTERS
+         <div class="filter_section">
+        	<div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price</div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><a href="javascript:void(0)" id="min_price_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox">$<span id="min_price_span">0</span><input name="min_price" id="min_price" type="hidden" value="0"/></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="min_price_up"><img src="/static/images/button_up.png"/></a></div>
+                </div>
+            </div>
+            
+            <div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Max.Price</div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><a href="javascript:void(0)" id="max_price_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox">$<span id="max_price_span">0</span><input name="max_price" id="max_price" type="hidden" value="0"/></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="max_price_up"><img src="/static/images/button_up.png"/></a></div>
+                </div>
+            </div>
+            
+            <div class="minprice_main">
+            	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Start Time</div>
+                <div class="minprice_heading">
+                	<div class="nextbutton"><a href="javascript:void(0)" id="max_time_down"><img src="/static/images/button_down.png" /></a></div>
+                    <div class="textbox"><span id="max_time_span">8:00</span><input name="max_time" id="max_time" type="hidden" value="8:00" /></div>
+                    <div class="nextbutton"><a href="javascript:void(0)" id="max_time_up"><img src="/static/images/button_up.png"/></a></div>
+                </div>
+            </div>
+           -->
+            <!-- Filters -->
+            <!--
+            <div class="minprice_main">
+                    <div class="minprice_heading">Event Type</div>
+                    <div class="minprice_heading">
+                        <select name="category" id="category" style="background-color: black;width:150px; margin-top: 3px;font-weight:normal; font-family: Helvetica; border-radius:5px; border:1px #AAA; color:white;"> 
+                        		<option value="">All</option>
+                        		{% for cat in category %}
+                        			<option value="{{cat.id}}">{{cat}}</option>
+                        		{% endfor %}
+                        </select>
+                    </div>
+                </div>
+           
+        </div>
+        -->
+         <!-- filledarea main end from here -->
+          <!-- HIDE THE VARIOUS SELECTORS
+         <div class="everything_area">
+				<ul>
+    				<li class="every_heading"><a href="index.html"><div class="everything_icon"><img src="/static/images/searchicon.png" width="24" height="24" alt="icon" /></div>        &nbsp;&nbsp;Everything</a></li>
+					<li><a href="category.html"><div class="everything_icon"><img src="/static/images/cateicon.png" width="27" height="19" alt="icon" /></div>        &nbsp;&nbsp;Categories</a></li>
+					<li><a href="category.html"><div class="everything_icon"><img src="/static/images/voice_icon.png" width="16" height="26" alt="icon" /></div>    &nbsp;Concerts</a></li>
+	<li style="width:auto;"><a href="#">More &nbsp;&nbsp;></a></li>
+</ul>
+            </div> 
+            -->  
+         
+          <!-- filledarea start from here -->
+         
+         <div class="filledarea1" id="visu_content" style="width: 990px !important; float: left; position:relative; margin-top:25px;">
+         	<!--Div for posters -->
+         	<div id="poster_container" style="width:770px !important; float: left; position: relative;">
+         		
+         		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events(); return false;} else{togl=0; load_events(); return false;}"> Toggle view </button>
+         		
+         		<div id="searchbox">
+         			<input name="searchtextarea" id="searchtextarea" type="text" placeholder="Search for an artist, a place, an event etc." onblur="if( this.value.length == 0 ) { this.value = 'Search for an artist, a place, an event etc.'; }" onfocus="if(this.value == 'Search for an artist, a place, an event etc.') { this.value = ''; }"/>
+         			<input type="button" name="submit" value=" " id="searchbutton">
+         		</div>
+         		<!-- NEEDS CLARIFICATION ! -->
+         		<div id="categories" class="menurecipes_content eve" >
+         			<div id="bottom_scroll">
+         				<div class="left_region">
+         					<div class="event_type">
+         						<h6 style="font-weight:bold;margin-bottom: 20px;margin-left: 14px;">Event Type</h6>
+                            </div>
+                            <div class="left_images">
+                            	<ul>
+                            		<li><img style="padding: 3px;" src="/static/images/concerts.png" width="120" height="170" alt="1"  /></li>
+                                    <li><img style="padding: 3px;" src="/static/images/plays.png" width="120" height="170" alt="1" /></li>  
+                                    <li><img style="padding: 3px;" src="/static/images/lectures.png" width="120" height="170" alt="1" /></li>
+                                </ul>
+                            </div>
+                  		</div>
+                  		<div class="right_region">
+                  			<div class="start_time">
+                  				<h6 style="font-weight: bold; margin-bottom:20px;margin-right:98px;">Arrange Time : Start Time</h6>
+                        	</div>
+                            <div class="right_images">  
+                            	<ul>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/churchillimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/brieitimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/clreusimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/fooimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/carimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/cameraimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/agentimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/verdictimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/cameraimg.png" width="130" height="170" alt="1" /></li>
+                            		<li><img style="padding-bottom:5px;" src="/static/images/agentimg.png" width="130" height="170" alt="1" /></li>
+                                	<li><img style="padding-bottom:5px;" src="/static/images/verdictimg.png" width="130" height="170" alt="1" /></li>
+	                                <li><img style="padding-bottom:5px;" src="/static/images/churchillimg.png" width="130" height="170" alt="1" /></li>
+	                                <li><img style="padding-bottom:5px;" src="/static/images/brieitimg.png" width="130" height="170" alt="1" /></li>
+	                                <li><img style="padding-bottom:5px;" src="/static/images/clreusimg.png" width="130" height="170" alt="1" /></li>
+	                                <li><img style="padding-bottom:5px;" src="/static/images/fooimg.png" width="130" height="170" alt="1" /></li>
+                            	</ul>
+                         	</div>
+                 		</div>
+                 	</div>
+           		</div>
+           <div id="everything1" class="menurecipes_content text" >
+           	<div id="bottom_images"></div>
+           </div>
+           <div id="concerts">
+           </div>
+           <div class="clickstatus"></div>
+           <div class="movestatus"></div>
+      	</div> 
+         	
+         	<!-- Div to filter the posters shown -->
+         	<div id="poster_filter" style="width:220px !important; float:right; position: relative;">
+         		<p class="nav_menu">
+         			<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Select price range </button>
+         		</p>
+         		<div id="price_range_select" class="nav_div">
+         			<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>
+         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px;">$<input name="min_price" id="min_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
+         			<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>
+         			<div class="textbox_nav" style="float:right; width:132px; font-size:15px; background:transparent;">$<input name="max_price" id="max_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
+         			<p class="nav_div_choices">
+         				<button class="nav_button_choice" id="cancel_price_range" onclick="$('#max_price').val('-'); $('#min_price').val('-'); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
+         			</p>
+         		</div>
+         		<p class="nav_menu">
+         			<button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Select event type </button>
+         		</p>
+         		<div id="event_type_select" class="nav_div" style="display:none; line-height:1.5em;">
+         			<br>
+         			<input type="checkbox" id="checkbox_movie" value="1" name="category"><span style="font-size: 0.91em; font-weight: normal">Movie</span><BR>
+         			<input type="checkbox" id="checkbox_exhibition" value="2" name="category"><span style="font-size: 0.91em; font-weight: normal;">Exhibition</span><BR>
+         			<input type="checkbox" id="checkbox_lecture" value="3" name="category"><span style="font-size: 0.91em; font-weight: normal;">Lecture/ Talk</span><BR>
+         			<input type="checkbox" id="checkbox_concert" value="4" name="category"><span style="font-size: 0.91em; font-weight: normal;">Concert</span><BR>
+         			<input type="checkbox" id="checkbox_sport" value="5" name="category"><span style="font-size: 0.91em; font-weight: normal;">Sport</span><BR>
+         			<input type="checkbox" id="checkbox_theater" value="6" name="category"><span style="font-size: 0.91em; font-weight: normal;">Theater/ Reading</span><BR>
+         			<input type="checkbox" id="checkbox_opera" value="7" name="category"><span style="font-size: 0.91em; font-weight: normal;">Opera</span><BR>
+         			<input type="checkbox" id="checkbox_dance" value="8" name="category"><span style="font-size: 0.91em; font-weight: normal;">Dance</span><BR>
+         			<input type="checkbox" id="checkbox_musical" value="9" name="category"><span style="font-size: 0.91em; font-weight: normal;">Musical/ Show</span><BR>
+         			<input type="checkbox" id="checkbox_outdoor" value="10" name="category"><span style="font-size: 0.91em; font-weight: normal;">Outdoor</span><BR>
+         			<input type="checkbox" id="checkbox_festival" value="11" name="category"><span style="font-size: 0.91em; font-weight: normal;">Festival</span><BR>
+         			<input type="checkbox" id="checkbox_standup" value="12" name="category"><span style="font-size: 0.91em; font-weight: normal;">Stand-Up</span><BR>
+         			<input type="checkbox" id="checkbox_course" value="13" name="category"><span style="font-size: 0.91em; font-weight: normal;">Course</span><BR>
+         			<input type="checkbox" id="checkbox_category" value="14" name="category"><span style="font-size: 0.91em; font-weight: normal;">City Activity</span><BR>
+         			<input type="checkbox" id="checkbox_fair" value="15" name="category"><span style="font-size: 0.91em; font-weight: normal;">Fair</span><BR>
+         			<input type="checkbox" id="checkbox_fundraiser" value="16" name="category"><span style="font-size: 0.91em; font-weight: normal;">Fundraiser</span><BR>
+         			<input type="checkbox" id="checkbox_party" value="17" name="category"><span style="font-size: 0.91em; font-weight: normal;">Party</span><BR>
+         			<input type="checkbox" id="checkbox_other" value="18" name="category"><span style="font-size: 0.91em; font-weight: normal;">Other</span><BR>
+         			<p class="nav_div_choices">
+         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:17px;">OK</button>
+         			</p>
+         		</div>
+         		<p class="nav_menu">
+         			<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Select hours </button>
+         		</p>
+         		<div id="hours_range_select" class="nav_div" style="display:none;">
+         			<label> Start after:</label>
+         			<div class="hours_display">
+         				<select id="start_hours">
+         					<option value="">--</option>
+         					<option value="00">00</option>
+         					<option value="01">01</option>
+         					<option value="02">02</option>
+         					<option value="03">03</option>
+         					<option value="04">04</option>
+         					<option value="05">05</option>
+         					<option value="06">06</option>
+         					<option value="07">07</option>
+         					<option value="08">08</option>
+         					<option value="09">09</option>
+         					<option value="10">10</option>
+         					<option value="11">11</option>
+         					<option value="12">12</option>
+         					<option value="13">13</option>
+         					<option value="14">14</option>
+         					<option value="15">15</option>
+         					<option value="16">16</option>
+         					<option value="17">17</option>
+         					<option value="18">18</option>
+         					<option value="19">19</option>
+         					<option value="20">20</option>
+         					<option value="21">21</option>
+         					<option value="22">22</option>
+         					<option value="23">23</option>
+         				</select>
+         				:
+         				<select id="start_minutes">
+         					<option value="">--</option>
+         					<option value="00">00</option>
+         					<option value="15">15</option>
+         					<option value="30">30</option>
+         					<option value="45">45</option>
+         				</select>
+         			</div>
+         			
+         			<label> End before:</label>
+         			<div class="hours_display" style="margin-bottom:15px;">
+         				<select id="end_hours">
+         					<option value="">--</option>
+         					<option value="00">00</option>
+         					<option value="01">01</option>
+         					<option value="02">02</option>
+         					<option value="03">03</option>
+         					<option value="04">04</option>
+         					<option value="05">05</option>
+         					<option value="06">06</option>
+         					<option value="07">07</option>
+         					<option value="08">08</option>
+         					<option value="09">09</option>
+         					<option value="10">10</option>
+         					<option value="11">11</option>
+         					<option value="12">12</option>
+         					<option value="13">13</option>
+         					<option value="14">14</option>
+         					<option value="15">15</option>
+         					<option value="16">16</option>
+         					<option value="17">17</option>
+         					<option value="18">18</option>
+         					<option value="19">19</option>
+         					<option value="20">20</option>
+         					<option value="21">21</option>
+         					<option value="22">22</option>
+         					<option value="23">23</option>
+         				</select>
+         				:
+         				<select id="end_minutes">
+         					<option value="">--</option>
+         					<option value="00">00</option>
+         					<option value="15">15</option>
+         					<option value="30">30</option>
+         					<option value="45">45</option>
+         				</select>
+         			</div>
+         			<br>
+         			<p class="nav_div_choices">
+         				<button class="nav_button_choice" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); $('#hours_range_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:17px;">OK</button>
+         			</p>
+         		</div>
+         		
+         		<p class="nav_menu">
+         			<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;"> Select audience </button>
+         		</p>
+         		<div id="event_audience_select" class="nav_div" style="display:none; line-height:1.5em;">
+         			<br>
+         			<input type="checkbox" id="checkbox_allpublic" value="1" name="audience"><span style="font-size: 0.91em; font-weight: normal">All public</span><BR>
+         			<input type="checkbox" id="checkbox_families" value="2" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Families</span><BR>
+         			<input type="checkbox" id="checkbox_children" value="3" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Children</span><BR>
+         			<input type="checkbox" id="checkbox_teens" value="4" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Teens</span><BR>
+         			<input type="checkbox" id="checkbox_adults" value="5" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Adults</span><BR>
+         			<input type="checkbox" id="checkbox_seniors" value="6" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Seniors</span><BR>
+         			<p class="nav_div_choices">
+         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_audience_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_audience_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice" id="valid_type_select" onclick="var tmp_aud=[];$('#event_audience_select :checked').each(function(){tmp_aud.push($(this).val());}); $('#event_audience_select').val(tmp_aud); load_events(); " style="float:right; margin-right:17px;">OK</button>
+         			</p>
+         		</div>
+         	</div>
+        
+      </div>     
+{% endblock %}
