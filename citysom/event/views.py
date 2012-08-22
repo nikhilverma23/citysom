@@ -1,9 +1,9 @@
 # Create your views here.
 import sys
-from citysom.event.models import Place, Event, Category, PerformanceDetails
+from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from citysom.event.forms import EventForm, EventPosterForm
+from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
 from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
 from django.template import loader, Context
 import datetime
@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from operator import or_, and_
 from django.db.models import Q
+from citysom.myprofile.models import History
 
 def server_error(request, template_name='500.html'):
     """
@@ -688,13 +689,29 @@ def get_event_details(request):
                             user = user
                         )
         history_obj.save()
-        
+    
+    if request.method == "POST":
+        ratings_form = EventRatingForm(request.POST)
+        if ratings_form.is_valid():
+            comment_obj = UserComments.objects.get_or_create(
+                ratings = ratings_form.cleaned_data['ratings'],
+                reviews = ratings_form.cleaned_data['reviews'],
+                event_id = id
+            )
+            return HttpResponseRedirect('/event/details/?id='+id)
+    else:
+        ratings_form = EventRatingForm()
+    
+    user_comments = UserComments.objects.filter(event_id=id)
+    
     return render_to_response("event/event_detail.html",
                               {
                               # whatever you need from event table just do event_obj.fieldname in template
                                "eventdetials":event_obj,
                               # for performance details just iterate it in templates and access the value by using . notation
                               "event_performance":event_obj.performancedetails_set.all(),
+                              "ratings_form":ratings_form,
+                              "user_comments":user_comments,
                               },
                               context_instance=RequestContext(request)
                               )

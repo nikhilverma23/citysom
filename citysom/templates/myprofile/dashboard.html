@@ -1,5 +1,71 @@
 {% extends "base.html" %}
-{% block title %}Edit Profile Information{% endblock %}
+{% block title %}Dashboard{% endblock %}
 {% block content %}
-
+    <div class="clear"></div>
+    <div class="account_div">
+        <div>
+            <h1 class="account_title">Charles Henri</h1>
+        </div>
+        <div class="main_account">
+            {% include "myprofile/sidebar.html"%}
+            <div class="right_account">
+                <div class="right_title">
+                    Upcoming Events
+                </div>
+                <div class="right_content">
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="right_title">
+                    Events History
+                </div>
+                <div class="right_content">
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="right_title">
+                    My Wishlist
+                </div>
+                <div class="right_content">
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="right_item">
+                        <img src="/static/images/churchillimg.png" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
 {% endblock %}

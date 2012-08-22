@@ -1130,8 +1130,8 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 #date_time{width:auto;height:auto;margin-top:5px;}
 #date_time .area{float: left;width:300px;}
 #date_time .todays_date{float: right;}
-.cust_ratin{width: 300px;height: auto; margin-top: 10px;}
-.cust_ratin .rating{float: left; width: 90px; font-family: Calibri; }
+.cust_ratin{height: auto; margin-top: 10px;}
+.cust_ratin .rating{float: left; font-family: Calibri; }
 .cust_ratin .rating_pic{float: left; height: 20px; margin-top: -3px;}
 .rate_show{float: left;width:250px;height: auto;margin-left: 60px;}
 .rate_show .rating{float: left; width:100px; font-family:Calibri;}

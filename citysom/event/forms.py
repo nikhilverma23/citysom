@@ -206,5 +206,7 @@ class EventPosterForm(forms.Form):
      event_poster_file = forms.ImageField(required=False)
      
 
-
+class EventRatingForm(forms.Form):
+    ratings = forms.IntegerField()
+    reviews = forms.CharField(max_length=1000)
       

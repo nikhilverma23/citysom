@@ -158,3 +158,7 @@ class PerformanceDetails(models.Model):
     def __unicode__(self):
         return self.frequency
         
+class UserComments(models.Model):
+    ratings = models.IntegerField(null=True, blank=True)
+    reviews = models.TextField(null=True, blank=True)
+    event = models.ForeignKey(Event, null=True, blank=True)
