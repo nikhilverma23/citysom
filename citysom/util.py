@@ -44,21 +44,21 @@ SCHEDULE_TYPE = (
 
 DAYS_OF_WEEK = (
                
-    ('monday','MONDAY'),
-    ('tuesday','TUESDAY'),
-    ('wednesday','WEDNESDAY'),
-    ('thursday','THURSDAY'),
-    ('friday','FRIDAY'),
-    ('saturday','SATURDAY'),
-    ('sunday','SUNDAY'),
+    ('0','MONDAY'),
+    ('1','TUESDAY'),
+    ('2','WEDNESDAY'),
+    ('3','THURSDAY'),
+    ('4','FRIDAY'),
+    ('5','SATURDAY'),
+    ('6','SUNDAY'),
     
 )
 
 FREQUENCY_CHOICES = (
-                        ('once','Once'),
-                        ('daily','Daily'),
-                        ('weekly','Weekly'),
-                        ('monthly','Monthly'),
+                        ('ONCE','Once'),
+                        ('DAILY','Daily'),
+                        ('WEEKLY','Weekly'),
+                        ('MONTHLY','Monthly'),
                         
                         )
    
@@ -95,3 +95,22 @@ MONTHLY_COUNT = (
                ('4','4'),
 
                )
+
+SET_POS_CHOICES = (
+                   ('1','First'),
+                   ('2','Second'),
+                   ('3','Third'),
+                   ('4','Fourth'),
+                   ('-1','Last'),
+                   )
+
+DAYS_OF_WEEK_SHORT = (
+                        ('MO','MONDAY'),
+                        ('TU','TUESDAY'),
+                        ('WE','WEDNESDAY'),
+                        ('TH','THURSDAY'),
+                        ('FR','FRIDAY'),
+                        ('SA','SATURDAY'),
+                        ('SU','SUNDAY'),
+                                          
+                      )

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title%} {{eventdetials.title}} {% endblock %}
+
+{% block content %}
+<div class="links">
+	<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>
+	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 16px; 
+float: left; font-family: Calibri;">Theater > Comedy > <p style="color: #FF7920; float: right;">{{eventdetials.title}}</p> </a></li>
+</div>
+<!-- centerarea main end from here -->
+<div class="clear"></div>
+<div class="event_prev">
+	<div class="left_img_prev">
+	   <img src="/static/images/{{eventdetials.event_poster}}" alt="" height="300" width="220" />
+	    <ul style="list-style: none;">
+	   <li class="prev_det"><strong style="font-weight: bold;">Purchase Tickets ></strong></li> 
+	   <li class="prev_det"><strong style="font-weight: bold;">Duration:</strong> 120 min</li> 
+	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
+	   <li class="prev_det" style="margin-left: 10px;">Mon-Thu: 8:00 ; 10:30</li> 
+	   <li class="prev_det" style="margin-left: 10px;">Fri-Sat: 8:30 ; 11:00</li> 
+	   </ul>
+	</div>
+	 <div class="right_det">
+	    <div class="top_critic">
+	    <div>
+	    </div>
+		<h6 style="border-bottom: 2px solid black; width:159px;font-weight: bold;margin-bottom: 8px;font-size: 17px;">Top Critic's Reviews</h6>
+		<div class="reating" style="float: left; font-family:Calibri;">
+		    <img src="/static/images/rating.png" alt="" style="margin-bottom: 5px;" /><br />
+		    <label>26 Reviews</label>
+		</div>
+		<div class="det_crit" style="float: left; margin-left: 20px;">
+		    <p style="font-size:14px;">A Fantastic show that will shaken up the Boston repertoire -Mary F. Puls <br /><strong style="font-weight: bold;"> Boston Globe</strong></p>
+		    <p style="margin-top: 5px;">A new production that should appeal to everyone -john G. Varvatos Boston<br /><strong style="font-weight: bold;">Independent</strong></p>
+		</div>
+	    </div>
+	    <div class="clear"></div>
+	     <h6 style="border-bottom: 2px solid black; width:149px;font-weight: bold;margin-top: 8px;font-size: 17px;">Customer's Ratings</h6>  
+	    <div class="cust_ratin">
+		    <div class="rating" >Average rating:</div>
+		    <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+	    </div>
+	    <div class="rate_show">
+		    <div class="rating" >Rate this show:</div>
+		    <div class="rating_pic"><img src="/static/images/rate.png" alt="" style="margin-top: 0px;" /> </div>
+	    </div>
+	    <h6 style="border-bottom: 2px solid black; width:143px;font-weight: bold;margin-bottom: 8px;font-size: 17px;margin-top:78px;">Customer Reviews</h6> 
+	    <div id="latest_events">
+		     <div class="clear"></div>   
+		     <div class="review_sort">
+			    <div class="lreview_sort">
+				<strong style="font-weight: bold;margin-top:5px;">Write a review ></strong>
+			    </div>
+			    <div class="rate_show" style="float: right; width: auto !important;">
+				    <div class="rating" style="float: left;width:60px;margin-top: 5px;font-weight:  bold;">Sort By</div>
+				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">Most Recent<img src="/static/images/dwn_arrow.png" alt="" style="margin-top: 0px;" /> </div>
+			    </div>
+		     </div>
+		     <div class="review_rating">
+			      <div class="cust_ratin">
+				    <div class="rating" style="width: 110px;"><strong style="font-weight: bold;"> I loved this play</strong></div>
+				    <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+			     </div>
+			     <div class="clear"></div>
+			     <div class="event_text">
+			     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+			     The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, 
+			     as opposed to using 'Content here, content here', making it look like readable English. 
+			     Many desktop publishing packages and web page editors now use Lorem Ipsum as 
+			     their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+			     Various versions have evolved over the years, sometimes by accident</p>
+			     </div>
+		     </div>  
+		     <div class="review_rating">
+			      <div class="cust_ratin">
+				    <div class="rating" style="width: 110px;"><strong style="font-weight: bold;"> I loved this play</strong></div>
+				    <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+			     </div>
+			     <div class="clear"></div>
+			     <div class="event_text">
+			     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+			     The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, 
+			     as opposed to using 'Content here, content here', making it look like readable English. 
+			     Many desktop publishing packages and web page editors now use Lorem Ipsum as 
+			     their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+			     Various versions have evolved over the years, sometimes by accident</p>
+			     </div>
+		     </div>  
+		     <div class="review_rating">
+			      <div class="cust_ratin">
+				    <div class="rating" style="width: 110px;"><strong style="font-weight: bold;"> I loved this play</strong></div>
+				    <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+			     </div>
+			     <div class="clear"></div>
+			     <div class="event_text">
+			     <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
+			     The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, 
+			     as opposed to using 'Content here, content here', making it look like readable English. 
+			     Many desktop publishing packages and web page editors now use Lorem Ipsum as 
+			     their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. 
+			     Various versions have evolved over the years, sometimes by accident</p>
+			     </div>
+		     </div>  
+	
+			   
+	     </div>
+		<div>
+			<a href="/myprofile/wishlist?action=add&id={{eventdetials.id}}">Add to Wishlist</a>
+		</div>
+	</div>
+	   
+</div>
+
+{% for detail in event_performance %}
+	{{detial}}
+{% endfor %}
+{% endblock %}

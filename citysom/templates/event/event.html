@@ -67,14 +67,14 @@ tinyMCE.init({
                                 <li class="formlist1">
                                 		<div id="venue_map" style="margin: 10px; height: 300px;"></div>
                                 </li>
-                                <li class="formlist1">
+                                <li class="formlist1 performance_schedule1">
                                 	{% if eventform.date_started.errors %}
 								    	<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
 								  	{% endif %}
                                    <b>Event start date:</b>
                                    {{eventform.date_started}}
                                 </li>
-                                <li class="formlist1">
+                                <li class="formlist1 performance_schedule1">
                                 	{% if eventform.date_completed.errors %}
 								    	<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
 								  	{% endif %}
@@ -88,7 +88,7 @@ tinyMCE.init({
                                   <b>Event Duration:</b>
                                    {{eventform.event_duration}} 
                                 </li>-->
-                                <li class="formlist1 left_aligned_radios">
+                                <li class="formlist1 left_aligned_radios performance_schedule1">
                                 	{% if eventform.schedule_type.errors %}
 								    	<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
 								  	{% endif %}
@@ -97,7 +97,7 @@ tinyMCE.init({
                                 </li>
                                 
                                 
-                                <li class="formlist1 open_hours_div" style="margin-top: 20px;">
+                                <li class="formlist1 open_hours_div performance_schedule1" style="margin-top: 20px;">
                             <b style="float:left;">Event Start Hours:</b>
                                    
                    <div id="start_hour">
@@ -197,7 +197,7 @@ tinyMCE.init({
                       <div class="clear"></div>
                              
                         </li>
-                        <li class="formlist1 performance_hours_div">
+                        <li class="formlist1 performance_hours_div performance_schedule1">
                         	{% if eventform.frequency.errors %}
 						    	<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -205,7 +205,7 @@ tinyMCE.init({
                             {{eventform.frequency}} 
                         </li>
                         
-                        <li class="formlist1 performance_hours_div">
+                        <li class="formlist1 performance_hours_div performance_schedule1">
                         	{% if eventform.interval.errors %}
 						    	<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -214,7 +214,7 @@ tinyMCE.init({
                         	
                         </li>
                         
-                        <li class="formlist1 performance_hours_div">
+                        <li class="formlist1 performance_hours_div repeat_div performance_schedule1">
                         	{% if eventform.frequency.errors %}
 						    	<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -222,7 +222,7 @@ tinyMCE.init({
                             {{eventform.repeat_on}} 
                         </li>
              
-                        <li class="formlist1 performance_hours_div">
+                        <li class="formlist1 performance_hours_div performance_schedule1">
                         	{% if eventform.event_start_hours.errors %}
 						    	<p class="error">{{ eventform.event_start_hours.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -230,7 +230,7 @@ tinyMCE.init({
                             {{eventform.event_start_hours}} 
                         </li>
                         
-                        <li class="formlist1 performance_hours_div">
+                        <li class="formlist1 performance_hours_div performance_schedule1">
                         	{% if eventform.event_end_hours.errors %}
 						    	<p class="error">{{ eventform.event_end_hours.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -238,7 +238,466 @@ tinyMCE.init({
                             {{eventform.event_end_hours}} 
                         </li>
                         
-                        <li class="formlist1">
+                        <li class="formlist1 performance_schedule2">
+                                	{% if eventform.date_started_option1.errors %}
+								    	<p class="error">{{ eventform.date_started_option1.errors|join:", "  }}</p>
+								  	{% endif %}
+                                   <b>Event start date:</b>
+                                   {{eventform.date_started_option1}}
+                                </li>
+                                <li class="formlist1 performance_schedule2">
+                                	{% if eventform.date_completed_option1.errors %}
+								    	<p class="error">{{ eventform.date_completed_option1.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event end date:</b>
+                                    {{eventform.date_completed_option1}} 
+                                </li>
+                                <li class="formlist1 left_aligned_radios performance_schedule2">
+                                	{% if eventform.schedule_type_option1.errors %}
+								    	<p class="error">{{ eventform.schedule_type_option1.errors|join:", "  }}</p>
+								  	{% endif %}
+                                  <b>Schedule Type:</b>
+                                   {{eventform.schedule_type_option1}} 
+                                </li>
+                                
+                                
+                                <li class="formlist1 open_hours_div performance_schedule2" style="margin-top: 20px;">
+                            <b style="float:left;">Event Start Hours:</b>
+                                   
+                   <div id="start_hour">
+
+                       <div class="start_left">
+                           <span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+                             {% if eventform.start_hours_on_monday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_monday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_monday_option1.errors %}
+				    		 <p class="error">{{ eventform.end_hours_on_monday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Mondays:</label>
+                             {{eventform.start_hours_on_monday_option1}} 
+				    	     {{eventform.end_hours_on_monday_option1}} 
+                             <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday1"/><br />
+                             
+                             
+                             {% if eventform.start_hours_on_tuesday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_tuesday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_tuesday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_tuesday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Tuesdays:</label>
+                             {{eventform.start_hours_on_tuesday_option1}}
+                             {{eventform.end_hours_on_tuesday_option1}} 
+                             <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday1"/><br />
+                            
+							 {% if eventform.start_hours_on_wednesday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_wednesday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_wednesday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_wednesday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Wednesdays:</label>
+                             {{eventform.start_hours_on_wednesday_option1}} 
+                             {{eventform.end_hours_on_wednesday_option1}} 
+                             <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday1"/><br />
+				  		</div>
+				  		<div class="start_right">
+				  			<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+				  			 {% if eventform.start_hours_on_thursday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_thursday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_thursday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_thursday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Thursdays:</label>
+                             {{eventform.start_hours_on_thursday_option1}} 
+				    	     {{eventform.end_hours_on_thursday_option1}} 
+                             <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday1"/><br />
+							 
+							 {% if eventform.start_hours_on_friday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_friday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_friday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_friday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Fridays:</label>
+                             {{eventform.start_hours_on_friday_option1}} 
+                             {{eventform.end_hours_on_friday_option1}} 
+                             <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday1"/><br />
+							 
+							 {% if eventform.start_hours_on_saturday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_saturday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_saturday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_saturday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Saturdays:</label>
+                             {{eventform.start_hours_on_saturday_option1}} 
+                             {{eventform.end_hours_on_saturday_option1}} 
+                             <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday1"/><br />
+							 
+							 {% if eventform.start_hours_on_sunday_option1.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_sunday_option1.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_sunday_option1.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_sunday_option1.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Sundays:</label>
+                             {{eventform.start_hours_on_sunday_option1}} 
+                             {{eventform.end_hours_on_sunday_option1}} 
+                             <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday1"/><br />
+						</div>
+                   </div>
+                      <!--<li class="formlist1">
+                                	{% if eventform.event_poster.errors %}
+								    	<p class="error">{{ eventform.event_poster.errors|join:", "  }}</p>
+								  	{% endif %}
+                                    <b>Event end date:</b>
+                                    {{eventform.event_poster}} 
+                       </li>-->       
+                      <div class="clear"></div>
+                             
+                        </li>
+                        <li class="formlist1 performance_hours_div performance_schedule2">
+                        	{% if eventform.frequency_option1.errors %}
+						    	<p class="error">{{ eventform.frequency_option1.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Repeats:</b>
+                            {{eventform.frequency_option1}} 
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div performance_schedule2">
+                        	{% if eventform.interval_option1.errors %}
+						    	<p class="error">{{ eventform.interval_option1.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.interval_option1}} 
+                        	
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div repeat_div performance_schedule2">
+                        	{% if eventform.repeat_on_option1.errors %}
+						    	<p class="error">{{ eventform.repeat_on_option1.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.repeat_on_option1}} 
+                        </li>
+             
+                        <li class="formlist1 performance_hours_div performance_schedule2">
+                        	{% if eventform.event_start_hours_option1.errors %}
+						    	<p class="error">{{ eventform.event_start_hours_option1.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Start Hours:</b>
+                            {{eventform.event_start_hours_option1}} 
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div performance_schedule2">
+                        	{% if eventform.event_end_hours_option1.errors %}
+						    	<p class="error">{{ eventform.event_end_hours_option1.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event End hours:</b>
+                            {{eventform.event_end_hours_option1}} 
+                        </li>
+                        <li class="formlist1 performance_schedule3">
+                                	{% if eventform.date_started_option3.errors %}
+								    	<p class="error">{{ eventform.date_started_option2.errors|join:", "  }}</p>
+								  	{% endif %}
+                                   <b>Event start date:</b>
+                                   {{eventform.date_started_option2}}
+                                </li>
+			<li class="formlist1 performance_schedule3">
+				{% if eventform.date_completed_option2.errors %}
+								<p class="error">{{ eventform.date_completed_option2.errors|join:", "  }}</p>
+								{% endif %}
+			    <b>Event end date:</b>
+			    {{eventform.date_completed_option2}} 
+			</li>
+			<li class="formlist1 left_aligned_radios performance_schedule3">
+				{% if eventform.schedule_type_option2.errors %}
+								<p class="error">{{ eventform.schedule_type_option2.errors|join:", "  }}</p>
+								{% endif %}
+			  <b>Schedule Type:</b>
+			   {{eventform.schedule_type_option2}} 
+			</li>
+			
+			
+			<li class="formlist1 open_hours_div performance_schedule3" style="margin-top: 20px;">
+                            <b style="float:left;">Event Start Hours:</b>
+                                   
+                   <div id="start_hour">
+
+                       <div class="start_left">
+                           <span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+                             {% if eventform.start_hours_on_monday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_monday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_monday_option2.errors %}
+				    		 <p class="error">{{ eventform.end_hours_on_monday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Mondays:</label>
+                             {{eventform.start_hours_on_monday_option2}} 
+				    	     {{eventform.end_hours_on_monday_option2}} 
+                             <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday2"/><br />
+                             
+                             
+                             {% if eventform.start_hours_on_tuesday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_tuesday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_tuesday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_tuesday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Tuesdays:</label>
+                             {{eventform.start_hours_on_tuesday_option2}}
+                             {{eventform.end_hours_on_tuesday_option2}} 
+                             <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday2"/><br />
+                            
+							 {% if eventform.start_hours_on_wednesday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_wednesday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_wednesday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_wednesday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Wednesdays:</label>
+                             {{eventform.start_hours_on_wednesday_option2}} 
+                             {{eventform.end_hours_on_wednesday_option2}} 
+                             <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday2"/><br />
+				  		</div>
+				  		<div class="start_right">
+				  			<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+				  			 {% if eventform.start_hours_on_thursday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_thursday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_thursday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_thursday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Thursdays:</label>
+                             {{eventform.start_hours_on_thursday_option2}} 
+				    	     {{eventform.end_hours_on_thursday_option2}} 
+                             <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday2"/><br />
+							 
+							 {% if eventform.start_hours_on_friday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_friday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_friday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_friday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Fridays:</label>
+                             {{eventform.start_hours_on_friday_option2}} 
+                             {{eventform.end_hours_on_friday_option2}} 
+                             <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday2"/><br />
+							 
+							 {% if eventform.start_hours_on_saturday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_saturday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_saturday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_saturday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Saturdays:</label>
+                             {{eventform.start_hours_on_saturday_option2}} 
+                             {{eventform.end_hours_on_saturday_option2}} 
+                             <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday2"/><br />
+							 
+							 {% if eventform.start_hours_on_sunday_option2.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_sunday_option2.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_sunday_option2.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_sunday_option2.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Sundays:</label>
+                             {{eventform.start_hours_on_sunday_option2}} 
+                             {{eventform.end_hours_on_sunday_option2}} 
+                             <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday2"/><br />
+						</div>
+                   </div>
+                      <div class="clear"></div>
+                             
+                        </li>
+                        <li class="formlist1 performance_hours_div performance_schedule3">
+                        	{% if eventform.frequency_option2.errors %}
+						    	<p class="error">{{ eventform.frequency_option2.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Repeats:</b>
+                            {{eventform.frequency_option2}} 
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div performance_schedule3">
+                        	{% if eventform.interval_option2.errors %}
+						    	<p class="error">{{ eventform.interval_option2.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.interval_option2}} 
+                        	
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div repeat_div performance_schedule3">
+                        	{% if eventform.repeat_on_option2.errors %}
+						    	<p class="error">{{ eventform.repeat_on_option2.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.repeat_on_option2}} 
+                        </li>
+             
+                        <li class="formlist1 performance_hours_div performance_schedule3">
+                        	{% if eventform.event_start_hours_option2.errors %}
+						    	<p class="error">{{ eventform.event_start_hours_option2.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Start Hours:</b>
+                            {{eventform.event_start_hours_option2}} 
+                        </li>
+			<li class="formlist1 performance_schedule4">
+                                	{% if eventform.date_started_option3.errors %}
+								    	<p class="error">{{ eventform.date_started_option3.errors|join:", "  }}</p>
+								  	{% endif %}
+                                   <b>Event start date:</b>
+                                   {{eventform.date_started_option3}}
+                                </li>
+			<li class="formlist1 performance_schedule4">
+				{% if eventform.date_completed_option3.errors %}
+								<p class="error">{{ eventform.date_completed_option3.errors|join:", "  }}</p>
+								{% endif %}
+			    <b>Event end date:</b>
+			    {{eventform.date_completed_option3}} 
+			</li>
+			<li class="formlist1 left_aligned_radios performance_schedule4">
+				{% if eventform.schedule_type_option3.errors %}
+								<p class="error">{{ eventform.schedule_type_option3.errors|join:", "  }}</p>
+								{% endif %}
+			  <b>Schedule Type:</b>
+			   {{eventform.schedule_type_option3}} 
+			</li>
+			
+			
+			<li class="formlist1 open_hours_div performance_schedule4" style="margin-top: 20px;">
+                            <b style="float:left;">Event Start Hours:</b>
+                                   
+                   <div id="start_hour">
+
+                       <div class="start_left">
+                           <span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+                             {% if eventform.start_hours_on_monday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_monday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_monday_option3.errors %}
+				    		 <p class="error">{{ eventform.end_hours_on_monday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Mondays:</label>
+                             {{eventform.start_hours_on_monday_option3}} 
+				    	     {{eventform.end_hours_on_monday_option3}} 
+                             <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday3"/><br />
+                             
+                             
+                             {% if eventform.start_hours_on_tuesday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_tuesday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_tuesday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_tuesday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Tuesdays:</label>
+                             {{eventform.start_hours_on_tuesday_option3}}
+                             {{eventform.end_hours_on_tuesday_option3}} 
+                             <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday3"/><br />
+                            
+							 {% if eventform.start_hours_on_wednesday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_wednesday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_wednesday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_wednesday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Wednesdays:</label>
+                             {{eventform.start_hours_on_wednesday_option3}} 
+                             {{eventform.end_hours_on_wednesday_option3}} 
+                             <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday3"/><br />
+				  		</div>
+				  		<div class="start_right">
+				  			<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            <div class="clear"></div>
+				  			 {% if eventform.start_hours_on_thursday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_thursday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+				  			 {% if eventform.end_hours_on_thursday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_thursday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Thursdays:</label>
+                             {{eventform.start_hours_on_thursday_option3}} 
+				    	     {{eventform.end_hours_on_thursday_option3}} 
+                             <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday3"/><br />
+							 
+							 {% if eventform.start_hours_on_friday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_friday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_friday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_friday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Fridays:</label>
+                             {{eventform.start_hours_on_friday_option3}} 
+                             {{eventform.end_hours_on_friday_option3}} 
+                             <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday3"/><br />
+							 
+							 {% if eventform.start_hours_on_saturday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_saturday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_saturday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_saturday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Saturdays:</label>
+                             {{eventform.start_hours_on_saturday_option3}} 
+                             {{eventform.end_hours_on_saturday_option3}} 
+                             <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday3"/><br />
+							 
+							 {% if eventform.start_hours_on_sunday_option3.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_sunday_option3.errors|join:", "  }}</p>
+				  			 {% endif %}
+                             {% if eventform.end_hours_on_sunday_option3.errors %}
+				    		 	<p class="error">{{ eventform.end_hours_on_sunday_option3.errors|join:", "  }}</p>
+				    	     {% endif %}
+                             <label>Sundays:</label>
+                             {{eventform.start_hours_on_sunday_option3}} 
+                             {{eventform.end_hours_on_sunday_option3}} 
+                             <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday3"/><br />
+						</div>
+                   </div>
+                      <div class="clear"></div>
+                             
+                        </li>
+                        <li class="formlist1 performance_hours_div performance_schedule4">
+                        	{% if eventform.frequency_option3.errors %}
+						    	<p class="error">{{ eventform.frequency_option3.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Repeats:</b>
+                            {{eventform.frequency_option3}} 
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div performance_schedule4">
+                        	{% if eventform.interval_option3.errors %}
+						    	<p class="error">{{ eventform.interval_option3.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.interval_option3}} 
+                        	
+                        </li>
+                        
+                        <li class="formlist1 performance_hours_div repeat_div performance_schedule4">
+                        	{% if eventform.repeat_on_option3.errors %}
+						    	<p class="error">{{ eventform.repeat_on_option3.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Repeat Every:</b>
+                            {{eventform.repeat_on_option3}} 
+                        </li>
+             
+                        <li class="formlist1 performance_hours_div performance_schedule4">
+				{% if eventform.event_start_hours_option3.errors %}
+						    	<p class="error">{{ eventform.event_start_hours_option3.errors|join:", "  }}</p>
+						  	{% endif %}
+                            <b>Event Start Hours:</b>
+                            {{eventform.event_start_hours_option3}} 
+                        </li>
+			<li class="formlist1">
                         	{% if eventform.event_ticket_price.errors %}
 						    	<p class="error">{{ eventform.event_ticket_price.errors|join:", "  }}</p>
 						  	{% endif %}
@@ -252,6 +711,11 @@ tinyMCE.init({
                             <b>Event website:</b>
                             {{eventform.eventwebsite}} 
                         </li>
+			<li class="formlist1">
+				<div style="text-align: right;">
+					<a href="javascript:void(0)" class="add_schedule custom_link">Add Another Schedule</a>
+				</div>
+			</li>
                          <li class="formlist1">
                             <b style="float: left;">Category:</b>
                             <div id="event_categories">
@@ -382,15 +846,16 @@ $("input[type=checkbox].uni").click(function(){
 	class_name = "."+$(this).attr("rel");
 	first_child = class_name+":eq(0)";
 	second_child = class_name+":eq(1)";
+	console.log($(this).parent().parent().parent());
 	if($(this).is(":checked"))
 	{
-		$(first_child).val("09:00");
-		$(second_child).val("17:00");
+		$(this).parent().parent().parent().children(first_child).val("09:00");
+		$(this).parent().parent().parent().children(second_child).val("17:00");
 	}
 	else
 	{
-		$(first_child).val("");
-		$(second_child).val("");
+		$(this).parent().parent().parent().children(first_child).val("");
+		$(this).parent().parent().parent().children(second_child).val("");
 	}
 });
 $("#eventposter-form").ajaxForm(
@@ -409,18 +874,27 @@ $("#upload_link").click(function(){
 $("#id_event_poster_file").change(function(){
 	$("#eventposter-form").submit();
 });
-$("#id_schedule_type_0").click(function(){
-	if($(this).is(":checked"))
+$(".schedule_class").click(function(){
+	parent = $(this).parent().parent().parent().parent().parent().parent();
+	
+	var class_name;
+	if(parent.hasClass("performance_schedule1"))
+	class_name = "performance_schedule1";
+	else if(parent.hasClass("performance_schedule2"))
+	class_name = "performance_schedule2";
+	else if(parent.hasClass("performance_schedule3"))
+	class_name = "performance_schedule3";
+	else if(parent.hasClass("performance_schedule4"))
+	class_name = "performance_schedule4";
+	if($(this).val() == "open_hour_based")
 	{
-		$( ".open_hours_div" ).show();
-		$( ".performance_hours_div" ).hide();
+		$(".open_hours_div."+class_name).show();
+		$(".performance_hours_div."+class_name).hide();
 	}
-});
-$("#id_schedule_type_1").click(function(){
-	if($(this).is(":checked"))
+	else if($(this).val() == "performance_based")
 	{
-		$( ".performance_hours_div" ).show();
-		$( ".open_hours_div" ).hide();
+		$(".open_hours_div."+class_name).hide();
+		$(".performance_hours_div."+class_name).show();
 	}
 });
 $( ".open_hours_div" ).hide();
@@ -439,28 +913,135 @@ $(".category_class").change(function(){
 });
 $("#id_frequency").change(function(){
 	var options_html;
-	if($(this).val() == "once")
+	if($(this).val() == "ONCE")
 	{
 	}
-	else if($(this).val() == "daily")
+	else if($(this).val() == "DAILY")
 	{
 		{% for frequency_val in frequency_range.daily %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}	
 	}
-	else if($(this).val() == "weekly")
+	else if($(this).val() == "WEEKLY")
 	{
 		{% for frequency_val in frequency_range.weekly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}
 	}
-	else if($(this).val() == "monthly")
+	else if($(this).val() == "MONTHLY")
 	{
 		{% for frequency_val in frequency_range.monthly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}
 	}
 	$("#id_interval").html(options_html);
+});
+
+$("#id_frequency_option1").change(function(){
+	var options_html;
+	if($(this).val() == "ONCE")
+	{
+	}
+	else if($(this).val() == "DAILY")
+	{
+		{% for frequency_val in frequency_range.daily %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}	
+	}
+	else if($(this).val() == "WEEKLY")
+	{
+		{% for frequency_val in frequency_range.weekly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	else if($(this).val() == "MONTHLY")
+	{
+		{% for frequency_val in frequency_range.monthly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	$("#id_interval_option1").html(options_html);
+});
+
+$("#id_frequency_option2").change(function(){
+	var options_html;
+	if($(this).val() == "ONCE")
+	{
+	}
+	else if($(this).val() == "DAILY")
+	{
+		{% for frequency_val in frequency_range.daily %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}	
+	}
+	else if($(this).val() == "WEEKLY")
+	{
+		{% for frequency_val in frequency_range.weekly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	else if($(this).val() == "MONTHLY")
+	{
+		{% for frequency_val in frequency_range.monthly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	$("#id_interval_option2").html(options_html);
+});
+
+$("#id_frequency_option3").change(function(){
+	var options_html;
+	if($(this).val() == "ONCE")
+	{
+	}
+	else if($(this).val() == "DAILY")
+	{
+		{% for frequency_val in frequency_range.daily %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}	
+	}
+	else if($(this).val() == "WEEKLY")
+	{
+		{% for frequency_val in frequency_range.weekly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	else if($(this).val() == "MONTHLY")
+	{
+		{% for frequency_val in frequency_range.monthly %}
+			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+		{% endfor %}
+	}
+	$("#id_interval_option3").html(options_html);
+});
+
+$( ".performance_schedule2" ).hide();
+$( ".performance_schedule3" ).hide();
+$( ".performance_schedule4" ).hide();
+schedule_index = 1;
+$(".add_schedule").click(function(){
+	if(schedule_index == 1)
+	{
+		$( ".performance_schedule2" ).show();
+		$( ".performance_schedule2.open_hours_div" ).hide();
+		$( ".performance_schedule2.performance_hours_div" ).hide();
+		schedule_index++;
+	}
+	else if(schedule_index == 2)
+	{
+		$( ".performance_schedule3" ).show();
+		$( ".performance_schedule3.open_hours_div" ).hide();
+		$( ".performance_schedule3.performance_hours_div" ).hide();
+		schedule_index++;
+	}
+	else if(schedule_index == 3)
+	{
+		$( ".performance_schedule4" ).show();
+		$( ".performance_schedule4.open_hours_div" ).hide();
+		$( ".performance_schedule4.performance_hours_div" ).hide();
+		$(".add_schedule").hide();
+		schedule_index++;
+	}
 });
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>

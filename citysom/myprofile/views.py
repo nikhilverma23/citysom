@@ -14,6 +14,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
+from citysom.myprofile.models import Wishlist
+from citysom.event.models import Event
 import logging
 logger = logging.getLogger("myprofile.views")
 
@@ -199,4 +201,28 @@ def logout_user(request):
         return HttpResponse("1")
     else:
         return HttpResponseNotAllowed(['POST'])
-###############################################################################            
+###############################################################################
+
+###############################################################################
+def wishlist(request):
+    if request.GET['action'] == "add":
+        event_id = request.GET['id']
+        event = Event.objects.get(id=event_id)
+        user = request.user
+        wishlist_obj = Wishlist(
+                            event = event,
+                            user = user
+                        )
+        wishlist_obj.save()
+        return HttpResponseRedirect("/event/details?id="+event_id)
+###############################################################################
+
+###############################################################################
+def dashboard(request):
+    context=RequestContext(request)
+    return render_to_response(
+                              "myprofile/dashboard.html",
+                              #{'':},
+                               context_instance=context
+                              )
+###############################################################################

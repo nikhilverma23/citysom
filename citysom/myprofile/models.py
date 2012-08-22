@@ -12,6 +12,7 @@ from django.db.models import Q, signals
 from django.db.utils import DatabaseError
 import logging
 logger = logging.getLogger("myprofile.models")
+from citysom.event.models import Event
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, blank=True, null=True, unique=True)
@@ -97,3 +98,17 @@ def login_on_activation(sender, user, request, **kwargs):
     logger.info("Logged in user: '%s' after account activation." % user)
 
 user_activated.connect(login_on_activation)
+
+class Wishlist(models.Model):
+    """
+    Describes the Wishlist
+    """
+    event = models.ForeignKey(Event, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True)
+    
+class History(models.Model):
+    """
+    Describes the History
+    """
+    event = models.ForeignKey(Event, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True)
