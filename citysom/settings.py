@@ -148,8 +148,14 @@ INSTALLED_APPS = (
 
 TINYMCE_JS_URL = MEDIA_URL + 'tiny_mce/tiny_mce.js'
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
+    'plugins': "table,spellchecker,paste,searchreplace,paste",
+    'mode' : "exact",
+    'theme' : "advanced",
+    'theme_advanced_buttons1':"bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,undo,redo,bullist,numlist,outdent,indent,cut,copy,paste,image",
+    'theme_advanced_buttons2': "tablecontrols",
+    'theme_advanced_buttons3':"",
+    'skin' : "o2k7",
+    'skin_variant' : "silver",
 }
 TINYMCE_SPELLCHECKER = True
 TINYMCE_COMPRESSOR = True

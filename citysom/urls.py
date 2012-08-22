@@ -30,6 +30,6 @@ urlpatterns = patterns('',
 
       # Static content.
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
-    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT}),
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT}),
 )
 

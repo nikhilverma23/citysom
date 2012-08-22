@@ -35,22 +35,19 @@ EVENT_PUBLIC = (
 )
 #
 SCHEDULE_TYPE = (
-               
-    ('open_hour_based','Open Hour Based'),
-    ('performance_based','Performance Based'),
-    
-    
+    ('performance_based','Performance based (default)'),           
+    ('open_hour_based','Open hour based'),
 )
 
 DAYS_OF_WEEK = (
                
-    ('0','MONDAY'),
-    ('1','TUESDAY'),
-    ('2','WEDNESDAY'),
-    ('3','THURSDAY'),
-    ('4','FRIDAY'),
-    ('5','SATURDAY'),
-    ('6','SUNDAY'),
+    ('Monday','Monday'),
+    ('Tuesday','Tuesday'),
+    ('Wednesday','Wednesday'),
+    ('Thursday','Thursday'),
+    ('Friday','Friday'),
+    ('Saturday','Saturday'),
+    ('Sunday','Sunday'),
     
 )
 
@@ -61,6 +58,15 @@ FREQUENCY_CHOICES = (
                         ('MONTHLY','Monthly'),
                         
                         )
+
+ORDINAL_CHOICES =(
+                  ('1',"First"),
+                  ('2',"Second"),
+                  ('3',"Third"),
+                  ('4',"Fourth"),
+                  ('-1',"Last"),
+                  
+                  )
    
 WEEKS_COUNT = (
                ('1','1'),

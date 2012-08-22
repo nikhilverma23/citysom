@@ -20,11 +20,11 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('type',)
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('title','location',)
-    list_filter = ('location','status')
+    list_display = ('title','user','status')
+    list_filter = ('user','status', 'category')
  
 class PerformanceDetailsAdmin(admin.ModelAdmin):
-    list_disply = ('showtimes_start','showtimes_end','ticket_price')
+    list_display = ('showtimes_start','showtimes_end','ticket_price')
 
 class DaysAdmin(admin.ModelAdmin):
     list_display = ('week_day',)

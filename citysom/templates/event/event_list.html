@@ -2,8 +2,9 @@
  	{% for event in events %}
 		<li>
 			<div>
+				<a href="{{event.id}}">
 				<a href="/event/details?id={{event.id}}">
-					<img src="/static/images/{{event.event_poster}}" alt="{{event.title}}"/>
+					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
 				</a>
 			</div>
 		</li>             		

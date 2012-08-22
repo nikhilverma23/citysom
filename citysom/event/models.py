@@ -145,7 +145,7 @@ class PerformanceDetails(models.Model):
                                  blank=True,null=True,\
                                  help_text="weekly,monthly etc"
                                  )
-    interval = models.IntegerField(help_text="basically the count")
+    interval = models.IntegerField(null=True, help_text="basically the count")
     by_day = models.ManyToManyField(Days,\
                                     blank=True,null=True,
                                     help_text="by_day",
@@ -153,7 +153,7 @@ class PerformanceDetails(models.Model):
     by_monthday = models.CharField(max_length=80,blank=True,null=True)
     by_month = models.CharField(max_length=80,blank=True,null=True)
 
-    ticket_price = models.DecimalField(verbose_name="Full Price Ticket",max_digits=8, decimal_places=2)
+    ticket_price = models.DecimalField(verbose_name="Full Price Ticket",max_digits=8, decimal_places=2, null=True)
 
     def __unicode__(self):
         return self.frequency
