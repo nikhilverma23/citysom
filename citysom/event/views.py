@@ -678,3 +678,23 @@ def calendar(request):
                              context_instance=RequestContext(request)
                              )
        
+def get_event_details(request):
+    id = request.GET['id']
+    event_obj = Event.objects.get(id=id)
+    if request.user.is_authenticated():
+        user = request.user
+        history_obj = History(
+                            event = event_obj,
+                            user = user
+                        )
+        history_obj.save()
+        
+    return render_to_response("event/event_detail.html",
+                              {
+                              # whatever you need from event table just do event_obj.fieldname in template
+                               "eventdetials":event_obj,
+                              # for performance details just iterate it in templates and access the value by using . notation
+                              "event_performance":event_obj.performancedetails_set.all(),
+                              },
+                              context_instance=RequestContext(request)
+                              )
