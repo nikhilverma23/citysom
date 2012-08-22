@@ -1618,3 +1618,85 @@ img.ue_im{
 	display:block;
 	margin-bottom:9em;
 }
+div.account_div
+{
+    margin: 20px 15px 0px;
+}
+h1.account_title
+{
+    font-size: 24px;
+    border-bottom: 2px solid #000000;
+    font-weight: bold;
+    font-family: Helvetica;
+    padding: 10px 0px;
+}
+div.main_account
+{
+    margin-top: 30px;
+}
+div.left_account
+{
+    float: left;
+    width: 200px;
+}
+div.right_account
+{
+    float: left;
+    width: 740px;
+    margin-left: 20px;
+}
+div.left_title
+{
+    color: #3E3E3E;
+    font-weight: bold;
+    font-size: 16px;
+}
+div.left_links
+{
+    padding-left: 20px;
+    margin-bottom: 80px;
+}
+div.left_links:last-child
+{
+    margin-bottom: 0px;
+}
+div.left_links ul
+{
+    list-style: none;
+}
+div.left_links ul li
+{
+    color: #FD8F53;
+    margin: 5px 0px;
+}
+div.left_links ul li a
+{
+    color: #FD8F53;
+    text-decoration: none;
+}
+div.right_title
+{
+    background: #424F6F;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #FFFFFF;
+}
+div.right_content
+{
+    margin: 20px 0px 50px 30px;
+}
+div.right_content:last-child
+{
+    margin-bottom: 0px;
+}
+div.right_content img
+{
+    width: 95px;
+    height: 130px;
+}
+div.right_item
+{
+    float: left;
+    width: 95px;
+    margin-right: 20px;
+}
