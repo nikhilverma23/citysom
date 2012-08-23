@@ -703,8 +703,23 @@ def get_event_details(request):
     else:
         ratings_form = EventRatingForm()
     
-    user_comments = UserComments.objects.filter(event_id=id)
+    try:
+        sort_type = request.GET['sort_type']
+    except:
+        sort_type = ""
+    if sort_type=="asc":
+        user_comments = UserComments.objects.filter(event_id=id).order_by("id")
+    else:
+        user_comments = UserComments.objects.filter(event_id=id).order_by("-id")
     
+    total_stars = range(1,6)
+    comment_counter = 0
+    comment_total = 0
+    for comment in user_comments:
+        comment_counter+=1
+        comment_total+=comment.ratings
+    
+    average_ratings = comment_total/comment_counter
     return render_to_response("event/event_detail.html",
                               {
                               # whatever you need from event table just do event_obj.fieldname in template
@@ -713,6 +728,9 @@ def get_event_details(request):
                               "event_performance":event_obj.performancedetails_set.all(),
                               "ratings_form":ratings_form,
                               "user_comments":user_comments,
+                              "total_stars":total_stars,
+                              "average_ratings":average_ratings,
+                              "sort_type":sort_type,
                               },
                               context_instance=RequestContext(request)
                               )

@@ -3,6 +3,7 @@
 {% block title%} {{eventdetials.title}} {% endblock %}
 
 {% block content %}
+<script type="text/javascript" src="/static/js/jquery.rating.js"></script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
 	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 16px; 
@@ -13,11 +14,14 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 <div class="event_prev">
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetials.event_poster}}" alt="" height="300" width="220" />
+		<div>
+			<a href="/myprofile/wishlist?action=add&id={{eventdetials.id}}" class="event_Details_link">Add to Wishlist ></a>
+		</div>
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
 	   <li class="prev_det"><strong style="font-weight: bold;">Purchase Tickets ></strong></li> 
-	   <li class="prev_det"><strong style="font-weight: bold;">Duration:</strong> 120 min</li> 
+	   <li class="prev_det"><strong style="font-weight: bold;">Duration:</strong> </li> 
 	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
 	   {% for performancedetails in event_performance %}
 	   
@@ -30,11 +34,17 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	    <div class="cust_ratin">
 		{{eventdetials.description}}
 	    </div>
-	     <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-top: 8px;font-size: 17px;">Customer's Ratings</h6>  
+	     <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-top: 8px;font-size: 17px;">Customer's Ratings</h6>
+	    {% if average_ratings %}
 	    <div class="cust_ratin">
-		    <div class="rating" >Average rating:</div>
-		    <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+		    <div class="rating" style="margin-right: 10px;">Average rating:</div>
+		    <div class="rating_pic">
+			{% for star in total_stars%}
+				<input name="averageratings" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+			{%endfor%}
+		    </div>
 	    </div>
+	    {% endif %}
 	    <!--<div class="rate_show">
 		    <div class="rating" >Rate this show:</div>
 		    <div class="rating_pic"><img src="/static/images/rate.png" alt="" style="margin-top: 0px;" /> </div>
@@ -44,23 +54,42 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 		     <div class="clear"></div>   
 		     <div class="review_sort">
 			    <div class="lreview_sort">
-				<strong style="font-weight: bold;margin-top:5px;">Write a review ></strong>
+				<strong style="font-weight: bold;margin-top:5px;">
+					<a href="#ratings_form" style="color: #000000;" id="ratings_link">Write a review ></a>
+				</strong>
 			    </div>
 			    <div class="rate_show" style="float: right; width: auto !important;">
 				    <div class="rating" style="float: left;width:60px;margin-top: 5px;font-weight:  bold;">Sort By</div>
-				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">Most Recent<img src="/static/images/dwn_arrow.png" alt="" style="margin-top: 0px;" /> </div>
+				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">
+				{% if sort_type == "asc" %}
+					<a href="/event/details/?id={{eventdetials.id}}&sort_type=desc" style="color: #000000; text-decoration: none;">
+				{% else %}
+					<a href="/event/details/?id={{eventdetials.id}}&sort_type=asc" style="color: #000000; text-decoration: none;">
+				{% endif %}
+				Most Recent
+				{% if sort_type == "asc" %}
+				    <img src="/static/images/up_arrow.png" alt="" style="margin-top: 0px;" />
+				{% else %}
+				    <img src="/static/images/dwn_arrow.png" alt="" style="margin-top: 0px;" />
+				{% endif %}
+				</a>
+				</div>
 			    </div>
 		     </div>
 			{% for comment in user_comments %}
 				<div class="review_rating">
 					<div class="clear"></div>
 				       <div class="event_text">
-				       <p>{{comment.title}}</p>
 				       </div>
-					
 					<div class="cust_ratin">
-					      <div class="rating" style="width: 110px;"><strong style="font-weight: bold;"> {{comment.ratings}}</strong></div>
-					      <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
+					      <div class="rating" style="width: 110px;">
+						<strong style="font-weight: bold;">{{comment.title}}</strong>
+					      </div>
+					      <div class="rating_pic">
+						{% for star in total_stars%}
+							<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
+						{%endfor%}
+					      </div>
 				       </div>
 				       <div class="clear"></div>
 				       <div class="event_text">
@@ -70,20 +99,43 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 			       </div> 
 			{% endfor %}
 	     </div>
-	     <div>
-			<a href="/myprofile/wishlist?action=add&id={{eventdetials.id}}">Add to Wishlist</a>
-	     </div>
-	     <div>
-		<form name="ratings_form" action="" method="post">
+	     <div id="ratings_div">
+		<form name="ratings_form" action="" method="post" class="ratings_form">
 			{% csrf_token %}
-			{{ratings_form.as_p}}
-			<input type="submit" value="Submit">
+			<a name="ratings_form"></a>
+			<h6 style="border-bottom: 2px solid black; font-weight: bold;margin-bottom: 8px;font-size: 17px;">Write a Review</h6>
+			<p>
+				<label for="id_title">Title:</label>
+				{{ratings_form.title}}
+			</p>
+			<p>
+				<label for="id_ratings">Ratings:</label>
+				<span style="display: inline-block;">
+					<input name="ratings" type="radio" class="star" value="1" id="id_ratings1"/>
+					<input name="ratings" type="radio" class="star" value="2" id="id_ratings2"/>
+					<input name="ratings" type="radio" class="star" value="3" id="id_ratings3"/>
+					<input name="ratings" type="radio" class="star" value="4" id="id_ratings4"/>
+					<input name="ratings" type="radio" class="star" value="5" id="id_ratings5"/>
+				</span>
+			</p>
+			<p>
+				<label for="id_reviews">Reviews:</label>
+				{{ratings_form.reviews}}
+			</p>
+			<p>
+				<input type="submit" value="Submit" class="custom_submit" style="margin-left: 115px;">
+			</p>
 		</form>
 	     </div>
 	</div>
 	   
 </div>
-
+<script>
+	$("#ratings_link").click(function(){
+		$("#ratings_div").toggle();
+	});
+	$("#ratings_div").hide();
+</script>
 {% for detail in event_performance %}
 	{{detial}}
 {% endfor %}
