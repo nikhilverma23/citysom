@@ -207,6 +207,7 @@ class EventPosterForm(forms.Form):
      
 
 class EventRatingForm(forms.Form):
+    title = forms.CharField(max_length=1024)
     ratings = forms.IntegerField()
-    reviews = forms.CharField(max_length=1000)
+    reviews = forms.CharField(widget=forms.Textarea)
       

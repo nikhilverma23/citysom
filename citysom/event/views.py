@@ -694,6 +694,7 @@ def get_event_details(request):
         ratings_form = EventRatingForm(request.POST)
         if ratings_form.is_valid():
             comment_obj = UserComments.objects.get_or_create(
+                title = ratings_form.cleaned_data['title'],
                 ratings = ratings_form.cleaned_data['ratings'],
                 reviews = ratings_form.cleaned_data['reviews'],
                 event_id = id

@@ -132,7 +132,7 @@ class PerformanceDetails(models.Model):
     """
     Performance parameter
     """
-     # When the event was started
+    # When the event was started
     date_started = models.DateField(help_text="when the event was started",null=True, blank=True)
     # When the event was completed
     date_completed = models.DateField(null=True, blank=True)
@@ -159,6 +159,10 @@ class PerformanceDetails(models.Model):
         return self.frequency
         
 class UserComments(models.Model):
+    title = models.CharField(max_length=1024,null=True, blank=True)
     ratings = models.IntegerField(null=True, blank=True)
     reviews = models.TextField(null=True, blank=True)
     event = models.ForeignKey(Event, null=True, blank=True)
+    
+    def __unicode__(self):
+        return self.title

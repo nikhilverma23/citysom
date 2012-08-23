@@ -19,8 +19,12 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	   <li class="prev_det"><strong style="font-weight: bold;">Purchase Tickets ></strong></li> 
 	   <li class="prev_det"><strong style="font-weight: bold;">Duration:</strong> 120 min</li> 
 	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
-	   <li class="prev_det" style="margin-left: 10px;">Mon-Thu: 8:00 ; 10:30</li> 
-	   <li class="prev_det" style="margin-left: 10px;">Fri-Sat: 8:30 ; 11:00</li> 
+	   {% for performancedetails in event_performance %}
+	   
+	   <li class="prev_det" style="margin-left: 10px;">{{performancedetails.showtimes_start}}</li> 
+	   <li class="prev_det" style="margin-left: 10px;">{{performancedetails.showtimes_end}}</li>
+	   
+	   {% endfor %}
 	   </ul>
 	     <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-top: 8px;font-size: 17px;">Event Description</h6>  
 	    <div class="cust_ratin">
@@ -47,8 +51,13 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">Most Recent<img src="/static/images/dwn_arrow.png" alt="" style="margin-top: 0px;" /> </div>
 			    </div>
 		     </div>
-			{% for comment in user_comments%}
+			{% for comment in user_comments %}
 				<div class="review_rating">
+					<div class="clear"></div>
+				       <div class="event_text">
+				       <p>{{comment.title}}</p>
+				       </div>
+					
 					<div class="cust_ratin">
 					      <div class="rating" style="width: 110px;"><strong style="font-weight: bold;"> {{comment.ratings}}</strong></div>
 					      <div class="rating_pic"><img src="/static/images/avg_rat.png" alt="" style="margin-top: 0px;" /> </div>
@@ -57,6 +66,7 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 				       <div class="event_text">
 				       <p>{{comment.reviews}}</p>
 				       </div>
+				       
 			       </div> 
 			{% endfor %}
 	     </div>
