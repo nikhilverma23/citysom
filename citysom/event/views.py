@@ -719,7 +719,10 @@ def get_event_details(request):
         comment_counter+=1
         comment_total+=comment.ratings
     
-    average_ratings = comment_total/comment_counter
+    try:
+        average_ratings = comment_total/comment_counter
+    except:
+        average_ratings =3
     return render_to_response("event/event_detail.html",
                               {
                               # whatever you need from event table just do event_obj.fieldname in template
