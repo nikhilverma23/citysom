@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from citysom.myprofile.models import Wishlist
+from citysom.myprofile.models import Wishlist, History
 from citysom.event.models import Event
 import logging
 logger = logging.getLogger("myprofile.views")
@@ -259,9 +259,15 @@ def wishlist(request):
 ###############################################################################
 def dashboard(request):
     context=RequestContext(request)
+    user = request.user
+    wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")[:4]
+    history_events = History.objects.filter(user=user).order_by("-id")[:4]
     return render_to_response(
-                              "myprofile/dashboard.html",
-                              #{'':},
-                               context_instance=context
+                                "myprofile/dashboard.html",
+                                {
+                                    'wishlist_events':wishlist_events,
+                                    'history_events':history_events
+                                },
+                                context_instance=context
                               )
 ###############################################################################

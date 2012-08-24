@@ -31,36 +31,26 @@
                     Events History
                 </div>
                 <div class="right_content">
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
+                    {% for history_event in history_events %}
+                        <div class="right_item">
+                            <a href="/event/details?id={{history_event.event.id}}">
+                                    <img src="/media/images/{{history_event.event.event_poster}}" alt="{{history_event.event.title}}"/>
+                            </a>
+                        </div>
+                    {% endfor %}
                     <div class="clear"></div>
                 </div>
                 <div class="right_title">
                     My Wishlist
                 </div>
                 <div class="right_content">
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
+                    {% for wishlist_event in wishlist_events %}
+                        <div class="right_item">
+                            <a href="/event/details?id={{wishlist_event.event.id}}">
+                                    <img src="/media/images/{{wishlist_event.event.event_poster}}" alt="{{wishlist_event.event.title}}"/>
+                            </a>
+                        </div>
+                    {% endfor %}
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
