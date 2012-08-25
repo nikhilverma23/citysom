@@ -120,7 +120,7 @@
 					<div id="searchbox_main">
 							<div id="logouttext">
 								{% if user.is_authenticated %}
-									<a href="{% url editprofile %}">Edit Profile</a> | 
+									<a href="{% url dashboard %}">Edit Profile</a> | 
 									<a href="/accounts/logout">Logout</a>
 								{% else %}
 									<a href="javascript:void(0)" onclick="getLogin()">Login with Facebook</a> | 
