@@ -730,7 +730,7 @@ $(".category_class").change(function(){
 
 $("#id_frequency").change(function(){
 	var options_html;
-	if($(this).val() == "once")
+	if($(this).val() == "ONCE")
 	{
 		$('.performance_hours_div_dmwonly').hide();
 		$('.performance_hours_div_wonly').hide();
@@ -740,11 +740,11 @@ $("#id_frequency").change(function(){
 		$('#add_shw_2').hide();
 		$('#showtimes_3').hide();
 	}
-	else if($(this).val() == "daily")
+	else if($(this).val() == "DAILY")
 	{
-		{% for frequency_val in frequency_range.daily %}
+		/*{% for frequency_val in frequency_range.daily %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
-		{% endfor %}
+		{% endfor %}*/
 		$('#frequency_label').text("day");
 		$(".performance_hours_div_wonly").hide();
 		$('.performance_hours_div_monly').hide();	
@@ -754,11 +754,11 @@ $("#id_frequency").change(function(){
 		$('#add_shw_2').hide();
 		$('#showtimes_3').hide();
 	}
-	else if($(this).val() == "weekly")
+	else if($(this).val() == "WEEKLY")
 	{
-		{% for frequency_val in frequency_range.weekly %}
+		/*{% for frequency_val in frequency_range.weekly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
-		{% endfor %}
+		{% endfor %}*/
 		$('#frequency_label').text("week");
 		$(".performance_hours_div_wonly").show();
 		$('.performance_hours_div_monly').hide();
@@ -768,11 +768,11 @@ $("#id_frequency").change(function(){
 		$('#add_shw_2').hide();
 		$('#showtimes_3').hide();
 	}
-	else if($(this).val() == "monthly")
+	else if($(this).val() == "MONTHLY")
 	{
-		{% for frequency_val in frequency_range.monthly %}
+		/*{% for frequency_val in frequency_range.monthly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
-		{% endfor %}
+		{% endfor %}*/
 		$('#frequency_label').text("month");
 		$(".performance_hours_div_wonly").hide();
 		$('.performance_hours_div_dmwonly').show();
