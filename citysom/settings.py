@@ -121,6 +121,11 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'citysom.processors.template_data',
+)
+
 ROOT_URLCONF = 'citysom.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
