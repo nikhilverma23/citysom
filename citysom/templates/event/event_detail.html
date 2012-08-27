@@ -103,13 +103,13 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 		<form name="ratings_form" action="" method="post" class="ratings_form">
 			{% csrf_token %}
 			<a name="ratings_form"></a>
-			<h6 style="border-bottom: 2px solid black; font-weight: bold;margin-bottom: 8px;font-size: 17px;">Write a Review</h6>
+			<h6 style="font-weight: normal;margin-bottom: 1em; margin-left:0.5em;font-size: 1.2em; color:#FF6600;">Share your opinion</h6>
 			<p>
-				<label for="id_title">Title:</label>
+				<label for="id_title">Summary:</label>
 				{{ratings_form.title}}
 			</p>
 			<p>
-				<label for="id_ratings">Ratings:</label>
+				<label for="id_ratings">Rating:</label>
 				<span style="display: inline-block;">
 					<input name="ratings" type="radio" class="star" value="1" id="id_ratings1"/>
 					<input name="ratings" type="radio" class="star" value="2" id="id_ratings2"/>
@@ -119,11 +119,11 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 				</span>
 			</p>
 			<p>
-				<label for="id_reviews">Reviews:</label>
+				<label for="id_reviews">Your opinion:</label>
 				{{ratings_form.reviews}}
 			</p>
 			<p>
-				<input type="submit" value="Submit" class="custom_submit" style="margin-left: 115px;">
+				<input type="submit" value="Share it!" class="custom_submit" style="margin-left: 215px;">
 			</p>
 		</form>
 	     </div>
