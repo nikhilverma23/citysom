@@ -25,8 +25,12 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
 	   {% for performancedetails in event_performance %}
 	   
-	   <li class="prev_det" style="margin-left: 10px;">{{performancedetails.showtimes_start}}</li> 
-	   <li class="prev_det" style="margin-left: 10px;">{{performancedetails.showtimes_end}}</li>
+		   
+		   {% for days in performancedetails.by_day.all %}
+		   	<li class="prev_det" style="margin-left: 10px;">
+		   		{{days}}:{{performancedetails.showtimes_start}}-{{performancedetails.showtimes_end}}
+		   </li> 
+		   {% endfor %}
 	   
 	   {% endfor %}
 	   </ul>
@@ -39,8 +43,8 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	    <div class="cust_ratin">
 		    <div class="rating" style="margin-right: 10px;">Average rating:</div>
 		    <div class="rating_pic">
-			{% for star in total_stars %}
-				<input name="averageratings" type="radio" class="star {half:true}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+			{% for star in total_stars%}
+				<input name="averageratings" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
 			{%endfor%}
 		    </div>
 	    </div>

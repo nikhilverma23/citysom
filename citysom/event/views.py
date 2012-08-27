@@ -419,7 +419,6 @@ def home(request):
                               )
 
 def handle_uploaded_file(request):
-    
     event_poster = request.FILES['event_poster_file']
     
     import PIL
