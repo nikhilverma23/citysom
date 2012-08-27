@@ -713,7 +713,7 @@ def get_event_details(request):
         user_comments = UserComments.objects.filter(event_id=id).order_by("-id")
     
     total_stars = range(1,6)
-    total_stars_average = range(1,6,0.5)
+    total_stars_average = range(1,6)
     comment_counter = 0
     comment_total = 0
     for comment in user_comments:
