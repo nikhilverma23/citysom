@@ -154,6 +154,11 @@
 			                <div class="txt"><a href="#">Change location</a></div>
 			            </div>
 			            <div class="txt2">Today: {% now "jS F Y" %}</div>
+				    <div class="clear"></div>
+				    {% if message %}
+					<div class="message_success">{{message}}</div>
+				    {% endif %}
+				    <div class="clear"></div>
 			        </div>
 					{% block content %}
 					{% endblock %} <!-- filledarea start from here -->

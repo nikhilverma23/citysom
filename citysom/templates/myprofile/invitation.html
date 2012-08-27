@@ -12,9 +12,27 @@
                 <div class="right_title">
                     Send Invitation
                 </div>
-                <div class="right_content">
-                    
-                </div>
+                <form action="" method="post" name="invitation_form">
+                    {% csrf_token %}
+                    <div class="right_content">
+                        <div>
+                            Email to (separate with commas):
+                        </div>
+                        <div>
+                            <textarea name="emails" id="emails" class="emails_textarea"></textarea>
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <span>Your message (optional):</span>
+                            <span style="float: right;">
+                                <input type="hidden" name="action" value="invitation">
+                                <a href="javascript: void(0)" onclick="document.invitation_form.submit();" class="emails_link">Send Invitation</a>
+                            </span>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <textarea name="emails_content" id="emails_content" class="emails_textarea">Hey ! have you tried citysom yet? It is the best way to find out what is going on in the city. Browse from the most extensive source of information for your next night out, day with the kids or whatever you please.</textarea>
+                        </div>
+                    </div>
+                </form>
                 <div class="right_title">
                     See friends wishlist
                 </div>

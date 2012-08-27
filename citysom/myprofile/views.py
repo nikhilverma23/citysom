@@ -271,3 +271,32 @@ def dashboard(request):
                                 context_instance=context
                               )
 ###############################################################################
+
+###############################################################################
+from django.template import loader
+from django.core.mail import send_mail
+
+def invitation(request):
+    context=RequestContext(request)
+    if request.method == "POST":        
+        if request.POST['action'] == "invitation":
+            emails =  request.POST['emails']
+            emails_content = request.POST['emails_content']
+            msg = loader.render_to_string('myprofile/invitation.txt', {"email_content":emails_content})
+            emails = emails.split(",")
+            for email in emails:
+                send_mail(
+                    'Citysom: Invitation' ,
+                    msg,
+                    'Citysom Event System <noreply@citysom.com>',
+                    [email.strip()],
+                    fail_silently=True
+                )
+            request.session['message'] = "Invitations sent successfully"
+            return HttpResponseRedirect("/myprofile/invitation/")
+    return render_to_response(
+                                "myprofile/invitation.html",
+                                {},
+                                context_instance=context
+                              )
+###############################################################################
