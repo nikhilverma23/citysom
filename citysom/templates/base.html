@@ -158,6 +158,9 @@
 				    {% if message %}
 					<div class="message_success">{{message}}</div>
 				    {% endif %}
+				    {% if error %}
+					<div class="message_error">{{error}}</div>
+				    {% endif %}
 				    <div class="clear"></div>
 			        </div>
 					{% block content %}
@@ -246,7 +249,12 @@
       }
 		</script>
 
+ <script type="text/javascript">
+      $(document).ready(function(){
+      	console.log('hello');
+      });
 
+      </script>
       <script>
       	$.get("/event/calendar/",function (data){
 	$("#home_calendar").html(data);

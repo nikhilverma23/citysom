@@ -454,7 +454,7 @@ body
         width: auto;
         height: 180px;    
         margin-bottom: 15px;
-        margin-right:1em;
+        margin-right:2.1em;
         text-overflow:ellipsis;
         overflow:hidden;
     }
@@ -1363,7 +1363,7 @@ color:#FF6600;
 #searchbutton{}
 .menurecipes_content{width: 894px;}
 #searchbutton{background-image:url(../images/searchbox_button.png); height: 25px; width: 24px; margin-top: 8px;}
-/*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
+#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 .left_aligned_radios ul{margin-left: 32px;}
 .left_aligned_radios li{margin-left: 2.5em; margin-right:2.5em;}
@@ -1701,51 +1701,19 @@ div.right_item
     margin-right: 20px;
 }
 a.event_Details_link{font-weight: bold; color: #000000; margin-left: 10px;}
-form.ratings_form{border: 1px solid #BABABA; padding: 10px; border-radius: 5px; background: #FAFAFA; margin-top: 10px;}
+form.ratings_form{border: 1px solid #000000; padding: 10px; border-radius: 5px; background: #EEEEEE; margin-top: 10px;}
 form.ratings_form p{margin: 10px;}
 form.ratings_form p label{display:  inline-block; width: 100px; vertical-align: top; font-weight: bold;}
-form.ratings_form p input[type=text], form.ratings_form p textarea{border: 0.1px solid #A8A8A8; border-radius: 5px; width: 450px; padding:  5px;}
+form.ratings_form p input[type=text], form.ratings_form p textarea{border: 1px solid #000000; border-radius: 5px; width: 450px; padding:  5px;}
 form.ratings_form p textarea{height: 100px;}
-.custom_submit{
-	height: 30px;
-   	width: 175px;
-   	border-top: 0px solid #ffffff;
-   	background: #475474;
-   	background: -webkit-gradient(linear, left top, left bottom, from(#586381), to(#475474));
-   	background: -webkit-linear-gradient(top, #586381, #475474);
-   	background: -moz-linear-gradient(top, #586381, #475474);
-   	background: -ms-linear-gradient(top, #586381, #475474);
-   	background: -o-linear-gradient(top, #586381, #475474);
-   	padding: 8.5px 17px;
-   	-webkit-border-radius: 12px;
-   	-moz-border-radius: 12px;
-   	border-radius: 12px;
-   	-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   	-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   	box-shadow: rgba(0,0,0,1) 0 1px 0;
-   	text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   	color: white;
-   	font-size: 13px;
-   	font-weight: bold;
-   	font-family: Helvetica, Arial, Sans-Serif;
-   	text-decoration: none;
-   	vertical-align: middle;
-   	cursor: pointer;
-	}
-	
-.custom_submit:hover{
-	border-top-color: #fff;
-   	background: #ff6600;
-   	color: #fff;
-	}
-
+.custom_submit{background: #4C5977; padding: 10px; color: #FFFFFF; font-weight: bold; border-radius: 5px;}
 /* jQuery.Rating Plugin CSS - http://www.fyneworks.com/jquery/star-rating/ */
 div.rating-cancel,div.star-rating{float:left;width:17px;height:15px;text-indent:-999em;cursor:pointer;display:block;background:transparent;overflow:hidden}
 div.rating-cancel,div.rating-cancel a{background:url(../images/delete.gif) no-repeat 0 -16px}
-div.star-rating,div.star-rating a{background:url(../images/3-stars.gif) no-repeat 0 0px}
-div.star-rating a{display:block;width:16px;height:100%;background-position:-50px -5px;border:0}
-div.star-rating-on a{background-position:-5px -5px!important}
-div.star-rating-hover a{background-position:-5px -5px}
+div.star-rating,div.star-rating a{background:url(../images/star.gif) no-repeat 0 0px}
+div.rating-cancel a,div.star-rating a{display:block;width:16px;height:100%;background-position:0 0px;border:0}
+div.star-rating-on a{background-position:0 -16px!important}
+div.star-rating-hover a{background-position:0 -32px}
 /* Read Only CSS */
 div.star-rating-readonly a{cursor:default !important}
 /* Partial Star CSS */
@@ -1754,3 +1722,4 @@ div.star-rating{background:transparent!important;overflow:hidden!important}
 textarea.emails_textarea{width: 100%; height: 60px; border: 1px solid #DDDDDD;}
 a.emails_link{color: #FD8F53; font-weight: bold;}
 div.message_success{background: #1D9C3F; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
+div.message_error{background: #F00F00; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
