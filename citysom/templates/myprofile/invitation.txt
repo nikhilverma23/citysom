@@ -1,0 +1,3 @@
+Hello 
+
+{{email_content}}
