@@ -13,18 +13,13 @@
                     Upcoming Events
                 </div>
                 <div class="right_content">
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
-                    <div class="right_item">
-                        <img src="/static/images/churchillimg.png" />
-                    </div>
+                    {% for upcoming_event in upcoming_events %}
+                        <div class="right_item">
+                            <a href="/event/details?id={{upcoming_event.id}}">
+                                    <img src="/media/images/{{upcoming_event.event_poster}}" alt="{{upcoming_event.title}}"/>
+                            </a>
+                        </div>
+                    {% endfor %}
                     <div class="clear"></div>
                 </div>
                 <div class="right_title">

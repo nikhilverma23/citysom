@@ -1,8 +1,6 @@
 from django.contrib import admin
 from citysom.event.models import Place, Event,\
-EventPublic, EventGenre, Category, PerformanceDetails, Days 
-
-    
+EventPublic, EventGenre, Category, PerformanceDetails, Days, UserComments
 
     
 class PlaceAdmin(admin.ModelAdmin):
@@ -28,7 +26,9 @@ class PerformanceDetailsAdmin(admin.ModelAdmin):
 
 class DaysAdmin(admin.ModelAdmin):
     list_display = ('week_day',)
-    
+
+class UserCommentsAdmin(admin.ModelAdmin):
+    list_display = ('event','ratings','status')
     
 admin.site.register(Place, PlaceAdmin)   
 admin.site.register(EventPublic, EventPublicAdmin)
@@ -37,3 +37,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(PerformanceDetails, PerformanceDetailsAdmin)
 admin.site.register(Days, DaysAdmin)
+admin.site.register(UserComments, UserCommentsAdmin)

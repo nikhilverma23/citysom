@@ -207,7 +207,6 @@ class EventPosterForm(forms.Form):
      
 
 class EventRatingForm(forms.Form):
-    title = forms.CharField(max_length=1024)
-    ratings = forms.IntegerField()
-    reviews = forms.CharField(widget=forms.Textarea)
-      
+    title = forms.CharField(max_length=1024, required=True, error_messages={'required': 'Title is required'})
+    ratings = forms.IntegerField(required=True, error_messages={'required': 'Ratings is required'})
+    reviews = forms.CharField(widget=forms.Textarea, required=True, error_messages={'required': 'Reviews is required'})

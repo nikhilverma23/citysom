@@ -707,9 +707,9 @@ def get_event_details(request):
     except:
         sort_type = ""
     if sort_type=="asc":
-        user_comments = UserComments.objects.filter(event_id=id).order_by("id")
+        user_comments = UserComments.objects.filter(event_id=id).filter(status=True).order_by("id")
     else:
-        user_comments = UserComments.objects.filter(event_id=id).order_by("-id")
+        user_comments = UserComments.objects.filter(event_id=id).filter(status=True).order_by("-id")
     
     total_stars = range(1,6)
     total_stars_average = range(1,6)

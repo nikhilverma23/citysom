@@ -163,6 +163,7 @@ class UserComments(models.Model):
     ratings = models.IntegerField(null=True, blank=True)
     reviews = models.TextField(null=True, blank=True)
     event = models.ForeignKey(Event, null=True, blank=True)
+    status = models.BooleanField(default=False)
     
     def __unicode__(self):
         return self.title

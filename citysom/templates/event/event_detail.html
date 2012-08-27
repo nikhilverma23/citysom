@@ -15,7 +15,7 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetials.event_poster}}" alt="" height="300" width="220" />
 		<div>
-			<a href="/myprofile/wishlist?action=add&id={{eventdetials.id}}" class="event_Details_link">Add to Wishlist ></a>
+			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetials.id}}';">Add to Wishlist</button>
 		</div>
 	</div>
 	 <div class="right_det">
@@ -108,6 +108,11 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 			{% csrf_token %}
 			<a name="ratings_form"></a>
 			<h6 style="font-weight: normal;margin-bottom: 1em; margin-left:0.5em;font-size: 1.2em; color:#FF6600;">Share your opinion</h6>
+			<p>
+				{{ratings_form.title.errors}}
+				{{ratings_form.ratings.errors}}
+				{{ratings_form.reviews.errors}}
+			</p>
 			<p>
 				<label for="id_title">Summary:</label>
 				{{ratings_form.title}}
