@@ -698,6 +698,7 @@ def get_event_details(request):
                 'ratings':ratings_form.cleaned_data['ratings'],
                 'reviews':ratings_form.cleaned_data['reviews'],
                 'event_id':id,
+                'user':request.user
             }
             
             try:
@@ -754,3 +755,12 @@ def update_city(request):
     city = request.GET['city']
     request.session['city'] = city
     return HttpResponse(str(city))
+
+def comment_delete(request):
+    comment_id = request.GET['id']
+    comment_obj = UserComments.objects.get(id=comment_id)
+    comment_obj.delete()
+    
+    event_id = request.GET['event_id']
+    return HttpResponseRedirect('/event/details/?id='+event_id)
+    
