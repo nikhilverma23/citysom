@@ -692,12 +692,19 @@ def get_event_details(request):
     if request.method == "POST":
         ratings_form = EventRatingForm(request.POST)
         if ratings_form.is_valid():
-            comment_obj = UserComments.objects.get_or_create(
+            try:
+                comment_id = request.POST['id']
+            except:
+                comment_id = ""
+                
+            comment_obj = UserComments(
                 title = ratings_form.cleaned_data['title'],
                 ratings = ratings_form.cleaned_data['ratings'],
                 reviews = ratings_form.cleaned_data['reviews'],
-                event_id = id
+                event_id = id,
+                id = comment_id
             )
+            comment_obj.save();
             return HttpResponseRedirect('/event/details/?id='+id)
     else:
         ratings_form = EventRatingForm()

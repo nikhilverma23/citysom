@@ -6,21 +6,20 @@
 <script type="text/javascript" src="/static/js/jquery.rating.js"></script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
-	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 16px; 
-float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color: #FF7920; float: right;">{{eventdetials.title}}</p> </a></li>
+	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;">{{eventdetials.category}} > <p style="color: #FF7920; float: right;">{{eventdetials.title}}</p> </a></li>
 </div>
 <!-- centerarea main end from here -->
 <div class="clear"></div>
 <div class="event_prev">
 	<div class="left_img_prev">
-	   <img src="/static/images/{{eventdetials.event_poster}}" alt="" height="300" width="220" />
+	   <img src="/static/images/{{eventdetials.event_poster}}" alt="{{eventdetials.title}}"/>
 		<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetials.id}}';">Add to Wishlist</button>
 		</div>
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
-	   <li class="prev_det"><strong style="font-weight: bold;">{{eventdetials.title}} Details</strong></li> 
+	   <li class="prev_det" style="margin-bottom: 15px;"><strong style="font-weight: bold;">{{eventdetials.title}} Details</strong></li> 
 	   <li class="prev_det"><strong style="font-weight: bold;"></strong> </li> 
 	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
 	   {% for performancedetails in event_performance %}
@@ -28,17 +27,19 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 		   
 		   {% for days in performancedetails.by_day.all %}
 		   	<li class="prev_det" style="margin-left: 10px;">
-		   		{{days}}:{{performancedetails.showtimes_start}}-{{performancedetails.showtimes_end}}
+		   		{{days}}:{{performancedetails.showtimes_start}}-{{performancedetails.showtimes_end}} - ${{performancedetails.ticket_price}}
 		   </li> 
 		   {% endfor %}
 	   
 	   {% endfor %}
 	   </ul>
-	     <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-top: 8px;font-size: 17px;">Event Description</h6>  
+	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL</h6>
+	     <div><a href="{{eventdetials.eventwebsite}}" style="color: #FF7920;">{{eventdetials.eventwebsite}}</a></div>
+	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event Description</h6>  
 	    <div class="cust_ratin">
 		{{eventdetials.description}}
 	    </div>
-	     <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-top: 8px;font-size: 17px;">Customer's Ratings</h6>
+	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Customer's Reviews</h6>
 	    {% if average_ratings %}
 	    <div class="cust_ratin">
 		    <div class="rating" style="margin-right: 10px;">Average rating:</div>
@@ -48,18 +49,18 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 			{%endfor%}
 		    </div>
 	    </div>
+	    <div class="clear"></div>  
 	    {% endif %}
 	    <!--<div class="rate_show">
 		    <div class="rating" >Rate this show:</div>
 		    <div class="rating_pic"><img src="/static/images/rate.png" alt="" style="margin-top: 0px;" /> </div>
 	    </div>-->
-	    <h6 style="border-bottom: 2px solid black; font-weight: bold;margin-bottom: 8px;font-size: 17px;margin-top:78px;">Customer Reviews</h6> 
 	    <div id="latest_events">
 		     <div class="clear"></div>   
 		     <div class="review_sort">
 			    <div class="lreview_sort">
 				<strong style="font-weight: bold;margin-top:5px;">
-					<a href="#ratings_form" style="color: #000000;" id="ratings_link">Write a review ></a>
+					<a href="#ratings_form" style="color: #FF7920;" id="ratings_link">Write a review</a>
 				</strong>
 			    </div>
 			    <div class="rate_show" style="float: right; width: auto !important;">
@@ -86,14 +87,16 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 				       <div class="event_text">
 				       </div>
 					<div class="cust_ratin">
-					      <div class="rating" style="width: 110px;">
+					      <div class="rating" style="width: 200px;">
 						<strong style="font-weight: bold;">{{comment.title}}</strong>
+						<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}"><img src="/static/images/edit_icon.png"></a>
 					      </div>
 					      <div class="rating_pic">
 						{% for star in total_stars%}
 							<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
 						{%endfor%}
 					      </div>
+					      <div class="clear"></div>
 				       </div>
 				       <div class="clear"></div>
 				       <div class="event_text">
@@ -132,7 +135,9 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 				{{ratings_form.reviews}}
 			</p>
 			<p>
-				<input type="submit" value="Share it!" class="custom_submit" style="margin-left: 215px;">
+				<input type="hidden" name="id" id="comment_id" value="">
+				<input type="submit" value="Share it!" class="custom_submit" style="margin-left: 135px;">
+				<input type="button" value="Discard" class="custom_submit" style="margin-left: 10px;" id="discard">
 			</p>
 		</form>
 	     </div>
@@ -140,10 +145,29 @@ float: left; font-family: Calibri;">{{eventdetials.category}} > <p style="color:
 	   
 </div>
 <script>
-	$("#ratings_link").click(function(){
+	$("#ratings_link,#discard").click(function(){
+		document.ratings_form.reset();
 		$("#ratings_div").toggle();
+		$("#latest_events").toggle();
 	});
 	$("#ratings_div").hide();
+	$(".edit_review").click(function(){
+		comment_id = $(this).attr("rel");
+		var title_div = $(this).parent();
+		var title = title_div.children("strong").html();
+		var rating_div = title_div.parent();
+		var rating = rating_div.children(".rating_pic").children("input.star:checked").val();
+		var review_div = rating_div.parent();
+		var review = review_div.children(".event_text").children("p").html();
+		
+		$("#comment_id").val(comment_id);
+		$("#id_title").val(title);
+		$('input[name="ratings"]').rating('select',rating);
+		$("#id_reviews").val(review);
+		
+		$("#latest_events").hide();
+		$("#ratings_div").show();
+	});
 </script>
 {% for detail in event_performance %}
 	{{detial}}

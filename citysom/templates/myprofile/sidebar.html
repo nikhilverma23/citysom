@@ -8,23 +8,23 @@
                 <a href="{% url invitation %}">send invitation</a>
             </li>
             <li>
-                <a href="#">see friends wishlist</a>
+                <a href="{% url dashboard%}">see friends wishlist</a>
             </li>
         </ul>
     </div>
     <div class="left_title">
-        See my events
+        <a href="{% url dashboard%}" style="color: #000000; text-decoration: none;">See my events</a>
     </div>
     <div class="left_links">
         <ul>
             <li>
-                <a href="#">View upcoming events</a>
+                <a href="{% url dashboard%}">View upcoming events</a>
             </li>
             <li>
-                <a href="#">View events history</a>
+                <a href="{% url dashboard%}">View events history</a>
             </li>
             <li>
-                <a href="#">View my wishlist</a>
+                <a href="{% url dashboard%}">View my wishlist</a>
             </li>
         </ul>
     </div>
@@ -34,7 +34,7 @@
     <div class="left_links">
         <ul>
             <li>
-                <a href="#">edit account information</a>
+                <a href="{% url dashboard%}">edit account information</a>
             </li>
         </ul>
     </div>
