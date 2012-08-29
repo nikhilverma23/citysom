@@ -1,6 +1,6 @@
 # Create your views here.
 from citysom.myprofile.forms import UserProfileForm, EditUserProfileForm,\
-PreRegistrationForm, PersonalProfileForm, ProfessionalProfileForm
+PreRegistrationForm, PersonalProfileForm, ProfessionalProfileForm, AccountForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from myprofile.models import UserProfile
@@ -300,5 +300,28 @@ def invitation(request):
                                 "myprofile/invitation.html",
                                 {},
                                 context_instance=context
+                              )
+###############################################################################
+
+###############################################################################
+def editaccount(request):
+    """
+        Edit Account Information
+    """
+    context=RequestContext(request)
+    
+    if request.method == "POST":
+        form = AccountForm(request.POST)
+        userprofile_obj = UserProfile.objects.get(user=request.user)
+        if form.is_valid():
+            userprofile_obj.first_name = form.cleaned_data['first_name']
+            userprofile_obj.last_name = form.cleaned_data['last_name']
+    else:
+        context['form']= AccountForm()
+    
+    return render_to_response(
+                              "myprofile/edit_account_page.html",
+                              #{},
+                               context_instance=context
                               )
 ###############################################################################

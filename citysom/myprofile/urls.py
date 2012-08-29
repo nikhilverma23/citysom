@@ -10,5 +10,6 @@ urlpatterns = patterns(
     url(r'^wishlist/$', 'wishlist'),
     url(r'^dashboard/$', 'dashboard',  name="dashboard"),
     url(r'^myevents/$', 'user_events', name="user_events"),
-    url(r'^invitation/$', 'invitation',  name="invitation")
+    url(r'^invitation/$', 'invitation',  name="invitation"),
+    url(r'^editaccount/$', 'editaccount',  name="editaccount")
 )

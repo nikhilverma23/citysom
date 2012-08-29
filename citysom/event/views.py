@@ -744,3 +744,8 @@ def get_event_details(request):
                               },
                               context_instance=RequestContext(request)
                               )
+
+def update_city(request):
+    city = request.GET['city']
+    request.session['city'] = city
+    return HttpResponse(str(city))

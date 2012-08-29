@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}Edit Account Information{% endblock %}
+{% block content %}
+<div class="clear"></div>
+<div class="account_div">
+    <div>
+	<h1 class="account_title">{{user}}</h1>
+    </div>
+    <div class="main_account">
+	{% include "myprofile/sidebar.html"%}
+	<div class="right_account">
+	    <div class="right_title">
+		Change Password
+	    </div>
+	    <div class="right_content">
+		<div class="login_content profile_content">
+		<form enctype="multipart/form-data" method="post"  action="{% url editaccount %}">
+			{% csrf_token %}
+			  {% if form.errors %}
+			  <p class="mainerror">Please correct the errors below: {{ form.non_field_errors }}</p>
+			  {% endif %} 
+			    
+			    <fieldset>
+				
+                                <div class="form_fields">
+                                  {% if form.password.errors %}
+                                    <p class="error">{{ form.password.errors|join:", "  }}</p>
+                                  {% endif %}
+                                  <label for="id_email_id_4">Password:</label>
+                                  {{ form.password }}
+                                  <div class="clear"></div>
+                                </div>
+                                
+                                <div class="form_fields">
+                                  {% if form.confirmpassword.errors %}
+                                    <p class="error">{{ form.confirm_password.errors|join:", "  }}</p>
+                                  {% endif %}
+                                  <label for="id_facebook_account">Confirm Password:</label>
+                                  {{ form.confirm_password }}
+                                  <div class="clear"></div>
+                                </div>
+                            </fieldset>
+				<input id="submit_accountdetails" type="submit"  value="" name="submit" class="continue_button"/>
+			</form>
+		</div>
+		<div class="clear"></div>
+	    </div>
+	    
+	    <div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+    </div>
+</div>
+{% endblock %}

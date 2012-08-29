@@ -1757,3 +1757,6 @@ textarea.emails_textarea{width: 100%; height: 60px; border: 1px solid #DDDDDD;}
 a.emails_link{color: #FD8F53; font-weight: bold;}
 div.message_success{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
 div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
+#city_change_div{position: absolute; top:96px; display: none; left:0px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}
+#city_change_div select{border: 1px solid #BEBEBE; border-radius: 5px; padding: 5px; width: 150px;}
+#city_change_div .login_submit{background: #FFFFFF; border-radius: 5px; border: 1px solid #BEBEBE; padding:5px; color: #FF6000; font-family: Helvetica; font-size: 12px; font-weight: bold; width: 100px;}
