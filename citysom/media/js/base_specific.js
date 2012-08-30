@@ -96,6 +96,7 @@ function set_city(city)
 		function(data)
 		{
 			$("#city_div").html(data);
+			load_events();
 		}
 	);
 	$("#city_change_div").hide();

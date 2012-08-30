@@ -96,8 +96,8 @@
 					<div class="filledarea1">
 			        	<div class="textmain">
 			            	<div class="textheading" id="city_div">
-						{% if request.session.city %}
-							{{request.session.city}}
+						{% if city %}
+							{{city}}
 						{% else %}
 							Boston, MA
 						{% endif %}
@@ -382,7 +382,7 @@ $("input[type=checkbox].uni").click(function(){
 
 <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 <script>
-	{% if not request.session.city %}
+	{% if not city %}
 	$(document).ready(function(){
 		geolocation();
 	});

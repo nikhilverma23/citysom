@@ -7,8 +7,11 @@ def template_data(request):
     error = request.session.get('error')
     if error:
         del request.session['error']
+    
+    city = request.session.get('city')
       
     return {
             'message' : message,
-            'error' : error
+            'error' : error,
+            'city' : city
         }
