@@ -105,6 +105,7 @@ class Wishlist(models.Model):
     """
     event = models.ForeignKey(Event, null=True, blank=True)
     user = models.ForeignKey(User, null=True, blank=True)
+    private = models.BooleanField(default=True,blank=True)
     
 class History(models.Model):
     """

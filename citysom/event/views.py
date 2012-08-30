@@ -711,6 +711,7 @@ def get_event_details(request):
                 **data
             )
             comment_obj.save();
+            request.session['message'] = "Your Comment has been sent for approval"
             return HttpResponseRedirect('/event/details/?id='+id)
     else:
         ratings_form = EventRatingForm()

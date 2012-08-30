@@ -65,7 +65,8 @@ def completingprofile(request):
                 userprofile_obj.facebook_account = form.cleaned_data['facebook_account']
                 userprofile_obj.save()
                 next_url = "http://"+settings.HOST
-                return HttpResponseRedirect(next_url)
+                request.session['message'] = "Your Profile has been successfully updated"
+                return HttpResponseRedirect("/myprofile/editprofile/")
         else:
             form = PersonalProfileForm()
             
@@ -103,7 +104,8 @@ def completingprofile(request):
                 userprofile_obj.start_hours_on_sunday = form.cleaned_data['start_hours_on_sunday']
                 userprofile_obj.end_hours_on_sunday = form.cleaned_data['end_hours_on_sunday']
                 userprofile_obj.save()
-                return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+                request.session['message'] = "Your Profile has been successfully updated"
+                return HttpResponseRedirect("/myprofile/editprofile/")
         else:
             form = ProfessionalProfileForm()   
         return render_to_response(
@@ -253,6 +255,7 @@ def wishlist(request):
                             user = user
                         )
         wishlist_obj.save()
+        request.session['message'] = "This Event has been added to your Wishlist"
         return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################
 

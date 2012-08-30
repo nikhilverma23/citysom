@@ -95,8 +95,7 @@ class AccountForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput(), label="Password",required=True)
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label="Confirm Password",required=True)
     
-    #def clean_password(self):
-    #    
-    #    if self.cleaned_data.get('password')!= self.cleaned_data.get('confirm_password'):
-    #        raise forms.ValidationError,'Password does not match'
-    #    return self.cleaned_data['password']
+    def clean_password(self):
+        if self.cleaned_data.get('password')!= self.cleaned_data.get('confirm_password'):
+            raise forms.ValidationError,'Password does not match'
+        return self.cleaned_data['password']
