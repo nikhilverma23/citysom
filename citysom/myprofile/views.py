@@ -19,6 +19,7 @@ from citysom.event.models import Event
 import logging
 logger = logging.getLogger("myprofile.views")
 
+
 ###############################################################################
 def get_account_type(request):
     """
@@ -311,20 +312,22 @@ def editaccount(request):
     """
         Edit Account Information
     """
-    context=RequestContext(request)
     
     if request.method == "POST":
         form = AccountForm(request.POST)
-        userprofile_obj = UserProfile.objects.get(user=request.user)
         if form.is_valid():
-            userprofile_obj.first_name = form.cleaned_data['first_name']
-            userprofile_obj.last_name = form.cleaned_data['last_name']
+            user_obj = User.objects.get(username__exact=request.user)
+            cd = form.cleaned_data
+            user_obj.set_password(cd['password'])
+            user_obj.save()
+            request.session['message'] = "Your password has been successfully changed"
+            return HttpResponseRedirect("/myprofile/editaccount/")
     else:
-        context['form']= AccountForm()
+        form = AccountForm()
     
     return render_to_response(
                               "myprofile/edit_account_page.html",
-                              #{},
-                               context_instance=context
+                              {'form':form},
+                               context_instance=RequestContext(request)
                               )
 ###############################################################################

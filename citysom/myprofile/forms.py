@@ -6,6 +6,7 @@ from django.contrib.admin import widgets
 from citysom.registration.forms import RegistrationForm
 from citysom.util import ACCOUNT_TYPE, GENDER_CHOICES
 from django.forms.widgets import *
+from django.contrib.auth.hashers import PBKDF2PasswordHasher as hasher
 
 
 class UserProfileForm(ModelForm):
@@ -96,6 +97,6 @@ class AccountForm(forms.Form):
     confirm_password = forms.CharField(widget=forms.PasswordInput(), label="Confirm Password",required=True)
     
     def clean_password(self):
-        if self.cleaned_data.get('password')!= self.cleaned_data.get('confirm_password'):
+        if self.cleaned_data.get('password')!= self.data.get('confirm_password'):
             raise forms.ValidationError,'Password does not match'
         return self.cleaned_data['password']
