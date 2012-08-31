@@ -740,7 +740,7 @@ def get_event_details(request):
     return render_to_response("event/event_detail.html",
                               {
                               # whatever you need from event table just do event_obj.fieldname in template
-                               "eventdetials":event_obj,
+                               "eventdetails":event_obj,
                               # for performance details just iterate it in templates and access the value by using . notation
                               "event_performance":event_obj.performancedetails_set.all(),
                               "ratings_form":ratings_form,

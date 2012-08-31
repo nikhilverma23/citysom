@@ -1,43 +1,87 @@
 {% extends "base.html" %}
 
-{% block title%} {{eventdetials.title}} {% endblock %}
+{% block title%} {{eventdetails.title}} {% endblock %}
 
 {% block content %}
 <script type="text/javascript" src="/static/js/jquery.rating.js"></script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
-	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;">{{eventdetials.category}} > <p style="color: #FF7920; float: right;">{{eventdetials.title}}</p> </a></li>
+	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;">{{eventdetails.category}} > <p style="color: #FF7920; float: right;">{{eventdetails.title}}</p> </a></li>
 </div>
 <!-- centerarea main end from here -->
 <div class="clear"></div>
 <div class="event_prev">
 	<div class="left_img_prev">
-	   <img src="/static/images/{{eventdetials.event_poster}}" alt="{{eventdetials.title}}"/>
+	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
 		<div>
-			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetials.id}}';">Add to Wishlist</button>
+			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to Wishlist</button>
 		</div>
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
-	   <li class="prev_det" style="margin-bottom: 15px;"><strong style="font-weight: bold;">{{eventdetials.title}} Details</strong></li> 
+	   <li class="prev_det" style="margin-bottom: 15px;"><strong style="font-weight: bold;">{{eventdetails.title}} Details</strong></li> 
 	   <li class="prev_det"><strong style="font-weight: bold;"></strong> </li> 
 	   <li class="prev_det"><strong style="font-weight: bold;">Show time:</strong></li> 
-	   {% for performancedetails in event_performance %}
-	   
+	   {% if eventdetails.schedule_type == performance_based %}
+		   {% for performancedetails in event_performance %}
 		   
-		   {% for days in performancedetails.by_day.all %}
-		   	<li class="prev_det" style="margin-left: 10px;">
-		   		{{days}}:{{performancedetails.showtimes_start}}-{{performancedetails.showtimes_end}} - ${{performancedetails.ticket_price}}
-		   </li> 
+			   
+			   {% for days in performancedetails.by_day.all %}
+			   	<li class="prev_det" style="margin-left: 10px;">
+			   		{{days}}:{{performancedetails.showtimes_start}}-{{performancedetails.showtimes_end}} - ${{performancedetails.ticket_price}}
+			   </li> 
+			   {% endfor %}
+		   
 		   {% endfor %}
-	   
-	   {% endfor %}
+		{% else %}
+			{% if eventdetails.location.start_hours_on_monday %}
+					<li class="prev_det" style="margin-left: 10px;">
+						Monday:{{eventdetails.location.start_hours_on_monday}} - {{eventdetails.location.end_hours_on_monday}}
+					</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_tuesday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Tuesday:{{eventdetails.location.start_hours_on_tuesday}} - {{eventdetails.location.end_hours_on_tuesday}}
+				</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_wednesday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Wednesday:{{eventdetails.location.start_hours_on_wednesday}} - {{eventdetails.location.end_hours_on_wednesday}}
+				</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_thursday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Thursday:{{eventdetails.location.start_hours_on_thursday}} - {{eventdetails.location.end_hours_on_thursday}}
+				</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_friday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Friday:{{eventdetails.location.start_hours_on_friday}} - {{eventdetails.location.end_hours_on_friday}}
+				</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_saturday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Saturday:{{eventdetails.location.start_hours_on_saturday}} - {{eventdetails.location.end_hours_on_saturday}}
+				</li>
+			{% endif %}
+			{% if eventdetails.location.start_hours_on_sunday %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Sunday:{{eventdetails.location.start_hours_on_sunday}} - {{eventdetails.location.end_hours_on_sunday}}
+				</li>
+			{% else %}
+				<li class="prev_det" style="margin-left: 10px;">
+					Showtime is yet to be decided
+				</li>
+			{% endif %}
+		
+		
+		{% endif %}
 	   </ul>
 	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL</h6>
-	     <div><a href="{{eventdetials.eventwebsite}}" style="color: #FF7920;">{{eventdetials.eventwebsite}}</a></div>
+	     <div><a href="{{eventdetails.eventwebsite}}" style="color: #FF7920;">{{eventdetails.eventwebsite}}</a></div>
 	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event Description</h6>  
 	    <div class="cust_ratin">
-		{{eventdetials.description}}
+		{{eventdetails.description}}
 	    </div>
 	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Customer's Reviews</h6>
 	    {% if average_ratings %}
@@ -71,9 +115,9 @@
 				    <div class="rating" style="float: left;width:60px;margin-top: 5px;font-weight:  bold;">Sort By</div>
 				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">
 				{% if sort_type == "asc" %}
-					<a href="/event/details/?id={{eventdetials.id}}&sort_type=desc" style="color: #000000; text-decoration: none;">
+					<a href="/event/details/?id={{eventdetails.id}}&sort_type=desc" style="color: #000000; text-decoration: none;">
 				{% else %}
-					<a href="/event/details/?id={{eventdetials.id}}&sort_type=asc" style="color: #000000; text-decoration: none;">
+					<a href="/event/details/?id={{eventdetails.id}}&sort_type=asc" style="color: #000000; text-decoration: none;">
 				{% endif %}
 				Most Recent
 				{% if sort_type == "asc" %}
@@ -95,7 +139,7 @@
 						<strong style="font-weight: bold;">{{comment.title}}</strong>
 						{% if comment.user_id == user.id and user.is_authenticated %}
 							<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
-							<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetials.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
+							<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
 						
 						{% endif %}
 					      </div>
