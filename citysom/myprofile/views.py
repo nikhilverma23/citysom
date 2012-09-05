@@ -265,7 +265,8 @@ def dashboard(request):
     context=RequestContext(request)
     user = request.user
     wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")[:4]
-    history_events = History.objects.filter(user=user).order_by("-id")[:4]
+    #history_events = History.objects.filter(user=user).order_by("-id")[:4]
+    history_events = Event.objects.filter(user=user).filter(performancedetails__date_started__lt = datetime.now()).order_by("-id")[:4]
     upcoming_events = Event.objects.filter(user=user).filter(performancedetails__date_started__gte = datetime.now()).order_by("-id")[:4]
     return render_to_response(
                                 "myprofile/dashboard.html",

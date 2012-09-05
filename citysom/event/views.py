@@ -396,9 +396,9 @@ def eventcreation(request):
             
     else:
         
-        eventposter_form = EventPosterForm()
         event_form = EventForm()
-        
+        eventposter_form = EventPosterForm()
+                
     frequency_range = {"daily":range(6),"weekly":range(4),"monthly":range(12)}
     return render_to_response('event/event.html',
                               {
