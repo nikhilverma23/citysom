@@ -16,7 +16,7 @@
                     {% if upcoming_events %}
                         {% for upcoming_event in upcoming_events %}
                             <div class="right_item">
-                                <a href="/event/createevent/?id={{history_event.id}}">
+                                <a href="/event/createevent/?id={{upcoming_event.id}}">
                                         <img src="/media/images/{{upcoming_event.event_poster}}" alt="{{upcoming_event.title}}"/>
                                 </a>
                             </div>
