@@ -389,6 +389,12 @@ def eventcreation(request):
                 event_obj.event_genre.add(genre.id)
             for public in event_form.cleaned_data['event_public']:
                 event_obj.event_public.add(public.id)
+            try:
+                id = request.GET['id']
+                event_obj = Event.objects.get(id=id)
+                event_obj.delete()
+            except:
+                pass
             return HttpResponseRedirect('/myprofile/home/')
             
         else:
@@ -402,6 +408,7 @@ def eventcreation(request):
             id = request.GET['id']
             event_obj = Event.objects.get(id=id)
             event_form.fields['title'].initial = event_obj.title
+            #eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
             event_form.fields['eventwebsite'].initial = event_obj.eventwebsite
             event_form.fields['description'].initial = event_obj.description
             event_form.fields['venue_name'].initial = event_obj.location
@@ -627,6 +634,7 @@ def event_list(request):
 #    pdb.set_trace()
     #If view requested is 'by category'
     if (request.GET['tgl']!="0"):
+        import pdb;pdb.set_trace();
         events_mov=events.filter(category=1)
         events_exh=events.filter(category=2)
         events_lec=events.filter(category=3)

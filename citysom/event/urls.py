@@ -11,5 +11,5 @@ urlpatterns = patterns(
     (r'^calendar/$', 'calendar'),
     (r'^details/$', 'get_event_details'),
     (r'^update_city/$', 'update_city'),
-    (r'^comment_delete/$', 'comment_delete')
+    (r'^comment_delete/$', 'comment_delete'),
 )

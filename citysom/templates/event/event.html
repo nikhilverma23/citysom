@@ -27,7 +27,11 @@
 			<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="upload_image">
-                <img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+            	
+            	
+            	
+            		<img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+            	
                 {{eventform_poster.event_poster_file}}
                 <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
             </div>
@@ -683,9 +687,28 @@ $( ".open_hours_div" ).hide();
 $(".performance_hours_div_dmwonly").hide();
 
 
-/*$( ".performance_hours_div" ).hide();*/
+$( ".performance_hours_div" ).hide();
 
-/*$( ".performance_hours_div_wmonly" ).hide();*/
+$( ".performance_hours_div_wmonly" ).hide();
+
+if($("#id_schedule_type_1").is(":checked"))
+{
+	$( ".open_hours_div" ).show();
+	$( ".performance_hours_div" ).hide();
+	$(".performance_hours_div_wonly").hide();
+	$(".performance_hours_div_monly").hide();
+}
+if($("#id_schedule_type_0").is(":checked"))
+{
+	$( ".performance_hours_div" ).show();
+	$(".performance_hours_div_wonly").hide();
+	$(".performance_hours_div_monly").hide();
+	$( ".open_hours_div" ).hide();
+	$('#add_shw_1').hide();
+	$('#showtimes_2').hide();
+	$('#add_shw_2').hide();
+	$('#showtimes_3').hide();
+}
 
 $('#genre_movie').hide();
 $('#genre_exhibition').hide();
@@ -785,6 +808,63 @@ $("#id_frequency").change(function(){
 	$("#id_interval").html(options_html);
 });
 
+
+var options_html;
+if($("#id_frequency").val() == "ONCE")
+{
+	$('.performance_hours_div_dmwonly').hide();
+	$('.performance_hours_div_wonly').hide();
+	$('.performance_hours_div_monly').hide();
+	$('#add_shw_1').hide();
+	$('#showtimes_2').hide();
+	$('#add_shw_2').hide();
+	$('#showtimes_3').hide();
+}
+else if($("#id_frequency").val() == "DAILY")
+{
+	/*{% for frequency_val in frequency_range.daily %}
+		options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+	{% endfor %}*/
+	$('#frequency_label').text("day");
+	$(".performance_hours_div_wonly").hide();
+	$('.performance_hours_div_monly').hide();	
+	$('.performance_hours_div_dmwonly').show();
+	$('#add_shw_1').show();
+	$('#showtimes_2').hide();
+	$('#add_shw_2').hide();
+	$('#showtimes_3').hide();
+}
+else if($("#id_frequency").val() == "WEEKLY")
+{
+	/*{% for frequency_val in frequency_range.weekly %}
+		options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+	{% endfor %}*/
+	$('#frequency_label').text("week");
+	$(".performance_hours_div_wonly").show();
+	$('.performance_hours_div_monly').hide();
+	$('.performance_hours_div_dmwonly').show();
+	$('#add_shw_1').show();
+	$('#showtimes_2').hide();
+	$('#add_shw_2').hide();
+	$('#showtimes_3').hide();
+}
+else if($("#id_frequency").val() == "MONTHLY")
+{
+	/*{% for frequency_val in frequency_range.monthly %}
+		options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
+	{% endfor %}*/
+	$('#frequency_label').text("month");
+	$(".performance_hours_div_wonly").hide();
+	$('.performance_hours_div_dmwonly').show();
+	$('.performance_hours_div_monly').show();
+	$('#add_shw_1').show();
+	$('#showtimes_2').hide();
+	$('#add_shw_2').hide();
+	$('#showtimes_3').hide();
+}
+$("#id_interval").html(options_html);
+
+
 $("#chk_add_shw_1").click(function(){
 	if($(this).is(":checked"))
 	{
@@ -799,6 +879,16 @@ $("#chk_add_shw_1").click(function(){
 	}
 });
 
+if($("#id_event_start_hours_2").val())
+{
+	$("#chk_add_shw_1").attr("checked","checked");
+	$('#showtimes_2').show();
+	$('#add_shw_2').show();
+	$('#showtimes_3').hide();
+}
+
+
+
 $("#chk_add_shw_2").click(function(){
 	if($(this).is(":checked"))
 	{
@@ -808,6 +898,14 @@ $("#chk_add_shw_2").click(function(){
 		$('#showtimes_3').hide();
 	}
 });
+
+if($("#id_event_start_hours_3").val())
+{
+	$("#chk_add_shw_2").attr("checked","checked");
+	$('#showtimes_3').show();
+	$('#add_shw_3').show();
+	$('#showtimes_4').hide();
+}
 
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
