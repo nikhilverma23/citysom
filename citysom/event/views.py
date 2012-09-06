@@ -634,7 +634,6 @@ def event_list(request):
 #    pdb.set_trace()
     #If view requested is 'by category'
     if (request.GET['tgl']!="0"):
-        import pdb;pdb.set_trace();
         events_mov=events.filter(category=1)
         events_exh=events.filter(category=2)
         events_lec=events.filter(category=3)
