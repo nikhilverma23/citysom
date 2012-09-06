@@ -408,7 +408,7 @@ def eventcreation(request):
             id = request.GET['id']
             event_obj = Event.objects.get(id=id)
             event_form.fields['title'].initial = event_obj.title
-            #eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
+            eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
             event_form.fields['eventwebsite'].initial = event_obj.eventwebsite
             event_form.fields['description'].initial = event_obj.description
             event_form.fields['venue_name'].initial = event_obj.location

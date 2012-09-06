@@ -27,12 +27,13 @@
 			<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="upload_image">
-            	
-            	
-            	
+            	{% if eventform_poster.event_poster_file.value %}
+            		<img src="/static/images/{{eventform_poster.event_poster_file.value}}" width="196" height="270" alt="Poster" id="poster_image" />
+            	{% else %}
             		<img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+            	{% endif %}
             	
-                {{eventform_poster.event_poster_file}}
+            	{{eventform_poster.event_poster_file}}
                 <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
             </div>
             </form>
