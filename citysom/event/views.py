@@ -41,6 +41,18 @@ def eventcreation(request):
 
                          
         if event_form.is_valid():
+            try:
+                id = request.GET['id']
+                old_event_obj = Event.objects.get(id=id)
+                
+                if old_event_obj.event_poster:
+                    event_poster = old_event_obj.event_poster
+            except:
+                pass
+            
+            if event_form.cleaned_data['event_poster']:
+                    event_poster = event_form.cleaned_data['event_poster']
+            
             place_obj, created = Place.objects.get_or_create(
                                                              venue_name = event_form.cleaned_data['venue_name'],
                                                              street = event_form.cleaned_data['street_address'],
@@ -68,7 +80,7 @@ def eventcreation(request):
                                                              keyword = event_form.cleaned_data['keyword'],
                                                              description = event_form.cleaned_data['description'],
                                                              status = event_form.cleaned_data['status'],
-                                                             event_poster = event_form.cleaned_data['event_poster'],
+                                                             event_poster = event_poster,
                                                              location = place_obj,
                                                              category = event_form.cleaned_data['category'], 
                                                              schedule_type = event_form.cleaned_data['schedule_type'],
@@ -93,7 +105,7 @@ def eventcreation(request):
             #Performance Based events Performance records           
             if event_form.cleaned_data['schedule_type']=='performance_based':
                 #Case of Frequency = Once
-                if freq == "once":
+                if freq == "ONCE":
                     #Test of Showtime 1
                     if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
                         sh_start=event_form.cleaned_data['event_start_hours_1'] 
@@ -112,7 +124,7 @@ def eventcreation(request):
                                                                                             )
                     
                 #Case of Frequency = Daily        
-                if freq == "daily":
+                if freq == "DAILY":
                     for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter):
                         date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
                         #Test of Showtime 1
@@ -164,7 +176,7 @@ def eventcreation(request):
                                                                                                 showtimes_end = sh_end,
                                                                                                 )
                 #Case of Frequency = Weekly            
-                if freq == "weekly":
+                if freq == "WEEKLY":
                     L=[i.week_day for i in event_form.cleaned_data['repeat_on']]
                     T=tuple([dicto[i] for i in L])
                     for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=T):
@@ -218,7 +230,7 @@ def eventcreation(request):
                                                                                                 showtimes_end = sh_end,
                                                                                                 )
                 #Case of Frequency = Monthly
-                if freq == "monthly":
+                if freq == "MONTHLY":
                     mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day']](int(event_form.cleaned_data['ordinal']),)
                     for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=mo_rpt_day):
                         date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
@@ -390,9 +402,7 @@ def eventcreation(request):
             for public in event_form.cleaned_data['event_public']:
                 event_obj.event_public.add(public.id)
             try:
-                id = request.GET['id']
-                event_obj = Event.objects.get(id=id)
-                event_obj.delete()
+                old_event_obj.delete()
             except:
                 pass
             return HttpResponseRedirect('/myprofile/home/')
@@ -403,12 +413,12 @@ def eventcreation(request):
     else:
         event_form = EventForm()
         eventposter_form = EventPosterForm()
+        event_poster = ""
         try:
-            
             id = request.GET['id']
             event_obj = Event.objects.get(id=id)
             event_form.fields['title'].initial = event_obj.title
-            eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
+            #eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
             event_form.fields['eventwebsite'].initial = event_obj.eventwebsite
             event_form.fields['description'].initial = event_obj.description
             event_form.fields['venue_name'].initial = event_obj.location
@@ -455,18 +465,21 @@ def eventcreation(request):
             event_form.fields['event_genre'].initial = [event_genre.id for event_genre in event_obj.event_genre.all()]
             event_form.fields['event_public'].initial = [event_public.id for event_public in event_obj.event_public.all()]
             
-            
+            try:
+                event_poster = event_obj.event_poster
+            except:
+                event_poster = ""
             
         except:
            pass 
             
-                
     frequency_range = {"daily":range(6),"weekly":range(4),"monthly":range(12)}
     return render_to_response('event/event.html',
                               {
                                'eventform':event_form,
                                'eventform_poster':eventposter_form,
-                               'frequency_range':frequency_range
+                               'frequency_range':frequency_range,
+                               'event_poster':event_poster
                                },
                               context_instance=RequestContext(request)
                               )

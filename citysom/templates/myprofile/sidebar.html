@@ -1,6 +1,6 @@
 <div class="left_account">
     <div class="left_title">
-        Connect With friends
+        <a href="{% url invitation %}" style="color: #000000; text-decoration: none;">Connect With friends</a>
     </div>
     <div class="left_links">
         <ul>
@@ -8,7 +8,7 @@
                 <a href="{% url invitation %}">send invitation</a>
             </li>
             <li>
-                <a href="{% url dashboard%}">see friends wishlist</a>
+                <a href="{% url invitation%}">see friends wishlist</a>
             </li>
         </ul>
     </div>
@@ -29,22 +29,22 @@
         </ul>
     </div>
     <div class="left_title">
-        Edit account details
+        <a href="{% url editaccount %}" style="color: #000000; text-decoration: none;">Edit account details</a>
     </div>
     <div class="left_links">
         <ul>
             <li>
-                <a href="{% url editaccount %}">edit account information</a>
+                <a href="{% url editaccount %}">Edit account information</a>
             </li>
         </ul>
     </div>
     <div class="left_title">
-        Access my profile
+        <a href="{% url editprofile %}" style="color: #000000; text-decoration: none;">Access my profile</a>
     </div>
     <div class="left_links">
         <ul>
             <li>
-                <a href="{% url editprofile %}">edit profile information</a>
+                <a href="{% url editprofile %}">Edit profile information</a>
             </li>
            
         </ul>

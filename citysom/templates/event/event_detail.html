@@ -12,7 +12,7 @@
 <div class="clear"></div>
 <div class="event_prev">
 	<div class="left_img_prev">
-	   <img src="/static/images/{{eventdetails.event_poster}}" width="196" height="270" alt="{{eventdetails.title}}"/>
+	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
 		<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to Wishlist</button>
 		</div>
@@ -82,18 +82,18 @@
 	     
 	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event Description</h6>  
 	    <div class="cust_ratin">
-		{{eventdetails.description}}
+		{{eventdetails.description|safe}}
 	    </div>
-	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Customer's Reviews</h6>
+	     <span style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Customer's Reviews</span>
 	    {% if average_ratings %}
-	    <div class="cust_ratin">
-		    <div class="rating" style="margin-right: 10px;">Average rating:</div>
-		    <div class="rating_pic">
+	    <span class="cust_ratin">
+		    <div class="rating" style="margin: 0px 10px; display: inline-block; float: none;">Average rating:</div>
+		    <div class="rating_pic" style="display: inline-block; float: none;">
 			{% for star in total_stars%}
 				<input name="averageratings" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
 			{%endfor%}
 		    </div>
-	    </div>
+	    </span>
 	    <div class="clear"></div>  
 	    {% endif %}
 	    <!--<div class="rate_show">
