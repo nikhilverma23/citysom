@@ -14,13 +14,22 @@
                 </div>
                 <div class="right_content" id="test_div">
                     {% if upcoming_events %}
-                        {% for upcoming_event in upcoming_events %}
-                            <div class="right_item">
-                                <a href="/event/createevent/?id={{upcoming_event.id}}">
-                                        <img src="/media/images/{{upcoming_event.event_poster}}" alt="{{upcoming_event.title}}"/>
-                                </a>
+                    <div id="carousel_pres_upcoming" class="carousel_pres">
+                            <div id="carousel_upcoming" class="touchcarousel grey-blue touchcarousel_dashboard">     
+                                    <ul class="touchcarousel-container">
+                                    {% for event in upcoming_events %}
+                                    <li class="touchcarousel-item">
+                                            <a href="{{event.id}}">
+                                                    <div class="image_c">
+                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                    </div>
+                                                    <h4>{{event.title}}</h4>
+                                            </a>
+                                    </li>
+                                    {% endfor %}
+                                    </ul>
                             </div>
-                        {% endfor %}
+                    </div>
                     {% else %}
                             <span style="color: #FF8C00;">No Upcoming Events Scheduled</span>
                     {% endif %}
@@ -31,13 +40,22 @@
                 </div>
                 <div class="right_content">
                     {% if history_events %}
-                        {% for history_event in history_events %}
-                            <div class="right_item">
-                                <a href="/event/createevent/?id={{history_event.id}}">
-                                        <img src="/media/images/{{history_event.event_poster}}" alt="{{history_event.title}}"/>
-                                </a>
+                    <div id="carousel_pres_history" class="carousel_pres">
+                            <div id="carousel_history" class="touchcarousel grey-blue touchcarousel_dashboard">     
+                                    <ul class="touchcarousel-container">
+                                    {% for event in history_events %}
+                                    <li class="touchcarousel-item">
+                                            <a href="{{event.id}}">
+                                                    <div class="image_c">
+                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                    </div>
+                                                    <h4>{{event.title}}</h4>
+                                            </a>
+                                    </li>
+                                    {% endfor %}
+                                    </ul>
                             </div>
-                        {% endfor %}
+                    </div>
                     {% else %}
                             <span style="color: #FF8C00;">No History Events Found</span>
                     {% endif %}
@@ -48,13 +66,22 @@
                 </div>
                 <div class="right_content">
                     {% if wishlist_events %}
-                        {% for wishlist_event in wishlist_events %}
-                            <div class="right_item">
-                                <a href="/event/details?id={{wishlist_event.event.id}}">
-                                        <img src="/media/images/{{wishlist_event.event.event_poster}}" alt="{{wishlist_event.event.title}}"/>
-                                </a>
+                    <div id="carousel_pres_wishlist" class="carousel_pres">
+                            <div id="carousel_wishlist" class="touchcarousel grey-blue touchcarousel_dashboard">     
+                                    <ul class="touchcarousel-container">
+                                    {% for event in wishlist_events %}
+                                    <li class="touchcarousel-item">
+                                            <a href="{{event.id}}">
+                                                    <div class="image_c">
+                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                    </div>
+                                                    <h4>{{event.title}}</h4>
+                                            </a>
+                                    </li>
+                                    {% endfor %}
+                                    </ul>
                             </div>
-                        {% endfor %}
+                    </div>
                     {% else %}
                             <span style="color: #FF8C00;">No events is added to your wishlist</span>
                     {% endif %}

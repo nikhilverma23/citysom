@@ -1690,15 +1690,7 @@ div.right_content:last-child
 {
     margin-bottom: 0px;
 }
-div.right_content img
-{
-    width: 95px;
-    height: 130px;
-}
-div.right_content img:hover
-{
-    opacity: 0.5;
-}
+
 div.right_item
 {
     float: left;
@@ -1766,3 +1758,7 @@ div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: 
 #city_change_div .login_submit{background: #FFFFFF; border-radius: 5px; border: 1px solid #BEBEBE; padding:5px; color: #FF6000; font-family: Helvetica; font-size: 12px; font-weight: bold; width: 100px;}
 #ratings_div ul.errorlist li{margin-left: 10px; color: #F00F00;}
 #highlighter_div{background: #FF8C00; border-radius: 10px; position: absolute;}
+.touchcarousel_dashboard{width: auto !important; float: none !important; height:  auto !important;}
+.touchcarousel_dashboard ul li div img{max-width: 150px; max-height: 130px; margin-top: 5px;}    
+.touchcarousel_dashboard img{border:1px solid #C0C0C0;}
+.touchcarousel_dashboard img:hover{border:1px solid #ff6600;}
