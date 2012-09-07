@@ -12,7 +12,7 @@
 <div class="clear"></div>
 <div class="event_prev">
 	<div class="left_img_prev">
-	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
+	   <img src="/static/images/{{eventdetails.event_poster}}" width="196" height="270" alt="{{eventdetails.title}}"/>
 		<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to Wishlist</button>
 		</div>
@@ -68,17 +68,18 @@
 				<li class="prev_det" style="margin-left: 10px;">
 					Sunday:{{eventdetails.location.start_hours_on_sunday}} - {{eventdetails.location.end_hours_on_sunday}}
 				</li>
-			{% else %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Showtime is yet to be decided
-				</li>
+			{% endif %}
+			{% if not eventdetails.location.start_hours_on_sunday and not eventdetails.location.start_hours_on_monday and not eventdetails.location.start_hours_on_tuesday and not eventdetails.location.start_hours_on_wednesday and not eventdetails.location.start_hours_on_thursday and not eventdetails.location.start_hours_on_friday and not eventdetails.location.start_hours_on_saturday %}
+			  
+				Show time yet to be decided
+			
 			{% endif %}
 		
 		
 		{% endif %}
 	   </ul>
-	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL</h6>
-	     <div><a href="{{eventdetails.eventwebsite}}" style="color: #FF7920;">{{eventdetails.eventwebsite}}</a></div>
+	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL: <a href="{{eventdetails.eventwebsite}}" style="color: #FF7920;">{{eventdetails.eventwebsite}}</a></h6>
+	     
 	     <h6 style="font-weight: bold;margin-top: 8px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event Description</h6>  
 	    <div class="cust_ratin">
 		{{eventdetails.description}}

@@ -73,7 +73,7 @@ def eventcreation(request):
                                                              category = event_form.cleaned_data['category'], 
                                                              schedule_type = event_form.cleaned_data['schedule_type'],
                                                              )
-          
+
             #Copy last uploaded image to 'images' directory
             try:
                 src= MEDIA_ROOT + '/images/tmp/'+ str(event_form.cleaned_data['event_poster'])
@@ -775,7 +775,7 @@ def get_event_details(request):
                 **data
             )
             comment_obj.save();
-            request.session['message'] = "Your Comment has been sent for approval"
+            #request.session['message'] = "Your Comment has been sent for approval"
             return HttpResponseRedirect('/event/details/?id='+id)
     else:
         ratings_form = EventRatingForm()

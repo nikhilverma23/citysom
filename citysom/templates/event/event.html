@@ -16,7 +16,7 @@
         skin_variant : "silver"
 });*/
 </script>
-<div class="cre_event">Create an event</div>
+<div class="cre_event">{% if eventform.title.value %}Modifying the Event{% else %}Create an event{% endif %}</div>
  
         <div class="datearea">
                 
@@ -29,12 +29,15 @@
             <div class="upload_image">
             	{% if eventform_poster.event_poster_file.value %}
             		<img src="/static/images/{{eventform_poster.event_poster_file.value}}" width="196" height="270" alt="Poster" id="poster_image" />
+            		{{eventform_poster.event_poster_file}}
+                	<button id="upload_link" class="uploader" value="Upload Poster" >Change Poster</button>
             	{% else %}
             		<img src="/static/images/upload.png" width="196" height="270" alt="Poster" id="poster_image" />
+            		{{eventform_poster.event_poster_file}}
+                	<button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
             	{% endif %}
             	
-            	{{eventform_poster.event_poster_file}}
-                <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
+            	
             </div>
             </form>
             {% if form.errors %}
