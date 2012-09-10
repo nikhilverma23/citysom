@@ -69,13 +69,13 @@
                     <div id="carousel_pres_wishlist" class="carousel_pres">
                             <div id="carousel_wishlist" class="touchcarousel grey-blue touchcarousel_dashboard">     
                                     <ul class="touchcarousel-container">
-                                    {% for event in wishlist_events %}
+                                    {% for wishlist_event in wishlist_events %}
                                     <li class="touchcarousel-item">
-                                            <a href="/event/details?id={{event.id}}">
+                                            <a href="/event/details?id={{wishlist_event.event.id}}">
                                                     <div class="image_c">
-                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                            <img src="/media/images/{{wishlist_event.event.event_poster}}" alt="{{wishlist_event.event.title}}"/>
                                                     </div>
-                                                    <h4>{{event.title}}</h4>
+                                                    <h4>{{wishlist_event.event.title}}</h4>
                                             </a>
                                     </li>
                                     {% endfor %}

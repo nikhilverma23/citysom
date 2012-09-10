@@ -1,11 +1,12 @@
 <ul>
  	{% for event in events %}
-		<li>
-			<div>
-				<a href="/event/details?id={{event.id}}">
-					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
-				</a>
-			</div>
+		<li class="misc_pres">
+			<a href="/event/details?id={{event.id}}">
+				<div class="misc_pres_img">
+					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}" onload='OnImageLoad(event);'/>
+				</div>
+				<h4>{{event.title}}</h4>
+			</a>
 		</li>             		
  	{% endfor %}
 </ul>

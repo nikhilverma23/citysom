@@ -251,11 +251,10 @@ def wishlist(request):
         event_id = request.GET['id']
         event = Event.objects.get(id=event_id)
         user = request.user
-        wishlist_obj = Wishlist(
-                            event = event,
-                            user = user
-                        )
-        wishlist_obj.save()
+        wishlist_obj, created = Wishlist.objects.get_or_create(
+                                                               event = event,
+                                                               user = user
+                                                               )
         request.session['message'] = "This Event has been added to your Wishlist"
         return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################
@@ -264,10 +263,10 @@ def wishlist(request):
 def dashboard(request):
     context=RequestContext(request)
     user = request.user
-    wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")[:4]
+    wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")
     #history_events = History.objects.filter(user=user).order_by("-id")[:4]
-    history_events = Event.objects.filter(user=user).filter(performancedetails__date_started__lt = datetime.now()).order_by("-id").distinct()[:4]
-    upcoming_events = Event.objects.filter(user=user).filter(performancedetails__date_started__gte = datetime.now()).order_by("-id").distinct()[:4]
+    history_events = Event.objects.filter(user=user).filter(performancedetails__date_started__lt = datetime.now()).order_by("-id").distinct()
+    upcoming_events = Event.objects.filter(user=user).filter(performancedetails__date_started__gte = datetime.now()).order_by("-id").distinct()
     return render_to_response(
                                 "myprofile/dashboard.html",
                                 {

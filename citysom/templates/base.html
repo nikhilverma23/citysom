@@ -1,13 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=9" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/touchcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/grey-blue-skin/grey-blue-skin.css" />
-		<link rel="icon" type="image/png" href="/static/images/citysom_icon.png"/>
+		<link rel="icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
+		<link rel "shortcut icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
 		<title>{% block title %}Citysom{% endblock %}</title>
 		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
 		<!--[if lt IE 9]>
@@ -25,6 +26,7 @@
 		<script type="text/javascript" src="/static/js/touchcarousel/jquery.touchcarousel-1.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/base_specific.js"></script>
 		<script src="/static/js/home_page_specific.js" type="text/javascript"></script>
+		<!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 {% block head %}
 {% endblock %}
@@ -392,5 +394,69 @@ $("input[type=checkbox].uni").click(function(){
 		geolocation();
 	});
 </script>
+
+<script>
+	function ScaleImage(srcwidth, srcheight, targetwidth, targetheight, fLetterBox) {
+
+    var result = { width: 0, height: 0, fScaleToTargetWidth: true };
+
+    if ((srcwidth <= 0) || (srcheight <= 0) || (targetwidth <= 0) || (targetheight <= 0)) {
+        return result;
+    }
+
+    // scale to the target width
+    var scaleX1 = targetwidth;
+    var scaleY1 = (srcheight * targetwidth) / srcwidth;
+
+    // scale to the target height
+    var scaleX2 = (srcwidth * targetheight) / srcheight;
+    var scaleY2 = targetheight;
+
+    // now figure out which one we should use
+    var fScaleOnWidth = (scaleX2 > targetwidth);
+    if (fScaleOnWidth) {
+        fScaleOnWidth = fLetterBox;
+    }
+    else {
+       fScaleOnWidth = !fLetterBox;
+    }
+
+    if (fScaleOnWidth) {
+        result.width = Math.floor(scaleX1);
+        result.height = Math.floor(scaleY1);
+        result.fScaleToTargetWidth = true;
+    }
+    else {
+        result.width = Math.floor(scaleX2);
+        result.height = Math.floor(scaleY2);
+        result.fScaleToTargetWidth = false;
+    }
+    result.targetleft = Math.floor((targetwidth - result.width) / 2);
+    result.targettop = Math.floor((targetheight - result.height) / 2);
+
+    return result;
+}
+
+	function OnImageLoad(evt) {
+
+    var img = evt.currentTarget;
+
+    // what's the size of this image and it's parent
+    var w = $(img).width();
+    var h = $(img).height();
+    var tw = $(img).parent().width();
+    var th = $(img).parent().height();
+
+    // compute the new size and offsets
+    var result = ScaleImage(w, h, tw, th, false);
+
+    // adjust the image coordinates and size
+    img.width = result.width;
+    img.height = result.height;
+    $(img).css("left", result.targetleft);
+    $(img).css("top", result.targettop);
+}
+</script>
+
 	</body>
 </html>
