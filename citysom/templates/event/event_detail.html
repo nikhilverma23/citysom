@@ -21,11 +21,9 @@
 		<ul style="list-style: none;">
 	   <li class="prev_det" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li> 
 	   <li class="prev_det"></li> 
-	   <li class="prev_det"><strong>Show time:</strong></li> 
-	   {% if eventdetails.schedule_type == performance_based %}
+	   <li class="prev_det"><strong>Show time:</strong></li>
+	   {% if eventdetails.schedule_type == "performance_based" %}
 		   {% for performancedetails in event_performance %}
-		   
-			   
 			   {% for days in performancedetails.by_day.all %}
 			   	<li class="prev_det" style="margin-left: 10px;">
 			   		{{days}}: {{performancedetails.showtimes_start}} - {{performancedetails.showtimes_end}} - ${{performancedetails.ticket_price}}
