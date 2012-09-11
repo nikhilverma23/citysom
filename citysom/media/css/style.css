@@ -488,7 +488,7 @@ body
 
 .misc_pres a{text-decoration:none !important;}
 
-.misc_pres a:hover{color: #FF6600;}
+.misc_pres a h4:hover{color: #FF6600;}
 
 .misc_pres h4{
 	font-size: 0.65em !important;
@@ -1142,11 +1142,12 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .event_prev{margin-top:17px;width:960px;height:auto;margin-left:25px;}
 .left_img_prev{float: left; width:235px;margin-right: 20px; text-align: center;}
 .left_img_prev img{max-width: 220px; max-height: 300px;}
-.prev_det{margin-top: 8px; font-family:Helvetica;}
+.prev_det{margin-top: 4em; font-family:Helvetica;}
+.prev_tit{font-family:Helvetica; font-size: 2em;}
 .right_det{float: left; width:650px;}
 .top_critic{}
-.det_crit{width: 500px; font-family:Calibri;}
-.det_crit p{ font-family:Calibri;}
+.det_crit{width: 500px; font-family:Helvetica;}
+.det_crit p{ font-family:Helvetica;}
 .review{font-weight:bold;border-bottom: 2px solid black;}
 .txt_area{background: url('./images/textarea_shdw.png');}
 
@@ -1154,14 +1155,15 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 #date_time .area{float: left;width:300px;}
 #date_time .todays_date{float: right;}
 .cust_ratin{height: auto; margin-top: 10px;}
-.event_desc{height: auto; margin-top: 10px; margin-left: 1em; font-size:0.9em;}
+.cust_rating{margin-top:1em; display:block;}
+.event_desc{height: auto; margin-top: 10px; margin-left: 1em; font-size:0.9em; line-height: 1.5em;}
 .cust_ratin .rating{float: left; font-family: Helvetica; color:#2E2E2E; }
-.cust_ratin .rating_pic{float: left; height: 20px; margin-top: -3px;}
+.cust_ratin .rating_pic{float: left; height: 20px; margin-top: 0px;}
 .rate_show{float: left;width:250px;height: auto;margin-left: 60px;}
 .rate_show .rating{float: left; width:100px; font-family:Helvetica;}
 .rate_show .rating_pic{float: left; height: 20px; margin-top:4px; font-family: Helvetica;}
 #latest_events{width: auto;height: auto;}
-.review_sort{width:auto;height:25px;}
+.review_sort{width:auto;height:25px; margin-top: 1.5em;}
 .lreview_sort{float: left;width:200px;margin-top: 5px; font-family: Helvetica;}
 .rreview_sort{float: right;width: 400px;}
 .event_stars{height: 200px; width: auto; border-bottom: 2px;}
@@ -1170,7 +1172,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .evnt_pic{float:left;}
 .review_rating{border-bottom: 0.1px solid lightgrey; font-family: Helvetica;}
 .event_text{height: auto;width: auto;margin-top: 10px;margin-bottom: 10px;}
-.event_text p{ font-family:Helvetica; color: #4C4C4C; font-size:0.85em;}
+.event_text p{ font-family:Helvetica; color: #4C4C4C; font-size:0.85em; line-height:1.3em; margin-bottom:0.8em;}
 .login_top_div{position: absolute; top:20px; display: none; right:0px; width: 330px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}
 .login_top_div dl{overflow:hidden; padding:5px;}
 .login_top_div dt{margin: 0; float: left; padding: 7px 0; width: 20%; font-family:Helvetica; font-size:13px; font-style:bold;}
@@ -1766,10 +1768,12 @@ div.star-rating,div.star-rating a{background:url(../images/3-stars.gif) no-repea
 div.star-rating a{display:block;width:16px;height:100%;background-position:-50px -5px;border:0}
 div.star-rating-on a{background-position:-5px -5px!important}
 div.star-rating-hover a{background-position:-5px -5px}
+div.rating p{font-style:bold !important;}
+.comm_sign p{font-size: 0.8em; margin-top:0.25em; margin-bottom:0.5em;}
 /* Read Only CSS */
-div.star-rating-readonly a{cursor:default !important}
+div.star-rating-readonly a{cursor:default !important;}
 /* Partial Star CSS */
-div.star-rating{background:transparent!important;overflow:hidden!important}
+div.star-rating{background:transparent!important;overflow:hidden!important;}
 /* END jQuery.Rating Plugin CSS */
 
 textarea.emails_textarea{width: 100%; height: 60px; border: 1px solid #DDDDDD;}
