@@ -657,8 +657,14 @@ def event_list(request):
     #If view requested is 'by category'
     if (request.GET['tgl']!="0"):
         if(request.GET['sort']):
-            if request.GET['sort'] == "price":
+            if request.GET['sort'] == "price_up":
                 sort = "performancedetails.price"
+            elif request.GET['sort'] == "price_down":
+                sort = "-performancedetails.price"
+            elif request.GET['sort'] == "date_up":
+                sort = "performancedetails.datestarted"
+            elif request.GET['sort'] == "date_down":
+                sort = "-performancedetails.datestarted"
             else:
                 sort = "id"
             events_mov=events.filter(category=1).order_by(sort)
