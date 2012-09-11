@@ -13,14 +13,15 @@
 <div class="event_prev">
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
+	   <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;">{{eventdetails.eventwebsite}}</a>
 		<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to my wishlist</button>
 		</div>
+		
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
-	   <li class="prev_det" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li> 
-	   <li class="prev_det"></li> 
+	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li> 
 	   <li class="prev_det"><strong>Show time:</strong></li>
 	   {% if eventdetails.schedule_type == "performance_based" %}
 		   {% for performancedetails in event_performance %}
@@ -75,25 +76,25 @@
 		
 		
 		{% endif %}
-		<li class="prev_det"></li>
 		<li class="prev_det"><strong>Event description:</strong></li>
 		<div class="event_desc">
 		{{eventdetails.description|safe}}
 	    </div>
-	    		<li class="prev_det"></li>
-		<li class="prev_det"><strong>For more details:</strong> <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600;">{{eventdetails.eventwebsite}}</a></li>
-	    <li class="prev_det"></li>
+		<!--<li class="prev_det"><strong>For more details:</strong> <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600;">{{eventdetails.eventwebsite}}</a></li>-->
 	    <li class="prev_det"><strong>Members' ratings:</strong></li>
 	    {% if average_ratings %}
 	    <span class="cust_ratin">
-		    <div class="rating" style="margin: 0px 10px; display: inline-block; float: none;">Average rating:</div>
-		    <div class="rating_pic" style="display: inline-block; float: none;">
-			{% for star in total_stars%}
-				<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
-			{%endfor%}
+		    <div class="cust_rating">
+		    	<div class="event_desc" style="display:inline-block !important;">Average rating:</div>
+		    	<div class="rating_pic" style="display: inline-block; float: none; vertical-align:middle; margin-right:0.5em;">
+					{% for star in total_stars%}
+						<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+					{%endfor%}
+		    	</div>
+		    	 based on {{comment_counter}} ratings
 		    </div>
+		    
 	    </span>
-	    <li class="prev_det"></li>
 	    <li class="prev_det"><strong>Members' reviews:</strong></li> 
 	    {% endif %}
 	   </ul>
@@ -126,7 +127,7 @@
 			    <div class="lreview_sort">
 				<strong style="margin-top:5px;">
 					{% if user.is_authenticated %}
-						<a href="#ratings_form" style="color: #FF7920;" id="ratings_link">Share your opinion!</a>
+						<a href="#ratings_form" style="color: #FF7920; text-decoration:none !Important; font-size:0.85em;" id="ratings_link">Share your opinion <span style="font-size:1em;">></span></a>
 					{% else %}
 						<a href="#ratings_form" style="color: #FF7920;" onclick="alert('Sorry ... You need to log in first to write a review');">Share your opinion</a>
 					{% endif %}
@@ -157,26 +158,26 @@
 				       </div>
 					<div class="cust_ratin">
 					      <div class="rating" style="font-style:bold; width: 500px;">
-						{{comment.title}}
-						{% if comment.user_id == user.id and user.is_authenticated %}
-							<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
-							<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
-						
-						{% endif %}
+							<p style="font-style:bold !important;">{{comment.title}}
+							{% if comment.user_id == user.id and user.is_authenticated %}
+								<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
+								<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
+							{% endif %}
+							</p>
 					      </div>
 					      <div class="rating_pic">
-						{% for star in total_stars%}
-							<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
-						{%endfor%}
+							{% for star in total_stars%}
+								<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
+							{%endfor%}
 					      </div>
 					      <div class="clear"></div>
-				       </div>
-				       <div class="clear"></div>
-				       <div class="event_text">
-				       <p>{{comment.reviews}}</p>
-				       </div>
-				       
-			       </div> 
+					</div>
+				    <div class="clear"></div>
+				    <div class="comm_sign"><p>- by <span style="font-style:bold;">{{comment.user.username}}</span></p></div>
+				    <div class="event_text">
+						<p>{{comment.reviews}}</p>
+					</div>
+				</div> 
 			{% endfor %}
 	     </div>
 	     <div id="ratings_div">
