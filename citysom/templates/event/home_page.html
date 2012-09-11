@@ -80,6 +80,7 @@
          		<div id="searchbox">
          			<input name="searchtextarea" id="searchtextarea" type="text" placeholder="Search for an artist, a place, an event etc." onblur="if( this.value.length == 0 ) { this.value = 'Search for an artist, a place, an event etc.'; }" onfocus="if(this.value == 'Search for an artist, a place, an event etc.') { this.value = ''; }"/>
          			<input type="button" name="submit" value=" " id="searchbutton">
+				   <input type="hidden" name="sort" id="sort" value="price">
          		</div>
          		<!-- NEEDS CLARIFICATION ! -->
          		<div id="categories" class="menurecipes_content eve" >
@@ -126,6 +127,8 @@
            	<BR>
            	<p><span style="font-size:15px; color:#FF6600; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">        See what is going on ></span></p>
            	<BR>
+	        <p style="text-align: right;"><span style="font-size:15px; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">Sort By : <a href="javascript: void(0)" onclick="document.getElementById('sort').value='price'; load_events();" style="color: #000000;">Price</a> | <a href="javascript: void(0)" onclick="document.getElementById('sort').value='id'; load_events();" style="color: #000000;">Latest</a></span></p>
+		<BR>
            </div>
            <div id="everything1" class="menurecipes_content text" >
            	<div id="bottom_images"></div>

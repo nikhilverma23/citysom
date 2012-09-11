@@ -4,7 +4,7 @@ if(typeof togl == "undefined"){togl=0;}
 
 var step = 10;
 var timestep = 15;
-  		
+var sort = 'price';
 function load_events(){
 	url = '/event/event_list/?view=list&tgl='+togl;
   	min_price = parseInt($("#min_price").val());
@@ -15,11 +15,13 @@ function load_events(){
   	category = $("#event_type_select").val();
   	audience = $('#event_audience_select').val()
   	search_text = $("#searchtextarea").val();
+	sort = $("#sort").val();
   			
   	if(!isNaN(min_price)) url +='&min_price='+min_price;
   	if(!isNaN(max_price)) url +='&max_price='+max_price;
   	if(event_date) url +='&event_date='+event_date;
   	if(event_date_end) url +='&event_date_end='+event_date_end;
+	if(sort) {url +='&sort='+sort;}
   	if(filter_time){
   		var str=''
   		var st_str=''

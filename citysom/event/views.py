@@ -395,8 +395,8 @@ def eventcreation(request):
 #                                                          showtimes_end = event_form.cleaned_data['event_end_hours'],                 
 #                                                          )
 #            
-#            for days in event_form.cleaned_data['repeat_on']:
-#                performance_obj.by_day.add(days.id)
+            for days in event_form.cleaned_data['repeat_on']:
+                performance_obj.by_day.add(days.id)
             for genre in event_form.cleaned_data['event_genre']:
                 event_obj.event_genre.add(genre.id)
             for public in event_form.cleaned_data['event_public']:
@@ -430,15 +430,24 @@ def eventcreation(request):
             
             # For Performance Based
             if event_form.fields['schedule_type'].initial == "performance_based":
-                event_form.fields['event_start_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_start')[0].get('showtimes_start')
-                event_form.fields['event_start_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_start')[1].get('showtimes_start')
-                event_form.fields['event_start_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_start')[2].get('showtimes_start')
-                event_form.fields['event_end_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_end')[0].get('showtimes_end')
-                event_form.fields['event_end_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_end')[1].get('showtimes_end')
-                event_form.fields['event_end_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_end')[2].get('showtimes_end')
-                event_form.fields['event_ticket_price_1'].initial = event_obj.performancedetails_set.values('ticket_price')[0].get('ticket_price')
-                event_form.fields['event_ticket_price_2'].initial = event_obj.performancedetails_set.values('ticket_price')[1].get('ticket_price')
-                event_form.fields['event_ticket_price_3'].initial = event_obj.performancedetails_set.values('ticket_price')[2].get('ticket_price')
+                # ----1
+                if event_obj.performancedetails_set.values('showtimes_start')[0].get('showtimes_start'):
+                    event_form.fields['event_start_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_start')[0].get('showtimes_start')
+                    event_form.fields['event_end_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_end')[0].get('showtimes_end')
+                    event_form.fields['event_ticket_price_1'].initial = event_obj.performancedetails_set.values('ticket_price')[0].get('ticket_price')
+                
+                # ----2
+                if event_obj.performancedetails_set.values('showtimes_start')[1].get('showtimes_start'):
+                    event_form.fields['event_start_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_start')[1].get('showtimes_start')
+                    event_form.fields['event_end_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_end')[1].get('showtimes_end')
+                    event_form.fields['event_ticket_price_2'].initial = event_obj.performancedetails_set.values('ticket_price')[1].get('ticket_price')
+                
+                # ----3
+                if event_obj.performancedetails_set.values('showtimes_start')[2].get('showtimes_start'):
+                    event_form.fields['event_start_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_start')[2].get('showtimes_start')
+                    event_form.fields['event_end_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_end')[2].get('showtimes_end')
+                    event_form.fields['event_ticket_price_3'].initial = event_obj.performancedetails_set.values('ticket_price')[2].get('ticket_price')
+                
                 event_form.fields['frequency'].initial = event_obj.performancedetails_set.values('frequency')[0].get('frequency')
                 event_form.fields['interval'].initial = event_obj.performancedetails_set.values('interval')[0].get('interval')
                 event_form.fields['repeat_on'].initial = [days.get('by_day') for days in event_obj.performancedetails_set.values('by_day')]
@@ -647,23 +656,46 @@ def event_list(request):
 #    pdb.set_trace()
     #If view requested is 'by category'
     if (request.GET['tgl']!="0"):
-        events_mov=events.filter(category=1)
-        events_exh=events.filter(category=2)
-        events_lec=events.filter(category=3)
-        events_con=events.filter(category=4)
-        events_spo=events.filter(category=5)
-        events_the=events.filter(category=6)
-        events_ope=events.filter(category=7)
-        events_dan=events.filter(category=8)
-        events_mus=events.filter(category=9)
-        events_out=events.filter(category=10)
-        events_fes=events.filter(category=11)
-        events_sta=events.filter(category=12)
-        events_cou=events.filter(category=13)
-        events_cit=events.filter(category=14)
-        events_fai=events.filter(category=15)
-        events_fun=events.filter(category=16)
-        events_par=events.filter(category=17)
+        if(request.GET['sort']):
+            if request.GET['sort'] == "price":
+                sort = "performancedetails.price"
+            else:
+                sort = "id"
+            events_mov=events.filter(category=1).order_by(sort)
+            events_exh=events.filter(category=2).order_by(sort)
+            events_lec=events.filter(category=3).order_by(sort)
+            events_con=events.filter(category=4).order_by(sort)
+            events_spo=events.filter(category=5).order_by(sort)
+            events_the=events.filter(category=6).order_by(sort)
+            events_ope=events.filter(category=7).order_by(sort)
+            events_dan=events.filter(category=8).order_by(sort)
+            events_mus=events.filter(category=9).order_by(sort)
+            events_out=events.filter(category=10).order_by(sort)
+            events_fes=events.filter(category=11).order_by(sort)
+            events_sta=events.filter(category=12).order_by(sort)
+            events_cou=events.filter(category=13).order_by(sort)
+            events_cit=events.filter(category=14).order_by(sort)
+            events_fai=events.filter(category=15).order_by(sort)
+            events_fun=events.filter(category=16).order_by(sort)
+            events_par=events.filter(category=17).order_by(sort)
+        else:
+            events_mov=events.filter(category=1)
+            events_exh=events.filter(category=2)
+            events_lec=events.filter(category=3)
+            events_con=events.filter(category=4)
+            events_spo=events.filter(category=5)
+            events_the=events.filter(category=6)
+            events_ope=events.filter(category=7)
+            events_dan=events.filter(category=8)
+            events_mus=events.filter(category=9)
+            events_out=events.filter(category=10)
+            events_fes=events.filter(category=11)
+            events_sta=events.filter(category=12)
+            events_cou=events.filter(category=13)
+            events_cit=events.filter(category=14)
+            events_fai=events.filter(category=15)
+            events_fun=events.filter(category=16)
+            events_par=events.filter(category=17)
     
         return render_to_response("event/event_list_cat.html",
                            {
