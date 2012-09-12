@@ -17,66 +17,45 @@
 		<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to my wishlist</button>
 		</div>
-		
+		<ul style="list-style: none; text-align: left;">
+			<li class="prev_det"><strong>Show time(s):</strong></li>
+			{% if eventdetails.schedule_type == "performance_based" %}
+				{% if event_performance_values %}
+					{% for performance in event_performance_values %}
+						{% if total_days_consecutive > 2 %}
+						<li class="prev_det" style="margin-left: 10px;">
+							 {{first_day}}-{{last_day}} : {{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
+						</li>
+						{% else %}
+						     {% for days in eventdetails.by_day.all %}
+							<li class="prev_det" style="margin-left: 10px;">
+								{{days}} : {{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
+						       </li>
+						     {% endfor %}
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			     {% else %}
+				     {% for days in by_day %}
+					     
+							<li class="prev_det" style="margin-left: 10px;">
+								 {{days}}
+							</li>
+						     {% endfor %}
+				     {% if not eventdetails.location.start_hours_on_sunday and not eventdetails.location.start_hours_on_monday and not eventdetails.location.start_hours_on_tuesday and not eventdetails.location.start_hours_on_wednesday and not eventdetails.location.start_hours_on_thursday and not eventdetails.location.start_hours_on_friday and not eventdetails.location.start_hours_on_saturday %}
+				       
+					     <span style="font-style:italic; margin-left:1em;">No show time information available</span>
+				     
+				     {% endif %}
+			     
+			     
+			     {% endif %}
+		</ul>
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
-	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li> 
-	   <li class="prev_det"><strong>Show time:</strong></li>
-	   {% if eventdetails.schedule_type == "performance_based" %}
-		   {% for performancedetails in event_performance %}
-			   {% for days in performancedetails.by_day.all %}
-			   	<li class="prev_det" style="margin-left: 10px;">
-			   		{{days}}: {{performancedetails.showtimes_start}} - {{performancedetails.showtimes_end}} - ${{performancedetails.ticket_price}}
-			   </li> 
-			   {% endfor %}
-		   
-		   {% endfor %}
-		{% else %}
-			{% if eventdetails.location.start_hours_on_monday %}
-					<li class="prev_det" style="margin-left: 10px;">
-						Mondays: {{eventdetails.location.start_hours_on_monday}} to {{eventdetails.location.end_hours_on_monday}}
-					</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_tuesday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Tuesdays: {{eventdetails.location.start_hours_on_tuesday}} to {{eventdetails.location.end_hours_on_tuesday}}
-				</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_wednesday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Wednesdays: {{eventdetails.location.start_hours_on_wednesday}} to {{eventdetails.location.end_hours_on_wednesday}}
-				</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_thursday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Thursdays: {{eventdetails.location.start_hours_on_thursday}} to {{eventdetails.location.end_hours_on_thursday}}
-				</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_friday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Fridays: {{eventdetails.location.start_hours_on_friday}} to {{eventdetails.location.end_hours_on_friday}}
-				</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_saturday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Saturdays: {{eventdetails.location.start_hours_on_saturday}} to {{eventdetails.location.end_hours_on_saturday}}
-				</li>
-			{% endif %}
-			{% if eventdetails.location.start_hours_on_sunday %}
-				<li class="prev_det" style="margin-left: 10px;">
-					Sundays: {{eventdetails.location.start_hours_on_sunday}} to {{eventdetails.location.end_hours_on_sunday}}
-				</li>
-			{% endif %}
-			{% if not eventdetails.location.start_hours_on_sunday and not eventdetails.location.start_hours_on_monday and not eventdetails.location.start_hours_on_tuesday and not eventdetails.location.start_hours_on_wednesday and not eventdetails.location.start_hours_on_thursday and not eventdetails.location.start_hours_on_friday and not eventdetails.location.start_hours_on_saturday %}
-			  
-				<span style="font-style:italic; margin-left:1em;">No show time information available</span>
-			
-			{% endif %}
-		
-		
-		{% endif %}
-		<li class="prev_det"><strong>Event description:</strong></li>
+	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li>
+	   <li class="prev_det"><strong>Event description:</strong></li>
 		<div class="event_desc">
 		{{eventdetails.description|safe}}
 	    </div>

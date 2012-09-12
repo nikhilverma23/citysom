@@ -1,6 +1,6 @@
 # Create your views here.
 import sys
-from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments
+from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
@@ -14,7 +14,7 @@ from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from operator import or_, and_
-from django.db.models import Q
+from django.db.models import Q, Count
 from citysom.myprofile.models import History
 
 def server_error(request, template_name='500.html'):
@@ -733,6 +733,25 @@ def calendar(request):
 def get_event_details(request):
     id = request.GET['id']
     event_obj = Event.objects.get(id=id)
+    by_day = {}
+    if event_obj.schedule_type == "open_hour_based":
+        if event_obj.start_hours_on_monday and event_obj.end_hours_on_monday:
+            by_day["Monday"] = {"start":event_obj.start_hours_on_monday,"end":event_obj.end_hours_on_monday}
+        if event_obj.start_hours_on_tuesday and event_obj.end_hours_on_tuesday:
+            by_day["Tuesday"] = {"start":event_obj.start_hours_on_tuesday,"end":event_obj.end_hours_on_tuesday}
+        if event_obj.start_hours_on_wednesday and event_obj.end_hours_on_wednesday:
+           by_day["Wednesday"] = {"start":event_obj.start_hours_on_wednesday,"end":event_obj.end_hours_on_wednesday}
+        if event_obj.start_hours_on_thursday and event_obj.end_hours_on_thursday:
+           by_day["Thursday"] = {"start":event_obj.start_hours_on_thursday,"end":event_obj.end_hours_on_thursday}
+        if event_obj.start_hours_on_friday and event_obj.end_hours_on_friday:
+            by_day["Friday"] = {"start":event_obj.start_hours_on_friday,"end":event_obj.end_hours_on_friday}
+        if event_obj.start_hours_on_saturday and event_obj.end_hours_on_saturday:
+            by_day["Saturday"] = {"start":event_obj.start_hours_on_saturday,"end":event_obj.end_hours_on_saturday}
+        if event_obj.start_hours_on_sunday and event_obj.end_hours_on_sunday:
+            by_day["Sunday"] = {"start":event_obj.start_hours_on_sunday,"end":event_obj.end_hours_on_sunday}
+    
+           
+    print by_day   
     if request.user.is_authenticated():
         user = request.user
         history_obj = History.objects.create(
@@ -789,6 +808,42 @@ def get_event_details(request):
         average_ratings = comment_total/comment_counter
     except:
         average_ratings = 3
+    
+    event_performance_values = PerformanceDetails.objects.filter(event_id=id).values("showtimes_start","showtimes_end","ticket_price").annotate(Count('showtimes_start'), Count('showtimes_end'), Count('ticket_price'))
+    
+    days1 = []
+    days2 = []
+    for days in event_obj.by_day.all():
+        days1.append(days)
+        
+    for days in Days.objects.all():
+        days2.append(days)
+        
+    total_days_consecutive = 0
+    
+    try:
+        first_day = days1[0]
+    except:
+        first_day = ""
+        last_day = ""
+    
+    if first_day:
+        active = 0
+        for x,y in enumerate(days2):
+            try:
+                current_day = days1[x]
+            except:
+                current_day = None
+                
+            if y == current_day:
+                active = 1
+            
+            if active == 1:
+                if y != current_day:
+                    last_day = days1[x-1]
+                else:
+                    total_days_consecutive+=1
+    
     return render_to_response("event/event_detail.html",
                               {
                               # whatever you need from event table just do event_obj.fieldname in template
@@ -800,6 +855,11 @@ def get_event_details(request):
                               "total_stars":total_stars,
                               "average_ratings":average_ratings,
                               "sort_type":sort_type,
+                              "total_days_consecutive":total_days_consecutive,
+                              "first_day":str(first_day)[:3],
+                              "last_day":str(last_day)[:3],
+                              "event_performance_values": event_performance_values,
+                              'by_day':by_day,
                               },
                               context_instance=RequestContext(request)
                               )
