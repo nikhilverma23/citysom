@@ -18,9 +18,10 @@ from citysom.myprofile.models import Wishlist, History
 from citysom.event.models import Event
 import logging
 logger = logging.getLogger("myprofile.views")
+from django.template import loader
+from django.core.mail import send_mail
 
 
-###############################################################################
 def get_account_type(request):
     """
     separating the account_type
@@ -259,14 +260,13 @@ def wishlist(request):
         return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################
 
-###############################################################################
+
 def dashboard(request):
     context=RequestContext(request)
     user = request.user
     wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")
-    #history_events = History.objects.filter(user=user).order_by("-id")[:4]
-    history_events = Event.objects.filter(user=user).filter(performancedetails__date_started__lt = datetime.now()).order_by("-id").distinct()
-    upcoming_events = Event.objects.filter(user=user).filter(performancedetails__date_started__gte = datetime.now()).order_by("-id").distinct()
+    history_events = Event.objects.filter(user=user).filter(event_completion_date__lte = datetime.now()).order_by("-id").distinct()
+    upcoming_events = Event.objects.filter(user=user).filter(event_start_date__gte = datetime.now()).order_by("-id").distinct()
     return render_to_response(
                                 "myprofile/dashboard.html",
                                 {
@@ -277,10 +277,6 @@ def dashboard(request):
                                 context_instance=context
                               )
 ###############################################################################
-
-###############################################################################
-from django.template import loader
-from django.core.mail import send_mail
 
 def invitation(request):
     context=RequestContext(request)

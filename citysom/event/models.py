@@ -72,6 +72,13 @@ class EventPublic(models.Model):
     def __unicode__(self):
         return self.choicelist
     
+
+class Days(models.Model):
+    week_day = models.CharField(max_length=20,null=True,blank=True)
+    
+    def __unicode__(self):
+        return self.week_day
+
     
 class Event(models.Model):
     """
@@ -111,6 +118,41 @@ class Event(models.Model):
     # audience for this event like adults ,children etc
     event_public = models.ManyToManyField(EventPublic,blank=True, null=True)
     schedule_type = models.CharField(max_length=255,blank=True,null=True)
+    # For Open Hour Events
+    start_hours_on_monday = models.TimeField(null=True,blank=True)
+    end_hours_on_monday = models.TimeField(null=True,blank=True)
+    start_hours_on_tuesday = models.TimeField(null=True,blank=True)
+    end_hours_on_tuesday = models.TimeField(null=True,blank=True)
+    start_hours_on_wednesday = models.TimeField(null=True,blank=True)
+    end_hours_on_wednesday = models.TimeField(null=True,blank=True)
+    start_hours_on_thursday = models.TimeField(null=True,blank=True)
+    end_hours_on_thursday = models.TimeField(null=True,blank=True)
+    start_hours_on_friday = models.TimeField(null=True,blank=True)
+    end_hours_on_friday = models.TimeField(null=True,blank=True)
+    start_hours_on_saturday = models.TimeField(null=True,blank=True)
+    end_hours_on_saturday = models.TimeField(null=True,blank=True)
+    start_hours_on_sunday = models.TimeField(null=True,blank=True)
+    end_hours_on_sunday = models.TimeField(null=True,blank=True) 
+    # For Performance based Events
+    # When the event was started
+    event_start_date = models.DateField(help_text="when the event was started"\
+                                        ,null=True,\
+                                         blank=True
+                                         )
+    # When the event was completed
+    event_completion_date = models.DateField(null=True, blank=True)
+    frequency = models.CharField(max_length=80,\
+                                 blank=True,null=True,\
+                                 help_text="weekly,monthly etc"
+                                 )
+    
+    interval = models.IntegerField(null=True, help_text="basically the count")
+    by_day = models.ManyToManyField(Days,\
+                                    blank=True,null=True,
+                                    help_text="by_day",
+                                    )
+    by_monthday = models.CharField(max_length=80,blank=True,null=True)
+    by_month = models.CharField(max_length=80,blank=True,null=True)
 
     
     def duration(self):
@@ -121,42 +163,26 @@ class Event(models.Model):
         return result 
 
 
-class Days(models.Model):
-    week_day = models.CharField(max_length=20,null=True,blank=True)
-    
-    def __unicode__(self):
-        return self.week_day
 
 
 class PerformanceDetails(models.Model):
     """
     Performance parameter
     """
-    # When the event was started
-    date_started = models.DateField(help_text="when the event was started",null=True, blank=True)
-    # When the event was completed
-    date_completed = models.DateField(null=True, blank=True)
+    date_of_performance = models.DateField(help_text="when the event was\
+                                           started",\
+                                           null=True, blank=True
+                                           )
     
     event = models.ForeignKey(Event,null=True,blank=True)
     place = models.ForeignKey(Place,null=True,blank=True)
     showtimes_start = models.TimeField(blank=True,null=True)
     showtimes_end = models.TimeField(blank=True,null=True)
-    frequency = models.CharField(max_length=80,\
-                                 blank=True,null=True,\
-                                 help_text="weekly,monthly etc"
-                                 )
-    interval = models.IntegerField(null=True, help_text="basically the count")
-    by_day = models.ManyToManyField(Days,\
-                                    blank=True,null=True,
-                                    help_text="by_day",
-                                    )
-    by_monthday = models.CharField(max_length=80,blank=True,null=True)
-    by_month = models.CharField(max_length=80,blank=True,null=True)
-
     ticket_price = models.DecimalField(verbose_name="Full Price Ticket",max_digits=8, decimal_places=2, null=True)
 
     def __unicode__(self):
-        return self.frequency
+        showtimes_start = str(self.showtimes_start)
+        return showtimes_start
         
 class UserComments(models.Model):
     title = models.CharField(max_length=1024,null=True, blank=True)
