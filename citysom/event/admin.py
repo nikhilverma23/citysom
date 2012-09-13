@@ -22,7 +22,7 @@ class EventAdmin(admin.ModelAdmin):
     list_filter = ('user','status', 'category')
  
 class PerformanceDetailsAdmin(admin.ModelAdmin):
-    list_display = ('showtimes_start','showtimes_end','ticket_price')
+    list_display = ('event','date_of_performance','showtimes_start','showtimes_end','ticket_price')
 
 class DaysAdmin(admin.ModelAdmin):
     list_display = ('week_day',)

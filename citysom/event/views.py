@@ -736,22 +736,21 @@ def get_event_details(request):
     by_day = {}
     if event_obj.schedule_type == "open_hour_based":
         if event_obj.start_hours_on_monday and event_obj.end_hours_on_monday:
-            by_day["Monday"] = {"start":event_obj.start_hours_on_monday,"end":event_obj.end_hours_on_monday}
+            by_day["Mon"] = {"start":event_obj.start_hours_on_monday,"end":event_obj.end_hours_on_monday}
         if event_obj.start_hours_on_tuesday and event_obj.end_hours_on_tuesday:
-            by_day["Tuesday"] = {"start":event_obj.start_hours_on_tuesday,"end":event_obj.end_hours_on_tuesday}
+            by_day["Tues"] = {"start":event_obj.start_hours_on_tuesday,"end":event_obj.end_hours_on_tuesday}
         if event_obj.start_hours_on_wednesday and event_obj.end_hours_on_wednesday:
-           by_day["Wednesday"] = {"start":event_obj.start_hours_on_wednesday,"end":event_obj.end_hours_on_wednesday}
+           by_day["Wed"] = {"start":event_obj.start_hours_on_wednesday,"end":event_obj.end_hours_on_wednesday}
         if event_obj.start_hours_on_thursday and event_obj.end_hours_on_thursday:
-           by_day["Thursday"] = {"start":event_obj.start_hours_on_thursday,"end":event_obj.end_hours_on_thursday}
+           by_day["Thu"] = {"start":event_obj.start_hours_on_thursday,"end":event_obj.end_hours_on_thursday}
         if event_obj.start_hours_on_friday and event_obj.end_hours_on_friday:
-            by_day["Friday"] = {"start":event_obj.start_hours_on_friday,"end":event_obj.end_hours_on_friday}
+            by_day["Fri"] = {"start":event_obj.start_hours_on_friday,"end":event_obj.end_hours_on_friday}
         if event_obj.start_hours_on_saturday and event_obj.end_hours_on_saturday:
-            by_day["Saturday"] = {"start":event_obj.start_hours_on_saturday,"end":event_obj.end_hours_on_saturday}
+            by_day["Sat"] = {"start":event_obj.start_hours_on_saturday,"end":event_obj.end_hours_on_saturday}
         if event_obj.start_hours_on_sunday and event_obj.end_hours_on_sunday:
-            by_day["Sunday"] = {"start":event_obj.start_hours_on_sunday,"end":event_obj.end_hours_on_sunday}
-    
-           
-    print by_day   
+            by_day["Sun"] = {"start":event_obj.start_hours_on_sunday,"end":event_obj.end_hours_on_sunday}
+                  
+       
     if request.user.is_authenticated():
         user = request.user
         history_obj = History.objects.create(
@@ -829,6 +828,7 @@ def get_event_details(request):
     
     if first_day:
         active = 0
+        
         for x,y in enumerate(days2):
             try:
                 current_day = days1[x]
@@ -839,10 +839,13 @@ def get_event_details(request):
                 active = 1
             
             if active == 1:
-                if y != current_day:
-                    last_day = days1[x-1]
-                else:
-                    total_days_consecutive+=1
+                try:
+                    if y != current_day:
+                        last_day = days1[x-1]
+                    else:
+                        total_days_consecutive+=1
+                except:
+                    pass
     
     return render_to_response("event/event_detail.html",
                               {
