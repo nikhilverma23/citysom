@@ -58,6 +58,8 @@
 				
 				{% endif %}
 			  {% else %}
+			  			Event Starts :{{eventdetails.event_start_date}}<br />
+			Event Completes : {{eventdetails.event_completion_date}}<br />
 				     	{% if eventdetails.location.start_hours_on_monday %}
 							<li class="prev_det" style="margin-left: 10px;">
 							Mondays: {{eventdetails.location.start_hours_on_monday}} to {{eventdetails.location.end_hours_on_monday}}
