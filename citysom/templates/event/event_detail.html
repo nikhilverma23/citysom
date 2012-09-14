@@ -18,12 +18,12 @@
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to my wishlist</button>
 		</div>
 		<ul style="list-style: none; text-align: left;">
-			<li class="prev_det"><strong>Show time(s):</strong></li>
+			<li class="prev_det"><strong>Event schedule:</strong></li>
 			{% if eventdetails.schedule_type == "performance_based" %}
 			
-			Event Starts :{{eventdetails.event_start_date}}<br />
-			Event Completes : {{eventdetails.event_completion_date}}<br />
-			Frequency:{{eventdetails.frequency}}<br />
+			Starts :{{eventdetails.event_start_date}}<br />
+			Finishes : {{eventdetails.event_completion_date}}<br />
+			Repeats:{{eventdetails.frequency|lower}}<br />
 				{% if eventdetails.frequency == "DAILY" %}
 					{% for performance in event_performance_values %}
 						<li class="prev_det" style="margin-left: 10px;">
@@ -31,11 +31,21 @@
 						</li>
 					{% endfor %}
 				{% elif eventdetails.frequency == "MONTHLY" %}
-					Repeat Every :{{eventdetails.interval}} Month<br />
-					Repeat On: {{eventdetails.by_month}} {{eventdetails.by_monthday}} of the month.
+					Repeats every :{{eventdetails.interval}} month<br />
+					Repeats on: {% if eventdetails.by_month == "1" %}
+									First
+								{% elif eventdetails.by_month == "2" %}
+									Second
+								{% elif eventdetails.by_month == "3" %}
+									Third
+								{% elif eventdetails.by_month == "4" %}
+									Fourth
+								{% else %}
+									Last
+								{% endif %} {{eventdetails.by_monthday}} of the month.
 					{% for performance in event_performance_values %}
 						<li class="prev_det" style="margin-left: 10px;">
-							{{performance.date_of_performance}}:{{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
+							{{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
 						</li>
 					{% endfor %}
 				{% else %}
