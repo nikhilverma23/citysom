@@ -7,6 +7,14 @@
 				</div>
 				<h4>{{event.title}}</h4>
 			</a>
+			<div class="like_div">
+				<a href="/myprofile/popularity?action=like&id={{event.id}}" title="{{event.popularity.count}}">
+					<img src="/static/images/like.png" alt="LIKE">
+				</a>
+				<a href="/myprofile/popularity?action=unlike&id={{event.id}}" title="{{event.popularity.count}}">
+					<img src="/static/images/unlike.png" alt="UNLIKE">
+				</a>
+			</div>
 		</li>             		
  	{% endfor %}
 </ul>

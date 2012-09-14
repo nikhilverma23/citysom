@@ -112,12 +112,20 @@ function load_events(){
   	if(search_text){url +='&search_text='+search_text;}
   	
   	$.get(url,function(data){
-		console.log("dede");
-		//alert('ok');
 		$("#bottom_images").html(data);
-		console.log(togl);
-		
-		
+		if(togl == 0)
+		{
+			/*jQuery("div.misc_pres_img img").hover(
+				function(){
+					      parent = $(this).parent().parent().parent();
+					      parent.children("div.like_div").show();
+				},
+				function(){
+					      parent = $(this).parent().parent().parent();
+					      parent.children("div.like_div").hide();
+				}
+			 );*/
+		}
 		});
 }
 

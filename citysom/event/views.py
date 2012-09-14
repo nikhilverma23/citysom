@@ -14,7 +14,7 @@ from django import http
 from django.contrib.auth.decorators import login_required
 from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from operator import or_, and_
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Max, Min
 from citysom.myprofile.models import History
 
 def server_error(request, template_name='500.html'):
@@ -618,28 +618,59 @@ def event_list(request):
 #                              )    
     except:
         
-        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct().order_by("performancedetails__ticket_price")
         #If view requested is 'by category'
     
     if (request.GET['tgl']!="0"):
-
-        events_mov=events.filter(category=1).order_by("event_start_date")
-        events_exh=events.filter(category=2).order_by("event_start_date")
-        events_lec=events.filter(category=3).order_by("event_start_date")
-        events_con=events.filter(category=4).order_by("event_start_date")
-        events_spo=events.filter(category=5).order_by("event_start_date")
-        events_the=events.filter(category=6).order_by("event_start_date")
-        events_ope=events.filter(category=7).order_by("event_start_date")
-        events_dan=events.filter(category=8).order_by("event_start_date")
-        events_mus=events.filter(category=9).order_by("event_start_date")
-        events_out=events.filter(category=10).order_by("event_start_date")
-        events_fes=events.filter(category=11).order_by("event_start_date")
-        events_sta=events.filter(category=12).order_by("event_start_date")
-        events_cou=events.filter(category=13).order_by("event_start_date")
-        events_cit=events.filter(category=14).order_by("event_start_date")
-        events_fai=events.filter(category=15).order_by("event_start_date")
-        events_fun=events.filter(category=16).order_by("event_start_date")
-        events_par=events.filter(category=17).order_by("event_start_date")
+        if(request.GET['sort']):
+            if request.GET['sort'] == "price_up":
+                events = events.annotate(Min("performancedetails__ticket_price"))
+                sort = "performancedetails__ticket_price"
+            elif request.GET['sort'] == "price_down":
+                events = events.annotate(Max("performancedetails__ticket_price"))
+                sort = "-performancedetails__ticket_price"
+            elif request.GET['sort'] == "date_up":
+                sort = "event_start_date"
+            elif request.GET['sort'] == "date_down":
+                sort = "-event_start_date"
+            else:
+                sort = "id"
+            print events.query   
+            events_mov=events.filter(category=1).order_by(sort)
+            events_exh=events.filter(category=2).order_by(sort)
+            events_lec=events.filter(category=3).order_by(sort)
+            events_con=events.filter(category=4).order_by(sort)
+            events_spo=events.filter(category=5).order_by(sort)
+            events_the=events.filter(category=6).order_by(sort)
+            events_ope=events.filter(category=7).order_by(sort)
+            events_dan=events.filter(category=8).order_by(sort)
+            events_mus=events.filter(category=9).order_by(sort)
+            events_out=events.filter(category=10).order_by(sort)
+            events_fes=events.filter(category=11).order_by(sort)
+            events_sta=events.filter(category=12).order_by(sort)
+            events_cou=events.filter(category=13).order_by(sort)
+            events_cit=events.filter(category=14).order_by(sort)
+            events_fai=events.filter(category=15).order_by(sort)
+            events_fun=events.filter(category=16).order_by(sort)
+            events_par=events.filter(category=17).order_by(sort)
+        else:
+            events_mov=events.filter(category=1)
+            events_exh=events.filter(category=2)
+            events_lec=events.filter(category=3)
+            events_con=events.filter(category=4)
+            events_spo=events.filter(category=5)
+            events_the=events.filter(category=6)
+            events_ope=events.filter(category=7)
+            events_dan=events.filter(category=8)
+            events_mus=events.filter(category=9)
+            events_out=events.filter(category=10)
+            events_fes=events.filter(category=11)
+            events_sta=events.filter(category=12)
+            events_cou=events.filter(category=13)
+            events_cit=events.filter(category=14)
+            events_fai=events.filter(category=15)
+            events_fun=events.filter(category=16)
+            events_par=events.filter(category=17)
 
         return render_to_response("event/event_list_cat.html",
                            {

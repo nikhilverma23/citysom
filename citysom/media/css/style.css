@@ -462,7 +462,7 @@ body
     }
 
 
-#bottom_images ul li div
+#bottom_images ul li div.misc_pres_img
     {
     	text-align: center;
     	vertical-align: middle;
@@ -470,7 +470,7 @@ body
     	height: 153px;
     	width:100%;
     }
-#bottom_images ul li div img
+#bottom_images ul li div.misc_pres_img img
     {
     	max-width: 150px;
     	max-height: 130px;
@@ -1790,3 +1790,5 @@ div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: 
 .touchcarousel_dashboard img{border:1px solid #C0C0C0;}
 .touchcarousel_dashboard img:hover{border:1px solid #ff6600;}
 img#poster_image{max-width: 220px; max-height: 300px;}
+div.like_div{position: absolute; top: 0px; right: 0px;}
+li.misc_pres{position: relative;}

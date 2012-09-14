@@ -113,3 +113,11 @@ class History(models.Model):
     """
     event = models.ForeignKey(Event, null=True, blank=True)
     user = models.ForeignKey(User, null=True, blank=True)
+
+class Popularity(models.Model):
+    """
+    Describes the Popularity
+    """
+    event = models.ForeignKey(Event, null=True, blank=True)
+    user = models.ForeignKey(User, null=True, blank=True)
+    popularity = models.IntegerField(null=True, blank=True)

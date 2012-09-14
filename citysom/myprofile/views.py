@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from citysom.myprofile.models import Wishlist, History
+from citysom.myprofile.models import Wishlist, History, Popularity
 from citysom.event.models import Event
 import logging
 logger = logging.getLogger("myprofile.views")
@@ -326,4 +326,26 @@ def editaccount(request):
                               {'form':form},
                                context_instance=RequestContext(request)
                               )
+###############################################################################
+
+###############################################################################
+def popularity(request):
+    if request.GET['action'] == "like" or request.GET['action'] == "unlike":
+        event_id = request.GET['id']
+        event = Event.objects.get(id=event_id)
+        user = request.user
+        
+        popularity_events = Wishlist.objects.filter(user=user).filter(event=event)
+        if not popularity_events.count():
+            if request.GET['action'] == "like":
+                popularity = 1
+            elif request.GET['action'] == "unlike":
+                popularity = 0
+            popularity_obj = Popularity.objects.get_or_create(
+                                                                   event = event,
+                                                                   user = user,
+                                                                   popularity = popularity
+                                                                   )
+        request.session['message'] = "This Event has been liked"
+        return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################
