@@ -265,7 +265,7 @@ def dashboard(request):
     context=RequestContext(request)
     user = request.user
     wishlist_events = Wishlist.objects.filter(user=user).order_by("-id")
-    history_events = Event.objects.filter(user=user).filter(event_completion_date__lte = datetime.now()).order_by("-id").distinct()
+    history_events = Event.objects.filter(user=user).filter(event_completion_date__lt = datetime.now()).order_by("-id").distinct()
     upcoming_events = Event.objects.filter(user=user).filter(event_start_date__gte = datetime.now()).order_by("-id").distinct()
     return render_to_response(
                                 "myprofile/dashboard.html",
@@ -339,13 +339,15 @@ def popularity(request):
         if not popularity_events.count():
             if request.GET['action'] == "like":
                 popularity = 1
+                request.session['message'] = "This Event has been liked"
             elif request.GET['action'] == "unlike":
                 popularity = 0
+                request.session['message'] = "This Event has been unliked"
+            
             popularity_obj = Popularity.objects.get_or_create(
                                                                    event = event,
                                                                    user = user,
                                                                    popularity = popularity
                                                                    )
-        request.session['message'] = "This Event has been liked"
         return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################

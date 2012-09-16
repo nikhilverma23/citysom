@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Create an event{% endblock %}
+{% block title %}{% if eventform.title.value %}Modifying the Event{% else %}Create an event{% endif %}{% endblock %}
 
 {% block content %}
 <script type="text/javascript" src="/static/js/tiny_mce/tiny_mce.js"></script>

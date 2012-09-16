@@ -388,6 +388,7 @@ def eventcreation(request):
         try:
             id = request.GET['id']
             event_obj = Event.objects.get(id=id)
+            performance_obj = Event.objects.get(id=id).performancedetails_set.values("showtimes_start","showtimes_end","ticket_price").annotate(Count('showtimes_start'), Count('showtimes_end'), Count('ticket_price'))
             event_form.fields['title'].initial = event_obj.title
             #eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
             event_form.fields['eventwebsite'].initial = event_obj.eventwebsite
@@ -402,23 +403,30 @@ def eventcreation(request):
             # For Performance Based
             if event_form.fields['schedule_type'].initial == "performance_based":
                 # ----1
-                
-                if event_obj.performancedetails_set.values('showtimes_start')[0].get('showtimes_start'):
-                    event_form.fields['event_start_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_start')[0].get('showtimes_start')
-                    event_form.fields['event_end_hours_1'].initial = event_obj.performancedetails_set.values('showtimes_end')[0].get('showtimes_end')
-                    event_form.fields['event_ticket_price_1'].initial = event_obj.performancedetails_set.values('ticket_price')[0].get('ticket_price')
-                
+                try:
+                    if performance_obj[0].get('showtimes_start'):
+                        event_form.fields['event_start_hours_1'].initial = performance_obj[0].get('showtimes_start')
+                        event_form.fields['event_end_hours_1'].initial = performance_obj[0].get('showtimes_end')
+                        event_form.fields['event_ticket_price_1'].initial = performance_obj[0].get('ticket_price')
+                except:
+                    pass
                 # ----2
-                if event_obj.performancedetails_set.values('showtimes_start')[1].get('showtimes_start'):
-                    event_form.fields['event_start_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_start')[1].get('showtimes_start')
-                    event_form.fields['event_end_hours_2'].initial = event_obj.performancedetails_set.values('showtimes_end')[1].get('showtimes_end')
-                    event_form.fields['event_ticket_price_2'].initial = event_obj.performancedetails_set.values('ticket_price')[1].get('ticket_price')
+                try:
+                    if performance_obj[1].get('showtimes_start'):
+                        event_form.fields['event_start_hours_2'].initial = performance_obj[1].get('showtimes_start')
+                        event_form.fields['event_end_hours_2'].initial = performance_obj[1].get('showtimes_end')
+                        event_form.fields['event_ticket_price_2'].initial = performance_obj[1].get('ticket_price')
+                except:
+                    pass
                 
                 # ----3
-                if event_obj.performancedetails_set.values('showtimes_start')[2].get('showtimes_start'):
-                    event_form.fields['event_start_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_start')[2].get('showtimes_start')
-                    event_form.fields['event_end_hours_3'].initial = event_obj.performancedetails_set.values('showtimes_end')[2].get('showtimes_end')
-                    event_form.fields['event_ticket_price_3'].initial = event_obj.performancedetails_set.values('ticket_price')[2].get('ticket_price')
+                try:
+                    if performance_obj[2].get('showtimes_start'):
+                        event_form.fields['event_start_hours_3'].initial = performance_obj[2].get('showtimes_start')
+                        event_form.fields['event_end_hours_3'].initial = performance_obj[2].get('showtimes_end')
+                        event_form.fields['event_ticket_price_3'].initial = performance_obj[2].get('ticket_price')
+                except:
+                    pass
                 
                 event_form.fields['frequency'].initial = event_obj.frequency
                 event_form.fields['interval'].initial = event_obj.interval
@@ -452,7 +460,7 @@ def eventcreation(request):
                 event_poster = ""
             
         except:
-           pass 
+            pass 
             
     frequency_range = {"daily":range(6),"weekly":range(4),"monthly":range(12)}
     return render_to_response('event/event.html',
@@ -618,16 +626,14 @@ def event_list(request):
 #                              )    
     except:
         
-        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct().order_by("performancedetails__ticket_price")
+        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
         #If view requested is 'by category'
     
     if (request.GET['tgl']!="0"):
         if(request.GET['sort']):
             if request.GET['sort'] == "price_up":
-                events = events.annotate(Min("performancedetails__ticket_price"))
                 sort = "performancedetails__ticket_price"
             elif request.GET['sort'] == "price_down":
-                events = events.annotate(Max("performancedetails__ticket_price"))
                 sort = "-performancedetails__ticket_price"
             elif request.GET['sort'] == "date_up":
                 sort = "event_start_date"
@@ -635,7 +641,7 @@ def event_list(request):
                 sort = "-event_start_date"
             else:
                 sort = "id"
-            print events.query   
+            
             events_mov=events.filter(category=1).order_by(sort)
             events_exh=events.filter(category=2).order_by(sort)
             events_lec=events.filter(category=3).order_by(sort)
