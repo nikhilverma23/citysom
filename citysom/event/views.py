@@ -627,7 +627,6 @@ def event_list(request):
     except:
         
         events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
-        print events
         #If view requested is 'by category'
     
     if (request.GET['tgl']!="0"):

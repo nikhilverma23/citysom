@@ -3,12 +3,12 @@
 		<li class="misc_pres">
 			<a href="/event/details?id={{event.id}}">
 				<div class="misc_pres_img">
-					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}" onload='OnImageLoad(event);'/>
+					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
 				</div>
 				<h4>{{event.title}}</h4>
 			</a>
-			<div class="like_div">
-				<a href="/myprofile/popularity?action=like&id={{event.id}}" title="{{event.popularity.count}}">
+			<div class="like_div" style="display: none;">
+				<a href="/myprofile/popularity?action=like&id={{event.id}}" title="{{event.popularity.count}}" title="{{event.popularity.count}} people likes this">
 					<img src="/static/images/like.png" alt="LIKE">
 				</a>
 			</div>

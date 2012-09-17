@@ -113,19 +113,6 @@ function load_events(){
   	
   	$.get(url,function(data){
 		$("#bottom_images").html(data);
-		if(togl == 0)
-		{
-			/*jQuery("div.misc_pres_img img").hover(
-				function(){
-					      parent = $(this).parent().parent().parent();
-					      parent.children("div.like_div").show();
-				},
-				function(){
-					      parent = $(this).parent().parent().parent();
-					      parent.children("div.like_div").hide();
-				}
-			 );*/
-		}
 		});
 }
 
@@ -150,8 +137,8 @@ $(document).ajaxStop(function(){
 		});
 		
 });
-
-
+jQuery("li.misc_pres").live("mouseover",function(){$(this).children("div.like_div").show();});
+jQuery("li.misc_pres").live("mouseout",function(){$(this).children("div.like_div").hide();});
   		
 /*  		
 $("#min_price_down").click(function(){

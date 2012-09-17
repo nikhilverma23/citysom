@@ -34,7 +34,7 @@
 			Repeats:{{eventdetails.frequency|lower}}<br />
 				{% if eventdetails.frequency == "DAILY" %}
 					{% for performance in event_performance_values %}
-						<li class="prev_det" style="margin-left: 10px;">
+						<li class="prev_det">
 							{{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
 						</li>
 					{% endfor %}
@@ -52,7 +52,7 @@
 									Last
 								{% endif %} {{eventdetails.by_monthday}} of the month.
 					{% for performance in event_performance_values %}
-						<li class="prev_det" style="margin-left: 10px;">
+						<li class="prev_det">
 							{{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
 						</li>
 					{% endfor %}
@@ -60,13 +60,13 @@
 					{% if event_performance_values %}
 						{% for performance in event_performance_values %}
 							{% if total_days_consecutive > 2 %}
-								<li class="prev_det" style="margin-left: 10px;">
+								<li class="prev_det">
 									 {{first_day}}-{{last_day}} : {{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
 								</li>
 							{% else %}
 							     {% for days in eventdetails.by_day.all %}
 							     
-									<li class="prev_det" style="margin-left: 10px;">
+									<li class="prev_det">
 										{{days}} : {{performance.showtimes_start}} to {{performance.showtimes_end}} ${{performance.ticket_price}}
 							       </li>
 							     {% endfor %}
@@ -79,37 +79,37 @@
 			  			Event Starts :{{eventdetails.event_start_date}}<br />
 			Event Completes : {{eventdetails.event_completion_date}}<br />
 				     	{% if eventdetails.location.start_hours_on_monday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Mondays: {{eventdetails.location.start_hours_on_monday}} to {{eventdetails.location.end_hours_on_monday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_tuesday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Tuesdays: {{eventdetails.location.start_hours_on_tuesday}} to {{eventdetails.location.end_hours_on_tuesday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_wednesday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Wednesdays: {{eventdetails.location.start_hours_on_wednesday}} to {{eventdetails.location.end_hours_on_wednesday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_thursday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Thursdays: {{eventdetails.location.start_hours_on_thursday}} to {{eventdetails.location.end_hours_on_thursday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_friday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Fridays: {{eventdetails.location.start_hours_on_friday}} to {{eventdetails.location.end_hours_on_friday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_saturday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Saturdays: {{eventdetails.location.start_hours_on_saturday}} to {{eventdetails.location.end_hours_on_saturday}}
 							</li>
 						{% endif %}
 						{% if eventdetails.location.start_hours_on_sunday %}
-							<li class="prev_det" style="margin-left: 10px;">
+							<li class="prev_det">
 							Sundays: {{eventdetails.location.start_hours_on_sunday}} to {{eventdetails.location.end_hours_on_sunday}}
 							</li>
 						{% endif %}
