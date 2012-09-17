@@ -40,9 +40,9 @@
 					<li class="lilink">
 						<a href="{% url home %}" class="search_link">Search</a>
 					</li>
-					<li>
+					<!--<li>
 						<a href="#">Categorize</a>
-					</li>
+					</li>-->
 					{% if user.is_authenticated and user.userprofile.account_type == "professional" %}
 					<li>
 						<a href="/event/createevent/">Publish</a>

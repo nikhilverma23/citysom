@@ -627,6 +627,7 @@ def event_list(request):
     except:
         
         events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+        print events
         #If view requested is 'by category'
     
     if (request.GET['tgl']!="0"):
@@ -901,6 +902,7 @@ def get_event_details(request):
                               "last_day":str(last_day)[:3],
                               "event_performance_values": event_performance_values,
                               'by_day':by_day,
+                              "comment_counter":comment_counter,
                               },
                               context_instance=RequestContext(request)
                               )

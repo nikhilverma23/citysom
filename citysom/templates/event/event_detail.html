@@ -14,13 +14,17 @@
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
 	   <div>
-		<a href="/myprofile/popularity?action=like&id={{eventdetails.id}}">Like</a>
-		<a href="/myprofile/popularity?action=unlike&id={{eventdetails.id}}">Unlike</a>
+		<a href="/myprofile/popularity?action=like&id={{eventdetails.id}}">
+		<img src="/static/images/like.png" alt="like">
+		</a>
+		<a href='/myprofile/wishlist?action=add&id={{eventdetails.id}}'>
+			<img src="/static/images/add_wishlist.png" alt="add_to_wishlist" height="30px";>
+		</a>
 	</div>
 	   <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;">{{eventdetails.eventwebsite}}</a>
-		<div>
+		<!--<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to my wishlist</button>
-		</div>
+		</div>-->
 		<ul style="list-style: none; text-align: left;">
 			<li class="prev_det"><strong>Event schedule:</strong></li>
 			{% if eventdetails.schedule_type == "performance_based" %}

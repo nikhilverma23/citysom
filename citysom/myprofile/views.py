@@ -331,6 +331,8 @@ def editaccount(request):
 ###############################################################################
 def popularity(request):
     if request.GET['action'] == "like" or request.GET['action'] == "unlike":
+#        import pdb
+#        pdb.set_trace();
         event_id = request.GET['id']
         event = Event.objects.get(id=event_id)
         user = request.user
@@ -342,8 +344,6 @@ def popularity(request):
                 request.session['message'] = "This Event has been liked"
             elif request.GET['action'] == "unlike":
                 popularity = 0
-                request.session['message'] = "This Event has been unliked"
-            
             popularity_obj = Popularity.objects.get_or_create(
                                                                    event = event,
                                                                    user = user,
