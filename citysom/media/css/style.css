@@ -1792,3 +1792,6 @@ div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: 
 img#poster_image{max-width: 220px; max-height: 300px;}
 div.like_div{position: absolute; top: 0px; right: 0px;}
 li.misc_pres{position: relative;}
+div.like_message{background: #FD8F53; color: #FFFFFF; font-weight: bold; padding: 5px; position: absolute; bottom: 0px; left: 0px; font-size: 0.5em;}
+div.like_div a span{display: none;}
+div.like_div a:hover span{display: block; padding: 5px; background:#FD8F53 ; position: absolute; top: 24px; right: 0px; color: #FFFFFF; text-decoration: none; font-size: 0.5em; width: 100px; text-align: center; border-radius: 5px; font-weight: bold;}

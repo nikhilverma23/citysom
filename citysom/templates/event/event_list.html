@@ -7,11 +7,14 @@
 				</div>
 				<h4>{{event.title}}</h4>
 			</a>
+			{% if user.is_authenticated %}
 			<div class="like_div" style="display: none;">
-				<a href="/myprofile/popularity?action=like&id={{event.id}}" title="{{event.popularity.count}}" title="{{event.popularity.count}} people likes this">
+				<a href="/myprofile/popularity/?action=like&id={{event.id}}">
 					<img src="/static/images/like.png" alt="LIKE">
+					<span>{{event.popularity_set.count}} people likes this</span>
 				</a>
 			</div>
+			{% endif %}
 		</li>             		
  	{% endfor %}
 </ul>
