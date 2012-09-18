@@ -632,10 +632,10 @@ def event_list(request):
     
     if (request.GET['tgl']!="0"):
         if(request.GET['sort']):
-            if request.GET['sort'] == "price_up":
-                sort = "performancedetails__ticket_price"
-            elif request.GET['sort'] == "price_down":
-                sort = "-performancedetails__ticket_price"
+            if request.GET['sort'] == "showtimes_start":
+                sort = "performancedetails__showtimes_start"
+            elif request.GET['sort'] == "showtimes_end":
+                sort = "-performancedetails__showtimes_start"
             elif request.GET['sort'] == "date_up":
                 sort = "event_start_date"
             elif request.GET['sort'] == "date_down":
@@ -644,7 +644,7 @@ def event_list(request):
                 sort = "id"
             
             events_mov=events.filter(category=1).order_by(sort)
-            print sorted([event.performancedetails_set.aggregate(Max('ticket_price')) for event in events_mov])
+            #print sorted([event.performancedetails_set.aggregate(Max('ticket_price')) for event in events_mov])
             events_exh=events.filter(category=2).order_by(sort)
             events_lec=events.filter(category=3).order_by(sort)
             events_con=events.filter(category=4).order_by(sort)
@@ -884,7 +884,7 @@ def get_event_details(request):
                     if y != current_day:
                         last_day = days1[x-1]
                     else:
-                        total_days_consecutive+=1
+                        total_days_consecutive += 1
                 except:
                     pass
     
