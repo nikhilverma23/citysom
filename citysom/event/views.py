@@ -627,6 +627,7 @@ def event_list(request):
     except:
         
         events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+        event_obj1 = [event.performancedetails_set.aggregate(Max('ticket_price')) for event in events]
         #If view requested is 'by category'
     
     if (request.GET['tgl']!="0"):
@@ -643,6 +644,7 @@ def event_list(request):
                 sort = "id"
             
             events_mov=events.filter(category=1).order_by(sort)
+            print sorted([event.performancedetails_set.aggregate(Max('ticket_price')) for event in events_mov])
             events_exh=events.filter(category=2).order_by(sort)
             events_lec=events.filter(category=3).order_by(sort)
             events_con=events.filter(category=4).order_by(sort)
@@ -857,7 +859,8 @@ def get_event_details(request):
         days2.append(days)
         
     total_days_consecutive = 0
-    
+    first_day = ""
+    last_day = ""
     try:
         first_day = days1[0]
     except:
@@ -887,9 +890,7 @@ def get_event_details(request):
     
     return render_to_response("event/event_detail.html",
                               {
-                              # whatever you need from event table just do event_obj.fieldname in template
                                "eventdetails":event_obj,
-                              # for performance details just iterate it in templates and access the value by using . notation
                               "event_performance":event_obj.performancedetails_set.all(),
                               "ratings_form":ratings_form,
                               "user_comments":user_comments,
