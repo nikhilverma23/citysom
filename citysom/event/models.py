@@ -154,6 +154,68 @@ class Event(models.Model):
     by_monthday = models.CharField(max_length=80,blank=True,null=True)
     by_month = models.CharField(max_length=80,blank=True,null=True)
 
+    #Performance Repeat 1
+    frequency1 = models.CharField(max_length=80,\
+                                 blank=True,null=True,\
+                                 help_text="weekly,monthly etc"
+                                 )
+    
+    interval1 = models.IntegerField(null=True, help_text="basically the count")
+    by_day1 = models.ManyToManyField(Days,\
+                                    db_column = "by_day1",
+                                    related_name="event_event_by_day1",
+                                    blank=True,null=True,
+                                    help_text="by_day1",
+                                    )
+    by_monthday1 = models.CharField(max_length=80,blank=True,null=True)
+    by_month1 = models.CharField(max_length=80,blank=True,null=True)
+    #Performance Repeat 2
+    frequency2 = models.CharField(max_length=80,\
+                             blank=True,null=True,\
+                             help_text="weekly,monthly etc"
+                             )
+    
+    interval2 = models.IntegerField(null=True, help_text="basically the count")
+    by_day2 = models.ManyToManyField(Days,\
+                                    db_column = "by_day2",
+                                    related_name="event_event_by_day2",
+                                    blank=True,null=True,
+                                    help_text="by_day2",
+                                    )
+    by_monthday2 = models.CharField(max_length=80,blank=True,null=True)
+    by_month2 = models.CharField(max_length=80,blank=True,null=True)
+    # Performance Repeat 3
+
+    frequency3 = models.CharField(max_length=80,\
+                             blank=True,null=True,\
+                             help_text="weekly,monthly etc"
+                             )
+    
+    interval3 = models.IntegerField(null=True, help_text="basically the count")
+    by_day3 = models.ManyToManyField(Days,\
+                                    db_column = "by_day3",
+                                    related_name="event_event_by_day3",
+                                    blank=True,null=True,
+                                    help_text="by_day3",
+                                    )
+    by_monthday3 = models.CharField(max_length=80,blank=True,null=True)
+    by_month3 = models.CharField(max_length=80,blank=True,null=True)
+    #Performance Repeat 4
+    frequency4 = models.CharField(max_length=80,\
+                             blank=True,null=True,\
+                             help_text="weekly,monthly etc"
+                             )
+    
+    interval4 = models.IntegerField(null=True, help_text="basically the count")
+    by_day4 = models.ManyToManyField(Days,\
+                                    db_column = "by_day4",
+                                    related_name="event_event_by_day4",
+                                    blank=True,null=True,
+                                    help_text="by_day4",
+                                    )
+    by_monthday4 = models.CharField(max_length=80,blank=True,null=True)
+    by_month4 = models.CharField(max_length=80,blank=True,null=True)
+
     
     def duration(self):
         return self.date_started - self.date_completed
