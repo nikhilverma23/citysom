@@ -187,149 +187,151 @@
                              
                              			<div class="clear"></div>
                              	
-                             			<div class="performance_hours_div">
-                             				<li class="performance_hours_div">
-                             				{% if eventform.frequency.errors %}
-						    					<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
-						  					{% endif %}
-                            				<b>Performance repeats:</b>
-                            				{{eventform.frequency}} 
-                        					</li>
-                        					<li class="performance_hours_div_dmwonly">
-			                        		{% if eventform.interval.errors %}
-									    		<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
-									  		{% endif %}
-			                            	<b>Repeat every:</b>
-			                            	{{eventform.interval}}
-			                            	<b id="frequency_label"></b> 
-			                        		</li>
-			                        		<li class="performance_hours_div_wonly" id="days_repeat">
-			                        		{% if eventform.repeat_on.errors %}
-									    		<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
-									  		{% endif %}
-			                            	<b>Repeat On:</b>
-			                            	{{eventform.repeat_on}}
-			                            	<br> 
-			                        		</li>
-			                        		<li class="performance_hours_div_monly" id="days_repeat_monthly">
-			                        		{% if eventform.frequency.errors %}
-									    		<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
-									  		{% endif %}
-			                            	<b>Repeat on the:</b>
-			                            	{{eventform.ordinal}}
-			                            	{{eventform.ordinal_day}}
-			                            	<b> of the month</b>
-			                        		</li>
-                        					<!--Showtime hours -->
-                        					<fieldset class="showtime_fs performance_hours_div" id="showtimes_1">
-                        						<legend>Showtime</legend>
-                        			
-                        						<li class="formlist1 performance_hours_div">
-                        							<div class="showtime_select_div">
-		                        						{% if eventform.event_start_hours_1.errors %}
-								    						<p class="error">{{ eventform.event_start_hours_1.errors|join:", "  }}</p>
-								  						{% endif %}
-		                            					<b>Show starts at:</b>
-		                            					{{eventform.event_start_hours_1}} 	
-                        							</div>
-			                 						<div class="showtime_select_div">
-			                        					{% if eventform.event_end_hours_1.errors %}
-									    					<p class="error">{{ eventform.event_end_hours_1.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Show ends at:</b>
-			                            				{{eventform.event_end_hours_1}} 
-			                        				</div>
-                        						</li>
-                        						<li class="formlist1 performance_hours_div">
-			                        				<div class="showtime_select_div">
-			                        					{% if eventform.event_ticket_price_1.errors %}
-									    					<p class="error">{{ eventform.event_ticket_price_1.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Full price ticket is ($):</b>
-			                            				{{eventform.event_ticket_price_1}}
-			                        				</div>
-                        						</li>
-                        					</fieldset>	
-                        					<div class="check_box" id="add_shw_1">
-                        						<label> 
-                        							<input type="checkbox" id="chk_add_shw_1" value="1" name="add_showtime_1">
-                        							Add showtime
-                        						</label>	
-                        					</div>
-                        					<BR> 	
-                        					                  					
-                        		
-			                        		<fieldset class="showtime_fs performance_hours_div" id="showtimes_2">
-			                        			<legend>Showtime 2</legend>
-                        			
-			                        			<li class="formlist1 performance_hours_div">
-			                        				<div class="showtime_select_div">
-			                        					{% if eventform.event_start_hours_2.errors %}
-									    					<p class="error">{{ eventform.event_start_hours_2.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Show starts at:</b>
-			                            				{{eventform.event_start_hours_2}} 	
-			                        				</div>
-			                 						<div class="showtime_select_div">
-			                        					{% if eventform.event_end_hours_2.errors %}
-									    					<p class="error">{{ eventform.event_end_hours_2.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Show ends at:</b>
-			                            				{{eventform.event_end_hours_2}} 
-			                        				</div>
-			                        			</li>
-			                        			<li class="formlist1 performance_hours_div">
-			                        				<div class="showtime_select_div">
-			                        					{% if eventform.event_ticket_price_2.errors %}
-									    					<p class="error">{{ eventform.event_ticket_price_2.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Full price ticket is ($):</b>
-			                            				{{eventform.event_ticket_price_2}}
-			                        				</div>
-			                        			</li>
-                        					</fieldset>
-                        					<div class="check_box" id="add_shw_2">
-                        						<label> 
-                        							<input type="checkbox" id="chk_add_shw_2" value="1" name="add_showtime_2">
-                        							Add showtime
-                        						</label>
-                        					</div>
-                        					<BR>
-                        		
-			                        		<fieldset class="showtime_fs performance_hours_div" id="showtimes_3">
-			                        			<legend>Showtime 3</legend>
-			                        			
-			                        			<li class="formlist1 performance_hours_div">
-			                        				<div class="showtime_select_div">
-			                        					{% if eventform.event_start_hours_3.errors %}
-									    					<p class="error">{{ eventform.event_start_hours_3.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Show starts at:</b>
-			                            				{{eventform.event_start_hours_3}} 	
-			                        				</div>
-			                 						<div class="showtime_select_div">
-			                        					{% if eventform.event_end_hours_3.errors %}
-									    					<p class="error">{{ eventform.event_end_hours_3.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Show ends at:</b>
-			                            				{{eventform.event_end_hours_3}} 
-			                        				</div>
-			                        			</li>
-			                        			<li class="formlist1 performance_hours_div">
-			                        				<div class="showtime_select_div">
-			                        					{% if eventform.event_ticket_price_3.errors %}
-									    					<p class="error">{{ eventform.event_ticket_price_3.errors|join:", "  }}</p>
-									  					{% endif %}
-			                            				<b>Full price ticket is ($):</b>
-			                            				{{eventform.event_ticket_price_3}}
-			                        				</div>
-			                        			</li>
-			                        		</fieldset>	
-                             			</div>
-                             
-                                 
-                                
-                                <!--<li class="formlist1">
+                             			<div id="performance_hours_div_parent">
+							<div class="performance_hours_div">
+								<li class="performance_hours_div">
+								{% if eventform.frequency.errors %}
+												<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
+												{% endif %}
+								<b>Performance repeats:</b>
+								{{eventform.frequency}} 
+									</li>
+									<li class="performance_hours_div_dmwonly">
+									{% if eventform.interval.errors %}
+												<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
+												{% endif %}
+								<b>Repeat every:</b>
+								{{eventform.interval}}
+								<b id="frequency_label"></b> 
+									</li>
+									<li class="performance_hours_div_wonly" id="days_repeat">
+									{% if eventform.repeat_on.errors %}
+												<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+												{% endif %}
+								<b>Repeat On:</b>
+								{{eventform.repeat_on}}
+								<br> 
+									</li>
+									<li class="performance_hours_div_monly" id="days_repeat_monthly">
+									{% if eventform.frequency.errors %}
+												<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+												{% endif %}
+								<b>Repeat on the:</b>
+								{{eventform.ordinal}}
+								{{eventform.ordinal_day}}
+								<b> of the month</b>
+									</li>
+									<!--Showtime hours -->
+									<fieldset class="showtime_fs performance_hours_div" id="showtimes_1">
+										<legend>Showtime</legend>
+							
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_start_hours_1.errors %}
+															<p class="error">{{ eventform.event_start_hours_1.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show starts at:</b>
+											{{eventform.event_start_hours_1}} 	
+											</div>
+												<div class="showtime_select_div">
+												{% if eventform.event_end_hours_1.errors %}
+															<p class="error">{{ eventform.event_end_hours_1.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show ends at:</b>
+											{{eventform.event_end_hours_1}} 
+											</div>
+										</li>
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_ticket_price_1.errors %}
+															<p class="error">{{ eventform.event_ticket_price_1.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Full price ticket is ($):</b>
+											{{eventform.event_ticket_price_1}}
+											</div>
+										</li>
+									</fieldset>	
+									<div class="check_box" id="add_shw_1">
+										<label> 
+											<input type="checkbox" id="chk_add_shw_1" value="1" name="add_showtime_1">
+											Add showtime
+										</label>	
+									</div>
+									<BR> 	
+																
+						
+									<fieldset class="showtime_fs performance_hours_div" id="showtimes_2">
+										<legend>Showtime 2</legend>
+							
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_start_hours_2.errors %}
+															<p class="error">{{ eventform.event_start_hours_2.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show starts at:</b>
+											{{eventform.event_start_hours_2}} 	
+											</div>
+												<div class="showtime_select_div">
+												{% if eventform.event_end_hours_2.errors %}
+															<p class="error">{{ eventform.event_end_hours_2.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show ends at:</b>
+											{{eventform.event_end_hours_2}} 
+											</div>
+										</li>
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_ticket_price_2.errors %}
+															<p class="error">{{ eventform.event_ticket_price_2.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Full price ticket is ($):</b>
+											{{eventform.event_ticket_price_2}}
+											</div>
+										</li>
+									</fieldset>
+									<div class="check_box" id="add_shw_2">
+										<label> 
+											<input type="checkbox" id="chk_add_shw_2" value="1" name="add_showtime_2">
+											Add showtime
+										</label>
+									</div>
+									<BR>
+						
+									<fieldset class="showtime_fs performance_hours_div" id="showtimes_3">
+										<legend>Showtime 3</legend>
+										
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_start_hours_3.errors %}
+															<p class="error">{{ eventform.event_start_hours_3.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show starts at:</b>
+											{{eventform.event_start_hours_3}} 	
+											</div>
+												<div class="showtime_select_div">
+												{% if eventform.event_end_hours_3.errors %}
+															<p class="error">{{ eventform.event_end_hours_3.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Show ends at:</b>
+											{{eventform.event_end_hours_3}} 
+											</div>
+										</li>
+										<li class="formlist1 performance_hours_div">
+											<div class="showtime_select_div">
+												{% if eventform.event_ticket_price_3.errors %}
+															<p class="error">{{ eventform.event_ticket_price_3.errors|join:", "  }}</p>
+															{% endif %}
+											<b>Full price ticket is ($):</b>
+											{{eventform.event_ticket_price_3}}
+											</div>
+										</li>
+									</fieldset>	
+							</div>
+						</div>
+						<div>
+							<button value="Add New Performance" id="add_new_performance_link" class="uploader" type="button">Add New Performance</button>
+						</div>
+				<!--<li class="formlist1">
                                 	{% if eventform.event_duration.errors %}
 								    	<p class="error">{{ eventform.event_duration.errors|join:", "  }}</p>
 								  	{% endif %}
@@ -897,6 +899,10 @@ if($("#id_event_start_hours_3").val())
 	$('#showtimes_4').hide();
 }
 
+performance_div_html = $("div#performance_hours_div_parent").html();
+$("button#add_new_performance_link").click(function(){
+	$("div#performance_hours_div_parent").append(performance_div_html);
+});
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script>
