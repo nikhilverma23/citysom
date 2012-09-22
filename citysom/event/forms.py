@@ -61,6 +61,12 @@ class EventForm(forms.Form):
         self.fields['event_end_hours_11'].widget.attrs['class'] = "timepicker"
         self.fields['event_end_hours_12'].widget.attrs['class'] = "timepicker"
         
+        self.fields['frequency'].widget.attrs['class'] = "frequency_class"
+        self.fields['frequency1'].widget.attrs['class'] = "frequency_class"
+        self.fields['frequency2'].widget.attrs['class'] = "frequency_class"
+        self.fields['frequency3'].widget.attrs['class'] = "frequency_class"
+        self.fields['frequency4'].widget.attrs['class'] = "frequency_class"
+        
     title = forms.CharField(max_length=255,required=True,widget=forms.TextInput(attrs={'placeholder': 'Your event title'}))
     
     venue_name = forms.CharField(max_length=255,required=False, widget=forms.TextInput(attrs={'placeholder': 'Venue name (optional)'}))
