@@ -1427,16 +1427,17 @@ $("#id_interval").html(options_html);
 
 
 $(".chk_add_shw_1").click(function(){
+	parent = $(this).parent().parent().parent();
 	if($(this).is(":checked"))
 	{
-		$('.showtimes_2').show();
-		$('.add_shw_2').show();
-		$('.showtimes_3').hide();
+		parent.children('.showtimes_2').show();
+		parent.children('.add_shw_2').show();
+		parent.children('.showtimes_3').hide();
 	}
 	else{
-		$('.showtimes_2').hide();
-		$('.add_shw_2').hide();
-		$('.showtimes_3').hide();
+		parent.children('.showtimes_2').hide();
+		parent.children('.add_shw_2').hide();
+		parent.children('.showtimes_3').hide();
 	}
 });
 
@@ -1451,12 +1452,13 @@ if($("#id_event_start_hours_2").val())
 
 
 $(".chk_add_shw_2").click(function(){
+	parent = $(this).parent().parent().parent();
 	if($(this).is(":checked"))
 	{
-		$('.showtimes_3').show();
+		parent.children('.showtimes_3').show();
 	}
 	else{
-		$('.showtimes_3').hide();
+		parent.children('.showtimes_3').hide();
 	}
 });
 
