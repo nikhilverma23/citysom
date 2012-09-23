@@ -15,6 +15,14 @@ class EventForm(forms.Form):
         super(EventForm, self).__init__(*args, **kwargs)
         self.fields['date_started'].widget.attrs['class'] = "datepicker"
         self.fields['date_completed'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started1'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed1'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started2'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed2'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started3'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed3'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started4'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed4'].widget.attrs['class'] = "datepicker"
         categories = Category.objects.all()
         self.fields['category'].choices = [(c.pk,c.type) for c in categories]
         self.fields['category'].widget.attrs['class'] = "category_class"
