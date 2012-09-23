@@ -36,9 +36,6 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
-        
-        
-
                          
         if event_form.is_valid():
             try:
@@ -104,6 +101,26 @@ def eventcreation(request):
                                                              by_month = event_form.cleaned_data['ordinal'],
                                                              event_start_date = event_form.cleaned_data['date_started'],
                                                              event_completion_date = event_form.cleaned_data['date_completed'],
+                                                             
+                                                             frequency1 = event_form.cleaned_data['frequency1'],
+                                                             interval1 = event_form.cleaned_data['interval1'],
+                                                             by_monthday1 = event_form.cleaned_data['ordinal_day1'],
+                                                             by_month1 = event_form.cleaned_data['ordinal1'],
+                                                                                                                       
+                                                             frequency2 = event_form.cleaned_data['frequency2'],
+                                                             interval2 = event_form.cleaned_data['interval2'],
+                                                             by_monthday2 = event_form.cleaned_data['ordinal_day2'],
+                                                             by_month2 = event_form.cleaned_data['ordinal2'],
+                                                             frequency3 = event_form.cleaned_data['frequency3'],
+                                                             interval3 = event_form.cleaned_data['interval3'],
+                                                             by_monthday3 = event_form.cleaned_data['ordinal_day3'],
+                                                             by_month3 = event_form.cleaned_data['ordinal3'],
+                                                             frequency4 = event_form.cleaned_data['frequency4'],
+                                                             interval4 = event_form.cleaned_data['interval4'],
+                                                             by_monthday4 = event_form.cleaned_data['ordinal_day4'],
+                                                             by_month4 = event_form.cleaned_data['ordinal4'],
+                                                             
+                                                             
                                                              )
 
             #Copy last uploaded image to 'images' directory
@@ -120,9 +137,27 @@ def eventcreation(request):
             freq=event_form.cleaned_data['frequency']
             dicto={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
             
+            inter1=int(event_form.cleaned_data['interval1'])
+            freq1=event_form.cleaned_data['frequency1']
+            dicto1={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
+            
+            inter2=int(event_form.cleaned_data['interval2'])
+            freq2=event_form.cleaned_data['frequency2']
+            dicto2={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
+            
+            inter3=int(event_form.cleaned_data['interval3'])
+            freq3=event_form.cleaned_data['frequency3']
+            dicto3={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
+            
+            inter4=int(event_form.cleaned_data['interval4'])
+            freq4=event_form.cleaned_data['frequency4']
+            dicto4={'Monday':rrule.MO, 'Tuesday': rrule.TU, 'Wednesday':rrule.WE, 'Thursday':rrule.TH, 'Friday':rrule.FR, 'Saturday':rrule.SA, 'Sunday':rrule.SU}
+            
+            
             #BUILD MULTIPLE SHOWTIMES FUNCTIONALITY
             
             #Performance Based events Performance records           
+            import pdb;pdb.set_trace();
             if event_form.cleaned_data['schedule_type']=='performance_based':
                 #Case of Frequency = Once
                 if freq == "ONCE":
@@ -141,7 +176,76 @@ def eventcreation(request):
                                                                                             showtimes_start = sh_start, 
                                                                                             showtimes_end = sh_end,                 
                                                                                             )
-                    
+                   
+                if freq1 == "ONCE":
+                #Test of Showtime 1 under frequency 1
+                    if (event_form.cleaned_data['event_start_hours_4'] != None) and (event_form.cleaned_data['event_end_hours_4'] != None):
+                        sh_start=event_form.cleaned_data['event_start_hours_4'] 
+                        sh_end=event_form.cleaned_data['event_end_hours_4']
+                        tix_price=event_form.cleaned_data['event_ticket_price_4']
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = tix_price,
+                                                                                            #date_started = event_form.cleaned_data['date_started'],
+                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            
+                                                                                            showtimes_start = sh_start, 
+                                                                                            showtimes_end = sh_end,                 
+                                                                                            )
+                
+                if freq2 == "ONCE":
+                #Test of Showtime 1 under frequency 2
+                    if (event_form.cleaned_data['event_start_hours_7'] != None) and (event_form.cleaned_data['event_end_hours_7'] != None):
+                        sh_start=event_form.cleaned_data['event_start_hours_7'] 
+                        sh_end=event_form.cleaned_data['event_end_hours_7']
+                        tix_price=event_form.cleaned_data['event_ticket_price_7']
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = tix_price,
+                                                                                            #date_started = event_form.cleaned_data['date_started'],
+                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            
+                                                                                            showtimes_start = sh_start, 
+                                                                                            showtimes_end = sh_end,                 
+                                                                                            )
+
+                if freq3 == "ONCE":
+                #Test of Showtime 1 under frequency 3
+                    if (event_form.cleaned_data['event_start_hours_10'] != None) and (event_form.cleaned_data['event_end_hours_10'] != None):
+                        sh_start=event_form.cleaned_data['event_start_hours_10'] 
+                        sh_end=event_form.cleaned_data['event_end_hours_10']
+                        tix_price=event_form.cleaned_data['event_ticket_price_10']
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = tix_price,
+                                                                                            #date_started = event_form.cleaned_data['date_started'],
+                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            
+                                                                                            showtimes_start = sh_start, 
+                                                                                            showtimes_end = sh_end,                 
+                                                                                            )
+                if freq4 == "ONCE":
+                #Test of Showtime 1 under frequency 4
+                    if (event_form.cleaned_data['event_start_hours_13'] != None) and (event_form.cleaned_data['event_end_hours_13'] != None):
+                        sh_start=event_form.cleaned_data['event_start_hours_13'] 
+                        sh_end=event_form.cleaned_data['event_end_hours_13']
+                        tix_price=event_form.cleaned_data['event_ticket_price_13']
+                        performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                            ticket_price = tix_price,
+                                                                                            #date_started = event_form.cleaned_data['date_started'],
+                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            event = event_obj,
+                                                                                            place = place_obj,
+                                                                                            
+                                                                                            showtimes_start = sh_start, 
+                                                                                            showtimes_end = sh_end,                 
+                                                                                            )
+
+                
+                
                 #Case of Frequency = Daily        
                 if freq == "DAILY":
                     for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter):
@@ -185,6 +289,187 @@ def eventcreation(request):
                                                                                                 showtimes_start = sh_start, 
                                                                                                 showtimes_end = sh_end,
                                                                                                 )
+                
+                
+                #####################################
+                #Case of Frequency2 = Daily        
+                if freq1 == "DAILY":
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started1'], until=event_form.cleaned_data['date_completed1'], interval=inter1):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_4'] != None) and (event_form.cleaned_data['event_end_hours_4'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_4'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_4']
+                            tix_price=event_form.cleaned_data['event_ticket_price_4']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_5'] != None) and (event_form.cleaned_data['event_end_hours_6'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_5'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_5']
+                            tix_price=event_form.cleaned_data['event_ticket_price_5']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_6'] != None) and (event_form.cleaned_data['event_end_hours_6'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_6'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_6']
+                            tix_price=event_form.cleaned_data['event_ticket_price_6']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                
+                #Case of Frequency2 = Daily        
+                if freq2 == "DAILY":
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started2'], until=event_form.cleaned_data['date_completed2'], interval=inter2):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_7'] != None) and (event_form.cleaned_data['event_end_hours_7'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_7'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_7']
+                            tix_price=event_form.cleaned_data['event_ticket_price_7']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_8'] != None) and (event_form.cleaned_data['event_end_hours_8'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_8'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_8']
+                            tix_price=event_form.cleaned_data['event_ticket_price_8']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_9'] != None) and (event_form.cleaned_data['event_end_hours_9'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_6'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_6']
+                            tix_price=event_form.cleaned_data['event_ticket_price_6']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                
+                #Case of Frequency3 = Daily
+                
+                if freq3 == "DAILY":
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started3'], until=event_form.cleaned_data['date_completed3'], interval=inter3):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_10'] != None) and (event_form.cleaned_data['event_end_hours_10'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_10'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_10']
+                            tix_price=event_form.cleaned_data['event_ticket_price_10']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_11'] != None) and (event_form.cleaned_data['event_end_hours_11'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_11'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_11']
+                            tix_price=event_form.cleaned_data['event_ticket_price_11']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_12'] != None) and (event_form.cleaned_data['event_end_hours_12'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_12'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_12']
+                            tix_price=event_form.cleaned_data['event_ticket_price_12']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                #Case of Frequency4 = Daily
+                
+                if freq4 == "DAILY":
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started4'], until=event_form.cleaned_data['date_completed4'], interval=inter4):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_13'] != None) and (event_form.cleaned_data['event_end_hours_13'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_13'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_13']
+                            tix_price=event_form.cleaned_data['event_ticket_price_13']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_14'] != None) and (event_form.cleaned_data['event_end_hours_14'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_14'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_14']
+                            tix_price=event_form.cleaned_data['event_ticket_price_14']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_15'] != None) and (event_form.cleaned_data['event_end_hours_15'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_15'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_15']
+                            tix_price=event_form.cleaned_data['event_ticket_price_15']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+
+                
                 #Case of Frequency = Weekly            
                 if freq == "WEEKLY":
                     L=[i.week_day for i in event_form.cleaned_data['repeat_on']]
@@ -230,6 +515,189 @@ def eventcreation(request):
                                                                                                 showtimes_start = sh_start, 
                                                                                                 showtimes_end = sh_end,
                                                                                                 )
+                            
+                
+                #Case of Frequency1 = Weekly            
+                if freq1 == "WEEKLY":
+                    L=[i.week_day for i in event_form.cleaned_data['repeat_on1']]
+                    T=tuple([dicto[i] for i in L])
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started1'], until=event_form.cleaned_data['date_completed1'], interval=inter1, byweekday=T):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_4'] != None) and (event_form.cleaned_data['event_end_hours_4'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_4'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_4']
+                            tix_price=event_form.cleaned_data['event_ticket_price_4']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_5'] != None) and (event_form.cleaned_data['event_end_hours_5'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_5'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_5']
+                            tix_price=event_form.cleaned_data['event_ticket_price_5']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_6'] != None) and (event_form.cleaned_data['event_end_hours_6'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_6'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_6']
+                            tix_price=event_form.cleaned_data['event_ticket_price_6']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                #Case of Frequency2 = Weekly
+                if freq2 == "WEEKLY":
+                    L=[i.week_day for i in event_form.cleaned_data['repeat_on1']]
+                    T=tuple([dicto[i] for i in L])
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started2'], until=event_form.cleaned_data['date_completed2'], interval=inter2, byweekday=T):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_7'] != None) and (event_form.cleaned_data['event_end_hours_7'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_7'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_7']
+                            tix_price=event_form.cleaned_data['event_ticket_price_7']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_8'] != None) and (event_form.cleaned_data['event_end_hours_8'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_8'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_8']
+                            tix_price=event_form.cleaned_data['event_ticket_price_8']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_9'] != None) and (event_form.cleaned_data['event_end_hours_9'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_9'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_9']
+                            tix_price=event_form.cleaned_data['event_ticket_price_9']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                #Case of Frequency3 = Weekly            
+                if freq3 == "WEEKLY":
+                    L=[i.week_day for i in event_form.cleaned_data['repeat_on3']]
+                    T=tuple([dicto[i] for i in L])
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started3'], until=event_form.cleaned_data['date_completed3'], interval=inter3, byweekday=T):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_10'] != None) and (event_form.cleaned_data['event_end_hours_10'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_10'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_10']
+                            tix_price=event_form.cleaned_data['event_ticket_price_10']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_11'] != None) and (event_form.cleaned_data['event_end_hours_11'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_11'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_11']
+                            tix_price=event_form.cleaned_data['event_ticket_price_11']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_12'] != None) and (event_form.cleaned_data['event_end_hours_12'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_12'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_12']
+                            tix_price=event_form.cleaned_data['event_ticket_price_12']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                #Case of Frequency4 = Weekly    
+                if freq4 == "WEEKLY":
+                    L=[i.week_day for i in event_form.cleaned_data['repeat_on4']]
+                    T=tuple([dicto[i] for i in L])
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started4'], until=event_form.cleaned_data['date_completed4'], interval=inter4, byweekday=T):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_13'] != None) and (event_form.cleaned_data['event_end_hours_13'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_13'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_13']
+                            tix_price=event_form.cleaned_data['event_ticket_price_13']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_14'] != None) and (event_form.cleaned_data['event_end_hours_14'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_14'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_14']
+                            tix_price=event_form.cleaned_data['event_ticket_price_14']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_15'] != None) and (event_form.cleaned_data['event_end_hours_15'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_15'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_15']
+                            tix_price=event_form.cleaned_data['event_ticket_price_15']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                
                 #Case of Frequency = Monthly
                 if freq == "MONTHLY":
                     mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day']](int(event_form.cleaned_data['ordinal']),)
@@ -274,6 +742,180 @@ def eventcreation(request):
                                                                                                 showtimes_start = sh_start, 
                                                                                                 showtimes_end = sh_end,
                                                                                                 )
+                
+                #Case of Frequency1 = Monthly
+                if freq1 == "MONTHLY":
+                    mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day1']](int(event_form.cleaned_data['ordinal1']),)
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started1'], until=event_form.cleaned_data['date_completed1'], interval=inter1, byweekday=mo_rpt_day):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_4'] != None) and (event_form.cleaned_data['event_end_hours_4'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_4'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_4']
+                            tix_price=event_form.cleaned_data['event_ticket_price_4']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_5'] != None) and (event_form.cleaned_data['event_end_hours_5'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_5'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_5']
+                            tix_price=event_form.cleaned_data['event_ticket_price_5']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_6'] != None) and (event_form.cleaned_data['event_end_hours_6'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_6'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_6']
+                            tix_price=event_form.cleaned_data['event_ticket_price_6']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                if freq2 == "MONTHLY":
+                    mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day2']](int(event_form.cleaned_data['ordinal2']),)
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started2'], until=event_form.cleaned_data['date_completed2'], interval=inter2, byweekday=mo_rpt_day):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_7'] != None) and (event_form.cleaned_data['event_end_hours_7'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_7'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_7']
+                            tix_price=event_form.cleaned_data['event_ticket_price_7']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_8'] != None) and (event_form.cleaned_data['event_end_hours_8'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_8'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_8']
+                            tix_price=event_form.cleaned_data['event_ticket_price_8']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_9'] != None) and (event_form.cleaned_data['event_end_hours_9'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_9'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_9']
+                            tix_price=event_form.cleaned_data['event_ticket_price_9']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                if freq3 == "MONTHLY":
+                    mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day3']](int(event_form.cleaned_data['ordinal3']),)
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started3'], until=event_form.cleaned_data['date_completed3'], interval=inter3, byweekday=mo_rpt_day):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_10'] != None) and (event_form.cleaned_data['event_end_hours_10'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_10'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_10']
+                            tix_price=event_form.cleaned_data['event_ticket_price_10']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_11'] != None) and (event_form.cleaned_data['event_end_hours_11'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_11'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_11']
+                            tix_price=event_form.cleaned_data['event_ticket_price_11']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_12'] != None) and (event_form.cleaned_data['event_end_hours_12'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_12'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_12']
+                            tix_price=event_form.cleaned_data['event_ticket_price_12']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                if freq4 == "MONTHLY":
+                    mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day4']](int(event_form.cleaned_data['ordinal4']),)
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started4'], until=event_form.cleaned_data['date_completed4'], interval=inter4, byweekday=mo_rpt_day):
+                        date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
+                        #Test of Showtime 1
+                        if (event_form.cleaned_data['event_start_hours_13'] != None) and (event_form.cleaned_data['event_end_hours_13'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_13'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_13']
+                            tix_price=event_form.cleaned_data['event_ticket_price_13']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 2
+                        if (event_form.cleaned_data['event_start_hours_14'] != None) and (event_form.cleaned_data['event_end_hours_14'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_14'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_14']
+                            tix_price=event_form.cleaned_data['event_ticket_price_14']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )
+                        #Test of Showtime 3
+                        if (event_form.cleaned_data['event_start_hours_15'] != None) and (event_form.cleaned_data['event_end_hours_15'] != None):
+                            sh_start=event_form.cleaned_data['event_start_hours_15'] 
+                            sh_end=event_form.cleaned_data['event_end_hours_15']
+                            tix_price=event_form.cleaned_data['event_ticket_price_15']
+                            performance_obj, created = PerformanceDetails.objects.get_or_create(
+                                                                                                ticket_price = tix_price,
+                                                                                                date_of_performance = date_show,                  
+                                                                                                event = event_obj,
+                                                                                                place = place_obj,
+                                                                                                showtimes_start = sh_start, 
+                                                                                                showtimes_end = sh_end,
+                                                                                                )            
             
             #Open Hour Based Performance Records
             if event_form.cleaned_data['schedule_type']=='open_hour_based':
@@ -372,6 +1014,16 @@ def eventcreation(request):
                 event_obj.event_genre.add(genre.id)
             for public in event_form.cleaned_data['event_public']:
                 event_obj.event_public.add(public.id)
+                
+            for days1 in event_form.cleaned_data['repeat_on1']:
+                event_obj.by_day1.add(days1.id)
+
+            for days2 in event_form.cleaned_data['repeat_on2']:
+                event_obj.by_day2.add(days2.id)
+            for days3 in event_form.cleaned_data['repeat_on3']:
+                event_obj.by_day3.add(days3.id)
+            for days4 in event_form.cleaned_data['repeat_on4']:
+                event_obj.by_day4.add(days4.id)
             try:
                 old_event_obj.delete()
             except:

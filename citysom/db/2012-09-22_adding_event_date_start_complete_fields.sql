@@ -8,3 +8,5 @@ ALTER TABLE "event_event" ADD COLUMN  "event_completion_date3" date;
 ALTER TABLE "event_event" ADD COLUMN  "event_start_date4" date;
 ALTER TABLE "event_event" ADD COLUMN  "event_completion_date4" date;
 
+ALTER TABLE "event_event" ADD COLUMN  "event_start_date5" date;
+ALTER TABLE "event_event" ADD COLUMN  "event_completion_date5" date;

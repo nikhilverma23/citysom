@@ -23,6 +23,8 @@ class EventForm(forms.Form):
         self.fields['date_completed3'].widget.attrs['class'] = "datepicker"
         self.fields['date_started4'].widget.attrs['class'] = "datepicker"
         self.fields['date_completed4'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started5'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed5'].widget.attrs['class'] = "datepicker"
         categories = Category.objects.all()
         self.fields['category'].choices = [(c.pk,c.type) for c in categories]
         self.fields['category'].widget.attrs['class'] = "category_class"
@@ -55,6 +57,9 @@ class EventForm(forms.Form):
         self.fields['event_start_hours_10'].widget.attrs['class'] = "timepicker"
         self.fields['event_start_hours_11'].widget.attrs['class'] = "timepicker"
         self.fields['event_start_hours_12'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_13'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_14'].widget.attrs['class'] = "timepicker"
+        self.fields['event_start_hours_15'].widget.attrs['class'] = "timepicker"
         
         self.fields['event_end_hours_1'].widget.attrs['class'] = "timepicker"
         self.fields['event_end_hours_2'].widget.attrs['class'] = "timepicker"
@@ -68,6 +73,9 @@ class EventForm(forms.Form):
         self.fields['event_end_hours_10'].widget.attrs['class'] = "timepicker"
         self.fields['event_end_hours_11'].widget.attrs['class'] = "timepicker"
         self.fields['event_end_hours_12'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_13'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_14'].widget.attrs['class'] = "timepicker"
+        self.fields['event_end_hours_15'].widget.attrs['class'] = "timepicker"
         
         self.fields['frequency'].widget.attrs['class'] = "frequency_class"
         self.fields['frequency1'].widget.attrs['class'] = "frequency_class"
@@ -100,6 +108,10 @@ class EventForm(forms.Form):
     date_started4 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
     date_completed4 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    
+    date_started5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+
+    date_completed5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
         
     event_duration = forms.DateField(required=False)

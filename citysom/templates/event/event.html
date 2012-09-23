@@ -201,7 +201,7 @@
 												<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
 												{% endif %}
 								<b>Repeat every:</b>
-								{{eventform.interval}}
+								{{eventform.interval}} days
 								<b id="frequency_label"></b> 
 									</li>
 									<li class="performance_hours_div_wonly" id="days_repeat">
@@ -331,23 +331,23 @@
 						<div id="performance_hours_div_parent_2" style="display: none;">
 							<div class="performance_hours_div">
 								
-								<li class="performance_hours_div">
 								<li class="formlist1">
-                                		<div class="formlist1_div">
-                                		{% if eventform.date_started1.errors %}
-								    		<p class="error">{{ eventform.date_started1.errors|join:", "  }}</p>
-								  		{% endif %}
-                                   		<b>Event start date2:</b>
-                                   		{{eventform.date_started1}}	
-                                		</div>
-                                		<div class="formlist1_div" style="margin-right: 0px;">
-                                		{% if eventform.date_completed1.errors %}
-								    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
-								  		{% endif %}
-                                    	<b>Event end date2:</b>
-                                    	{{eventform.date_completed1}} 	
-                                		</div>
-                                	</li>
+                            		<div class="formlist1_div style="margin-right: 0px;">
+                            		{% if eventform.date_started1.errors %}
+							    		<p class="error">{{ eventform.date_started1.errors|join:", "  }}</p>
+							  		{% endif %}
+                               		<b>Event start date2:</b>
+                               		{{eventform.date_started1}}	
+                            		</div>
+                            		<div class="formlist1_div">
+                            		{% if eventform.date_completed1.errors %}
+							    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
+							  		{% endif %}
+                                	<b>Event end date2:</b>
+                                	{{eventform.date_completed1}} 	
+                            		</div>
+                            	</li>
+								<li class="performance_hours_div">
 								
 								{% if eventform.frequency1.errors %}
 												<p class="error">{{ eventform.frequency1.errors|join:", "  }}</p>
@@ -489,24 +489,24 @@
 						</div>
 						<div id="performance_hours_div_parent_3" style="display: none;">
 							<div class="performance_hours_div">
-								<li class="performance_hours_div">
+								
 								<li class="formlist1">
-                                		<div class="formlist1_div">
+                                		<div class="formlist1_div style="margin-right: 0px;">
                                 		{% if eventform.date_started2.errors %}
 								    		<p class="error">{{ eventform.date_started2.errors|join:", "  }}</p>
 								  		{% endif %}
                                    		<b>Event start date3:</b>
                                    		{{eventform.date_started2}}	
                                 		</div>
-                                		<div class="formlist1_div" style="margin-right: 0px;">
+                                		<div class="formlist1_div">
                                 		{% if eventform.date_completed1.errors %}
 								    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
 								  		{% endif %}
                                     	<b>Event end date3:</b>
                                     	{{eventform.date_completed2}} 	
                                 		</div>
-                                	</li>
-								
+                                </li>
+								<li class="performance_hours_div">
 								{% if eventform.frequency2.errors %}
 												<p class="error">{{ eventform.frequency2.errors|join:", "  }}</p>
 												{% endif %}
@@ -647,24 +647,24 @@
 						</div>
 						<div id="performance_hours_div_parent_4" style="display: none;">
 							<div class="performance_hours_div">
-								<li class="performance_hours_div">
 								<li class="formlist1">
-                                		<div class="formlist1_div">
+                                		<div class="formlist1_div style="margin-right: 0px;">
                                 		{% if eventform.date_started3.errors %}
 								    		<p class="error">{{ eventform.date_started3.errors|join:", "  }}</p>
 								  		{% endif %}
                                    		<b>Event start date4:</b>
                                    		{{eventform.date_started3}}	
                                 		</div>
-                                		<div class="formlist1_div" style="margin-right: 0px;">
+                                		<div class="formlist1_div">
                                 		{% if eventform.date_completed3.errors %}
 								    		<p class="error">{{ eventform.date_completed3.errors|join:", "  }}</p>
 								  		{% endif %}
                                     	<b>Event end date4:</b>
                                     	{{eventform.date_completed3}} 	
                                 		</div>
-                                	</li>
+                                </li>
 								
+								<li class="performance_hours_div">
 								
 								{% if eventform.frequency3.errors %}
 												<p class="error">{{ eventform.frequency3.errors|join:", "  }}</p>
@@ -807,29 +807,29 @@
 						<div id="performance_hours_div_parent_5" style="display: none;">
 							<div class="performance_hours_div">
 								
-								<li class="performance_hours_div">
 								<li class="formlist1">
-                                		<div class="formlist1_div">
+                                		<div class="formlist1_div style="margin-right: 0px;">
                                 		{% if eventform.date_started4.errors %}
 								    		<p class="error">{{ eventform.date_started4.errors|join:", "  }}</p>
 								  		{% endif %}
                                    		<b>Event start date5:</b>
                                    		{{eventform.date_started4}}	
                                 		</div>
-                                		<div class="formlist1_div" style="margin-right: 0px;">
+                                		<div class="formlist1_div">
                                 		{% if eventform.date_completed4.errors %}
 								    		<p class="error">{{ eventform.date_completed4.errors|join:", "  }}</p>
 								  		{% endif %}
                                     	<b>Event end date5:</b>
                                     	{{eventform.date_completed4}} 	
                                 		</div>
-                                	</li>
+                                </li>
+								<li class="performance_hours_div">
 								
 								{% if eventform.frequency4.errors %}
 												<p class="error">{{ eventform.frequency4.errors|join:", "  }}</p>
 												{% endif %}
 								<b style="margin-left: 20px;">Performance repeats:</b>
-								{{eventform.frequency}} 
+								{{eventform.frequency4}} 
 									</li>
 									<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval4.errors %}
