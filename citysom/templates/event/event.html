@@ -806,7 +806,25 @@
 						</div>
 						<div id="performance_hours_div_parent_5" style="display: none;">
 							<div class="performance_hours_div">
+								
 								<li class="performance_hours_div">
+								<li class="formlist1">
+                                		<div class="formlist1_div">
+                                		{% if eventform.date_started4.errors %}
+								    		<p class="error">{{ eventform.date_started4.errors|join:", "  }}</p>
+								  		{% endif %}
+                                   		<b>Event start date5:</b>
+                                   		{{eventform.date_started4}}	
+                                		</div>
+                                		<div class="formlist1_div">
+                                		{% if eventform.date_completed4.errors %}
+								    		<p class="error">{{ eventform.date_completed4.errors|join:", "  }}</p>
+								  		{% endif %}
+                                    	<b>Event end date5:</b>
+                                    	{{eventform.date_completed4}} 	
+                                		</div>
+                                	</li>
+								
 								{% if eventform.frequency4.errors %}
 												<p class="error">{{ eventform.frequency4.errors|join:", "  }}</p>
 												{% endif %}
