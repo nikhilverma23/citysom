@@ -101,7 +101,19 @@ def eventcreation(request):
                                                              by_month = event_form.cleaned_data['ordinal'],
                                                              event_start_date = event_form.cleaned_data['date_started'],
                                                              event_completion_date = event_form.cleaned_data['date_completed'],
+                                                             event_start_date1 = event_form.cleaned_data['date_started1'],
+                                                             event_completion_date1 = event_form.cleaned_data['date_completed1'],
                                                              
+                                                             event_start_date2 = event_form.cleaned_data['date_started2'],
+                                                             event_completion_date2 = event_form.cleaned_data['date_completed2'],
+                                                             
+                                                             event_start_date3 = event_form.cleaned_data['date_started3'],
+                                                             event_completion_date3 = event_form.cleaned_data['date_completed3'],
+                                                             
+                                                             event_start_date4 = event_form.cleaned_data['date_started4'],
+                                                             event_completion_date4 = event_form.cleaned_data['date_completed4'],
+                                                             #event_start_date5 = event_form.cleaned_data['date_started5'],
+                                                             #event_completion_date5 = event_form.cleaned_data['date_completed5'],
                                                              frequency1 = event_form.cleaned_data['frequency1'],
                                                              interval1 = event_form.cleaned_data['interval1'],
                                                              by_monthday1 = event_form.cleaned_data['ordinal_day1'],
@@ -157,7 +169,6 @@ def eventcreation(request):
             #BUILD MULTIPLE SHOWTIMES FUNCTIONALITY
             
             #Performance Based events Performance records           
-            import pdb;pdb.set_trace();
             if event_form.cleaned_data['schedule_type']=='performance_based':
                 #Case of Frequency = Once
                 if freq == "ONCE":
@@ -1052,6 +1063,17 @@ def eventcreation(request):
             event_form.fields['date_started'].initial = event_obj.event_start_date
             event_form.fields['date_completed'].initial = event_obj.event_completion_date
             
+            event_form.fields['date_started1'].initial = event_obj.event_start_date1
+            event_form.fields['date_completed1'].initial = event_obj.event_completion_date1
+            event_form.fields['date_started2'].initial = event_obj.event_start_date2
+            event_form.fields['date_completed2'].initial = event_obj.event_completion_date2
+            event_form.fields['date_started3'].initial = event_obj.event_start_date3
+            event_form.fields['date_completed3'].initial = event_obj.event_completion_date3
+            event_form.fields['date_started4'].initial = event_obj.event_start_date4
+            event_form.fields['date_completed4'].initial = event_obj.event_completion_date4
+            #event_form.fields['date_started5'].initial = event_obj.event_start_date5
+            #event_form.fields['date_completed5'].initial = event_obj.event_completion_date5
+            
             # For Performance Based
             if event_form.fields['schedule_type'].initial == "performance_based":
                 # ----1
@@ -1079,10 +1101,122 @@ def eventcreation(request):
                         event_form.fields['event_ticket_price_3'].initial = performance_obj[2].get('ticket_price')
                 except:
                     pass
+                print performance_obj[3].get('showtimes_start')
+                try:
+                    if performance_obj[3].get('showtimes_start'):
+                        event_form.fields['event_start_hours_4'].initial = performance_obj[3].get('showtimes_start')
+                        event_form.fields['event_end_hours_4'].initial = performance_obj[3].get('showtimes_end')
+                        event_form.fields['event_ticket_price_4'].initial = performance_obj[3].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[4].get('showtimes_start'):
+                        event_form.fields['event_start_hours_5'].initial = performance_obj[4].get('showtimes_start')
+                        event_form.fields['event_end_hours_5'].initial = performance_obj[4].get('showtimes_end')
+                        event_form.fields['event_ticket_price_5'].initial = performance_obj[4].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[5].get('showtimes_start'):
+                        event_form.fields['event_start_hours_6'].initial = performance_obj[5].get('showtimes_start')
+                        event_form.fields['event_end_hours_6'].initial = performance_obj[5].get('showtimes_end')
+                        event_form.fields['event_ticket_price_6'].initial = performance_obj[5].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[6].get('showtimes_start'):
+                        event_form.fields['event_start_hours_7'].initial = performance_obj[6].get('showtimes_start')
+                        event_form.fields['event_end_hours_7'].initial = performance_obj[6].get('showtimes_end')
+                        event_form.fields['event_ticket_price_7'].initial = performance_obj[6].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[7].get('showtimes_start'):
+                        event_form.fields['event_start_hours_8'].initial = performance_obj[7].get('showtimes_start')
+                        event_form.fields['event_end_hours_8'].initial = performance_obj[7].get('showtimes_end')
+                        event_form.fields['event_ticket_price_8'].initial = performance_obj[7].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[8].get('showtimes_start'):
+                        event_form.fields['event_start_hours_9'].initial = performance_obj[8].get('showtimes_start')
+                        event_form.fields['event_end_hours_9'].initial = performance_obj[8].get('showtimes_end')
+                        event_form.fields['event_ticket_price_9'].initial = performance_obj[8].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[9].get('showtimes_start'):
+                        event_form.fields['event_start_hours_10'].initial = performance_obj[9].get('showtimes_start')
+                        event_form.fields['event_end_hours_10'].initial = performance_obj[9].get('showtimes_end')
+                        event_form.fields['event_ticket_price_10'].initial = performance_obj[9].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[10].get('showtimes_start'):
+                        event_form.fields['event_start_hours_11'].initial = performance_obj[10].get('showtimes_start')
+                        event_form.fields['event_end_hours_11'].initial = performance_obj[10].get('showtimes_end')
+                        event_form.fields['event_ticket_price_11'].initial = performance_obj[10].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[11].get('showtimes_start'):
+                        event_form.fields['event_start_hours_12'].initial = performance_obj[11].get('showtimes_start')
+                        event_form.fields['event_end_hours_12'].initial = performance_obj[11].get('showtimes_end')
+                        event_form.fields['event_ticket_price_12'].initial = performance_obj[11].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[12].get('showtimes_start'):
+                        event_form.fields['event_start_hours_13'].initial = performance_obj[12].get('showtimes_start')
+                        event_form.fields['event_end_hours_13'].initial = performance_obj[12].get('showtimes_end')
+                        event_form.fields['event_ticket_price_13'].initial = performance_obj[12].get('ticket_price')
+                except:
+                    pass
+                
+                try:
+                    if performance_obj[13].get('showtimes_start'):
+                        event_form.fields['event_start_hours_14'].initial = performance_obj[13].get('showtimes_start')
+                        event_form.fields['event_end_hours_14'].initial = performance_obj[13].get('showtimes_end')
+                        event_form.fields['event_ticket_price_14'].initial = performance_obj[13].get('ticket_price')
+                except:
+                    pass
+                try:
+                    if performance_obj[14].get('showtimes_start'):
+                        event_form.fields['event_start_hours_15'].initial = performance_obj[14].get('showtimes_start')
+                        event_form.fields['event_end_hours_15'].initial = performance_obj[14].get('showtimes_end')
+                        event_form.fields['event_ticket_price_15'].initial = performance_obj[14].get('ticket_price')
+                except:
+                    pass
+                
                 
                 event_form.fields['frequency'].initial = event_obj.frequency
                 event_form.fields['interval'].initial = event_obj.interval
                 event_form.fields['repeat_on'].initial = [days for days in event_obj.by_day.all()]
+                
+                event_form.fields['frequency1'].initial = event_obj.frequency1
+                event_form.fields['interval1'].initial = event_obj.interval1
+                event_form.fields['repeat_on1'].initial = [days1 for days1 in event_obj.by_day1.all()]
+                
+                event_form.fields['frequency2'].initial = event_obj.frequency2
+                event_form.fields['interval2'].initial = event_obj.interval2
+                event_form.fields['repeat_on2'].initial = [days2 for days2 in event_obj.by_day2.all()]
+                
+                event_form.fields['frequency3'].initial = event_obj.frequency3
+                event_form.fields['interval3'].initial = event_obj.interval3
+                event_form.fields['repeat_on3'].initial = [days3 for days3 in event_obj.by_day3.all()]
+                
+                event_form.fields['frequency4'].initial = event_obj.frequency4
+                event_form.fields['interval4'].initial = event_obj.interval4
+                event_form.fields['repeat_on4'].initial = [days4 for days4 in event_obj.by_day4.all()]
                 
             # For OpenHour Based
             elif event_form.fields['schedule_type'].initial == "open_hour_based":

@@ -163,14 +163,14 @@ class Event(models.Model):
     # When the event was completed
     event_completion_date3 = models.DateField(null=True, blank=True)
     
-    event_start_date4 = models.DateField(help_text="when the event was started3"\
+    event_start_date4 = models.DateField(help_text="when the event was started4"\
                                         ,null=True,\
                                          blank=True
                                          )
     # When the event was completed
     event_completion_date4 = models.DateField(null=True, blank=True)
     
-    event_start_date5 = models.DateField(help_text="when the event was started3"\
+    event_start_date5 = models.DateField(help_text="when the event was started5"\
                                         ,null=True,\
                                          blank=True
                                          )
