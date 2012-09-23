@@ -141,6 +141,36 @@ class Event(models.Model):
                                          )
     # When the event was completed
     event_completion_date = models.DateField(null=True, blank=True)
+    
+    event_start_date1 = models.DateField(help_text="when the event was started1"\
+                                        ,null=True,\
+                                         blank=True
+                                         )
+    # When the event was completed
+    event_completion_date1 = models.DateField(null=True, blank=True)
+    
+    event_start_date2 = models.DateField(help_text="when the event was started2"\
+                                        ,null=True,\
+                                         blank=True
+                                         )
+    # When the event was completed
+    event_completion_date2 = models.DateField(null=True, blank=True)
+    
+    event_start_date3 = models.DateField(help_text="when the event was started3"\
+                                        ,null=True,\
+                                         blank=True
+                                         )
+    # When the event was completed
+    event_completion_date3 = models.DateField(null=True, blank=True)
+    
+    event_start_date4 = models.DateField(help_text="when the event was started3"\
+                                        ,null=True,\
+                                         blank=True
+                                         )
+    # When the event was completed
+    event_completion_date4 = models.DateField(null=True, blank=True)
+    
+    
     frequency = models.CharField(max_length=80,\
                                  blank=True,null=True,\
                                  help_text="weekly,monthly etc"
