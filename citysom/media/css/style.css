@@ -1795,3 +1795,4 @@ li.misc_pres{position: relative;}
 div.like_message{background: #FD8F53; color: #FFFFFF; font-weight: bold; padding: 5px; position: absolute; bottom: 0px; left: 0px; font-size: 0.5em;}
 div.like_div a span{display: none;}
 div.like_div a:hover span{display: block; padding: 5px; background:#FD8F53 ; position: absolute; top: 24px; right: 0px; color: #FFFFFF; text-decoration: none; font-size: 0.5em; width: 100px; text-align: center; border-radius: 5px; font-weight: bold;}
+div.div_orange_border{border: 1px solid #FF6600; border-radius: 15px; margin-bottom: 10px; padding-bottom: 10px; padding-left: 10px;}
