@@ -1287,6 +1287,7 @@ $("#id_event_poster_file").change(function(){
 $("#id_schedule_type_1").click(function(){
 	if($(this).is(":checked"))
 	{
+		$("#performance_hours_div_parent_1").hide();
 		$( ".open_hours_div" ).show();
 		$( ".performance_hours_div" ).hide();
 		$(".performance_hours_div_wonly").hide();
@@ -1297,6 +1298,8 @@ $("#id_schedule_type_1").click(function(){
 $("#id_schedule_type_0").click(function(){
 	if($(this).is(":checked"))
 	{
+		$("#performance_hours_div_parent_1").show();
+		$( ".performance_hours_div" ).show();
 		$( ".performance_hours_div" ).show();
 		$( "#add_new_performance_div" ).show();
 		$(".performance_hours_div_wonly").hide();
@@ -1314,11 +1317,12 @@ $(".performance_hours_div_dmwonly").hide();
 
 
 $( ".performance_hours_div" ).hide();
-
+$("#performance_hours_div_parent_1").hide();
 $( ".performance_hours_div_wmonly" ).hide();
 
 if($("#id_schedule_type_1").is(":checked"))
 {
+	$("#performance_hours_div_parent_1").hide();
 	$( ".open_hours_div" ).show();
 	$( ".performance_hours_div" ).hide();
 	$(".performance_hours_div_wonly").hide();
@@ -1327,6 +1331,7 @@ if($("#id_schedule_type_1").is(":checked"))
 }
 if($("#id_schedule_type_0").is(":checked"))
 {
+	$("#performance_hours_div_parent_1").show();
 	$( ".performance_hours_div" ).show();
 	$( "#add_new_performance_div" ).show();
 	$(".performance_hours_div_wonly").hide();
