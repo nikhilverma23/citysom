@@ -340,7 +340,7 @@
 						<div id="performance_hours_div_parent_2" style="display: none;">
 							<div class="performance_hours_div">
 								<li class="formlist1">
-                            		<div class="formlist1_div style="margin-right: 0px;">
+                            		<div class="formlist1_div" style="margin-right: 0px;">
 	                            		{% if eventform.date_started1.errors %}
 								    		<p class="error">{{ eventform.date_started1.errors|join:", "  }}</p>
 								  		{% endif %}
@@ -492,7 +492,7 @@
 						<div id="performance_hours_div_parent_3" style="display: none;">
 							<div class="performance_hours_div">
 								<li class="formlist1">
-                                		<div class="formlist1_div style="margin-right: 0px;">
+                                		<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started2.errors %}
 								    		<p class="error">{{ eventform.date_started2.errors|join:", "  }}</p>
 								  		{% endif %}
@@ -646,7 +646,7 @@
 						<div id="performance_hours_div_parent_4" style="display: none;">
 							<div class="performance_hours_div">
 								<li class="formlist1">
-                                	<div class="formlist1_div style="margin-right: 0px;">
+                                	<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started3.errors %}
 								    		<p class="error">{{ eventform.date_started3.errors|join:", "  }}</p>
 								  		{% endif %}
@@ -801,7 +801,7 @@
 						<div id="performance_hours_div_parent_5" style="display: none;">
 							<div class="performance_hours_div">
 								<li class="formlist1">
-                                	<div class="formlist1_div style="margin-right: 0px;">
+                                	<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started4.errors %}
 								    		<p class="error">{{ eventform.date_started4.errors|join:", "  }}</p>
 								  		{% endif %}
@@ -1499,10 +1499,11 @@ $(".chk_add_shw_1").click(function(){
 
 if($("#id_event_start_hours_2").val())
 {
-	$(".chk_add_shw_1").attr("checked","checked");
-	$('.showtimes_2').show();
-	$('.add_shw_2').show();
-	$('.showtimes_3').hide();
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_1").attr("checked","checked");
+	parent.children('.showtimes_2').show();
+	parent.children('.add_shw_2').show();
+	parent.children('.showtimes_3').hide();
 }
 
 
@@ -1520,10 +1521,83 @@ $(".chk_add_shw_2").click(function(){
 
 if($("#id_event_start_hours_3").val())
 {
-	$(".chk_add_shw_2").attr("checked","checked");
-	$('.showtimes_3').show();
-	$('.add_shw_3').show();
-	$('.showtimes_4').hide();
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_2").attr("checked","checked");
+	parent.children('.showtimes_3').show();
+	parent.children('.add_shw_3').show();
+	parent.children('.showtimes_4').hide();
+}
+
+if($("#id_event_start_hours_5").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_1").attr("checked","checked");
+	parent.children('.showtimes_2').show();
+	parent.children('.add_shw_2').show();
+	parent.children('.showtimes_3').hide();
+}
+
+if($("#id_event_start_hours_6").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_2").attr("checked","checked");
+	parent.children('.showtimes_3').show();
+	parent.children('.add_shw_3').show();
+	parent.children('.showtimes_4').hide();
+}
+
+if($("#id_event_start_hours_8").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_1").attr("checked","checked");
+	parent.children('.showtimes_2').show();
+	parent.children('.add_shw_2').show();
+	parent.children('.showtimes_3').hide();
+}
+
+if($("#id_event_start_hours_9").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_2").attr("checked","checked");
+	parent.children('.showtimes_3').show();
+	parent.children('.add_shw_3').show();
+	parent.children('.showtimes_4').hide();
+}
+
+if($("#id_event_start_hours_11").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_1").attr("checked","checked");
+	parent.children('.showtimes_2').show();
+	parent.children('.add_shw_2').show();
+	parent.children('.showtimes_3').hide();
+}
+
+if($("#id_event_start_hours_12").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_2").attr("checked","checked");
+	parent.children('.showtimes_3').show();
+	parent.children('.add_shw_3').show();
+	parent.children('.showtimes_4').hide();
+}
+
+if($("#id_event_start_hours_14").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_1").attr("checked","checked");
+	parent.children('.showtimes_2').show();
+	parent.children('.add_shw_2').show();
+	parent.children('.showtimes_3').hide();
+}
+
+if($("#id_event_start_hours_15").val())
+{
+	parent = $(this).parent().parent().parent().parent();
+	parent.children(".chk_add_shw_2").attr("checked","checked");
+	parent.children('.showtimes_3').show();
+	parent.children('.add_shw_3').show();
+	parent.children('.showtimes_4').hide();
 }
 
 var performance_div_counter = 1;
@@ -1535,6 +1609,22 @@ $("button#add_new_performance_link").click(function(){
 		$("div#add_new_performance_div").hide();
 		
 });
+if($("#id_date_started1").val() != "")
+{
+	$("div#performance_hours_div_parent_2").show();
+}
+if($("#id_date_started2").val() != "")
+{
+	$("div#performance_hours_div_parent_3").show();
+}
+if($("#id_date_started3").val() != "")
+{
+	$("div#performance_hours_div_parent_4").show();
+}
+if($("#id_date_started4").val() != "")
+{
+	$("div#performance_hours_div_parent_5").show();
+}
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script>
