@@ -112,8 +112,8 @@ def eventcreation(request):
                                                              
                                                              event_start_date4 = event_form.cleaned_data['date_started4'],
                                                              event_completion_date4 = event_form.cleaned_data['date_completed4'],
-                                                             #event_start_date5 = event_form.cleaned_data['date_started5'],
-                                                             #event_completion_date5 = event_form.cleaned_data['date_completed5'],
+                                                             event_start_date5 = event_form.cleaned_data['date_started5'],
+                                                             event_completion_date5 = event_form.cleaned_data['date_completed5'],
                                                              frequency1 = event_form.cleaned_data['frequency1'],
                                                              interval1 = event_form.cleaned_data['interval1'],
                                                              by_monthday1 = event_form.cleaned_data['ordinal_day1'],
@@ -259,7 +259,7 @@ def eventcreation(request):
                 
                 #Case of Frequency = Daily        
                 if freq == "DAILY":
-                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter):
+                    for ev in rrule.rrule(3, dtstart=event_form.cleaned_data['date_started5'], until=event_form.cleaned_data['date_completed5'], interval=inter):
                         date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
                         #Test of Showtime 1
                         if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
@@ -485,7 +485,7 @@ def eventcreation(request):
                 if freq == "WEEKLY":
                     L=[i.week_day for i in event_form.cleaned_data['repeat_on']]
                     T=tuple([dicto[i] for i in L])
-                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=T):
+                    for ev in rrule.rrule(2, dtstart=event_form.cleaned_data['date_started5'], until=event_form.cleaned_data['date_completed5'], interval=inter, byweekday=T):
                         date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
                         #Test of Showtime 1
                         if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
@@ -712,7 +712,7 @@ def eventcreation(request):
                 #Case of Frequency = Monthly
                 if freq == "MONTHLY":
                     mo_rpt_day=dicto[event_form.cleaned_data['ordinal_day']](int(event_form.cleaned_data['ordinal']),)
-                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started'], until=event_form.cleaned_data['date_completed'], interval=inter, byweekday=mo_rpt_day):
+                    for ev in rrule.rrule(1, dtstart=event_form.cleaned_data['date_started5'], until=event_form.cleaned_data['date_completed5'], interval=inter, byweekday=mo_rpt_day):
                         date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
                         #Test of Showtime 1
                         if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
@@ -1053,7 +1053,6 @@ def eventcreation(request):
             event_obj = Event.objects.get(id=id)
             performance_obj = Event.objects.get(id=id).performancedetails_set.values("showtimes_start","showtimes_end","ticket_price").annotate(Count('showtimes_start'), Count('showtimes_end'), Count('ticket_price'))
             event_form.fields['title'].initial = event_obj.title
-            #eventposter_form.fields['event_poster_file'].initial = event_obj.event_poster
             event_form.fields['eventwebsite'].initial = event_obj.eventwebsite
             event_form.fields['description'].initial = event_obj.description
             event_form.fields['venue_name'].initial = event_obj.location
@@ -1101,7 +1100,7 @@ def eventcreation(request):
                         event_form.fields['event_ticket_price_3'].initial = performance_obj[2].get('ticket_price')
                 except:
                     pass
-                print performance_obj[3].get('showtimes_start')
+                
                 try:
                     if performance_obj[3].get('showtimes_start'):
                         event_form.fields['event_start_hours_4'].initial = performance_obj[3].get('showtimes_start')
@@ -1201,22 +1200,32 @@ def eventcreation(request):
                 event_form.fields['frequency'].initial = event_obj.frequency
                 event_form.fields['interval'].initial = event_obj.interval
                 event_form.fields['repeat_on'].initial = [days for days in event_obj.by_day.all()]
+                event_form.fields['ordinal_day'].initial = event_obj.by_monthday
+                event_form.fields['ordinal'].initial = event_obj.by_month
                 
                 event_form.fields['frequency1'].initial = event_obj.frequency1
                 event_form.fields['interval1'].initial = event_obj.interval1
                 event_form.fields['repeat_on1'].initial = [days1 for days1 in event_obj.by_day1.all()]
+                event_form.fields['ordinal_day1'].initial = event_obj.by_monthday1
+                event_form.fields['ordinal1'].initial = event_obj.by_month1
                 
                 event_form.fields['frequency2'].initial = event_obj.frequency2
                 event_form.fields['interval2'].initial = event_obj.interval2
                 event_form.fields['repeat_on2'].initial = [days2 for days2 in event_obj.by_day2.all()]
+                event_form.fields['ordinal_day2'].initial = event_obj.by_monthday2
+                event_form.fields['ordinal2'].initial = event_obj.by_month2
                 
                 event_form.fields['frequency3'].initial = event_obj.frequency3
                 event_form.fields['interval3'].initial = event_obj.interval3
                 event_form.fields['repeat_on3'].initial = [days3 for days3 in event_obj.by_day3.all()]
+                event_form.fields['ordinal_day3'].initial = event_obj.by_monthday3
+                event_form.fields['ordinal3'].initial = event_obj.by_month3
                 
                 event_form.fields['frequency4'].initial = event_obj.frequency4
                 event_form.fields['interval4'].initial = event_obj.interval4
                 event_form.fields['repeat_on4'].initial = [days4 for days4 in event_obj.by_day4.all()]
+                event_form.fields['ordinal_day4'].initial = event_obj.by_monthday4
+                event_form.fields['ordinal4'].initial = event_obj.by_month4
                 
             # For OpenHour Based
             elif event_form.fields['schedule_type'].initial == "open_hour_based":
