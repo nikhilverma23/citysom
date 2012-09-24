@@ -186,7 +186,7 @@
                              		<div id="performance_hours_div_parent_1">
 										<div class="performance_hours_div">
 											<li class="formlist1">
-		                                		<div class="formlist1_div">
+		                                		<div class="formlist1_div" style="margin-right: 0px;">
 		                                		{% if eventform.date_started5.errors %}
 										    		<p class="error">{{ eventform.date_started5.errors|join:", "  }}</p>
 										  		{% endif %}
@@ -488,6 +488,9 @@
 										</li>
 								</fieldset>	
 							</div>
+							<div>
+								<button value="Remove" class="uploader remove_performance" type="button">Remove</button>
+							</div>
 						</div>
 						<div id="performance_hours_div_parent_3" style="display: none;">
 							<div class="performance_hours_div">
@@ -641,6 +644,9 @@
 											</div>
 										</li>
 								</fieldset>	
+							</div>
+							<div>
+								<button value="Remove" class="uploader remove_performance" type="button">Remove</button>
 							</div>
 						</div>
 						<div id="performance_hours_div_parent_4" style="display: none;">
@@ -797,6 +803,9 @@
 										</li>
 								</fieldset>	
 							</div>
+							<div>
+								<button value="Remove" class="uploader remove_performance" type="button">Remove</button>
+							</div>
 						</div>
 						<div id="performance_hours_div_parent_5" style="display: none;">
 							<div class="performance_hours_div">
@@ -950,6 +959,9 @@
 										</div>
 									</li>
 								</fieldset>	
+							</div>
+							<div>
+								<button value="Remove" class="uploader remove_performance" type="button">Remove</button>
 							</div>
 						</div>
 						<div id="add_new_performance_div" style="display: none;">
@@ -1625,6 +1637,9 @@ if($("#id_date_started4").val() != "")
 {
 	$("div#performance_hours_div_parent_5").show();
 }
+$(".remove_performance").click(funtion(){
+	$(this).parent().parent().hide();
+});
 </script>
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 <script>
