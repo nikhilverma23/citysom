@@ -1070,9 +1070,8 @@ def eventcreation(request):
             event_form.fields['date_completed3'].initial = event_obj.event_completion_date3
             event_form.fields['date_started4'].initial = event_obj.event_start_date4
             event_form.fields['date_completed4'].initial = event_obj.event_completion_date4
-            #event_form.fields['date_started5'].initial = event_obj.event_start_date5
-            #event_form.fields['date_completed5'].initial = event_obj.event_completion_date5
-            
+            event_form.fields['date_started5'].initial = event_obj.event_start_date5
+            event_form.fields['date_completed5'].initial = event_obj.event_completion_date5
             # For Performance Based
             if event_form.fields['schedule_type'].initial == "performance_based":
                 # ----1
@@ -1500,7 +1499,7 @@ def event_list(request):
                           context_instance=RequestContext(request)
                           ) 
     else:
-        import pdb; pdb.set_trace();
+        
         
         return render_to_response("event/event_list.html",
                            {
