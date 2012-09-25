@@ -93,21 +93,21 @@ class EventForm(forms.Form):
 
     date_completed = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_started1 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_started1 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_completed1 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed1 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
     
-    date_started2 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_started2 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_completed2 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed2 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_started3 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_started3 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_completed3 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed3 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_started4 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_started4 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
-    date_completed4 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed4 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
     
     date_started5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))#
 

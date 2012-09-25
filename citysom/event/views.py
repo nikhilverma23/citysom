@@ -32,7 +32,7 @@ def server_error(request, template_name='500.html'):
 
 
 def eventcreation(request):
-    
+#    import pdb; pdb.set_trace();
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
@@ -1263,7 +1263,7 @@ def eventcreation(request):
                                'eventform':event_form,
                                'eventform_poster':eventposter_form,
                                'frequency_range':frequency_range,
-                               'event_poster':event_poster
+                               'event_poster': event_poster
                                },
                               context_instance=RequestContext(request)
                               )
@@ -1495,14 +1495,18 @@ def event_list(request):
                            "events_fai":events_fai,
                            "events_fun":events_fun,
                            "events_par":events_par,
+                           "date_start":event_date,
                            },
                           context_instance=RequestContext(request)
                           ) 
     else:
+        import pdb; pdb.set_trace();
+        
         return render_to_response("event/event_list.html",
                            {
                            "request":request,
                            "events":events,
+                           "date_end":event_date_end,
                            },
                           context_instance=RequestContext(request)
                           )
