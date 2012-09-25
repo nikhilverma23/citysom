@@ -109,14 +109,14 @@ class EventForm(forms.Form):
 
     date_completed4 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
     
-    date_started5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))#
+    date_started5 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))#
 
-    date_completed5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed5 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
         
     event_duration = forms.DateField(required=False)
  
-    event_poster = forms.CharField(required=False)
+    event_poster = forms.CharField(required=True)
     
     event_ticket_price = forms.DecimalField(label="Price of a full-price ticket",\
                                     max_digits=12,\
