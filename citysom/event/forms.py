@@ -23,8 +23,8 @@ class EventForm(forms.Form):
         self.fields['date_completed3'].widget.attrs['class'] = "datepicker"
         self.fields['date_started4'].widget.attrs['class'] = "datepicker"
         self.fields['date_completed4'].widget.attrs['class'] = "datepicker"
-        #self.fields['date_started5'].widget.attrs['class'] = "datepicker"
-        #self.fields['date_completed5'].widget.attrs['class'] = "datepicker"
+        self.fields['date_started5'].widget.attrs['class'] = "datepicker"
+        self.fields['date_completed5'].widget.attrs['class'] = "datepicker"
         categories = Category.objects.all()
         self.fields['category'].choices = [(c.pk,c.type) for c in categories]
         self.fields['category'].widget.attrs['class'] = "category_class"
@@ -109,9 +109,9 @@ class EventForm(forms.Form):
 
     date_completed4 = forms.DateField(required=False, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
     
-    #date_started5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_started5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))#
 
-    #date_completed5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
+    date_completed5 = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'yyyy-mm-dd'}))
 
         
     event_duration = forms.DateField(required=False)
