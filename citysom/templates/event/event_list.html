@@ -1,12 +1,36 @@
 <ul>
  	{% for event in events %}
 		<li class="misc_pres">
-			<a href="/event/details?id={{event.id}}">
+			<div class="misc_pres_container">
 				<div class="misc_pres_img">
-					<img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+					<img src="/media/images/{{event.event_poster}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/>
+					<!--<table id="misc_pres_wrapper">
+						<tr>
+							<td><img src="/media/images/{{event.event_poster}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/></td>
+						</tr>
+					</table>-->
+					
 				</div>
-				<h4>{{event.title}}</h4>
-			</a>
+				<div class="misc_pres_comment">
+					<h4>{{event.title}}</h4>
+					<h6>{{event.description|safe}}</h6>
+				</div>
+				<div class="misc_pres_actions">
+					
+				</div>
+			</div>
+			<div class="misc_pres_button">
+				<hr>
+				<a href="/event/details?id={{event.id}}">
+					<button class="misc_pres_more_info">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" /></button>
+				</a>
+				{% if user.is_authenticated %}
+				<a href="/myprofile/popularity/?action=like&id={{event.id}}">
+					<button class="misc_pres_like">   That's Citysom!   <img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+				</a>
+				{% endif %}
+			</div>
+	<!--
 			{% if user.is_authenticated %}
 			<div class="like_div" style="display: none;">
 				<a href="/myprofile/popularity/?action=like&id={{event.id}}">
@@ -15,6 +39,7 @@
 				</a>
 			</div>
 			{% endif %}
+		-->
 		</li>             		
  	{% endfor %}
 </ul>

@@ -70,16 +70,18 @@
          
           <!-- filledarea start from here -->
          
-         <div class="filledarea1" id="visu_content" style="width: 990px !important; float: left; position:relative; margin-top:25px;">
+         <div class="filledarea1" id="visu_content" style="width: 100% !important; float: left; position:relative; margin-top:25px;">
          	<!--Div for posters -->
-         	<div id="poster_container" style="width:770px !important; float: left; position: relative;">
-         		
+         	<div id="poster_container" style="width:85% !important; float: right; position: relative;">
+         		<!--
          		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events(); $('#toggle_sort').show(); return false;} else{togl=0; load_events(); $('#toggle_sort').hide(); return false;}"> Toggle view </button>
-         		
+         		-->
+         		<!--
          		<div id="searchbox">
          			<input name="searchtextarea" id="searchtextarea" type="text" placeholder="Search for an artist, a place, an event etc." onblur="if( this.value.length == 0 ) { this.value = 'Search for an artist, a place, an event etc.'; }" onfocus="if(this.value == 'Search for an artist, a place, an event etc.') { this.value = ''; }"/>
          			<input type="button" name="submit" value=" " id="searchbutton">
          		</div>
+         		-->
          		<!-- NEEDS CLARIFICATION ! -->
          		<div id="categories" class="menurecipes_content eve" >
          			<div id="bottom_scroll">
@@ -122,9 +124,19 @@
                  	</div>
            		</div>
            <div>
+           	<div id="pres_date_selected">
+           		<hr>
+           		{%if date_end%}
+           		<p>{{date_start}} - {{date_end}}</p>
+           		{%else%}
+           		<p>{{date_start}}</p>
+           		{%endif%}
+           		<hr>
+           	</div>
+           	<!--<p><span style="font-size:15px; color:#FF6600; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">        See what is going on ></span></p>
            	<BR>
-           	<p><span style="font-size:15px; color:#FF6600; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">        See what is going on ></span></p>
-           	<BR>
+           
+           	</BR>	-->
 	        <p id="toggle_sort" style="text-align: right; display: none;"><span style="font-size:15px; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">Sort By :
 		    <select name="sort" id="sort" style="width: 100px;" onchange="load_events()">
 			    <option value="showtimes_start">Showtime Start</option>
@@ -133,17 +145,11 @@
 		</span></p>
 		<BR>
            </div>
-           <div id="everything1" class="menurecipes_content text" >
            	<div id="bottom_images"></div>
-           </div>
-           <div id="concerts">
-           </div>
-           <div class="clickstatus"></div>
-           <div class="movestatus"></div>
       	</div> 
          	
          	<!-- Div to filter the posters shown -->
-         	<div id="poster_filter" style="width:220px !important; float:right; position: relative;">
+         	<div id="poster_filter" style="width:15% !important; float:left; position: relative;">
          		<p class="nav_menu">
          			<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Select price range </button>
          		</p>
