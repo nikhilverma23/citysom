@@ -25,9 +25,10 @@
 					<button class="misc_pres_more_info">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" /></button>
 				</a>
 				{% if user.is_authenticated %}
-				<a href="/myprofile/popularity/?action=like&id={{event.id}}">
+				<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
 					<button class="misc_pres_like">   That's Citysom!   <img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
 				</a>
+				<div class="likes_count_div"><div class="likes_arrow"></div><span class="likes_count">{{event.popularity_set.count}}</span></div>
 				{% endif %}
 			</div>
 	<!--

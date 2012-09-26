@@ -346,5 +346,6 @@ def popularity(request):
                                                                    user = user,
                                                                    popularity = popularity
                                                                    )
-        return HttpResponse("success")
+        popularity_count = Popularity.objects.filter(event=event)
+        return HttpResponse(popularity_count.count())
 ###############################################################################

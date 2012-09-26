@@ -139,23 +139,18 @@ $(document).ajaxStop(function(){
 });
 jQuery("li.misc_pres").live("mouseover",function(){$(this).children("div.like_div").show();});
 jQuery("li.misc_pres").live("mouseout",function(){$(this).children("div.like_div").hide();});
-jQuery("div.like_div a").live("click", function(e){
+jQuery("a.like_link").live("click", function(e){
 	e.preventDefault();
 	url = $(this).attr("href");
 	link_object = $(this);
 	$.get(url,function(data){
-		if(data=="success")
-		{
-			message_div = $(document.createElement('div'));
-			message_div.html("this event has been liked !");
-			message_div.addClass("like_message");
-			message_div.hide();
-			link_object.parent().parent().children("a").children("div.misc_pres_img").append(message_div);
-			message_div.slideDown(2000).delay(10000).slideUp(2000,function(){
-				message_div.remove();
-				link_object.parent().remove();
-			});
-		}
+		parent = link_object.parent();
+		$("span.likes_count", parent).html(data);
+		default_background_color = $("div.likes_count_div", parent).css("backgroundColor");
+		default_border_right = $("div.likes_arrow", parent).css("borderRightColor");
+		
+		$("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
+		$("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500);
 	});
 });
 /*  		
