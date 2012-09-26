@@ -16,7 +16,10 @@ from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from operator import or_, and_
 from django.db.models import Q, Count, Max, Min
 from citysom.myprofile.models import History
-
+import datetime
+import dateutil
+from dateutil.relativedelta import *
+from calendar import monthrange
 def server_error(request, template_name='500.html'):
     """
     500 error handler.
@@ -32,11 +35,9 @@ def server_error(request, template_name='500.html'):
 
 
 def eventcreation(request):
-#    import pdb; pdb.set_trace();
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
-                         
         if event_form.is_valid():
             try:
                 id = request.GET['id']
@@ -1007,18 +1008,8 @@ def eventcreation(request):
                                                                                                 showtimes_start = event_form.cleaned_data['start_hours_on_sunday'], 
                                                                                                 showtimes_end = event_form.cleaned_data['end_hours_on_sunday'],
                                                                                                 )
-#            performance_obj, created = PerformanceDetails.objects.get_or_create(
-#                                                          ticket_price = event_form.cleaned_data['event_ticket_price'],
-#                                                          date_started = event_form.cleaned_data['date_started'],
-#                                                          date_completed = event_form.cleaned_data['date_completed'],                  
-#                                                          event = event_obj,
-#                                                          place = place_obj,
-#                                                          frequency = event_form.cleaned_data['frequency'],
-#                                                          interval = event_form.cleaned_data['interval'],
-#                                                          showtimes_start = event_form.cleaned_data['event_start_hours'], 
-#                                                          showtimes_end = event_form.cleaned_data['event_end_hours'],                 
-#                                                          )
-#            
+
+            
             for days in event_form.cleaned_data['repeat_on']:
                 event_obj.by_day.add(days.id)
             for genre in event_form.cleaned_data['event_genre']:
@@ -1093,6 +1084,7 @@ def eventcreation(request):
                 
                 # ----3
                 try:
+                    print performance_obj[2]
                     if performance_obj[2].get('showtimes_start'):
                         event_form.fields['event_start_hours_3'].initial = performance_obj[2].get('showtimes_start')
                         event_form.fields['event_end_hours_3'].initial = performance_obj[2].get('showtimes_end')
@@ -1194,7 +1186,6 @@ def eventcreation(request):
                         event_form.fields['event_ticket_price_15'].initial = performance_obj[14].get('ticket_price')
                 except:
                     pass
-                
                 
                 event_form.fields['frequency'].initial = event_obj.frequency
                 event_form.fields['interval'].initial = event_obj.interval
@@ -1528,11 +1519,6 @@ def get_event_genre(request):
                              )
     
 def calendar(request):
-    import datetime
-    import dateutil
-    from dateutil.relativedelta import *
-    from calendar import monthrange
-    
     now = datetime.datetime.now()
     
     try:
