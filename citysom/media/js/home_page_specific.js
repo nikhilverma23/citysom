@@ -145,13 +145,22 @@ jQuery("a.like_link").live("click", function(e){
 	link_object = $(this);
 	$.get(url,function(data){
 		parent = link_object.parent();
-		$("span.likes_count", parent).html(data);
 		default_background_color = $("div.likes_count_div", parent).css("backgroundColor");
 		default_border_right = $("div.likes_arrow", parent).css("borderRightColor");
 		
+		$("span.likes_count", parent).html("+1");
+		$("div.likes_count_div", parent).show();
 		$("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
-		$("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500);
+		$("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
 	});
+});
+jQuery("a.like_link").live("mouseover",function(){$("div.likes_count_div", $(this).parent()).show();});
+jQuery("a.like_link").live("mouseout",function(){
+	console.log($("span.likes_count", $(this).parent()).html());
+	if($("span.likes_count", $(this).parent()).html()!="+1")
+	{
+		$("div.likes_count_div", $(this).parent()).hide();
+	}
 });
 /*  		
 $("#min_price_down").click(function(){
