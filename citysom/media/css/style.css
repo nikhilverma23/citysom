@@ -1915,3 +1915,5 @@ button.remove_performance{margin-left: 10px; margin-bottom: 10px;}
 div.likes_count_div{background-color: #475474; padding: 6px 10px; color: #FFFFFF; display: inline-block; margin-left: 5px; font-size: 12px; font-weight: bold; position: relative;}
 div.likes_arrow{border-bottom: 3px solid transparent; border-top: 3px solid transparent; border-right: 3px solid #475474; position: absolute; top: 9px; left: -3px;}
 span.likes_count{font-size: 12px;}
+div.social_login{float: left; text-align: center; width: 400px;}
+div.social_login div{margin: 20px 0px;}
