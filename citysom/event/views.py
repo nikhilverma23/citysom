@@ -1486,6 +1486,7 @@ def event_list(request):
                            "events_fun":events_fun,
                            "events_par":events_par,
                            "date_start":event_date,
+                           "date_end":event_date_end,
                            },
                           context_instance=RequestContext(request)
                           ) 
@@ -1497,6 +1498,7 @@ def event_list(request):
                            "request":request,
                            "events":events,
                            "date_end":event_date_end,
+                           "date_start":event_date,
                            },
                           context_instance=RequestContext(request)
                           )

@@ -563,9 +563,9 @@ body
 
 #pres_date_cont {width:90%; height: 30px; line-height:30px; float:none; margin-left:0.2em; text-align:middle; background-color:#E0E0E0; border-bottom:solid 1.5px #333; border-top: solid 1.5px #333;}
 
-#poster_filter_title_cont{width: 100%; height:30px; margin-bottom: 10px; margin-left:10px; float:left;}
+#poster_filter_title_cont{width: 100%; height:30px; margin-bottom: 10px; border-radius: 5px 5px 0 0;}
 
-#poster_filter_title{width:90%; float:none; margin:auto; line-height:30px; background:url("../images/cit_stripe2.png");}
+#poster_filter_title{width:90%; height: 30px; line-height:30px; float:none; margin-left:0.5em; text-align:middle;}
 
 .misc_pres_comment{width: 43%; float:right;}
 
@@ -850,12 +850,12 @@ button.nav_button {
    height: 30px;
    width: 175px;
    border-top: 0px solid #ffffff;
-   background: #475474;
-   background: -webkit-gradient(linear, left top, left bottom, from(#586381), to(#475474));
-   background: -webkit-linear-gradient(top, #586381, #475474);
-   background: -moz-linear-gradient(top, #586381, #475474);
-   background: -ms-linear-gradient(top, #586381, #475474);
-   background: -o-linear-gradient(top, #586381, #475474);
+   background: #F9B564;
+   background: -webkit-gradient(linear, left top, left bottom, from(#F9B564), to(#F9B564));
+   background: -webkit-linear-gradient(top, #F9B564, #F9B564);
+   background: -moz-linear-gradient(top, #F9B564, #F9B564);
+   background: -ms-linear-gradient(top, #F9B564, #F9B564);
+   background: -o-linear-gradient(top, #F9B564, #F9B564);
    padding: 8.5px 17px;
    -webkit-border-radius: 12px;
    -moz-border-radius: 12px;
