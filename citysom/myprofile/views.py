@@ -2,8 +2,7 @@
 from citysom.myprofile.forms import UserProfileForm, EditUserProfileForm,\
 PreRegistrationForm, PersonalProfileForm, ProfessionalProfileForm, AccountForm
 from django.shortcuts import render_to_response
-from django.template import RequestContext
-from myprofile.models import UserProfile
+from django.template import RequestContext 
 from django.contrib.auth.models import User
 from citysom import settings
 from django.http import HttpResponse, HttpResponseRedirect
@@ -14,8 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
-from citysom.myprofile.models import Wishlist, History, Popularity
-from citysom.event.models import Event
+from citysom.myprofile.models import Wishlist, History, Popularity, UserProfile
+from citysom.event.models import Event, PerformanceDetails
 import logging
 logger = logging.getLogger("myprofile.views")
 from django.template import loader
@@ -349,3 +348,4 @@ def popularity(request):
         popularity_count = Popularity.objects.filter(event=event)
         return HttpResponse(popularity_count.count())
 ###############################################################################
+

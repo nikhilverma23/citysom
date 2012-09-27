@@ -29,6 +29,12 @@
 	<label for="id_password">Password</label>
 	{{ form.password }}
 	<div class="clear"></div>
+	<a href="{% url socialauth_begin 'facebook' %}"><img src='http://ak.imgag.com/imgag/eg/new_site/fb_connect.png'/></a>
+	<br>
+	<br>
+	<a href="{% url socialauth_begin 'twitter' %}"><img src='http://twitterfall.com/twitterlogin.png'/></a><br>
+	<br>
+	<a href="{% url socialauth_begin 'google' %}"><img height="81px" width="152px" src='http://www.karthikk.net/wp-content/uploads/2011/06/Google-plus-625x342.png'/></a><br>
 </div>
 <div><input type="submit" value=" " class="continue_button"/></div>
 </form>

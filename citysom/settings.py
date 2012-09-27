@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'citysom.event',
     'citysom.myprofile',
     'tinymce',
+    "social_auth",
 )
 
 TINYMCE_JS_URL = MEDIA_URL + 'tiny_mce/tiny_mce.js'
@@ -193,6 +194,53 @@ LOGGING = {
         },
     }
 }
+
+#SOCIAL AUTH
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuthBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.google.GoogleBackend',
+    'social_auth.backends.yahoo.YahooBackend',
+    'social_auth.backends.browserid.BrowserIDBackend',
+    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
+    'social_auth.backends.contrib.orkut.OrkutBackend',
+    'social_auth.backends.contrib.foursquare.FoursquareBackend',
+    'social_auth.backends.contrib.github.GithubBackend',
+    'social_auth.backends.contrib.vkontakte.VKontakteBackend',
+    'social_auth.backends.contrib.live.LiveBackend',
+    'social_auth.backends.contrib.skyrock.SkyrockBackend',
+    'social_auth.backends.contrib.yahoo.YahooOAuthBackend',
+    'social_auth.backends.OpenIDBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+#SOCIAL AUTH API-KEYS
+
+TWITTER_CONSUMER_KEY         = 'abaxVNDyrsccwPQ0513w'
+TWITTER_CONSUMER_SECRET      = 'cYNBxq3gLhFZ2p0wwAxsn20Bw1N7F5ZoslJROeY02Ls'
+FACEBOOK_APP_ID              = '238686352919310'
+FACEBOOK_API_SECRET          = 'cdd3f7b0b70f102b3f1eeee5de5230de'
+LINKEDIN_CONSUMER_KEY        = ''
+LINKEDIN_CONSUMER_SECRET     = ''
+ORKUT_CONSUMER_KEY           = ''
+ORKUT_CONSUMER_SECRET        = ''
+GOOGLE_CONSUMER_KEY          = 'clinic24x7.com'
+GOOGLE_CONSUMER_SECRET       = 'qCPXLKndVt9cdK-oeLn4cIGg'
+GOOGLE_OAUTH2_CLIENT_ID      = ''
+GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+FOURSQUARE_CONSUMER_KEY      = ''
+FOURSQUARE_CONSUMER_SECRET   = ''
+VK_APP_ID                    = ''
+VK_API_SECRET                = ''
+LIVE_CLIENT_ID = ''
+LIVE_CLIENT_SECRET = ''
+SKYROCK_CONSUMER_KEY      = ''
+SKYROCK_CONSUMER_SECRET   = ''
+YAHOO_CONSUMER_KEY        = ''
+YAHOO_CONSUMER_SECRET     = ''
 
 import os.path
 LOCAL_SETTINGS = os.path.join(os.path.dirname(__file__), "local_settings") + ".py"
