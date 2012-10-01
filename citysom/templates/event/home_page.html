@@ -8,6 +8,12 @@
             <div id="sundayarea"><img src="/static/images/sundayimg.png" width="508" height="17" alt="sunday" /></div>
         </div>	 -->
         <div class="clear"></div>
+        <div id="work_cal"> 
+        	<img src="/static/images/box_orange.png" width="32" height="32" />
+        	<div style="position:relative; top:-10px; font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">1</div>
+        	<div id="work_cal_txt" style="width:60%; display:block; font-family:Calibri; font-size:1.5em; color:#303030;float:right; margin-right:30px;margin-top:4px;">Pick a date</div>
+        	<img src="/static/images/arrow_orange.png" width="64" height="64" style="margin-left:70px;"/>
+        </div>
         <div id="home_calendar"></div>
         <div class="clear"></div>
         <!-- filledarea main start from here -->
@@ -139,7 +145,7 @@
            	<BR>
            
            	</BR>	-->
-	        <p id="toggle_sort" style="text-align: right; display: none;"><span style="font-size:15px; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2wm;">Sort By :
+	        <p id="toggle_sort" style="text-align: right; display: none;"><span style="font-size:15px; font-family:Helvetica; font-weight:bold; margin-left:1em; line-height:2em;">Sort By :
 		    <select name="sort" id="sort" style="width: 100px;" onchange="load_events()">
 			    <option value="showtimes_start">Showtime Start</option>
 			    <option value="showtimes_end">Showtime End</option>
@@ -153,11 +159,16 @@
          	<div id="poster_filter" style="width:14% !important; float:left; position: relative; border:1px solid grey;  border-radius:5px;">
          		<div id="poster_filter_title_cont">
          			<div id="poster_filter_title">
-         				<p style="font-size:1.2em; color:#FF6600; margin-left:0.2em;">Filter by:</p>
+         				<img src="/static/images/box_orange.png" width="32" height="32" />
+        				<div style="position:relative; top:-10px; font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">2</div>
+        				<div style="width:75%; display:block; font-family:Calibri; font-size:1.3em; color:#303030;float:right; margin-bottom:20px;;">Filter results</div>
+         				<!--
+         				<p style="font-size:1.2em; color:#FF6600; margin-left:0.2em;">Filter events by:</p>
+         				-->
          			</div>
          		</div>
          		<p class="nav_menu">
-         			<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Select price range </button>
+         			<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Price <img src="/static/images/btn_white_arr.png" alt="Price" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          		</p>
          		<div id="price_range_select" class="nav_div">
          			<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>
@@ -170,7 +181,7 @@
          			</p>
          		</div>
          		<p class="nav_menu">
-         			<button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Select event type </button>
+         			<button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Event type <img src="/static/images/btn_white_arr.png" alt="Event type" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          		</p>
          		<div id="event_type_select" class="nav_div" style="display:none; line-height:1.5em;">
          			<br>
@@ -198,7 +209,7 @@
          			</p>
          		</div>
          		<p class="nav_menu">
-         			<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Select hours </button>
+         			<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Show time <img src="/static/images/btn_white_arr.png" alt="On-air time" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          		</p>
          		<div id="hours_range_select" class="nav_div" style="display:none;">
          			<label> Start after:</label>
@@ -286,7 +297,7 @@
          		</div>
          		
          		<p class="nav_menu">
-         			<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;"> Select audience </button>
+         			<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;"> Public <img src="/static/images/btn_white_arr.png" alt="Public" style="float:right; margin-right:-10px; margin-top:-2px;"/> </button>
          		</p>
          		<div id="event_audience_select" class="nav_div" style="display:none; line-height:1.5em;">
          			<br>

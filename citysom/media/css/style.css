@@ -324,7 +324,7 @@ body
 	{
 		width:100%;
 		float:left;
-		margin:0px 0px 15px 0px;
+		margin:0px 0px 35px 0px;
 		padding:0px 0px 0px 0px;
 		/*min-height: 600px;*/
 	}
@@ -817,20 +817,8 @@ p.nav_menu{
 	width: 175px;
 	position: relative;
 	margin-bottom: 25px;
-	margin-top:-24px;
-	background: #F2F2F2;
-	background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#F2F2F2));
-   	background: -webkit-linear-gradient(top, #FAFAFA, #F2F2F2);
-   	background: -moz-linear-gradient(top, #FAFAFA, #F2F2F2);
-	background: -ms-linear-gradient(top, #FAFAFA, #F2F2F2);
-	background: -o-linear-gradient(top, #FAFAFA, #F2F2F2);
-	-webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;	
-    -webkit-box-shadow: #C2C2C2 0 1px 0;
-    -moz-box-shadow: #C2C2C2 0 1px 0;
-    box-shadow: #C2C2C2 0 1px 0;
-    text-shadow: #C2C2C2 0 1px 0;
+	margin-top:-20px;
+	border-bottom: 0.1px groove grey;
     font-size: 0.85em;
     overflow: auto;
 }
@@ -849,64 +837,56 @@ p.nav_menu{
 button.nav_button {
    height: 30px;
    width: 175px;
-   border-top: 0px solid #ffffff;
-   background: #F9B564;
-   background: -webkit-gradient(linear, left top, left bottom, from(#F9B564), to(#F9B564));
-   background: -webkit-linear-gradient(top, #F9B564, #F9B564);
-   background: -moz-linear-gradient(top, #F9B564, #F9B564);
-   background: -ms-linear-gradient(top, #F9B564, #F9B564);
-   background: -o-linear-gradient(top, #F9B564, #F9B564);
+   line-height:9px;
+   border: 0.1px solid grey;
+   background: #E0E0E0;
+   background: -webkit-gradient(linear, left top, left bottom, from(#E0E0E0), to(#E0E0E0));
+   background: -webkit-linear-gradient(top, #E0E0E0, #E0E0E0);
+   background: -moz-linear-gradient(top, #E0E0E0, #E0E0E0);
+   background: -ms-linear-gradient(top, #E0E0E0, #E0E0E0);
+   background: -o-linear-gradient(top, #E0E0E0, #E0E0E0);
    padding: 8.5px 17px;
-   -webkit-border-radius: 12px;
-   -moz-border-radius: 12px;
-   border-radius: 12px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
    text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
+   color: #303030;
    font-size: 13px;
    font-weight: bold;
-   font-family: Helvetica, Arial, Sans-Serif;
+   font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
    text-decoration: none;
+   text-align:left;
    vertical-align: middle;
    cursor: pointer;
    }
 button.nav_button:hover {
-   border-top-color: #fff;
    background: #ff6600;
    color: #fff;
    }
 button.nav_button:active {
-   border-top-color: #fff;
    background: #ff6600;
    }
 
 button.nav_button_choice {
-   height: 27px;
+   height: 20px;
    width: 64px;
-   border-top: 0px solid #ffffff;
-   background: #475474;
-   -webkit-border-radius: 12px;
-   -moz-border-radius: 12px;
-   border-radius: 12px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
-   font-size: 0.8em;
-   font-weight: normal;
-   font-family: Helvetica, Arial, Sans-Serif;
-   text-decoration: none;
+   border: 0.1px solid grey;
+   background: #E0E0E0;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color: #303030;
+   font-size: 0.7em;
+   font-weight: bold;
+   font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
    cursor: pointer;
-   margin-bottom:5px;
+   margin-bottom:15px;
+   margin-top:5px;
    }
 
 button.nav_button_choice:hover{
-	border:1px solid #586381;
-	background: #586381;
-	color:#ff6600;
+	background: #ff6600;
+	color:white;
 }
 
 
@@ -1440,7 +1420,8 @@ button.uploader:active{
 .left_aligned_radios ul,.left_aligned_radios li{display: inline-block;}
 #start_hour input[type=text]{width: 100px;}
 
-#home_calendar{width: 708px; height: 144px; font-family: Calibri;}
+#home_calendar{width: 708px; height: 144px; font-family: Calibri; display:inline-block; float:right; margin-right: 270px;}
+#work_cal{width:200px; height:144px; display:inline-block; margin-top:30px; margin-left:150px;}
 #month_section{color: #090909; font-weight: bold; font-size: 18px; font-family: Calibri; text-align: center; margin-bottom: 10px;}
 #week_section{color: #090909; font-weight: bold; font-family: Calibri; text-align: center; border-bottom: 2px solid #C0C0C0; padding-bottom: 5px;}
 #week_section span.red{color: #FF0000;}
