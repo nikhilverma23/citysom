@@ -340,9 +340,9 @@ body
 	
 #searchbox_main
 	{
-		width:81%;
-		float:left;
-		margin:5px 0px 0px 30px;
+		width:21%;
+		float:right;
+		margin:5px 12px 0px 0px;
 		position: relative;
 	}
 
@@ -836,7 +836,7 @@ p.nav_menu{
 
 button.nav_button {
    height: 30px;
-   width: 175px;
+   width: 90%;
    line-height:9px;
    border: 0.1px solid grey;
    background: #E0E0E0;
