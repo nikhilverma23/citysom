@@ -20,6 +20,8 @@ import datetime
 import dateutil
 from dateutil.relativedelta import *
 from calendar import monthrange
+from citysom import settings
+
 def server_error(request, template_name='500.html'):
     """
     500 error handler.
@@ -1673,6 +1675,7 @@ def get_event_details(request):
                         total_days_consecutive += 1
                 except:
                     pass
+
     
     return render_to_response("event/event_detail.html",
                               {
@@ -1689,6 +1692,8 @@ def get_event_details(request):
                               "event_performance_values": event_performance_values,
                               'by_day':by_day,
                               "comment_counter":comment_counter,
+                              "host":settings.HOST,
+                              "page_url":request.get_full_path
                               },
                               context_instance=RequestContext(request)
                               )

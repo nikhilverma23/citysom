@@ -2,8 +2,20 @@
 
 {% block title%} {{eventdetails.title}} {% endblock %}
 
+{% block head_extras %}
+	<meta property="fb:app_id" content="238686352919310"> 
+	<meta property="og:type" content="website"> 
+	<meta property="og:url" content="{{host}}">
+	<meta property="og:site_name"  content="Citysom">
+	<meta property="og:image"  content="{{host}}/static/images/{{eventdetails.event_poster}}">
+	<meta property="og:title"  content="{{eventdetails.title}}">
+	<meta property="og:description" content="{{eventdetails.description}}">
+{% endblock %}
+
 {% block content %}
 <script type="text/javascript" src="/static/js/jquery.rating.js"></script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
 	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;"><span>{{eventdetails.category}}</span> > <span style="color: #FF7920;">{{eventdetails.title}}</span> </a></li>
@@ -28,8 +40,7 @@
 		<ul style="list-style: none; text-align: left;">
 			<li class="prev_det"><strong>Event schedule:</strong></li>
 			{% if eventdetails.schedule_type == "performance_based" %}
-			
-			Starts :{{eventdetails.event_start_date}}<br />
+			Starts : {{eventdetails.event_start_date}}<br />
 			Finishes : {{eventdetails.event_completion_date}}<br />
 			Repeats:{{eventdetails.frequency|lower}}<br />
 				{% if eventdetails.frequency == "DAILY" %}
@@ -126,6 +137,12 @@
 	 <div class="right_det">
 		<ul style="list-style: none;">
 	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li>
+	   <li style="margin-bottom: 15px;">
+		<span class='st_facebook_hcount' displayText='Facebook'></span>
+		<span class='st_twitter_hcount' displayText='Tweet'></span>
+		<span class='st_googleplus_hcount' displayText='Google +'></span>
+		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+	   </li>
 	   <li class="prev_det"><strong>Event description:</strong></li>
 		<div class="event_desc">
 		{{eventdetails.description|safe}}
