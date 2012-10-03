@@ -42,7 +42,17 @@
 			{% if eventdetails.schedule_type == "performance_based" %}
 				<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 					<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
-				{% if eventdetails.frequency == "DAILY" %}
+				{% if eventdetails.frequency == "ONCE" %}
+					<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				
+				{% elif eventdetails.frequency == "DAILY" %}
 				<br>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}

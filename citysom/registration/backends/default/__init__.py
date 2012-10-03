@@ -4,7 +4,7 @@ from django.contrib.sites.models import Site
 
 from citysom.registration import signals
 from citysom.registration.forms import RegistrationForm
-from citysom.registration.models import RegistrationProfile
+from citysom.registration.models import HtmlRegistrationProfile
 
 
 class DefaultBackend(object):
@@ -76,7 +76,7 @@ class DefaultBackend(object):
             site = Site.objects.get_current()
         else:
             site = RequestSite(request)
-        new_user = RegistrationProfile.objects.create_inactive_user(username, email,
+        new_user = HtmlRegistrationProfile.objects.create_inactive_user(username, email,
                                                                     password, site)
         signals.user_registered.send(sender=self.__class__,
                                      user=new_user,
@@ -95,7 +95,7 @@ class DefaultBackend(object):
         the class of this backend as the sender.
         
         """
-        activated = RegistrationProfile.objects.activate_user(activation_key)
+        activated = HtmlRegistrationProfile.objects.activate_user(activation_key)
             
         if activated:
             signals.user_activated.send(sender=self.__class__,
