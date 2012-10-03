@@ -1,26 +1,27 @@
 # Create your views here.
 import sys
-from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
-from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
-from django.template import loader, Context
+# Python imports
 import datetime
 import dateutil
-from dateutil import rrule
 import shutil
-from django import http
-from django.contrib.auth.decorators import login_required
-from citysom.settings import MEDIA_ROOT,STATIC_ROOT
+from dateutil import rrule
 from operator import or_, and_
-from django.db.models import Q, Count, Max, Min
-from citysom.myprofile.models import History
-import datetime
-import dateutil
 from dateutil.relativedelta import *
 from calendar import monthrange
+# django  imports
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django import http
+from django.db.models import Q, Count, Max, Min
+from django.contrib.auth.decorators import login_required
+from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
+# citysom imports
 from citysom import settings
+from citysom.myprofile.models import History
+from citysom.settings import MEDIA_ROOT,STATIC_ROOT
+from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
+from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
+
 
 def server_error(request, template_name='500.html'):
     """

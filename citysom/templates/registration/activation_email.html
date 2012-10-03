@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Citysom</title>
+</head>
+
+<body>
+	<div style="width: 890px; background-color: #C6D9F1; padding: 60px 35px 40px;">
+    	<div style="border-radius: 10px; background-color: #FFFFFF; background-repeat: no-repeat; padding: 10px;">
+        	<div style="float: left;"><img src="citysom_logo.png" /></div>
+        	<div style="float: left; font-size: 42px; margin: 20px;">Citysom</div>
+            <div style="color: #EB9148; font-size: 28px; margin: 30px 10px; font-weight:bold; float: left;">... never miss out again !</div>
+            <div style="clear: both;"></div>
+        </div>
+        <div style="border-radius: 20px; background-color: #FFFFFF; margin-top: 60px; background-repeat: no-repeat;">
+        	<div style="padding: 30px 120px; font-size: 22px; color: #4F4F4F;">
+            	<div>Hey {{user}},</div>
+                <div style="padding: 40px;">
+                	You signed up for a new account at citysom.com using this email address.
+					If it was you, and you'd like to activate and use your account, click the link below or copy and
+					paste it into your web browser's address bar:
+					
+					<div style="padding: 40px;">
+	                	<a href="#" style="padding: 15px 100px; background: #92D050; color: #FFFFFF; font-size: 22px; border: 1px solid #A0AC92; border-radius: 5px; width: 540px; font-weight: bold; text-decoration: none;">
+	                		http://www.citysom.com/accounts/activate/{{ activation_key }}/
+	                	</a>
+                	</div>	
+					
+					If you didn't request this, you don't need to do anything; you won't receive any more email from us, 
+					and the account will expire automatically in {{ expiration_days }} days.
+
+                    <br /><br />
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>
