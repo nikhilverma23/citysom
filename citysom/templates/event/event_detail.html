@@ -104,50 +104,50 @@
 			<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
 			<br>
 			<table class="table_hours" border="0">
-				{% if eventdetails.location.start_hours_on_monday %}
+				{% if eventdetails.start_hours_on_monday %}
 					<tr>
 						<td>Mo:</td>
-						<td>{{eventdetails.location.start_hours_on_monday}} to {{eventdetails.location.end_hours_on_monday}}</td>
+						<td>{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</td>
 					</tr>
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_tuesday %}
+				{% if eventdetails.start_hours_on_tuesday %}
 					<tr>
 						<td>Tu:</td>
-						<td>{{eventdetails.location.start_hours_on_tuesday}} to {{eventdetails.location.end_hours_on_tuesday}}</td>
+						<td>{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</td>
 					</tr>
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_wednesday %}
+				{% if eventdetails.start_hours_on_wednesday %}
 					<tr>
 						<td>We:</td>
-						<td>{{eventdetails.location.start_hours_on_wednesday}} to {{eventdetails.location.end_hours_on_wednesday}}</td>
+						<td>{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</td>
 					</tr>	
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_thursday %}
+				{% if eventdetails.start_hours_on_thursday %}
 					<tr>
 						<td>Th:</td>
-						<td>{{eventdetails.location.start_hours_on_thursday}} to {{eventdetails.location.end_hours_on_thursday}}</td>
+						<td>{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</td>
 					</tr>
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_friday %}
+				{% if eventdetails.start_hours_on_friday %}
 					<tr>
 						<td>Fr:</td>
-						<td>{{eventdetails.location.start_hours_on_friday}} to {{eventdetails.location.end_hours_on_friday}}</td>
+						<td>{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</td>
 					</tr>	
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_saturday %}
+				{% if eventdetails.start_hours_on_saturday %}
 					<tr>
 						<td>Sa:</td>
-						<td>{{eventdetails.location.start_hours_on_saturday}} to {{eventdetails.location.end_hours_on_saturday}}</td>
+						<td>{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</td>
 					</tr>
 				{% endif %}
-				{% if eventdetails.location.start_hours_on_sunday %}
+				{% if eventdetails.start_hours_on_sunday %}
 					<tr>
 						<td>Su:</td>
-						<td>{{eventdetails.location.start_hours_on_sunday}} to {{eventdetails.location.end_hours_on_sunday}}</td>
+						<td>{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</td>
 					</tr>
 				{% endif %}
 			</table>
-				{% if not eventdetails.location.start_hours_on_sunday and not eventdetails.location.start_hours_on_monday and not eventdetails.location.start_hours_on_tuesday and not eventdetails.location.start_hours_on_wednesday and not eventdetails.location.start_hours_on_thursday and not eventdetails.location.start_hours_on_friday and not eventdetails.location.start_hours_on_saturday %}
+				{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
 				    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
 				{% endif %}
 				<hr>
