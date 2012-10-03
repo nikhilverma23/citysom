@@ -41,8 +41,9 @@
 		<div id="event_scheduling">
 			{% if eventdetails.schedule_type == "performance_based" %}
 				<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
-				<div class="event_program">{{eventdetails.frequency|lower}}:</div>
+					<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
 				{% if eventdetails.frequency == "DAILY" %}
+				<br>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
 						<tr>
@@ -51,6 +52,7 @@
 						</tr>
 					{% endfor %}
 				</table>
+				<hr>
 				{% elif eventdetails.frequency == "MONTHLY" %}
 					<div class="event_program_2">
 					{% if eventdetails.by_month == "1" %}
@@ -73,8 +75,10 @@
 							</tr>
 						{% endfor %}
 					</table>
+					<hr>
 				{% else %}
 					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days}} {% endfor %}</div>
+					<br/>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
 							<tr>
@@ -83,10 +87,12 @@
 							</tr>
 						{% endfor %}
 					</table>
+					<hr>
 				{% endif %}
 			{% else %}
 			<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
-			<div class="event_program">{{eventdetails.frequency|lower}}:</div>
+			<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}</span>:</div>
+			<br>
 			<table class="table_hours" border="0">
 				{% if eventdetails.location.start_hours_on_monday %}
 					<tr>
@@ -134,6 +140,7 @@
 				{% if not eventdetails.location.start_hours_on_sunday and not eventdetails.location.start_hours_on_monday and not eventdetails.location.start_hours_on_tuesday and not eventdetails.location.start_hours_on_wednesday and not eventdetails.location.start_hours_on_thursday and not eventdetails.location.start_hours_on_friday and not eventdetails.location.start_hours_on_saturday %}
 				    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
 				{% endif %}
+				<hr>
 			{% endif %}
 		</div>
 
