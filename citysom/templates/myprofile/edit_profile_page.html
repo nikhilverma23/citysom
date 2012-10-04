@@ -21,7 +21,7 @@
 			  {% endif %} 
 			    
 			    <fieldset>
-			    {% if account_type == "personal" %}
+			    {% if account_type == "personal" or account_type == None %}
 				
 				<div class="form_fields">
 				{% if form.gender.errors %}
@@ -97,7 +97,7 @@
 			    
 			    
 			    
-			    {% else %}
+			    {% elif account_type == "professional" %}
 			    
 			    <p><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">1.</span> How shall we contact you?</p>      
 			    <div class="form_fields">

@@ -136,7 +136,7 @@ def editprofile(request):
         context['form'].fields['email_id_3'].initial = profile.email_id_3
         context['form'].fields['email_id_4'].initial = profile.email_id_4
         context['form'].fields['facebook_account'].initial = profile.facebook_account
-    else:
+    elif userprofile_obj.account_type == "professional":
         context['form'] = ProfessionalProfileForm()
         user = request.user
         
@@ -167,7 +167,24 @@ def editprofile(request):
         context['form'].fields['start_hours_on_sunday'].initial = profile.start_hours_on_sunday
         
         context['account_type'] = profile.account_type
+    
+    else:    
+        userprofile_obj = UserProfile.objects.get(user=request.user)
+        context['form']= EditUserProfileForm()
+        user = request.user
+        profile=request.user.get_profile()
+        context['form'].fields['first_name'].initial = profile.first_name
+        context['form'].fields['last_name'].initial = profile.last_name
+        context['form'].fields['gender'].initial = profile.gender
+        context['form'].fields['mobile'].initial = profile.mobile
         
+        context['form'].fields['email_id_2'].initial = profile.email_id_2
+        context['form'].fields['email_id_3'].initial = profile.email_id_3
+        context['form'].fields['email_id_4'].initial = profile.email_id_4
+        context['form'].fields['facebook_account'].initial = profile.facebook_account
+
+        context['account_type'] = profile.account_type 
+        print context['account_type']   
     return render_to_response(
                               "myprofile/edit_profile_page.html",
                               {'account_type':userprofile_obj.account_type},

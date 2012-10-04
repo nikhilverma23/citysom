@@ -1,27 +1,29 @@
 # Create your views here.
 import sys
-from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
-from django.shortcuts import render_to_response
-from django.template import RequestContext
-from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
-from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
-from django.template import loader, Context
+# Python imports
 import datetime
 import dateutil
-from dateutil import rrule
 import shutil
-from django import http
-from django.contrib.auth.decorators import login_required
-from citysom.settings import MEDIA_ROOT,STATIC_ROOT
+from dateutil import rrule
 from operator import or_, and_
-from django.db.models import Q, Count, Max, Min
-from citysom.myprofile.models import History
-import datetime
-import dateutil
 from dateutil.relativedelta import *
 from calendar import monthrange
+# django  imports
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django import http
+from django.db.models import Q, Count, Max, Min
+from django.contrib.auth.decorators import login_required
+from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
+# citysom imports
 from citysom import settings
+from citysom.myprofile.models import History
+from citysom.settings import MEDIA_ROOT,STATIC_ROOT
+from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
+from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
 
+
+#----------------------------------------------------------------------------#
 def server_error(request, template_name='500.html'):
     """
     500 error handler.
@@ -34,8 +36,7 @@ def server_error(request, template_name='500.html'):
     sys.exc_clear() 
     return http.HttpResponseServerError(t.render(Context({'type':ltype,'value':lvalue,'traceback':ltraceback})))
 
-
-
+#----------------------------------------------------------------------------#
 def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
@@ -174,6 +175,7 @@ def eventcreation(request):
             #Performance Based events Performance records           
             if event_form.cleaned_data['schedule_type']=='performance_based':
                 #Case of Frequency = Once
+                import pdb;pdb.set_trace();
                 if freq == "ONCE":
                     #Test of Showtime 1
                     if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
@@ -1260,7 +1262,7 @@ def eventcreation(request):
                               context_instance=RequestContext(request)
                               )
     
-
+#----------------------------------------------------------------------------#
 def home(request):
     category = Category.objects.all()
     return render_to_response("event/home_page.html",
@@ -1270,7 +1272,8 @@ def home(request):
                                },
                               context_instance=RequestContext(request)
                               )
-
+    
+#----------------------------------------------------------------------------#
 def handle_uploaded_file(request):
     event_poster = request.FILES['event_poster_file']
     
@@ -1297,7 +1300,7 @@ def handle_uploaded_file(request):
 
     return HttpResponse(str(event_poster))
 
-
+#----------------------------------------------------------------------------#
 def event_list(request):
     kwargs = {
               'status':True,
@@ -1505,15 +1508,7 @@ def event_list(request):
                           context_instance=RequestContext(request)
                           )
      
-#        return render_to_response("event/event_list_cat.html",
-#                               {
-#                               "request":request,
-#                               "events":events,
-#                               },
-#                              context_instance=RequestContext(request)
-#                              ) 
-    
-
+#----------------------------------------------------------------------------#
 def get_event_genre(request):  
     type = request.GET['type']
     category_obj = Category.objects.get(id=type)
@@ -1557,7 +1552,8 @@ def calendar(request):
                             },
                              context_instance=RequestContext(request)
                              )
-       
+
+#----------------------------------------------------------------------------#
 def get_event_details(request):
     id = request.GET['id']
     event_obj = Event.objects.get(id=id)
@@ -1697,11 +1693,12 @@ def get_event_details(request):
                               },
                               context_instance=RequestContext(request)
                               )
-
+#----------------------------------------------------------------------------#
 def update_city(request):
     city = request.GET['city']
     request.session['city'] = city
     return HttpResponse(str(city))
+#----------------------------------------------------------------------------#
 
 def comment_delete(request):
     comment_id = request.GET['id']
@@ -1710,4 +1707,4 @@ def comment_delete(request):
     
     event_id = request.GET['event_id']
     return HttpResponseRedirect('/event/details/?id='+event_id)
-    
+#----------------------------------------------------------------------------#    
