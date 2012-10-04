@@ -1898,3 +1898,16 @@ div.likes_arrow{border-bottom: 3px solid transparent; border-top: 3px solid tran
 span.likes_count{font-size: 12px;}
 div.social_login{float: left; text-align: center; width: 400px;}
 div.social_login div{margin: 20px 0px;}
+div.detail_left{float: left;}
+div.detail_right{float: right;}
+span.detail_title{font-size: 22px; text-transform: uppercase; font-weight: bold;}
+div.detail_like_div{font-size: 14px; font-weight:  bold; text-align:  center; border-radius:  5px; border: 1px solid #8A8A8A; background-color: #92D050; padding: 5px 0px; color: #FFFFFF;}
+div.detail_block{border: 1px solid #9D9D9D; border-radius: 10px;}
+div.detail_block_title{color: #E57C27; font-size:  16px; font-weight: bold; margin: 10px;}
+div.detail_block_content{color: #989898; margin: 0px 5px 10px 15px; font-size:  16px; font-weight: bold;}
+div.detail_review{margin: 10px; border: 1px solid #9D9D9D; border-radius: 5px;}
+div.detail_review_header{ margin:  10px;}
+div.detail_review_title{ color: #989898; font-size: 14px; font-weight: bold; float: left;}
+div.detail_review_rating{float: left;}
+div.detail_review_by{color: #989898; font-size: 14px; margin: 5px 0px;}
+div.detail_review_content{margin: 10px 20px 10px 40px; color: #989898; font-size: 14px;}

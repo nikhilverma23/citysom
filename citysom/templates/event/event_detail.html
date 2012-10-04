@@ -136,34 +136,79 @@
 	</div>
 	 <div class="right_det">
 		<ul style="list-style: none;">
-	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li>
-	   <li style="margin-bottom: 15px;">
-		<span class='st_facebook_hcount' displayText='Facebook'></span>
-		<span class='st_twitter_hcount' displayText='Tweet'></span>
-		<span class='st_googleplus_hcount' displayText='Google +'></span>
-		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+	   <li class="prev_tit" style="margin-bottom: 15px;">
+			<div class="detail_left">
+				<span class="detail_title">{{eventdetails.title}}</span>
+			</div>
+			<div class="detail_right">
+				<span class='st_facebook_hcount' displayText='Facebook'></span>
+				<span class='st_twitter_hcount' displayText='Tweet'></span>
+				<span class='st_googleplus_hcount' displayText='Google +'></span>
+				<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+			</div>
+			<div class="clear"></div>
 	   </li>
-	   <li class="prev_det"><strong>Event description:</strong></li>
-		<div class="event_desc">
-		{{eventdetails.description|safe}}
-	    </div>
+	   <li>
+		<div class="detail_like_div">
+			3 of your friends liked it !
+		</div>
+	   </li>
+	   <li class="prev_det">
+		<div class="detail_block">
+			<div class="detail_block_title">About</div>
+			<div class="detail_block_content">{{eventdetails.description|safe}}</div>
+		</div>
+	   </li>
 		<!--<li class="prev_det"><strong>For more details:</strong> <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600;">{{eventdetails.eventwebsite}}</a></li>-->
-	    <li class="prev_det"><strong>Members' ratings:</strong></li>
-	    {% if average_ratings %}
-	    <span class="cust_ratin">
-		    <div class="cust_rating">
-		    	<div class="event_desc" style="display:inline-block !important;">Average rating:</div>
-		    	<div class="rating_pic" style="display: inline-block; float: none; vertical-align:middle; margin-right:0.5em;">
-					{% for star in total_stars%}
-						<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
-					{%endfor%}
-		    	</div>
-		    	 based on {{comment_counter}} ratings
-		    </div>
-		    
-	    </span>
-	    <li class="prev_det"><strong>Members' reviews:</strong></li> 
-	    {% endif %}
+	    <li class="prev_det">
+		<div class="detail_block">
+			<div class="detail_block_title">What Citysoms says about it</div>
+			<div class="detail_block_content">
+				<span class="cust_ratin">
+					<div class="cust_rating">
+						<div class="event_desc" style="display:inline-block !important;">Average rating:</div>
+						<div class="rating_pic" style="display: inline-block; float: none; vertical-align:middle; margin-right:0.5em;">
+							{% for star in total_stars%}
+								<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+							{%endfor%}
+						</div>
+						based on {{comment_counter}} ratings
+					</div>
+					    
+				</span>
+			</div>
+			<div class="detail_block_title" style="text-transform: uppercase;">
+				Share Your View
+				<input type="checkbox" name="ratings_link" id="ratings_link">
+			</div>
+			<div class="detail_block_content">
+				Opinions
+			</div>
+			{% for comment in user_comments %}
+			<div class="detail_review">
+				<div class="detail_review_header">
+					<div class="detail_review_title">
+						{{comment.title}}
+						{% if comment.user_id == user.id and user.is_authenticated %}
+							<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
+							<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
+						{% endif %}
+					</div>
+					<div class="detail_review_rating">
+						{% for star in total_stars%}
+							<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
+						{%endfor%}
+					</div>
+					<div class="clear"></div>
+					<div class="detail_review_by">
+						- by {{comment.user.username}}
+					</div>
+				</div>
+				<div class="detail_review_content">{{comment.reviews}}</div>
+			</div>
+			{% endfor %}
+		</div>
+	   </li>
 	   </ul>
 	   <!--
 	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL: <a href="{{eventdetails.eventwebsite}}" style="color: #FF7920;">{{eventdetails.eventwebsite}}</a></h6>
@@ -188,7 +233,7 @@
 		    <div class="rating" >Rate this show:</div>
 		    <div class="rating_pic"><img src="/static/images/rate.png" alt="" style="margin-top: 0px;" /> </div>
 	    </div>-->
-	    <div id="latest_events">
+	    <!--<div id="latest_events">
 		     <div class="clear"></div>   
 		     <div class="review_sort">
 			    <div class="lreview_sort">
@@ -218,40 +263,12 @@
 				</div>
 			    </div>
 		     </div>
-			{% for comment in user_comments %}
-				<div class="review_rating">
-					<div class="clear"></div>
-				       <div class="event_text">
-				       </div>
-					<div class="cust_ratin">
-					      <div class="rating" style="font-style:bold; width: 500px;">
-							<p style="font-weight: bold !important;">{{comment.title}}
-							{% if comment.user_id == user.id and user.is_authenticated %}
-								<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
-								<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
-							{% endif %}
-							</p>
-					      </div>
-					      <div class="rating_pic">
-							{% for star in total_stars%}
-								<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
-							{%endfor%}
-					      </div>
-					      <div class="clear"></div>
-					</div>
-				    <div class="clear"></div>
-				    <div class="comm_sign"><p>- by <span style="font-style:bold;">{{comment.user.username}}</span></p></div>
-				    <div class="event_text">
-						<p>{{comment.reviews}}</p>
-					</div>
-				</div> 
-			{% endfor %}
-	     </div>
+			
+	     </div>-->
 	     <div id="ratings_div">
 		<form name="ratings_form" action="" method="post" class="ratings_form">
 			{% csrf_token %}
 			<a name="ratings_form"></a>
-			<h6 style="font-weight: normal;margin-bottom: 1em; margin-left:0.5em;font-size: 1.2em; color:#FF6600;">Share your opinion</h6>
 			{{ratings_form.title.errors}}
 			<p>
 				<label for="id_title">Summary:</label>
