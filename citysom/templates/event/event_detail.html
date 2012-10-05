@@ -156,19 +156,74 @@
 
 	</div>
 	 <div class="right_det">
-		<ul style="list-style: none;">
-	   <li class="prev_tit" style="margin-bottom: 15px;"><strong>{{eventdetails.title}}</strong></li>
-	   <li style="margin-bottom: 15px;">
-		<span class='st_facebook_hcount' displayText='Facebook'></span>
-		<span class='st_twitter_hcount' displayText='Tweet'></span>
-		<span class='st_googleplus_hcount' displayText='Google +'></span>
-		<span class='st_pinterest_hcount' displayText='Pinterest'></span>
-	   </li>
-	   <li class="prev_det"><strong>Event description:</strong></li>
-		<div class="event_desc">
-		{{eventdetails.description|safe}}
-	    </div>
+	 	<ul style="list-style: none;">
+	   	<div class="prev_tit" style="margin-bottom: 15px; color:#FF6600 !important;"><strong>{{eventdetails.title|upper}}</strong></div>
+	   	<div style="margin-bottom: 15px;">
+			<span class='st_facebook_hcount' displayText='Facebook'></span>
+			<span class='st_twitter_hcount' displayText='Tweet'></span>
+			<span class='st_googleplus_hcount' displayText='Google +'></span>
+			<span class='st_pinterest_hcount' displayText='Pinterest'></span>
+	   	</div>
+	   	<div class="prev_det">
+	   		<div class="prev_tit">Event description:</div>
+	   		<div class="event_desc">
+				{{eventdetails.description|safe}}
+	    	</div>
+	   	</div>
+		<div class="prev_det">
+	   		<div class="prev_tit">What Citysoms say about it:</div>
+	   		<div class="event_desc">
+				<span class="cust_ratin">
+					<div class="cust_rating">
+		    			<div class="event_desc" style="display:inline-block !important;">Average rating:</div>
+		    			<div class="rating_pic" style="display: inline-block; float: none; vertical-align:middle; margin-right:0.5em;">
+							{% for star in total_stars%}
+							<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+							{%endfor%}
+		    			</div>
+		    	 		based on {{comment_counter}} ratings
+		    		</div>
+	    		</span>
+	    	</div>
+	    	<div class="review_sort">
+			    <div class="lreview_sort">
+				<strong style="margin-top:5px;">
+					{% if user.is_authenticated %}
+						<a href="#ratings_form" style="color: #FF7920; text-decoration:none !Important; font-size:0.85em;" id="ratings_link">Share your opinion <span style="font-size:1em;">></span></a>
+					{% else %}
+						<a href="#ratings_form" style="color: #FF7920;" onclick="alert('Sorry ... You need to log in first to write a review');">Share your opinion <img src="/static/images/edit_icon.png" width="10px"></a>
+					{% endif %}
+				</strong>
+			    </div>
+			    <div class="rate_show" style="float: right; width: auto !important;">
+			    	<div class="rating" style="float: left;width:60px;margin-top: 5px;font-weight: bold; font-size:0.85em;">Sort by</div>
+				    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">
+						{% if sort_type == "asc" %}
+						<a href="/event/details/?id={{eventdetails.id}}&sort_type=desc" style="color: #000000; text-decoration: none;">
+						{% else %}
+						<a href="/event/details/?id={{eventdetails.id}}&sort_type=asc" style="color: #000000; text-decoration: none;">
+						{% endif %}
+						<span style="font-size: 0.85em; font-weight:bold;">Most recent</span>
+						{% if sort_type == "asc" %}
+				    	<img src="/static/images/up_arrow.png" alt="" style="margin-top: 0px;" />
+						{% else %}
+				    	<img src="/static/images/dwn_arrow.png" alt="" style="margin-top: 0px;" />
+						{% endif %}
+						</a>
+					</div>
+				</div>
+		    </div>
+	    	<hr>
+	    	
+	   	</div>
+	   	<div class="prev_det">
+	   		<div class="prev_tit_2">Opinions</div>
+	   	</div>
+		
+		
+		
 		<!--<li class="prev_det"><strong>For more details:</strong> <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600;">{{eventdetails.eventwebsite}}</a></li>-->
+	    <!--
 	    <li class="prev_det"><strong>Members' ratings:</strong></li>
 	    {% if average_ratings %}
 	    <span class="cust_ratin">
@@ -186,6 +241,7 @@
 	    <li class="prev_det"><strong>Members' reviews:</strong></li> 
 	    {% endif %}
 	   </ul>
+	  -->
 	   <!--
 	     <h6 style="font-weight: bold;margin-top: 15px;font-size: 17px; margin-bottom: 15px; margin-bottom: 15px;">Event URL: <a href="{{eventdetails.eventwebsite}}" style="color: #FF7920;">{{eventdetails.eventwebsite}}</a></h6>
 	     
@@ -211,6 +267,7 @@
 	    </div>-->
 	    <div id="latest_events">
 		     <div class="clear"></div>   
+		     <!--
 		     <div class="review_sort">
 			    <div class="lreview_sort">
 				<strong style="margin-top:5px;">
@@ -239,6 +296,7 @@
 				</div>
 			    </div>
 		     </div>
+		     -->
 			{% for comment in user_comments %}
 				<div class="review_rating">
 					<div class="clear"></div>

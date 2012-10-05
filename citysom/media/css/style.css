@@ -1238,15 +1238,15 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .left_img_prev{float: left; width:25%; margin-right: 20px; text-align: center;}
 .left_img_prev img{max-width: 220px; max-height: 300px;}
 .left_img_prev hr{background: none repeat scroll 0 0 #EAEAEA; border: medium none; clear:both; color:#EAEAEA; float: none; height: 1px; margin-bottom: 8px; margin-top: 6px;}
-.prev_det{margin-top: 20px; font-family:Helvetica;}
-.prev_tit{font-family:Helvetica; font-size: 2em;}
+.prev_det{margin-top: 20px; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; padding:10px; border-radius:6px; -webkit-border-radius:6px; -moz-border-radius:6px; border:1px solid #E0E0E0;}
+.prev_tit{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; color:#FF6600; font-weight:bold;}
 .right_det{float: left; width:650px;}
 .top_critic{}
 .det_crit{width: 500px; font-family:Helvetica;}
 .det_crit p{ font-family:Helvetica;}
 .review{font-weight:bold;border-bottom: 2px solid black;}
 .txt_area{background: url('./images/textarea_shdw.png');}
-#event_scheduling{font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.5em; color:#777777;}
+#event_scheduling{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.5em; color:#777777;}
 .event_dates{font-weight:bold; text-align:left; margin-left: 2em; font-size:1.7em;}
 .event_program{text-align:left; margin-left:2em; font-size:1.7em; margin-top:0.5em; display:inline-block; float:left;}
 .event_program_2{text-align:left; margin-left:1em; margin-top:0.5em; font-size:1.7em; display:inline-block; float:left;}
@@ -1258,7 +1258,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 #date_time .todays_date{float: right;}
 .cust_ratin{height: auto; margin-top: 10px;}
 .cust_rating{margin-top:1em; display:block;}
-.event_desc{height: auto; margin-top: 10px; margin-left: 1em; font-size:0.9em; line-height: 1.5em;}
+.event_desc{height: auto; margin-top: 10px; margin-left: 1em; font-size:0.9em; line-height: 1.5em; color:#505050;}
 .cust_ratin .rating{float: left; font-family: Helvetica; color:#2E2E2E; }
 .cust_ratin .rating_pic{float: left; height: 20px; margin-top: 0px;}
 .rate_show{float: left;width:250px;height: auto;margin-left: 60px;}
