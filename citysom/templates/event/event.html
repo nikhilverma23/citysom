@@ -7,100 +7,98 @@
 
 <div class="cre_event">{% if eventform.title.value %}Modifying the Event{% else %}Create an event{% endif %}</div>
  
-        <div class="datearea">
-                
-                
-        </div>
-        <div class="clear"></div>
 <div id="login">
-			<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
+	<div class="cre_event_img">
+		<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="upload_image">
-		{{eventform_poster.event_poster_file}}
+				{{eventform_poster.event_poster_file}}
             	{% if event_poster %}
-            		<img src="/static/images/{{event_poster}}" alt="Poster" id="poster_image" />
-                	<button id="upload_link" class="uploader" value="Upload Poster" >Change Poster</button>
+            	<img src="/static/images/{{event_poster}}" alt="Poster" id="poster_image" />
+                <button id="upload_link" class="uploader" value="Upload Poster" >Change Poster</button>
             	{% else %}
-            		<img src="/static/images/upload.png" alt="Poster" id="poster_image" />
-                	<button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
+            	<img src="/static/images/upload.png" alt="Poster" id="poster_image" />
+                <button id="upload_link" class="uploader" value="Upload Poster" >Upload Poster</button>
             	{% endif %}
             </div>
-            </form>
-            {% if form.errors %}
-			<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
-			{% endif %}
-            <div class="cre_event_content">
-                  <form id="event-form" action="" method="POST" enctype="multipart/form-data">
-                  	{% csrf_token %}
-                    	<div class="width-60 fltlft">
-                        	<fieldset class="adminform">
-                            	<ul class="adminformlist" style="list-style: none;">
-	                            	<li class="formlist1">
-	                                	{% if eventform.title.errors %}
-									    	<p class="error">{{ eventform.title.errors|join:", "  }}</p>
-									  	{% endif %}
-	                                    <b>Event Title:</b>
-	                                    {{eventform.title}}
-	                                </li>
-	                                <li class="formlist1">
-	                                	{% if eventform.venue_name.errors %}
-									    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
-									  	{% endif %}
-	                                    <b>Venue Name:</b>
-	                                    {{eventform.venue_name}}
-	                                </li>
-	                                <li class="formlist1">
-	                                	{% if eventform.street_address.errors %}
-									    	<p class="error">{{ eventform.street_address.errors|join:", "  }}</p>
-									  	{% endif %}
-	                                    <b>Street Address:</b>
-	                                    {{eventform.street_address}}
-	                                </li>
-	                                <li class="formlist1">
-		                               	<div id="venue_map" style="margin: 10px; height: 300px;"></div>
-		                            </li>
+		</form>
+		{% if form.errors %}
+		<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
+		{% endif %}
+	</div>
+    <div class="cre_event_content">
+    	<form id="event-form" action="" method="POST" enctype="multipart/form-data">
+    		{% csrf_token %}
+        	<div class="width-60 fltlft">
+            	<fieldset class="adminform">
+            		<ul class="adminformlist" style="list-style: none;">
+						<li class="formlist1">
+							{% if eventform.title.errors %}
+							<p class="error">{{ eventform.title.errors|join:", "  }}</p>
+							{% endif %}
+		                    <b>Event Title:</b>
+		                    {{eventform.title}}
+	                    </li>
+	                    <li class="formlist1">
+	                    	{% if eventform.venue_name.errors %}
+							<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+							{% endif %}
+	                        <b>Venue Name:</b>
+	                        {{eventform.venue_name}}
+						</li>
+	                    <li class="formlist1">
+	                    	{% if eventform.street_address.errors %}
+							<p class="error">{{ eventform.street_address.errors|join:", "  }}</p>
+							{% endif %}
+	                    	<b>Street Address:</b>
+	                        {{eventform.street_address}}
+						</li>
+	                    <li class="formlist1">
+		                	<div id="venue_map" style="margin: 10px; height: 300px;"></div>
+		                </li>
 		                               
-	                            	<li class="formlist1">
-	                            		<div class="formlist1_div">
-	                                		{% if eventform.date_started.errors %}
-									    		<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
-									  		{% endif %}
-	                                   		<b>Event start date:</b>
-	                                   		{{eventform.date_started}}	
-	                                		</div>
-	                                		<div class="formlist1_div">
-	                                		{% if eventform.date_completed.errors %}
-									    		<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
-									  		{% endif %}
-	                                    	<b>Event end date:</b>
-	                                    	{{eventform.date_completed}} 	
-	                                	</div>
-	                            	</li>
-	                                	                          
-                                 	<li class="formlist1 left_aligned_radios">
-                                		{% if eventform.schedule_type.errors %}
-								    		<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
-								  		{% endif %}
-                                  		<b>Type of schedule:</b>
-                                   		{{eventform.schedule_type}} 
-                                	</li>
+	                    <li class="formlist1">
+	                    	<b>Event start date:</b>
+	                    	<div class="formlist1_div">
+	                    		{{eventform.date_started}}	
+	                        	{% if eventform.date_started.errors %}
+								<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
+								{% endif %}
+	                        </div>
+						</li>
+						<li class="formlist1">
+	                        <b>Event end date:</b>
+	                        <div class="formlist1_div">
+	                        	{{eventform.date_completed}}
+	                        	{% if eventform.date_completed.errors %}
+								<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
+								{% endif %}	
+							</div>
+						</li>        	                          
+                        <li class="formlist1 left_aligned_radios">
+                        	{% if eventform.schedule_type.errors %}
+							<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
+							{% endif %}
+                        	<b>Type of schedule:</b>
+                        	{{eventform.schedule_type}} 
+                        </li>
                                 	
-                                	<li class="formlist1 open_hours_div">
-                            			<b style="float:left;">Event open hours:</b>
-                                		<div id="start_hour">
-                                 			<div class="start_left">
-                                 				<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
-                            					<div class="clear"></div>
-                            					{% if eventform.start_hours_on_monday.errors %}
-				    								<p class="error">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
-						  			 			{% endif %}
-						  			 			{% if eventform.end_hours_on_monday.errors %}
-						    		 				<p class="error">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
-						    	     			{% endif %}
-		                             			<label>Mondays:</label>
-				                            	{{eventform.start_hours_on_monday}} 
-								    	    	{{eventform.end_hours_on_monday}} 
-				                            	<input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
+                        <li class="formlist1 open_hours_div">
+                        	<b style="float:left;">Event open hours:</b>
+                        	<div id="start_hour">
+                        	<div class="start_left">
+								<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                            	<div class="clear"></div>
+                            	{% if eventform.start_hours_on_monday.errors %}
+				    			<p class="error">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
+						  		{% endif %}
+						  		{% if eventform.end_hours_on_monday.errors %}
+						    	<p class="error">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
+						    	{% endif %}
+		                        <label>Mondays:</label>
+				                {{eventform.start_hours_on_monday}} 
+								{{eventform.end_hours_on_monday}} 
+				                <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
 		                             
                              
 			                             		{% if eventform.start_hours_on_tuesday.errors %}
@@ -184,23 +182,38 @@
                              			</div>
                              		<div class="clear"></div>
                              		<div id="performance_hours_div_parent_1" class="div_orange_border">
+                             			<div style="background:#F0F0F0; border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; height:3em; margin-bottom:1em; border-bottom:1px groove #4C4C4C;">
+                             				<b style="display:inline-block; font-size:1em; font-style:italic; margin-left:2em; margin-top:1em; color:#FF6000; font-weight:bold;">Schedule 1</b>
+                             			</div>
 										<div class="performance_hours_div">
 											<li class="formlist1">
+												<b>Schedule starts:</b>
 		                                		<div class="formlist1_div" style="margin-right: 0px;">
 		                                		{% if eventform.date_started5.errors %}
 										    		<p class="error">{{ eventform.date_started5.errors|join:", "  }}</p>
 										  		{% endif %}
-		                                   		<b>Schedule start1:</b>
-		                                   		{{eventform.date_started5}}	
+										  		{{eventform.date_started5}}		                                   			
 		                                		</div>
+		                                	</li>
+		                                	<li class="formlist1">
+		                                		<b>Schedule ends:</b>
 		                                		<div class="formlist1_div">
 		                                		{% if eventform.date_completed5.errors %}
 										    		<p class="error">{{ eventform.date_completed5.errors|join:", "  }}</p>
 										  		{% endif %}
-		                                    	<b>Schedule end1:</b>
 		                                    	{{eventform.date_completed5}} 	
 		                                		</div>
 		                                	</li>	
+											<li class="formlist1">
+												<b>Performance repeats:</b>
+												<div class="formlist1_div">
+													{% if eventform.frequency.errors %}
+													<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
+													{% endif %}
+													{{eventform.frequency}} 
+												</div>
+											</li>
+											<!--
 											<li class="performance_hours_div">
 												{% if eventform.frequency.errors %}
 													<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
@@ -208,30 +221,36 @@
 												<b>Performance repeats:</b>
 												{{eventform.frequency}} 
 											</li>
+											-->
 											<li class="performance_hours_div_dmwonly">
 												{% if eventform.interval.errors %}
 													<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
 												{% endif %}
 												<b>Repeat every:</b>
-												{{eventform.interval}} days
-												<b id="frequency_label"></b> 
+												<div class="formlist1_div">
+													{{eventform.interval}} <b id="frequency_label" style="font-size:0.85em;"></b> 
+												</div>
 											</li>
 											<li class="performance_hours_div_wonly" id="days_repeat">
 												{% if eventform.repeat_on.errors %}
 													<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
 												{% endif %}
 												<b>Repeat On:</b>
-												{{eventform.repeat_on}}
-												<br /> 
+												<div class="formlist1_div">
+													{{eventform.repeat_on}}
+												</div>
+												<br/> 
 											</li>
 											<li class="performance_hours_div_monly" id="days_repeat_monthly">
 												{% if eventform.ordinal.errors %}
 													<p class="error">{{ eventform.ordinal.errors|join:", "  }}</p>
 												{% endif %}
 												<b>Repeat on the:</b>
-												{{eventform.ordinal}}
-												{{eventform.ordinal_day}}
-												<b> of the month</b>
+												<div class="formlist1_div">
+													{{eventform.ordinal}}
+													{{eventform.ordinal_day}}
+													<b style="font-size:0.85em !important;">of the month</b>
+												</div>	
 											</li>
 											<!--Showtime hours -->
 											<fieldset class="showtime_fs performance_hours_div showtimes_1">
@@ -262,7 +281,7 @@
 														</div>
 													</li>
 											</fieldset>	
-											<div class="check_box add_shw_1">
+											<div class="check_box add_shw_1" style="margin-top:1px;">
 												<label> 
 													<input type="checkbox" class="chk_add_shw_1" value="1" name="add_showtime_1">
 													Add showtime
@@ -299,7 +318,7 @@
 														</div>
 													</li>
 											</fieldset>
-											<div class="check_box add_shw_2">
+											<div class="check_box add_shw_2" style="margin-top:1px;">
 												<label> 
 													<input type="checkbox"class="chk_add_shw_2" value="1" name="add_showtime_2">
 													Add showtime
@@ -338,44 +357,56 @@
 									</div>
 						</div>
 						<div id="performance_hours_div_parent_2" style="display: none;" class="div_orange_border">
+							<div style="background:#F0F0F0; border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; height:3em; margin-bottom:1em; border-bottom:1px groove #4C4C4C;">
+                            	<b style="display:inline-block; font-size:1em; font-style:italic; margin-left:2em; margin-top:1em; color:#FF6000; font-weight:bold;">Schedule 2</b>
+                            </div>
 							<div class="performance_hours_div">
 								<li class="formlist1">
+									<b>Schedule starts:</b>
                             		<div class="formlist1_div" style="margin-right: 0px;">
 	                            		{% if eventform.date_started1.errors %}
 								    		<p class="error">{{ eventform.date_started1.errors|join:", "  }}</p>
 								  		{% endif %}
-	                               		<b>Schedule start2:</b>
 	                               		{{eventform.date_started1}}	
                             		</div>
+                            	</li>
+                            	<li class="formlist1">
+                            		<b>Schedule ends:</b>
                             		<div class="formlist1_div">
 	                            		{% if eventform.date_completed1.errors %}
 								    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
 								  		{% endif %}
-	                                	<b>Schedule end2:</b>
 	                                	{{eventform.date_completed1}} 	
                             		</div>
                             	</li>
-								<li class="performance_hours_div">
-									{% if eventform.frequency1.errors %}
-										<p class="error">{{ eventform.frequency1.errors|join:", "  }}</p>
-									{% endif %}
+                            	<li class="formlist1">
 									<b>Performance repeats:</b>
-									{{eventform.frequency1}} 
+									<div class="formlist1_div">
+										{% if eventform.frequency1.errors %}
+										<p class="error">{{ eventform.frequency1.errors|join:", "  }}</p>
+										{% endif %}
+										{{eventform.frequency1}} 
+									</div>
 								</li>
+								
 								<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval1.errors %}
 										<p class="error">{{ eventform.interval1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat every:</b>
-									{{eventform.interval1}}
-									<b id="frequency_label"></b> 
+									<div class="formlist1_div">
+										{{eventform.interval1}}
+										<b id="frequency_label" style="font-size:0.85em;"></b> 
+									</div>
 								</li>
 								<li class="performance_hours_div_wonly" id="days_repeat">
 									{% if eventform.repeat_on1.errors %}
 										<p class="error">{{ eventform.repeat_on1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat On:</b>
-									{{eventform.repeat_on1}}
+									<div class="formlist1_div">
+										{{eventform.repeat_on1}}
+									</div>
 									<br> 
 								</li>
 								<li class="performance_hours_div_monly" id="days_repeat_monthly">
@@ -383,9 +414,11 @@
 										<p class="error">{{ eventform.ordinal1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat on the:</b>
-									{{eventform.ordinal1}}
-									{{eventform.ordinal_day1}}
-									<b> of the month</b>
+									<div class="formlist1_div">
+										{{eventform.ordinal1}}
+										{{eventform.ordinal_day1}}
+										<b style="font-size:0.85em !important;">of the month</b>
+									</div>
 								</li>
 								<!--Showtime hours -->
 								<fieldset class="showtime_fs performance_hours_div showtimes_1">
@@ -416,7 +449,7 @@
 											</div>
 										</li>
 								</fieldset>	
-								<div class="check_box add_shw_1">
+								<div class="check_box add_shw_1" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_1" value="1" name="add_showtime_1">
 										Add showtime
@@ -452,7 +485,7 @@
 										</div>
 									</li>
 								</fieldset>
-								<div class="check_box add_shw_2">
+								<div class="check_box add_shw_2" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_2" value="1" name="add_showtime_2">
 										Add showtime
@@ -493,44 +526,55 @@
 							</div>
 						</div>
 						<div id="performance_hours_div_parent_3" style="display: none;" class="div_orange_border">
+							<div style="background:#F0F0F0; border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; height:3em; margin-bottom:1em; border-bottom:1px groove #4C4C4C;">
+                            	<b style="display:inline-block; font-size:1em; font-style:italic; margin-left:2em; margin-top:1em; color:#FF6000; font-weight:bold;">Schedule 3</b>
+							</div>
 							<div class="performance_hours_div">
 								<li class="formlist1">
-                                		<div class="formlist1_div" style="margin-right: 0px;">
+									<b>Schedule starts:</b>
+                                	<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started2.errors %}
 								    		<p class="error">{{ eventform.date_started2.errors|join:", "  }}</p>
-								  		{% endif %}
-                                   		<b>Schedule start3:</b>
+								  		{% endif %}		
                                    		{{eventform.date_started2}}	
-                                		</div>
-                                		<div class="formlist1_div">
+                                	</div>
+                                </li>
+                                <li class="formlist1">
+                                	<b>Schedule ends:</b>
+                                	<div class="formlist1_div">
                                 		{% if eventform.date_completed1.errors %}
 								    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
-								  		{% endif %}
-                                    	<b>Schedule end3:</b>
+								  		{% endif %}	
                                     	{{eventform.date_completed2}} 	
-                                		</div>
+                                	</div>
                                 </li>
-								<li class="performance_hours_div">
-									{% if eventform.frequency2.errors %}
-										<p class="error">{{ eventform.frequency2.errors|join:", "  }}</p>
-									{% endif %}
+                                <li class="formlist1">
 									<b>Performance repeats:</b>
-									{{eventform.frequency2}} 
+									<div class="formlist1_div">
+										{% if eventform.frequency2.errors %}
+										<p class="error">{{ eventform.frequency2.errors|join:", "  }}</p>
+										{% endif %}
+										{{eventform.frequency2}} 
+									</div>
 								</li>
 								<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval2.errors %}
 										<p class="error">{{ eventform.interval2.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat every:</b>
-									{{eventform.interval2}}
-									<b id="frequency_label"></b> 
+									<div class="formlist1_div">
+										{{eventform.interval2}}
+										<b id="frequency_label" style="font-size:0.85em;"></b> 
+									</div>
 								</li>
 								<li class="performance_hours_div_wonly" id="days_repeat">
 									{% if eventform.repeat_on2.errors %}
 										<p class="error">{{ eventform.repeat_on2.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat On:</b>
-									{{eventform.repeat_on2}}
+									<div class="formlist1_div">
+										{{eventform.repeat_on2}}
+									</div>
 									<br> 
 								</li>
 								<li class="performance_hours_div_monly" id="days_repeat_monthly">
@@ -538,9 +582,11 @@
 										<p class="error">{{ eventform.repeat_on2.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat on the:</b>
-									{{eventform.ordinal2}}
-									{{eventform.ordinal_day2}}
-									<b> of the month</b>
+									<div class="formlist1_div">
+										{{eventform.ordinal2}}
+										{{eventform.ordinal_day2}}
+										<b style="font-size:0.85em !important;">of the month</b>
+									</div>
 								</li>
 								<!--Showtime hours -->
 								<fieldset class="showtime_fs performance_hours_div showtimes_1">
@@ -571,7 +617,7 @@
 											</div>
 										</li>
 								</fieldset>	
-								<div class="check_box add_shw_1">
+								<div class="check_box add_shw_1" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_1" value="1" name="add_showtime_1">
 										Add showtime
@@ -608,7 +654,7 @@
 											</div>
 										</li>
 								</fieldset>
-								<div class="check_box add_shw_2">
+								<div class="check_box add_shw_2" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_2" value="1" name="add_showtime_2">
 										Add showtime
@@ -650,45 +696,55 @@
 							</div>
 						</div>
 						<div id="performance_hours_div_parent_4" style="display: none;" class="div_orange_border">
+							<div style="background:#F0F0F0; border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; height:3em; margin-bottom:1em; border-bottom:1px groove #4C4C4C;">
+                            	<b style="display:inline-block; font-size:1em; font-style:italic; margin-left:2em; margin-top:1em; color:#FF6000; font-weight:bold;">Schedule 4</b>
+                            </div>
 							<div class="performance_hours_div">
 								<li class="formlist1">
+									<b>Schedule starts:</b>
                                 	<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started3.errors %}
 								    		<p class="error">{{ eventform.date_started3.errors|join:", "  }}</p>
 								  		{% endif %}
-                                   		<b>Schedule start4:</b>
                                    		{{eventform.date_started3}}	
-                                		</div>
-                                		<div class="formlist1_div">
+                                	</div>
+                                </li>
+                                <li class="formlist1">
+                                	<b>Schedule ends:</b>
+                                	<div class="formlist1_div">
                                 		{% if eventform.date_completed3.errors %}
 								    		<p class="error">{{ eventform.date_completed3.errors|join:", "  }}</p>
 								  		{% endif %}
-                                    	<b>Schedule end4:</b>
                                     	{{eventform.date_completed3}} 	
                                 	</div>
                                 </li>
-								
-								<li class="performance_hours_div">
-									{% if eventform.frequency3.errors %}
-										<p class="error">{{ eventform.frequency3.errors|join:", "  }}</p>
-									{% endif %}
+								<li class="formlist1">
 									<b>Performance repeats:</b>
-									{{eventform.frequency3}} 
+									<div class="formlist1_div">
+										{% if eventform.frequency3.errors %}
+										<p class="error">{{ eventform.frequency3.errors|join:", "  }}</p>
+										{% endif %}
+										{{eventform.frequency3}} 
+									</div>
 								</li>
 								<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval3.errors %}
 										<p class="error">{{ eventform.interval3.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat every:</b>
-									{{eventform.interval3}}
-									<b id="frequency_label"></b> 
+									<div class="formlist1_div">
+										{{eventform.interval3}}
+										<b id="frequency_label" style="font-size:0.85em;"></b> 
+									</div>
 								</li>
 								<li class="performance_hours_div_wonly" id="days_repeat">
 									{% if eventform.repeat_on3.errors %}
 										<p class="error">{{ eventform.repeat_on3.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat On:</b>
-									{{eventform.repeat_on3}}
+									<div class="formlist1_div">
+										{{eventform.repeat_on3}}
+									</div>
 									<br> 
 								</li>
 								<li class="performance_hours_div_monly" id="days_repeat_monthly">
@@ -696,9 +752,11 @@
 										<p class="error">{{ eventform.repeat_on3.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat on the:</b>
-									{{eventform.ordinal3}}
-									{{eventform.ordinal_day3}}
-									<b> of the month</b>
+									<div class="formlist1_div">
+										{{eventform.ordinal3}}
+										{{eventform.ordinal_day3}}
+										<b style="font-size:0.85em !important;">of the month</b>
+									</div>
 								</li>
 								<!--Showtime hours -->
 								<fieldset class="showtime_fs performance_hours_div showtimes_1">
@@ -729,7 +787,7 @@
 											</div>
 										</li>
 									</fieldset>	
-									<div class="check_box add_shw_1">
+									<div class="check_box add_shw_1" style="margin-top:1px;">
 										<label> 
 											<input type="checkbox"class="chk_add_shw_1" value="1" name="add_showtime_1">
 											Add showtime
@@ -766,7 +824,7 @@
 											</div>
 										</li>
 								</fieldset>
-								<div class="check_box add_shw_2">
+								<div class="check_box add_shw_2" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_2" value="1" name="add_showtime_2">
 										Add showtime
@@ -808,44 +866,56 @@
 							</div>
 						</div>
 						<div id="performance_hours_div_parent_5" style="display: none;" class="div_orange_border">
+							<div style="background:#F0F0F0; border-radius: 10px 10px 0 0; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius:10px 10px 0 0; height:3em; margin-bottom:1em; border-bottom:1px groove #4C4C4C;">
+                            	<b style="display:inline-block; font-size:1em; font-style:italic; margin-left:2em; margin-top:1em; color:#FF6000; font-weight:bold;">Schedule 5</b>
+                            </div>
 							<div class="performance_hours_div">
 								<li class="formlist1">
+									<b>Schedule starts:</b>
                                 	<div class="formlist1_div" style="margin-right: 0px;">
                                 		{% if eventform.date_started4.errors %}
 								    		<p class="error">{{ eventform.date_started4.errors|join:", "  }}</p>
 								  		{% endif %}
-                                   		<b>Schedule start5:</b>
                                    		{{eventform.date_started4}}	
                                 	</div>
+                                </li>
+                                <li class="formlist1">
+                                	<b>Schedule ends:</b>
                                 	<div class="formlist1_div">
                                 		{% if eventform.date_completed4.errors %}
 								    		<p class="error">{{ eventform.date_completed4.errors|join:", "  }}</p>
 								  		{% endif %}
-                                    	<b>Schedule end5:</b>
+                                    	
                                     	{{eventform.date_completed4}} 	
                                 	</div>
                                 </li>
-								<li class="performance_hours_div">
-									{% if eventform.frequency4.errors %}
-										<p class="error">{{ eventform.frequency4.errors|join:", "  }}</p>
-									{% endif %}
+                                <li class="formlist1">
 									<b>Performance repeats:</b>
-									{{eventform.frequency4}} 
+									<div class="formlist1_div">
+										{% if eventform.frequency4.errors %}
+										<p class="error">{{ eventform.frequency4.errors|join:", "  }}</p>
+										{% endif %}
+										{{eventform.frequency4}} 
+									</div>
 								</li>
 								<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval4.errors %}
 										<p class="error">{{ eventform.interval4.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat every:</b>
-									{{eventform.interval4}}
-									<b id="frequency_label"></b> 
+									<div class="formlist1_div">
+										{{eventform.interval4}}
+										<b id="frequency_label" style="font-size:0.85em;"></b> 
+									</div>
 								</li>
 								<li class="performance_hours_div_wonly" id="days_repeat">
 									{% if eventform.repeat_on4.errors %}
 										<p class="error">{{ eventform.repeat_on4.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat On:</b>
-									{{eventform.repeat_on4}}
+									<div class="formlist1_div">
+										{{eventform.repeat_on4}}
+									</div>
 									<br> 
 								</li>
 								<li class="performance_hours_div_monly" id="days_repeat_monthly">
@@ -853,9 +923,11 @@
 										<p class="error">{{ eventform.repeat_on4.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat on the:</b>
-									{{eventform.ordinal4}}
-									{{eventform.ordinal_day4}}
-									<b> of the month</b>
+									<div class="formlist1_div">
+										{{eventform.ordinal4}}
+										{{eventform.ordinal_day4}}
+										<b style="font-size:0.85em !important;">of the month</b>
+									</div>
 								</li>
 								<!--Showtime hours -->
 								<fieldset class="showtime_fs performance_hours_div showtimes_1">
@@ -886,7 +958,7 @@
 											</div>
 										</li>
 								</fieldset>	
-								<div class="check_box add_shw_1">
+								<div class="check_box add_shw_1" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_1" value="1" name="add_showtime_1">
 										Add showtime
@@ -923,7 +995,7 @@
 											</div>
 										</li>
 								</fieldset>
-								<div class="check_box add_shw_2">
+								<div class="check_box add_shw_2" style="margin-top:1px;">
 									<label> 
 										<input type="checkbox"class="chk_add_shw_2" value="1" name="add_showtime_2">
 										Add showtime
@@ -965,7 +1037,7 @@
 							</div>
 						</div>
 						<div id="add_new_performance_div" style="display: none;">
-							<button value="Add New Performance" id="add_new_performance_link" class="uploader" type="button">Add New Performance</button>
+							<button value="Add New Performance" id="add_new_performance_link" class="uploader" type="button">Add new schedule</button>
 						</div>
 						<!--<li class="formlist1">
                         	{% if eventform.event_duration.errors %}
@@ -1022,7 +1094,7 @@
 					         				<option value="14">Romance</option>
 					         				<option value="15">Other</option>
          								</select>
-         								<select id="genre_exhibition" class="genre_choice">>
+         								<select id="genre_exhibition" class="genre_choice">
 					         				<option value="16">Painting</option>
 					         				<option value="17">Drawing</option>
 					         				<option value="18">Printmaking</option>
@@ -1035,12 +1107,12 @@
 					         				<option value="25">Video</option>
 					         				<option value="26">Other</option>
 					         			</select>
-					         			<select id="genre_lecture" class="genre_choice">>
+					         			<select id="genre_lecture" class="genre_choice">
 					         				<option value="27">Conference</option>
 					         				<option value="28">Talk</option>
 					         				<option value="29">Other</option>
 					         			</select>
-					         			<select id="genre_concert" class="genre_choice">>
+					         			<select id="genre_concert" class="genre_choice">
 					         				<option value="30">Alternative</option>
 					         				<option value="31">Country</option>
 					         				<option value="32">Dance/ Electronic</option>
@@ -1057,7 +1129,7 @@
 					         				<option value="43">Reggae</option>
 					         				<option value="44">Other</option>
 					         			</select>
-					         			<select id="genre_sport" class="genre_choice">>
+					         			<select id="genre_sport" class="genre_choice">
 					         				<option value="45">Basketball</option>
 					         				<option value="46">Baseball</option>
 					         				<option value="47">Football</option>
@@ -1074,12 +1146,12 @@
 					         				<option value="58">Athletics</option>
 					         				<option value="59">Other</option>
 					         			</select>
-					         			<select id="genre_theater" class="genre_choice">>
+					         			<select id="genre_theater" class="genre_choice">
 					         				<option value="60">Theater</option>
 					         				<option value="61">Reading</option>
 					         				<option value="62">Improv</option>
 					         			</select>
-					         			<select id="genre_opera" class="genre_choice">>
+					         			<select id="genre_opera" class="genre_choice">
 					         				<option value="63">Opera</option>
 					         			</select>
 					         			<select id="genre_dance">
@@ -1096,39 +1168,39 @@
 					         				<option value="74">Folk</option>
 					         				<option value="75">Other</option>
 					         			</select>
-					         			<select id="genre_musical" class="genre_choice">>
+					         			<select id="genre_musical" class="genre_choice">
 					         				<option value="76">Musical</option>
 					         				<option value="77">Show</option>
 					         			</select>
-					         			<select id="genre_outdoor" class="genre_choice">>
+					         			<select id="genre_outdoor" class="genre_choice">
 					         				<option value="78">Hiking</option>
 					         				<option value="79">Camping</option>
 					         				<option value="80">Mountain climbing</option>
 					         				<option value="81">Other</option>
 					         			</select>
-					         			<select id="genre_festival" class="genre_choice">>
+					         			<select id="genre_festival" class="genre_choice">
 					         				<option value="82">Festival</option>
 					         			</select>
-					         			<select id="genre_standup" class="genre_choice">>
+					         			<select id="genre_standup" class="genre_choice">
 					         				<option value="83">Stand-up</option>
 					         			</select>
-					         			<select id="genre_course" class="genre_choice">>
+					         			<select id="genre_course" class="genre_choice">
 					         				<option value="84">Course</option>
 					         			</select>
-					         			<select id="genre_city" class="genre_choice">>
+					         			<select id="genre_city" class="genre_choice">
 					         				<option value="85">City activity</option>
 					         			</select>
-					         			<select id="genre_fair" class="genre_choice">>
+					         			<select id="genre_fair" class="genre_choice">
 					         				<option value="86">Farmers Market</option>
 					         				<option value="87">Arts/ Craft</option>
 					         				<option value="88">Food</option>
 					         				<option value="89">Other</option>
 					         			</select>
-					         			<select id="genre_fundraiser" class="genre_choice">>
+					         			<select id="genre_fundraiser" class="genre_choice">
 					         				<option value="90">Fundraiser</option>
 					         				<option value="91">Other</option>
 					         			</select>
-					         			<select id="genre_party" class="genre_choice">>
+					         			<select id="genre_party" class="genre_choice">
 					         				<option value="92">Clubs</option>
 					         				<option value="93">Other</option>
 					         			</select>
@@ -1386,7 +1458,7 @@ $(".category_class").change(function(){
 
 $(".frequency_class").change(function(){
 	var options_html;
-	parent = $(this).parent().parent();
+	parent = $(this).parent().parent().parent();
 	if($(this).val() == "ONCE")
 	{
 		parent.children('.performance_hours_div_dmwonly').hide();
@@ -1402,7 +1474,7 @@ $(".frequency_class").change(function(){
 		/*{% for frequency_val in frequency_range.daily %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}*/
-		parent.children('#frequency_label').text("day");
+		parent.find('#frequency_label').text("day");
 		parent.children(".performance_hours_div_wonly").hide();
 		parent.children('.performance_hours_div_monly').hide();	
 		parent.children('.performance_hours_div_dmwonly').show();
@@ -1416,7 +1488,7 @@ $(".frequency_class").change(function(){
 		/*{% for frequency_val in frequency_range.weekly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}*/
-		parent.children('#frequency_label').text("week");
+		parent.find('#frequency_label').text("week");
 		parent.children(".performance_hours_div_wonly").show();
 		parent.children('.performance_hours_div_monly').hide();
 		parent.children('.performance_hours_div_dmwonly').show();
@@ -1430,7 +1502,7 @@ $(".frequency_class").change(function(){
 		/*{% for frequency_val in frequency_range.monthly %}
 			options_html += '<option value="{{frequency_val|add:1}}">{{frequency_val|add:1}}</option>';
 		{% endfor %}*/
-		parent.children('#frequency_label').text("month");
+		parent.find('#frequency_label').text("month");
 		parent.children(".performance_hours_div_wonly").hide();
 		parent.children('.performance_hours_div_dmwonly').show();
 		parent.children('.performance_hours_div_monly').show();
