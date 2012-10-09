@@ -9,10 +9,11 @@
         <div class="main_account">
             {% include "myprofile/sidebar.html"%}
             <div class="right_account">
-                <div class="right_title">
-                    Upcoming Events
-                </div>
+                
                 <div class="right_content" id="test_div">
+                	<div class="right_title">
+                    	Upcoming Events
+               		 </div>
                     {% if upcoming_events %}
                     <div id="carousel_pres_upcoming" class="carousel_pres">
                             <div id="carousel_upcoming" class="touchcarousel grey-blue touchcarousel_dashboard">     
@@ -31,14 +32,15 @@
                             </div>
                     </div>
                     {% else %}
-                            <span style="color: #FF8C00;">No Upcoming Events Scheduled</span>
+                            <span style="color: #FF8C00; display:block; margin-left:1em; margin-top:1em;">No upcoming events scheduled</span>
                     {% endif %}
                     <div class="clear"></div>
                 </div>
-                <div class="right_title">
-                    Events History
-                </div>
+                
                 <div class="right_content">
+                	<div class="right_title">
+                    	Events History
+                	</div>
                     {% if history_events %}
                     <div id="carousel_pres_history" class="carousel_pres">
                             <div id="carousel_history" class="touchcarousel grey-blue touchcarousel_dashboard">     
@@ -57,14 +59,15 @@
                             </div>
                     </div>
                     {% else %}
-                            <span style="color: #FF8C00;">No History Events Found</span>
+                            <span style="color: #FF8C00; display:block; margin-left:1em; margin-top:1em;">No event history found</span>
                     {% endif %}
                     <div class="clear"></div>
                 </div>
-                <div class="right_title">
-                    My Wishlist
-                </div>
+                
                 <div class="right_content">
+                	<div class="right_title">
+                    	My Bookmarks
+                	</div>
                     {% if wishlist_events %}
                     <div id="carousel_pres_wishlist" class="carousel_pres">
                             <div id="carousel_wishlist" class="touchcarousel grey-blue touchcarousel_dashboard">     
@@ -83,7 +86,7 @@
                             </div>
                     </div>
                     {% else %}
-                            <span style="color: #FF8C00;">No events is added to your wishlist</span>
+                            <span style="color: #FF8C00; display:block; margin-left:1em; margin-top:1em;">No events is added to your Bookmarks</span>
                     {% endif %}
                     <div class="clear"></div>
                 </div>

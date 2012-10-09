@@ -1206,7 +1206,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .cre_event{color: #66666; font-size: 30px;float:left;margin-bottom:10px; margin-top:40px;width:auto;font-family: Georgia;font-weight: normal;font-style: normal; width:100%;}
 #login{width: auto;height:auto;margin-top:10px;}
 
-.login_content{ margin-left:6em; background: #F1F1F1; border: 1px groove #AEAEAE; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; height:26em; padding: 3em 1em; width:55em;}
+.login_content{ padding: 3em 1em; width:55em;}
 .cre_event_content{float:left;width:65%; }
 
 .upload_image{width:100%;}
@@ -1301,7 +1301,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .login_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:0px;}
 .cre_event_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
 
-.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#444444; margin-top:8px; margin-left:2em;}
+.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#444444; margin-top:8px; margin-left:2em; }
 .cre_event_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
 
 .login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{border: 0.1px solid #E0E0E0; margin-left:3em; width: 550px; height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;}
@@ -1722,6 +1722,7 @@ a.custom_link:hover
 .carousel_pres{
 	margin-bottom:1em;
 	margin-top:1em;
+	margin-left:2em;
 }
 
 .carousel_pres img{
@@ -1794,11 +1795,12 @@ div.account_div
 }
 h1.account_title
 {
-    font-size: 24px;
-    border-bottom: 2px solid #000000;
+    font-size: 1.5em;
+    border-bottom: 1px groove #FEFEFE;
     font-weight: bold;
-    font-family: Helvetica;
-    padding: 10px 0px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding: 10px;
+    color:#666666;
 }
 div.main_account
 {
@@ -1812,14 +1814,15 @@ div.left_account
 div.right_account
 {
     float: left;
-    width: 740px;
-    margin-left: 20px;
+    width: 70%;
+    margin-left: 5em;
 }
 div.left_title
 {
-    color: #3E3E3E;
+    color: #777777;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.7em;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 div.left_links
 {
@@ -1843,21 +1846,28 @@ div.left_links ul li a
 {
     color: #FD8F53;
     text-decoration: none;
+    font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:0.9em;
 }
 div.right_title
 {
-    background: #424F6F;
-    border-radius: 5px;
-    padding: 5px 10px;
-    color: #FFFFFF;
+    background: #F0F0F0;
+    border-radius: 3px;
+    padding: 7px 20px;
+    color: #FF6600;
+    font-size:0.85em;
+    font-weight:bold;
+    
 }
 div.right_content
 {
-    margin: 20px 0px 50px 30px;
-}
-div.right_content:last-child
-{
-    margin-bottom: 0px;
+    margin: 0px 0px 50px 30px;
+    padding: 10px 20px;
+    border: 1px solid #E0E0E0;
+    background: #fff;
+    border-radius:6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
 }
 
 div.right_item
@@ -1865,6 +1875,7 @@ div.right_item
     float: left;
     width: 95px;
     margin-right: 20px;
+    margin-top:1em;
 }
 a.event_Details_link{font-weight: bold; color: #000000; margin-left: 10px;}
 form.ratings_form{border: 1px solid #BABABA; padding: 10px; border-radius: 5px; background: #F8F8FC; margin-top: 10px; height:240px; margin-bottom:10px;}
@@ -1923,7 +1934,7 @@ div.star-rating{background:transparent!important;overflow:hidden!important;}
 /* END jQuery.Rating Plugin CSS */
 
 textarea.emails_textarea{width: 100%; height: 60px; border: 1px solid #DDDDDD;}
-a.emails_link{color: #FD8F53; font-weight: bold;}
+a.emails_link{color: #FD8F53; font-weight: bold; font-size:1em;}
 div.message_success{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
 div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
 #city_change_div{position: absolute; top:96px; display: none; left:0px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}

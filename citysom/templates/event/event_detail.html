@@ -25,15 +25,17 @@
 <div class="event_prev">
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
+	   <hr>
 	   <div>
 		<a href="/myprofile/popularity?action=like&id={{eventdetails.id}}">
-		<img src="/static/images/like.png" alt="like">
+			<button class="misc_pres_like" style="margin-left:2em !important; margin-bottom:0.7em !important;">   That's Citysom!   <img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
 		</a>
 		<a href='/myprofile/wishlist?action=add&id={{eventdetails.id}}'>
-			<img src="/static/images/add_wishlist.png" alt="add_to_wishlist" height="30px";>
+			<button class="misc_pres_more_info" style="margin-right:2em !important; margin-bottom:0.7em !important;">Bookmark this <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px;"/></button>
 		</a>
 	</div>
-	   <a href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to Link</a>
+	
+	   
 		<!--<div>
 			<button id="add_wishlist" class="uploader" value="Add to Wishlist" onclick="document.location.href='/myprofile/wishlist?action=add&id={{eventdetails.id}}';">Add to my wishlist</button>
 		</div>-->
@@ -153,6 +155,8 @@
 				<hr>
 			{% endif %}
 		</div>
+		
+		<a style="text-align:left; margin-left:-11em; font-size:0.85em;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
 
 	</div>
 	 <div class="right_det">

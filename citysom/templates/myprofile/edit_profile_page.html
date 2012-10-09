@@ -9,10 +9,11 @@
     <div class="main_account">
 	{% include "myprofile/sidebar.html"%}
 	<div class="right_account">
-	    <div class="right_title">
-		My Profile
-	    </div>
+	    
 	    <div class="right_content">
+	    	<div class="right_title">
+				My Profile
+	    	</div>
 		<div class="login_content profile_content">
 		<form enctype="multipart/form-data" method="post"  action="/myprofile/completingprofile/">
 			{% csrf_token %}

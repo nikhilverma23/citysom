@@ -9,21 +9,22 @@
         <div class="main_account">
             {% include "myprofile/sidebar.html"%}
             <div class="right_account">
-                <div class="right_title">
-                    Send Invitation
-                </div>
+                
                 <form action="" method="post" name="invitation_form">
                     {% csrf_token %}
                     <div class="right_content">
-                        <div>
+                    	<div class="right_title">
+                    		Send Invitation
+               			</div>
+                        <div style="display:block; margin-top:1em; margin-bottom:0.5em; font-size:0.85em; font-weight:bold; margin-left:1em; color:#777777;">
                             Email to (separate with commas):
                         </div>
                         <div>
                             <textarea name="emails" id="emails" class="emails_textarea"></textarea>
                         </div>
                         <div style="margin-top: 20px;">
-                            <span>Your message (optional):</span>
-                            <span style="float: right;">
+                            <span style=" margin-top:1em; margin-bottom:0.5em; font-size:0.85em; font-weight:bold; margin-left:1em; color:#777777;">Your message (optional):</span>
+                            <span style="float: right; margin-bottom:0.5em; font-size:0.85em;">
                                 <input type="hidden" name="action" value="invitation">
                                 <a href="javascript: void(0)" onclick="document.invitation_form.submit();" class="emails_link">Send Invitation</a>
                             </span>
@@ -33,10 +34,11 @@
                         </div>
                     </div>
                 </form>
-                <div class="right_title">
-                    See friends wishlist
-                </div>
+                
                 <div class="right_content">
+                	<div class="right_title" style="border-bottom:1em;">
+                    	See friends wishlist
+                	</div>
                     <div class="right_item">
                         <img src="/static/images/churchillimg.png" />
                     </div>
