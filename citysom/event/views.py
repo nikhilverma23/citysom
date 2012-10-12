@@ -41,6 +41,7 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
+        import pdb;pdb.set_trace();
         if event_form.is_valid():
             try:
                 id = request.GET['id']
@@ -175,7 +176,6 @@ def eventcreation(request):
             #Performance Based events Performance records           
             if event_form.cleaned_data['schedule_type']=='performance_based':
                 #Case of Frequency = Once
-                import pdb;pdb.set_trace();
                 if freq == "ONCE":
                     #Test of Showtime 1
                     if (event_form.cleaned_data['event_start_hours_1'] != None) and (event_form.cleaned_data['event_end_hours_1'] != None):
@@ -184,8 +184,7 @@ def eventcreation(request):
                         tix_price=event_form.cleaned_data['event_ticket_price_1']
                         performance_obj, created = PerformanceDetails.objects.get_or_create(
                                                                                             ticket_price = tix_price,
-                                                                                            #date_started = event_form.cleaned_data['date_started'],
-                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            date_of_performance = event_form.cleaned_data['date_started5'],                  
                                                                                             event = event_obj,
                                                                                             place = place_obj,
                                                                                             
@@ -201,8 +200,7 @@ def eventcreation(request):
                         tix_price=event_form.cleaned_data['event_ticket_price_4']
                         performance_obj, created = PerformanceDetails.objects.get_or_create(
                                                                                             ticket_price = tix_price,
-                                                                                            #date_started = event_form.cleaned_data['date_started'],
-                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            date_of_performance = event_form.cleaned_data['date_started1'],                  
                                                                                             event = event_obj,
                                                                                             place = place_obj,
                                                                                             
@@ -218,8 +216,7 @@ def eventcreation(request):
                         tix_price=event_form.cleaned_data['event_ticket_price_7']
                         performance_obj, created = PerformanceDetails.objects.get_or_create(
                                                                                             ticket_price = tix_price,
-                                                                                            #date_started = event_form.cleaned_data['date_started'],
-                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            date_of_performance = event_form.cleaned_data['date_started2'],                  
                                                                                             event = event_obj,
                                                                                             place = place_obj,
                                                                                             
@@ -235,8 +232,7 @@ def eventcreation(request):
                         tix_price=event_form.cleaned_data['event_ticket_price_10']
                         performance_obj, created = PerformanceDetails.objects.get_or_create(
                                                                                             ticket_price = tix_price,
-                                                                                            #date_started = event_form.cleaned_data['date_started'],
-                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            date_of_performance = event_form.cleaned_data['date_started3'],
                                                                                             event = event_obj,
                                                                                             place = place_obj,
                                                                                             
@@ -251,8 +247,7 @@ def eventcreation(request):
                         tix_price=event_form.cleaned_data['event_ticket_price_13']
                         performance_obj, created = PerformanceDetails.objects.get_or_create(
                                                                                             ticket_price = tix_price,
-                                                                                            #date_started = event_form.cleaned_data['date_started'],
-                                                                                            #date_completed = event_form.cleaned_data['date_completed'],                  
+                                                                                            date_of_performance = event_form.cleaned_data['date_started4'],                  
                                                                                             event = event_obj,
                                                                                             place = place_obj,
                                                                                             

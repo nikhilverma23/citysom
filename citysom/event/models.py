@@ -44,7 +44,7 @@ class Category(models.Model):
     """
     Describes the Event Category
     """
-    type = models.CharField(max_length=20,\
+    type = models.CharField(max_length=120,\
                                   help_text = "type of event"
                                   )
 
@@ -106,7 +106,7 @@ class Event(models.Model):
     status = models.BooleanField(default=False,\
                                  help_text="Event is active or Inactive")
     # Image for Event
-    event_poster = models.ImageField(upload_to="images/",\
+    event_poster = models.ImageField(upload_to="images/tmp/",\
                                      max_length=100,blank=True,null=True)
     
     # Any videos of event
@@ -184,6 +184,7 @@ class Event(models.Model):
     
     interval = models.IntegerField(null=True, help_text="basically the count")
     by_day = models.ManyToManyField(Days,\
+                                    related_name="event_event_by_day",
                                     blank=True,null=True,
                                     help_text="by_day",
                                     )
