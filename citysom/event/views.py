@@ -41,7 +41,6 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
-        import pdb;pdb.set_trace();
         if event_form.is_valid():
             try:
                 id = request.GET['id']
