@@ -1318,6 +1318,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 
 .login_content .formlist1 b{display: inline-block; width: 120px;}
 .cre_event_content .formlist1 b{display: inline-block; width: 130px; margin-left:20px; vertical-align:top;}
+.cre_event_content .formlist1 .showtime_b{vertical-align:middle; margin-top:-1em;}
 
 .login_content .formlist1 #start_hour label{display: inline-block; width: 80px;}
 .cre_event_content formlist1 #start_hour label{display: inline-block; width: 80px;}
@@ -1386,9 +1387,9 @@ button.uploader:active{
 }
 
 .showtime_select_div{
-	width:40;
+	float:left;
 	display: inline-block;
-	margin-right:2em;
+	margin-right:1em;
 }
 
 .showtime_select_div b{
@@ -1429,7 +1430,13 @@ button.uploader:active{
 	font-size:1em;
 	font-weight:normal;
 	line-height:1em;
-	margin-left:1.5em;
+	margin-right:1.5em;
+	display:inline;
+}
+
+#id_description_tbl{width:2000px;}
+
+#formlist1_audience ul li label{
 	display:inline;
 }
 .cre_event_content .formlist1 .formlist1_div input[type="text"]{width: 100px; margin-left:2px; text-align:center;}
@@ -1512,7 +1519,7 @@ color:#FF6600;
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 .left_aligned_radios ul{margin-left: 32px;}
-.left_aligned_radios li{margin-left: 2.5em; margin-right:2.5em;}
+.left_aligned_radios li{margin-left: 0.5em; margin-right:2.5em;}
 .left_aligned_radios li label{font-size:0.9em;}
 .repeat_div ul li{display: inline-block; width : 115px;}
 
@@ -1952,8 +1959,8 @@ li.misc_pres{position: relative;}
 div.like_message{background: #FD8F53; color: #FFFFFF; font-weight: bold; padding: 5px; position: absolute; bottom: 0px; left: 0px; font-size: 0.5em;}
 div.like_div a span{display: none;}
 div.like_div a:hover span{display: block; padding: 5px; background:#FD8F53 ; position: absolute; top: 24px; right: 0px; color: #FFFFFF; text-decoration: none; font-size: 0.5em; width: 100px; text-align: center; border-radius: 5px; font-weight: bold;}
-div.div_orange_border{border: 0.1px groove #C4C4C4; border-radius: 10px; margin-bottom: 10px; background:#fff;}
-button.remove_performance{margin-left: 10px; margin-bottom: 10px;}
+div.div_orange_border{border: 0.1px groove #C4C4C4; border-radius: 10px; margin-bottom: 10px; background:#fff; width:90%; float:right;}
+/*button.remove_performance{margin-left: 10px; margin-bottom: 10px;}*/
 div.likes_count_div{background-color: #475474; padding: 6px 10px; color: #FFFFFF; display: inline-block; margin-left: 5px; font-size: 12px; font-weight: bold; position: relative;}
 div.likes_arrow{border-bottom: 3px solid transparent; border-top: 3px solid transparent; border-right: 3px solid #475474; position: absolute; top: 9px; left: -3px;}
 span.likes_count{font-size: 12px;}
