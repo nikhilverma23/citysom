@@ -22,7 +22,7 @@ from citysom.settings import MEDIA_ROOT
 from django.contrib.auth.models import User
 from django.db import connection
 #Init environment, variables
-file=sys.path[1] + '/event2.csv'
+file=sys.path[1] + '/Import_events.csv'
 i=0
 # Open the file in read mode
 reader = csv.reader(open(file,'rb'))

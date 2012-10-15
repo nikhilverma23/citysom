@@ -13,5 +13,5 @@ urlpatterns = patterns(
     url(r'^invitation/$', 'invitation',  name="invitation"),
     url(r'^editaccount/$', 'editaccount',  name="editaccount"),
     url(r'^popularity/$', 'popularity',  name="popularity"),
-    url(r'', include('social_auth.urls')),
+    #url(r'', include('social_auth.urls')),
 )
