@@ -487,6 +487,8 @@ body
     	position:relative;
     	overflow:hidden;
     }
+    
+#bottom_images ul li div.misc_pres_img img{max-width:none;}
 /*#bottom_images ul li div.misc_pres_img img
     {
     	max-width: 150px;
@@ -596,7 +598,7 @@ body
 }
 .misc_pres h6{
 	font-size: 0.7em !important;
-	display:inline;
+	display:inline-block;
 	font-style:normal;
 	color: #AAAAAA;
 	text-align: left;
@@ -611,7 +613,7 @@ body
 	font-weight:normal;
 	color: #AAAAAA;
 	text-align: left;
-	height:150px;
+	height:11em;
 	width: 100%;
 	overflow:hidden;
 }

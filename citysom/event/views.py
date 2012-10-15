@@ -1277,9 +1277,21 @@ def handle_uploaded_file(request):
     from django.core.files.uploadedfile import InMemoryUploadedFile
     
     poster_wip = Image.open(event_poster)
-    
-    maxSize=(150,200)
-    poster_wip.thumbnail(maxSize, Image.ANTIALIAS)
+    owidth= poster_wip.size[0]
+    oheight = poster_wip.size[1]
+    if owidth > oheight:
+        if oheight <= 200:
+            pass
+        else:
+            maxSize=(200*owidth/oheight, 200)
+            poster_wip.thumbnail(maxSize, Image.ANTIALIAS)
+        
+    else:
+        if owidth <= 150:
+            pass
+        else:
+            maxSize=(150, 150*oheight/owidth)
+            poster_wip.thumbnail(maxSize, Image.ANTIALIAS)
     
     resized_posterFile = StringIO()
     poster_wip.save(resized_posterFile, "JPEG")
