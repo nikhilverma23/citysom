@@ -39,8 +39,9 @@ class PreRegistrationForm(forms.Form):
 class PersonalProfileForm(forms.Form):
     first_name = forms.CharField(label="First Name",max_length=80)
     last_name = forms.CharField(label="Last Name",max_length=80,required=False)
-    gender = forms.CharField(label="Gender",max_length=20,\
-                             widget=Select(choices=GENDER_CHOICES)
+    gender = forms.ChoiceField(label='Gender',\
+                               choices=GENDER_CHOICES,\
+                               widget=forms.Select()
                              )
     mobile = forms.CharField(max_length=20,required=False)
     email2 = forms.EmailField(required=False)
@@ -69,7 +70,7 @@ class ProfessionalProfileForm(forms.Form):
         
     first_name = forms.CharField(max_length=80,required=False)
     last_name = forms.CharField(max_length=80,required=False)
-    gender = forms.CharField(max_length=20,widget=Select(choices=GENDER_CHOICES))
+    gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES,widget=forms.Select())
     mobile = forms.CharField(max_length=80,required=False)
     institution_name = forms.CharField(max_length=80,required=False)
     street = forms.CharField(max_length=80,required=False)

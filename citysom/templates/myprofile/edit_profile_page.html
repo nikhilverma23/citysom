@@ -167,7 +167,7 @@
 							<p class="text-error" style="margin-left:13.5em;">{{ form.gender.errors|join:", "  }}</p>
     						{% endif %}
 							<label class="control-label" for="id_gender">Greeting:</label>
-    						{{ form.gender }}
+    						{{form.gender}}
 						</div>
 			    		<div class="form_fields control-group">
 							{% if form.first_name.errors %}
@@ -229,7 +229,7 @@
 							{% if form.country.errors %}
 							<p class="text-error" style="margin-left:13.5em;">{{ form.country.errors|join:", "  }}</p>
     						{% endif %}
-							<label class="control-label" for="id_country">Zip code:</label>
+							<label class="control-label" for="id_country">Country:</label>
     						{{ form.country }}
 						</div>
 						
