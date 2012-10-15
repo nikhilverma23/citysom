@@ -10,8 +10,8 @@
 <div class="row-fluid">
 	<div id="work_cal" class="span2"> 
 		<img src="/static/images/box_orange.png" width="32" height="32" />
-        <div style="position:relative; top:-10px; font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">1</div>
-        <div id="work_cal_txt" style="width:60%; display:block; font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1.3em; color:#4C4C4C;float:right; margin-right:30px;margin-top:6px;">Pick a date</div>
+        <div style="font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">1</div>
+        <div id="work_cal_txt" style="width:80%; display:block; font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1.3em; color:#4C4C4C;float:right; margin-right:1px;margin-top:6px;">Pick a date range</div>
         	<img src="/static/images/arrow_orange.png" width="64" height="64" style="margin-left:70px;"/>
 	</div>
 	<div id="home_calendar" class="span7 offset1"></div>
@@ -85,7 +85,7 @@
          	<div id="poster_filter_title_cont">
          		<div id="poster_filter_title">
          			<img src="/static/images/box_orange.png" width="32" height="32" />
-        			<div style="position:relative; top:-10px; font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">2</div>
+        			<div style="font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">2</div>
         			<div style="width:75%; display:block; font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1.2em; color:#4C4C4C;float:right; margin-bottom:20px;">Filter results</div>
          				<!--
          				<p style="font-size:1.2em; color:#FF6600; margin-left:0.2em;">Filter events by:</p>
@@ -96,20 +96,74 @@
          		<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Price <img src="/static/images/btn_white_arr.png" alt="Price" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
          	<div id="price_range_select" class="nav_div">
-         		<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>
-         		<div class="textbox_nav" style="float:right; width:132px; font-size:15px;">$<input name="min_price" id="min_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
-         		<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>
-         		<div class="textbox_nav" style="float:right; width:132px; font-size:15px; background:transparent;">$<input name="max_price" id="max_price" style="background:transparent; width:110px; margin:10px 5px;" type="text" value="-"/></div>
+         		<!--<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>-->
+         		<div class="textbox_nav input-prepend" style="float:right; margin-left:1em; margin-top:0.5em; font-size:15px;"><span class="add-on">$</span><input name="min_price" id="min_price" class="span9" type="text" placeholder="Min $"/></div>
+         		<!--<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>-->
+         		<div class="textbox_nav input-prepend" style="float:right; margin-left:1em; margin-top:0.5em; margin-bottom:0.5em; font-size:15px;"><span class="add-on">$</span><input name="max_price" id="max_price" class="span9" type="text" placeholder="Max $"/></div>
          		<p class="nav_div_choices">
-         			<button class="nav_button_choice" id="cancel_price_range" onclick="$('#max_price').val('-'); $('#min_price').val('-'); load_events()" style="float:left; margin-left:17px;">Cancel</button>
-         			<button class="nav_button_choice" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
+         			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_price_range" onclick="$('#max_price').val(''); $('#min_price').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         			<button class="nav_button_choice btn btn-mini btn-info" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
          		</p>
          	</div>
          	<p class="nav_menu">
          		<button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Event type <img src="/static/images/btn_white_arr.png" alt="Event type" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
          	<div id="event_type_select" class="nav_div" style="display:none; line-height:1.5em;">
-         		<br>
+         		<label class="checkbox" style="margin-top:1em;">
+         			<input type="checkbox" id="checkbox_movie" value="1" name="category">Movie
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_exhibition" value="2" name="category">Exhibition
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_lecture" value="3" name="category">Lecture/ Talk
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_concert" value="4" name="category">Concert
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_sport" value="5" name="category">Sport
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_theater" value="6" name="category">Theater/ Reading
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_opera" value="7" name="category">Opera
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_dance" value="8" name="category">Dance
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_musical" value="9" name="category">Musical/ Show
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_outdoor" value="10" name="category">Outdoor
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_festival" value="11" name="category">Festival
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_standup" value="12" name="category">Stand-Up
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_course" value="13" name="category">Course
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_category" value="14" name="category">City Activity
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_fair" value="15" name="category">Fair
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_fundraiser" value="16" name="category">Fundraiser
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_party" value="17" name="category">Party
+         		</label>
+         		<label class="checkbox">
+         			<input type="checkbox" id="checkbox_other" value="18" name="category">Other
+         		</label>
+         		<!--
          		<input type="checkbox" id="checkbox_movie" value="1" name="category"><span style="font-size: 0.91em; font-weight: normal">Movie</span><BR>
          		<input type="checkbox" id="checkbox_exhibition" value="2" name="category"><span style="font-size: 0.91em; font-weight: normal;">Exhibition</span><BR>
          		<input type="checkbox" id="checkbox_lecture" value="3" name="category"><span style="font-size: 0.91em; font-weight: normal;">Lecture/ Talk</span><BR>
@@ -128,16 +182,17 @@
          		<input type="checkbox" id="checkbox_fundraiser" value="16" name="category"><span style="font-size: 0.91em; font-weight: normal;">Fundraiser</span><BR>
          		<input type="checkbox" id="checkbox_party" value="17" name="category"><span style="font-size: 0.91em; font-weight: normal;">Party</span><BR>
          		<input type="checkbox" id="checkbox_other" value="18" name="category"><span style="font-size: 0.91em; font-weight: normal;">Other</span><BR>
+         			-->
          		<p class="nav_div_choices">
-         			<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
-         			<button class="nav_button_choice" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:17px;">OK</button>
+         			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         			<button class="nav_button_choice btn btn-mini btn-info" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:17px;">OK</button>
          		</p>
          	</div>
          	<p class="nav_menu">
          		<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Show time <img src="/static/images/btn_white_arr.png" alt="On-air time" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
-         	<div id="hours_range_select" class="nav_div" style="display:none;">
-         		<label> Start after:</label>
+         	<div id="hours_range_select" class="nav_div" style="display:none; padding:0 10px;">
+         		<label>Minimum start time:</label>
          		<div class="hours_display">
          			<select id="start_hours">
          				<option value="">--</option>
@@ -176,7 +231,7 @@
          			</select>
          		</div>
          			
-         		<label> End before:</label>
+         		<label>Maximum end time:</label>
          		<div class="hours_display" style="margin-bottom:15px;">
          			<select id="end_hours">
          				<option value="">--</option>
@@ -214,10 +269,9 @@
          				<option value="45">45</option>
          			</select>
          		</div>
-         		<br>
-         		<p class="nav_div_choices">
-         			<button class="nav_button_choice" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); $('#hours_range_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
-         			<button class="nav_button_choice" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:17px;">OK</button>
+         		<p class="nav_div_choices" style="margin-left:-10px;">
+         			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); $('#hours_range_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         			<button class="nav_button_choice btn btn-mini btn-info" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:17px;">OK</button>
          		</p>
          		</div>
          		
@@ -225,16 +279,36 @@
          			<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;"> Public <img src="/static/images/btn_white_arr.png" alt="Public" style="float:right; margin-right:-10px; margin-top:-2px;"/> </button>
          		</p>
          		<div id="event_audience_select" class="nav_div" style="display:none; line-height:1.5em;">
-         			<br>
+      
+         			<label class="checkbox" style="margin-top:1em;">
+         				<input type="checkbox" id="checkbox_allpublic" value="1" name="audience">All public
+         			</label>
+         			<label class="checkbox">
+         				<input type="checkbox" id="checkbox_families" value="2" name="audience">Families
+         			</label>
+         			<label class="checkbox">
+         				<input type="checkbox" id="checkbox_children" value="3" name="audience">Children
+         			</label>
+         			<label class="checkbox">
+         				<input type="checkbox" id="checkbox_teens" value="4" name="audience">Teens
+         			</label>
+         			<label class="checkbox">
+         				<input type="checkbox" id="checkbox_adults" value="5" name="audience">Adults
+         			</label>
+         			<label class="checkbox">
+         				<input type="checkbox" id="checkbox_seniors" value="6" name="audience">Seniors
+         			</label>
+         			<!--
          			<input type="checkbox" id="checkbox_allpublic" value="1" name="audience"><span style="font-size: 0.91em; font-weight: normal">All public</span><BR>
          			<input type="checkbox" id="checkbox_families" value="2" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Families</span><BR>
          			<input type="checkbox" id="checkbox_children" value="3" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Children</span><BR>
          			<input type="checkbox" id="checkbox_teens" value="4" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Teens</span><BR>
          			<input type="checkbox" id="checkbox_adults" value="5" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Adults</span><BR>
          			<input type="checkbox" id="checkbox_seniors" value="6" name="audience"><span style="font-size: 0.91em; font-weight: normal;">Seniors</span><BR>
+         				-->
          			<p class="nav_div_choices">
-         				<button class="nav_button_choice" id="cancel_type_select" onclick="$('#event_audience_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_audience_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
-         				<button class="nav_button_choice" id="valid_type_select" onclick="var tmp_aud=[];$('#event_audience_select :checked').each(function(){tmp_aud.push($(this).val());}); $('#event_audience_select').val(tmp_aud); load_events(); " style="float:right; margin-right:17px;">OK</button>
+         				<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_type_select" onclick="$('#event_audience_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_audience_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
+         				<button class="nav_button_choice btn btn-mini btn-info" id="valid_type_select" onclick="var tmp_aud=[];$('#event_audience_select :checked').each(function(){tmp_aud.push($(this).val());}); $('#event_audience_select').val(tmp_aud); load_events(); " style="float:right; margin-right:17px;">OK</button>
          			</p>
          		</div>
          	</div>

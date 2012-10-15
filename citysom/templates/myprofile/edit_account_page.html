@@ -17,30 +17,34 @@
 		<form enctype="multipart/form-data" method="post"  action="{% url editaccount %}">
 			{% csrf_token %}
 			  {% if form.errors %}
-			  <p class="mainerror">Please correct the errors below: {{ form.non_field_errors }}</p>
+			  <div class="alert" style="width:90%;">
+			  	<button type="button" class="close" data-dismiss="alert">x</button>
+			  	<strong>Warning!</strong> Please correct the errors below: {{ form.non_field_errors }}
+			  </div>
 			  {% endif %} 
 			    
 			    <fieldset>
 				
                                 <div class="form_fields">
                                   {% if form.password.errors %}
-                                    <p class="error">{{ form.password.errors|join:", "  }}</p>
+                                    <p class="text-error" style="margin-left:14em;">{{ form.password.errors|join:", "  }}</p>
                                   {% endif %}
-                                  <label for="id_email_id_4">Password:</label>
+                                  <label for="id_email_id_4">New password:</label>
                                   {{ form.password }}
                                   <div class="clear"></div>
                                 </div>
                                 
                                 <div class="form_fields">
                                   {% if form.confirmpassword.errors %}
-                                    <p class="error">{{ form.confirm_password.errors|join:", "  }}</p>
+                                    <p class="text-error" style="margin-left:14em;">{{ form.confirm_password.errors|join:", "  }}</p>
                                   {% endif %}
-                                  <label for="id_facebook_account">Confirm Password:</label>
+                                  <label for="id_facebook_account">Confirm password:</label>
                                   {{ form.confirm_password }}
                                   <div class="clear"></div>
                                 </div>
                             </fieldset>
-				<input id="submit_accountdetails" type="submit"  value="" name="submit" class="continue_button"/>
+				<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:21em; margin-top:1em; width:30%;">Submit new password!</button>
+				<!--<input id="submit_accountdetails" type="submit"  value="" name="submit" class="continue_button"/>-->
 			</form>
 		</div>
 		<div class="clear"></div>

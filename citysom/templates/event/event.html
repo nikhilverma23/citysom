@@ -5,7 +5,7 @@
 {% block content %}
 <script type="text/javascript" src="/static/js/tiny_mce/tiny_mce.js"></script>
 
-<div class="cre_event">{% if eventform.title.value %}Modifying the Event{% else %}Create an event{% endif %}</div>
+<div class="rowfluid" style="border:1px groove #F8F8F8; border-radius:5px; background:#F3F3F3; padding:0em 2em; margin-bottom:1em;"><h4>{% if eventform.title.value %}Edit the event{% else %}Publish an event{% endif %}</h4></div>
  
 <div id="login">
 	<div class="cre_event_img">
@@ -220,7 +220,7 @@
 												{{eventform.frequency}} 
 											</li>
 											-->
-											<li class="performance_hours_div_dmwonly">
+											<li class="performance_hours_div_dmwonly formlist1">
 												{% if eventform.interval.errors %}
 													<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
 												{% endif %}
@@ -229,17 +229,17 @@
 													{{eventform.interval}} <b id="frequency_label" style="font-size:0.85em;"></b> 
 												</div>
 											</li>
-											<li class="performance_hours_div_wonly" id="days_repeat">
+											<li class="performance_hours_div_wonly formlist1" id="days_repeat">
 												{% if eventform.repeat_on.errors %}
 													<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
 												{% endif %}
-												<b>Repeat on:</b>
-												<div class="formlist1_div">
+												<b style="width:90px !important;">Repeat on:</b>
+												<div class="formlist1_div" style="width:80%;">
 													{{eventform.repeat_on}}
 												</div>
 												<br/> 
 											</li>
-											<li class="performance_hours_div_monly" id="days_repeat_monthly">
+											<li class="performance_hours_div_monly formlist1" id="days_repeat_monthly">
 												{% if eventform.ordinal.errors %}
 													<p class="error">{{ eventform.ordinal.errors|join:", "  }}</p>
 												{% endif %}
@@ -1080,8 +1080,7 @@
                             <li class="formlist1">
                             	<b style="float: left;">Event genre:</b>
                             	<div class="formlist1_div">
-                            		<div class="event_genre_div">
-                            			<b>Select event type</b> 
+                            		<div class="formlist1_div" style="margin-left:0.5em;">
                                  		<select id="genre_movie" class="genre_choice">
 					         				<option value="1">Action/ Adventure</option>
 					         				<option value="2">Comedy</option>
@@ -1400,8 +1399,8 @@
              	{{eventform.status.as_hidden}}
              	{{eventform.location.as_hidden}}
              	{{eventform.event_poster.as_hidden}}
-             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:16em; width:40%;">Register event!</button>
-             <!--<input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>-->
+             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:21em; width:40%;">Publish your event!</button>
+             <!--<input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>--> 
           </form>
        </div>
        </div> 

@@ -1,4 +1,49 @@
 <div class="left_account">
+    <ul class="nav nav-pills nav-stacked">
+    	<li data-toggle="pill"><a href="{% url invitation %}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:1em; color:#777777; font-weight:bold;">Connect with friends</a> </li>
+    	<div class="left_links">
+        <ul>
+            <li>
+                <a href="{% url invitation %}">send invitation</a>
+            </li>
+            <li>
+                <a href="{% url invitation%}">see friends' wishlist</a>
+            </li>
+        </ul>
+    	</div>
+    	<li data-toggle="pill"><a href="{% url dashboard%}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:1em; color:#777777; font-weight:bold;">See my events</a></li>
+    	<div class="left_links">
+        <ul>
+            <li>
+                <a href="{% url dashboard%}">view upcoming events</a>
+            </li>
+            <li>
+                <a href="{% url dashboard%}">view events history</a>
+            </li>
+            <li>
+                <a href="{% url dashboard%}">view my wishlist</a>
+            </li>
+        </ul>
+    </div>
+    	<li data-toggle="pill"><a href="{% url editaccount %}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:1em; color:#777777; font-weight:bold;">Edit account details</a></li>
+    	<div class="left_links">
+        <ul>
+            <li>
+                <a href="{% url editaccount %}">change my password</a>
+            </li>
+        </ul>
+    </div>
+    	<li><a href="{% url editprofile %}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:1em; color:#777777; font-weight:bold;">Access my profile</a></li>
+    	<div class="left_links">
+        <ul>
+            <li>
+                <a href="{% url editprofile %}">edit my information</a>
+            </li>
+           
+        </ul>
+    </div>
+    </ul>
+    <!--
     <div class="left_title">
         <a href="{% url invitation %}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:0.6em; color:#777777;">Connect with friends</a>
     </div>
@@ -12,6 +57,7 @@
             </li>
         </ul>
     </div>
+    
     <div class="left_title">
         <a href="{% url dashboard%}" style="text-decoration: none; font-family: Helvetica, Arial, sans-serif; font-size:0.6em; color:#777777;">See my events</a>
     </div>
@@ -49,4 +95,5 @@
            
         </ul>
     </div>
+    -->
 </div>
