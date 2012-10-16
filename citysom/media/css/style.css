@@ -457,9 +457,9 @@ body
         width: -webkit-min-content;
         width: auto;*/
         height: 250px;
-        width: 320px;    
+        width: 256px;    
         margin-bottom: 15px;
-        margin-right:1.8em;
+        margin-right:15px;
         text-overflow:ellipsis;
         overflow:hidden;
         padding:2px;
@@ -572,7 +572,7 @@ body
 
 #poster_filter_title{width:90%; height: 30px; line-height:30px; float:none; margin-left:0.5em; text-align:middle;}
 
-.misc_pres_comment{width: 43%; float:right;}
+.misc_pres_comment{width: 80px; float:right;}
 
 #misc_pres_wrapper{height:100%; width:100%; margin:0; padding:0;border:0;}
 
@@ -602,7 +602,7 @@ body
 	font-style:normal;
 	color: #AAAAAA;
 	text-align: left;
-	height:150px;
+	height:130px;
 	width: 100%;
 	overflow:hidden;
 }
@@ -2003,3 +2003,4 @@ div.detail_review_title{ color: #777777; font-size: 0.85em; font-weight: bold; f
 div.detail_review_rating{float: left;}
 div.detail_review_by{color: #989898; font-size: 0.85em; margin: 5px 0px;}
 div.detail_review_content{margin: 10px 20px 10px 30px; color: #505050; font-size: 0.85em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;}
+li.misc_pres_last{margin-right: 0px !important;}
