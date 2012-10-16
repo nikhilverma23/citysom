@@ -839,6 +839,7 @@ p.nav_menu{
 .nav_div_choices {
 	margin-top: 10px;
 	margin-bottom:10px;
+	width:95%;
 }
 
 
@@ -1275,6 +1276,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .cust_ratin{height: auto; margin-top: 10px;}
 .cust_rating{margin-top:1em; display:block;}
 .event_desc{height: auto; margin-top: 10px; margin-left: 1em; font-size:0.9em; line-height: 1.5em; color:#505050;}
+.event_desc p{font-size:1em;}
 .cust_ratin .rating{float: left; font-family: Helvetica; color:#2E2E2E; }
 .cust_ratin .rating_pic{float: left; height: 20px; margin-top: 0px;}
 .rate_show{float: left;width:250px;height: auto;margin-left: 60px;}
@@ -1788,6 +1790,8 @@ a.custom_link:hover
 
 .image_c{
 	height:130px;
+	width:150px;
+	border-bottom:1px groove #E0E0E0;
 }
 
 
@@ -1912,7 +1916,7 @@ div.right_item
     margin-top:1em;
 }
 a.event_Details_link{font-weight: bold; color: #000000; margin-left: 10px;}
-form.ratings_form{border: 1px solid #BABABA; padding: 10px; border-radius: 5px; background: #F8F8FC; margin-top: 10px; height:240px; margin-bottom:10px;}
+form.ratings_form{border: 1px solid #BABABA; padding: 10px; border-radius: 5px; background: #F8F8FC; margin-top: 10px; height:250px; margin-bottom:10px;}
 form.ratings_form p{margin: 10px;}
 form.ratings_form p label{display:  inline-block; width: 15%; vertical-align: top; font-weight: bold; margin-bottom:1em; color:#4C4C4C;}
 form.ratings_form p input[type=text], form.ratings_form p textarea{border: 1px solid #A8A8A8; border-radius: 5px; width: 80%; padding:  5px; float:right;}
@@ -1977,8 +1981,8 @@ div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: 
 #ratings_div ul.errorlist li{margin-left: 10px; color: #F00F00;}
 #highlighter_div{background: #FF8C00; border-radius: 10px; position: absolute;}
 .touchcarousel_dashboard{width: auto !important; float: none !important; height:  auto !important;}
-.touchcarousel_dashboard ul li div img{max-width: 150px; max-height: 130px; margin-top: 5px;}    
-.touchcarousel_dashboard img{border:1px solid #C0C0C0;}
+.touchcarousel_dashboard ul li div img{/*max-width: 150px; max-height: 130px; */margin-top: 5px; height:inherit;}    
+/*.touchcarousel_dashboard img{border:1px solid #C0C0C0;}*/
 .touchcarousel_dashboard img:hover{border:1px solid #ff6600;}
 img#poster_image{max-width: 220px; max-height: 300px;}
 div.like_div{position: absolute; top: 0px; right: 0px;}

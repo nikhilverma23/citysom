@@ -1571,21 +1571,30 @@ def get_event_details(request):
     id = request.GET['id']
     event_obj = Event.objects.get(id=id)
     by_day = {}
+    oh_ticket_price = 0
+
     if event_obj.schedule_type == "open_hour_based":
         if event_obj.start_hours_on_monday and event_obj.end_hours_on_monday:
             by_day["Mon"] = {"start":event_obj.start_hours_on_monday,"end":event_obj.end_hours_on_monday}
+            oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_tuesday and event_obj.end_hours_on_tuesday:
             by_day["Tues"] = {"start":event_obj.start_hours_on_tuesday,"end":event_obj.end_hours_on_tuesday}
+            oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_wednesday and event_obj.end_hours_on_wednesday:
            by_day["Wed"] = {"start":event_obj.start_hours_on_wednesday,"end":event_obj.end_hours_on_wednesday}
+           oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_thursday and event_obj.end_hours_on_thursday:
            by_day["Thu"] = {"start":event_obj.start_hours_on_thursday,"end":event_obj.end_hours_on_thursday}
+           oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_friday and event_obj.end_hours_on_friday:
             by_day["Fri"] = {"start":event_obj.start_hours_on_friday,"end":event_obj.end_hours_on_friday}
+            oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_saturday and event_obj.end_hours_on_saturday:
             by_day["Sat"] = {"start":event_obj.start_hours_on_saturday,"end":event_obj.end_hours_on_saturday}
+            oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
         if event_obj.start_hours_on_sunday and event_obj.end_hours_on_sunday:
             by_day["Sun"] = {"start":event_obj.start_hours_on_sunday,"end":event_obj.end_hours_on_sunday}
+            oh_ticket_price = event_obj.performancedetails_set.all()[0].ticket_price
                   
        
     if request.user.is_authenticated():
@@ -1690,6 +1699,7 @@ def get_event_details(request):
                               {
                                "eventdetails":event_obj,
                               "event_performance":event_obj.performancedetails_set.all(),
+                              "oh_ticket_price":oh_ticket_price,
                               "ratings_form":ratings_form,
                               "user_comments":user_comments,
                               "total_stars":total_stars,

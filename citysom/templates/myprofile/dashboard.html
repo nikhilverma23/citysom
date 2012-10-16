@@ -22,7 +22,7 @@
                                     <li class="touchcarousel-item">
                                             <a href="/event/createevent/?id={{event.id}}">
                                                     <div class="image_c">
-                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}" onload="OnImageLoad(event);"/>
                                                     </div>
                                                     <h4>{{event.title}}</h4>
                                             </a>
@@ -49,7 +49,7 @@
                                     <li class="touchcarousel-item">
                                             <a href="/event/createevent/?id={{event.id}}">
                                                     <div class="image_c">
-                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}"/>
+                                                            <img src="/media/images/{{event.event_poster}}" alt="{{event.title}}" onload="OnImageLoad(event);"/>
                                                     </div>
                                                     <h4>{{event.title}}</h4>
                                             </a>
@@ -76,7 +76,7 @@
                                     <li class="touchcarousel-item">
                                             <a href="/event/details?id={{wishlist_event.event.id}}">
                                                     <div class="image_c">
-                                                            <img src="/media/images/{{wishlist_event.event.event_poster}}" alt="{{wishlist_event.event.title}}"/>
+                                                            <img src="/media/images/{{wishlist_event.event.event_poster}}" alt="{{wishlist_event.event.title}} onload="OnImageLoad(event);""/>
                                                     </div>
                                                     <h4>{{wishlist_event.event.title}}</h4>
                                             </a>

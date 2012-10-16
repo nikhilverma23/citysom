@@ -272,7 +272,7 @@ def wishlist(request):
                                                                event = event,
                                                                user = user
                                                                )
-        request.session['message'] = "This Event has been added to your Wishlist"
+        request.session['message'] = "This event has been added to your Bookmarks. You can find it back in your profile page!"
         return HttpResponseRedirect("/event/details?id="+event_id)
 ###############################################################################
 
