@@ -457,7 +457,7 @@ body
         width: -webkit-min-content;
         width: auto;*/
         height: 250px;
-        width: 256px;    
+        width: 19em;    
         margin-bottom: 15px;
         margin-right:15px;
         text-overflow:ellipsis;
@@ -572,7 +572,7 @@ body
 
 #poster_filter_title{width:90%; height: 30px; line-height:30px; float:none; margin-left:0.5em; text-align:middle;}
 
-.misc_pres_comment{width: 80px; float:right;}
+.misc_pres_comment{width: 7em; float:right;}
 
 #misc_pres_wrapper{height:100%; width:100%; margin:0; padding:0;border:0;}
 
@@ -595,6 +595,7 @@ body
 	height:40px;
 	width: 100%;
 	overflow:hidden;
+	margin-top:0em;
 }
 .misc_pres h6{
 	font-size: 0.7em !important;
@@ -602,9 +603,10 @@ body
 	font-style:normal;
 	color: #AAAAAA;
 	text-align: left;
-	height:130px;
+	height:14em;
 	width: 100%;
 	overflow:hidden;
+	margin-top:0em;
 }
 
 .misc_pres h6 p{
@@ -616,6 +618,7 @@ body
 	height:11em;
 	width: 100%;
 	overflow:hidden;
+	line-height:1.3em;
 }
 
 #headingtext
