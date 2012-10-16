@@ -1309,7 +1309,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .continue_button_personal{border: none; background: url(../images/cont.png) no-repeat; width: 265px; height: 45px; margin-left: 326px; margin-top: 180px;}
 
 /*.login_content p{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}*/
-.cre_event_content p{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}
+/*.cre_event_content p{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}*/
 .cre_event_img{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; float:left; width:20%;}
 
 .login_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:0px;}
