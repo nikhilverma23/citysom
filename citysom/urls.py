@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # for automatic admin
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    
+    (r'^registerfb/$','myprofile.views.registerfb'),
     # for event app
     url(r'^myprofile/', include('myprofile.urls')),
     url(r'^event/', include('event.urls')),

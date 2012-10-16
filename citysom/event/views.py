@@ -41,8 +41,6 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
-        import pdb
-        pdb.set_trace()
         if event_form.is_valid():
             try:
                 id = request.GET['id']
@@ -1341,9 +1339,6 @@ def event_list(request):
             event_date_end_object = datetime.strptime(event_date_end, "%Y-%m-%d")
     except:
         pass
-    
-    import pdb
-    pdb.set_trace()
     
     if event_date!="" and event_date_end!="":
         kwargs1['event_start_date__gte'] = request.GET['event_date']

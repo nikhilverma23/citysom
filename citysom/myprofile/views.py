@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.http import HttpResponseNotAllowed, HttpResponseNotFound
 from datetime import datetime
 from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, load_backend
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template import RequestContext
@@ -365,4 +365,38 @@ def popularity(request):
         popularity_count = Popularity.objects.filter(event=event)
         return HttpResponse(popularity_count.count())
 ###############################################################################
+def login_user(request, user):
+    """
+    Log in a user without requiring credentials (using ``login`` from
+    ``django.contrib.auth``, first finding a matching backend).
 
+    """
+    
+    if not hasattr(user, 'backend'):
+        for backend in settings.AUTHENTICATION_BACKENDS:
+            if user == load_backend(backend).get_user(user.pk):
+                user.backend = backend
+                break
+    if hasattr(user, 'backend'):
+        return login(request, user)
+    
+###############################################################################
+
+def registerfb(request):
+        email = request.GET['email']
+        first_name = request.GET['first_name']
+        last_name = request.GET['last_name']
+        gender = request.GET['gender']
+        try:
+            user = User.objects.get(username=email)
+        except:
+            user = User.objects.get_or_create(username=email,\
+                                            first_name=first_name,
+                                            last_name=last_name,
+                                            password=""
+                                            )
+            user = user[0]
+        login_user(request,user)
+        return HttpResponseRedirect('/myprofile/home/')
+    
+###############################################################################
