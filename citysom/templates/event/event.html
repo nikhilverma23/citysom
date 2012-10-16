@@ -23,7 +23,10 @@
             </div>
 		</form>
 		{% if form.errors %}
-		<p class="mainerror">Please correct the errors below {{ eventform.non_field_errors }}</p>
+		<div class="alert" style="width:90%;">
+			<button type="button" class="close" data-dismiss="alert">x</button>
+			<strong>Warning!</strong> Please correct the errors below: {{ eventform.non_field_errors }}
+		</div>
 		{% endif %}
 	</div>
     <div class="cre_event_content">
@@ -34,21 +37,21 @@
             		<ul class="adminformlist" style="list-style: none;">
 						<li class="formlist1">
 							{% if eventform.title.errors %}
-							<p class="error">{{ eventform.title.errors|join:", "  }}</p>
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.title.errors|join:", "  }}</p>
 							{% endif %}
 		                    <b>Event Title:</b>
 		                    {{eventform.title}}
 	                    </li>
 	                    <li class="formlist1">
 	                    	{% if eventform.venue_name.errors %}
-							<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.venue_name.errors|join:", "  }}</p>
 							{% endif %}
 	                        <b>Venue Name:</b>
 	                        {{eventform.venue_name}}
 						</li>
 	                    <li class="formlist1">
 	                    	{% if eventform.street_address.errors %}
-							<p class="error">{{ eventform.street_address.errors|join:", "  }}</p>
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.street_address.errors|join:", "  }}</p>
 							{% endif %}
 	                    	<b>Street Address:</b>
 	                        {{eventform.street_address}}
@@ -58,26 +61,26 @@
 		                </li>
 		                               
 	                    <li class="formlist1">
+	                    	{% if eventform.date_started.errors %}
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_started.errors|join:", "  }}</p>
+							{% endif %}
 	                    	<b>Event start date:</b>
 	                    	<div class="formlist1_div">
 	                    		{{eventform.date_started}}	
-	                        	{% if eventform.date_started.errors %}
-								<p class="error">{{ eventform.date_started.errors|join:", "  }}</p>
-								{% endif %}
 	                        </div>
 						</li>
 						<li class="formlist1">
+							{% if eventform.date_completed.errors %}
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_completed.errors|join:", "  }}</p>
+							{% endif %}	
 	                        <b>Event end date:</b>
 	                        <div class="formlist1_div">
-	                        	{{eventform.date_completed}}
-	                        	{% if eventform.date_completed.errors %}
-								<p class="error">{{ eventform.date_completed.errors|join:", "  }}</p>
-								{% endif %}	
+	                        	{{eventform.date_completed}}	
 							</div>
 						</li>        	                          
                         <li class="formlist1 left_aligned_radios">
                         	{% if eventform.schedule_type.errors %}
-							<p class="error">{{ eventform.schedule_type.errors|join:", "  }}</p>
+							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.schedule_type.errors|join:", "  }}</p>
 							{% endif %}
                         	<b>Type of schedule:</b>
                         	{{eventform.schedule_type}} 
@@ -90,10 +93,10 @@
 								<span style="float: right; height: 20px; margin-top: 10px; margin-bottom:10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
                             	<div class="clear"></div>
                             	{% if eventform.start_hours_on_monday.errors %}
-				    			<p class="error">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
+				    			<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
 						  		{% endif %}
 						  		{% if eventform.end_hours_on_monday.errors %}
-						    	<p class="error">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
+						    	<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_monday.errors|join:", "  }}</p>
 						    	{% endif %}
 		                        <label>Mondays:</label>
 				                {{eventform.start_hours_on_monday}} 
@@ -102,10 +105,10 @@
 		                             
                              
 			                             		{% if eventform.start_hours_on_tuesday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_tuesday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_tuesday.errors|join:", "  }}</p>
 							  			 		{% endif %}
 			                             		{% if eventform.end_hours_on_tuesday.errors %}
-							    		 			<p class="error">{{ eventform.end_hours_on_tuesday.errors|join:", "  }}</p>
+							    		 			<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_tuesday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Tuesdays:</label>
 			                             		{{eventform.start_hours_on_tuesday}}
@@ -113,10 +116,10 @@
 			                             		<input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday"/><br />
                             
 										 		{% if eventform.start_hours_on_wednesday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_wednesday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_wednesday.errors|join:", "  }}</p>
 							  			 		{% endif %}
 			                             		{% if eventform.end_hours_on_wednesday.errors %}
-							    		 			<p class="error">{{ eventform.end_hours_on_wednesday.errors|join:", "  }}</p>
+							    		 			<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_wednesday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Wednesdays:</label>
 			                             		{{eventform.start_hours_on_wednesday}} 
@@ -127,10 +130,10 @@
                                 				<span style="float: right; height: 20px; margin-top: 10px; margin-bottom:10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
                             					<div class="clear"></div>
 							  			 		{% if eventform.start_hours_on_thursday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_thursday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_thursday.errors|join:", "  }}</p>
 							  					{% endif %}
 							  			 		{% if eventform.end_hours_on_thursday.errors %}
-						    		 				<p class="error">{{ eventform.end_hours_on_thursday.errors|join:", "  }}</p>
+						    		 				<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_thursday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Thursdays:</label>
 			                             		{{eventform.start_hours_on_thursday}} 
@@ -138,10 +141,10 @@
 			                             		<input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday"/><br />
 								 
 										 		{% if eventform.start_hours_on_friday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_friday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_friday.errors|join:", "  }}</p>
 							  			 		{% endif %}
 			                             		{% if eventform.end_hours_on_friday.errors %}
-							    		 			<p class="error">{{ eventform.end_hours_on_friday.errors|join:", "  }}</p>
+							    		 			<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_friday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Fridays:</label>
 			                             		{{eventform.start_hours_on_friday}} 
@@ -149,10 +152,10 @@
 			                             		<input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday"/><br />
 								 
 										 		{% if eventform.start_hours_on_saturday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_saturday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_saturday.errors|join:", "  }}</p>
 							  			 		{% endif %}
 			                             		{% if eventform.end_hours_on_saturday.errors %}
-							    		 			<p class="error">{{ eventform.end_hours_on_saturday.errors|join:", "  }}</p>
+							    		 			<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_saturday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Saturdays:</label>
 			                             		{{eventform.start_hours_on_saturday}} 
@@ -160,10 +163,10 @@
 			                             		<input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday"/><br />
 								 
 										 		{% if eventform.start_hours_on_sunday.errors %}
-							    					<p class="error">{{ eventform.start_hours_on_sunday.errors|join:", "  }}</p>
+							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_sunday.errors|join:", "  }}</p>
 							  			 		{% endif %}
 			                             		{% if eventform.end_hours_on_sunday.errors %}
-							    		 			<p class="error">{{ eventform.end_hours_on_sunday.errors|join:", "  }}</p>
+							    		 			<p class="text-error" style="margin-left:14em;">{{ eventform.end_hours_on_sunday.errors|join:", "  }}</p>
 							    	     		{% endif %}
 			                             		<label>Sundays:</label>
 			                             		{{eventform.start_hours_on_sunday}} 
@@ -174,7 +177,7 @@
                              					<b>Ticket price ($):</b>
                              					<div class="formlist1_div">
                              					{% if eventform.event_ticket_price.errors %}
-						    						<p class="error">{{ eventform.event_ticket_price.errors|join:", "  }}</p>
+						    						<p class="text-error" style="margin-left:14em;">{{ eventform.event_ticket_price.errors|join:", "  }}</p>
 						  						{% endif %}
                             					{{eventform.event_ticket_price}}
                              					</div>
@@ -185,19 +188,19 @@
                              			</div>
 										<div class="performance_hours_div">
 											<li class="formlist1">
+												{% if eventform.date_started5.errors %}
+										    	<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_started5.errors|join:", "  }}</p>
+										  		{% endif %}
 												<b>Schedule starts:</b>
 		                                		<div class="formlist1_div" style="width:60%;">
-		                                		{% if eventform.date_started5.errors %}
-										    		<p class="error">{{ eventform.date_started5.errors|join:", "  }}</p>
-										  		{% endif %}
-										  		{{eventform.date_started5}}		                                   			
+										  			{{eventform.date_started5}}		                                   			
 		                                		</div>
 		                                	</li>
 		                                	<li class="formlist1">
 		                                		<b>Schedule ends:</b>
 		                                		<div class="formlist1_div" style="width:60%;">
 		                                		{% if eventform.date_completed5.errors %}
-										    		<p class="error">{{ eventform.date_completed5.errors|join:", "  }}</p>
+										    		<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_completed5.errors|join:", "  }}</p>
 										  		{% endif %}
 		                                    	{{eventform.date_completed5}} 	
 		                                		</div>
@@ -206,7 +209,7 @@
 												<b>Performance repeats:</b>
 												<div class="formlist1_div" style="width:60%;">
 													{% if eventform.frequency.errors %}
-													<p class="error">{{ eventform.frequency.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.frequency.errors|join:", "  }}</p>
 													{% endif %}
 													{{eventform.frequency}} 
 												</div>
@@ -222,7 +225,7 @@
 											-->
 											<li class="performance_hours_div_dmwonly formlist1">
 												{% if eventform.interval.errors %}
-													<p class="error">{{ eventform.interval.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.interval.errors|join:", "  }}</p>
 												{% endif %}
 												<b>Repeat every:</b>
 												<div class="formlist1_div" style="width:60%;">
@@ -231,7 +234,7 @@
 											</li>
 											<li class="performance_hours_div_wonly formlist1" id="days_repeat">
 												{% if eventform.repeat_on.errors %}
-													<p class="error">{{ eventform.repeat_on.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.repeat_on.errors|join:", "  }}</p>
 												{% endif %}
 												<b style="width:90px !important;">Repeat on:</b>
 												<div class="formlist1_div" style="width:80%;">
@@ -241,7 +244,7 @@
 											</li>
 											<li class="performance_hours_div_monly formlist1" id="days_repeat_monthly">
 												{% if eventform.ordinal.errors %}
-													<p class="error">{{ eventform.ordinal.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.ordinal.errors|join:", "  }}</p>
 												{% endif %}
 												<b>Repeat each:</b>
 												<div class="formlist1_div" style="width:70%;">
@@ -256,14 +259,14 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_start_hours_1.errors %}
-																<p class="error">{{ eventform.event_start_hours_1.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_1.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show starts at:</b>
 															{{eventform.event_start_hours_1}} 	
 														</div>
 														<div class="showtime_select_div">
 															{% if eventform.event_end_hours_1.errors %}
-																<p class="error">{{ eventform.event_end_hours_1.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_1.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show ends at:</b>
 															{{eventform.event_end_hours_1}} 
@@ -272,7 +275,7 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_ticket_price_1.errors %}
-																<p class="error">{{ eventform.event_ticket_price_1.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_1.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Full price ticket is ($):</b>
 															{{eventform.event_ticket_price_1}}
@@ -293,14 +296,14 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_start_hours_2.errors %}
-																<p class="error">{{ eventform.event_start_hours_2.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_2.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show starts at:</b>
 															{{eventform.event_start_hours_2}} 	
 														</div>
 														<div class="showtime_select_div">
 															{% if eventform.event_end_hours_2.errors %}
-																<p class="error">{{ eventform.event_end_hours_2.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_2.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show ends at:</b>
 															{{eventform.event_end_hours_2}} 
@@ -309,7 +312,7 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_ticket_price_2.errors %}
-																<p class="error">{{ eventform.event_ticket_price_2.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_2.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Full price ticket is ($):</b>
 															{{eventform.event_ticket_price_2}}
@@ -329,14 +332,14 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_start_hours_3.errors %}
-																<p class="error">{{ eventform.event_start_hours_3.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_3.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show starts at:</b>
 															{{eventform.event_start_hours_3}} 	
 														</div>
 														<div class="showtime_select_div">
 															{% if eventform.event_end_hours_3.errors %}
-																<p class="error">{{ eventform.event_end_hours_3.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_3.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Show ends at:</b>
 															{{eventform.event_end_hours_3}} 
@@ -345,7 +348,7 @@
 													<li class="formlist1 performance_hours_div">
 														<div class="showtime_select_div">
 															{% if eventform.event_ticket_price_3.errors %}
-																<p class="error">{{ eventform.event_ticket_price_3.errors|join:", "  }}</p>
+																<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_3.errors|join:", "  }}</p>
 															{% endif %}
 															<b class="showtime_b">Full price ticket is ($):</b>
 															{{eventform.event_ticket_price_3}}
@@ -363,7 +366,7 @@
 									<b>Schedule starts:</b>
                             		<div class="formlist1_div" style="width:60%;">
 	                            		{% if eventform.date_started1.errors %}
-								    		<p class="error">{{ eventform.date_started1.errors|join:", "  }}</p>
+								    		<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_started1.errors|join:", "  }}</p>
 								  		{% endif %}
 	                               		{{eventform.date_started1}}	
                             		</div>
@@ -372,7 +375,7 @@
                             		<b>Schedule ends:</b>
                             		<div class="formlist1_div" style="width:60%;">
 	                            		{% if eventform.date_completed1.errors %}
-								    		<p class="error">{{ eventform.date_completed1.errors|join:", "  }}</p>
+								    		<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_completed1.errors|join:", "  }}</p>
 								  		{% endif %}
 	                                	{{eventform.date_completed1}} 	
                             		</div>
@@ -381,7 +384,7 @@
 									<b>Performance repeats:</b>
 									<div class="formlist1_div" style="width:60%;">
 										{% if eventform.frequency1.errors %}
-										<p class="error">{{ eventform.frequency1.errors|join:", "  }}</p>
+										<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.frequency1.errors|join:", "  }}</p>
 										{% endif %}
 										{{eventform.frequency1}} 
 									</div>
@@ -389,7 +392,7 @@
 								
 								<li class="performance_hours_div_dmwonly">
 									{% if eventform.interval1.errors %}
-										<p class="error">{{ eventform.interval1.errors|join:", "  }}</p>
+										<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.interval1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat every:</b>
 									<div class="formlist1_div" style="width:60%;">
@@ -399,7 +402,7 @@
 								</li>
 								<li class="performance_hours_div_wonly" id="days_repeat">
 									{% if eventform.repeat_on1.errors %}
-										<p class="error">{{ eventform.repeat_on1.errors|join:", "  }}</p>
+										<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.repeat_on1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat On:</b>
 									<div class="formlist1_div">
@@ -409,7 +412,7 @@
 								</li>
 								<li class="performance_hours_div_monly" id="days_repeat_monthly">
 									{% if eventform.ordinal1.errors %}
-										<p class="error">{{ eventform.ordinal1.errors|join:", "  }}</p>
+										<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.ordinal1.errors|join:", "  }}</p>
 									{% endif %}
 									<b>Repeat each:</b>
 									<div class="formlist1_div" style="width:70%;">
@@ -424,14 +427,14 @@
 										<li class="formlist1 performance_hours_div">
 											<div class="showtime_select_div">
 												{% if eventform.event_start_hours_4.errors %}
-													<p class="error">{{ eventform.event_start_hours_4.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_4.errors|join:", "  }}</p>
 												{% endif %}
 												<b class="showtime_b">Show starts at:</b>
 												{{eventform.event_start_hours_4}} 	
 											</div>
 											<div class="showtime_select_div">
 												{% if eventform.event_end_hours_4.errors %}
-													<p class="error">{{ eventform.event_end_hours_4.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_4.errors|join:", "  }}</p>
 												{% endif %}
 												<b class="showtime_b">Show ends at:</b>
 												{{eventform.event_end_hours_4}} 
@@ -440,7 +443,7 @@
 										<li class="formlist1 performance_hours_div">
 											<div class="showtime_select_div">
 												{% if eventform.event_ticket_price_4.errors %}
-															<p class="error">{{ eventform.event_ticket_price_4.errors|join:", "  }}</p>
+															<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_4.errors|join:", "  }}</p>
 															{% endif %}
 											<b class="showtime_b">Full price ticket is ($):</b>
 											{{eventform.event_ticket_price_4}}
@@ -460,14 +463,14 @@
 									<li class="formlist1 performance_hours_div">
 										<div class="showtime_select_div">
 											{% if eventform.event_start_hours_5.errors %}
-														<p class="error">{{ eventform.event_start_hours_5.errors|join:", "  }}</p>
+														<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_5.errors|join:", "  }}</p>
 														{% endif %}
 										<b class="showtime_b">Show starts at:</b>
 										{{eventform.event_start_hours_5}} 	
 										</div>
 											<div class="showtime_select_div">
 											{% if eventform.event_end_hours_5.errors %}
-														<p class="error">{{ eventform.event_end_hours_5.errors|join:", "  }}</p>
+														<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_5.errors|join:", "  }}</p>
 														{% endif %}
 										<b class="showtime_b">Show ends at:</b>
 										{{eventform.event_end_hours_5}} 
@@ -476,7 +479,7 @@
 									<li class="formlist1 performance_hours_div">
 										<div class="showtime_select_div">
 											{% if eventform.event_ticket_price_5.errors %}
-														<p class="error">{{ eventform.event_ticket_price_5.errors|join:", "  }}</p>
+														<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_5.errors|join:", "  }}</p>
 														{% endif %}
 										<b class="showtime_b">Full price ticket is ($):</b>
 										{{eventform.event_ticket_price_5}}
@@ -495,14 +498,14 @@
 										<li class="formlist1 performance_hours_div">
 											<div class="showtime_select_div">
 												{% if eventform.event_start_hours_6.errors %}
-													<p class="error">{{ eventform.event_start_hours_6.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_start_hours_6.errors|join:", "  }}</p>
 												{% endif %}
 												<b class="showtime_b">Show starts at:</b>
 												{{eventform.event_start_hours_6}} 	
 											</div>
 											<div class="showtime_select_div">
 												{% if eventform.event_end_hours_6.errors %}
-													<p class="error">{{ eventform.event_end_hours_6.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_end_hours_6.errors|join:", "  }}</p>
 												{% endif %}
 												<b class="showtime_b">Show ends at:</b>
 												{{eventform.event_end_hours_6}} 
@@ -511,7 +514,7 @@
 										<li class="formlist1 performance_hours_div">
 											<div class="showtime_select_div">
 												{% if eventform.event_ticket_price_6.errors %}
-													<p class="error">{{ eventform.event_ticket_price_6.errors|join:", "  }}</p>
+													<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.event_ticket_price_6.errors|join:", "  }}</p>
 												{% endif %}
 												<b class="showtime_b">Full price ticket is ($):</b>
 												{{eventform.event_ticket_price_6}}

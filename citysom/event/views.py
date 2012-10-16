@@ -41,6 +41,8 @@ def eventcreation(request):
     if request.method == "POST":
         event_form = EventForm(request.POST,request.FILES) 
         eventposter_form = EventPosterForm(request.POST,request.FILES)
+        import pdb
+        pdb.set_trace()
         if event_form.is_valid():
             try:
                 id = request.GET['id']
@@ -52,7 +54,7 @@ def eventcreation(request):
                 pass
             
             if event_form.cleaned_data['event_poster']:
-                    event_poster = event_form.cleaned_data['event_poster']
+                event_poster = event_form.cleaned_data['event_poster']
             
             place_obj, created = Place.objects.get_or_create(
                                                              venue_name = event_form.cleaned_data['venue_name'],
@@ -1032,6 +1034,7 @@ def eventcreation(request):
             
         else:
             print "Form is not valid"
+            event_poster=''
             
     else:
         event_form = EventForm()
@@ -1308,6 +1311,9 @@ def handle_uploaded_file(request):
 
 #----------------------------------------------------------------------------#
 def event_list(request):
+    import datetime
+    from datetime import datetime
+    
     kwargs = {
               'status':True,
              }
@@ -1321,17 +1327,23 @@ def event_list(request):
     end_time_q = Q()
     event_date = ""
     event_date_end = ""
+    event_date_end_object = ""
     try:
         if request.GET['event_date']:
             event_date = request.GET['event_date'];
+            event_date_object = datetime.strptime(event_date, "%Y-%m-%d")
     except:
         pass
     
     try:
         if request.GET['event_date_end']:
             event_date_end = request.GET['event_date_end'];
+            event_date_end_object = datetime.strptime(event_date_end, "%Y-%m-%d")
     except:
         pass
+    
+    import pdb
+    pdb.set_trace()
     
     if event_date!="" and event_date_end!="":
         kwargs1['event_start_date__gte'] = request.GET['event_date']
@@ -1496,8 +1508,8 @@ def event_list(request):
                            "events_fai":events_fai,
                            "events_fun":events_fun,
                            "events_par":events_par,
-                           "date_start":event_date,
-                           "date_end":event_date_end,
+                           "date_start":event_date_object,
+                           "date_end":event_date_end_object,
                            },
                           context_instance=RequestContext(request)
                           ) 
@@ -1508,8 +1520,8 @@ def event_list(request):
                            {
                            "request":request,
                            "events":events,
-                           "date_end":event_date_end,
-                           "date_start":event_date,
+                           "date_end":event_date_end_object,
+                           "date_start":event_date_object,
                            },
                           context_instance=RequestContext(request)
                           )

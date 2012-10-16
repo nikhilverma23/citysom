@@ -1,9 +1,9 @@
 <div id="pres_date_selected">
 	<div id="pres_date_cont">
 		{%if date_end %}
-		<p style="margin-left:0.6em; font-size:1.2em; line-height: 1.7em; font-weight:normal; color: #4C4C4C;">See events for {{date_start}} to {{date_end}}</p>
+		<p style="margin-left:0.6em; font-size:1.2em; line-height: 1.7em; font-weight:normal; color: #4C4C4C;">See events for {{date_start|date:"M d Y"}} to {{date_end|date:"M d Y"}}</p>
     	{%else%}
-    	<p style="margin-left:0.6em; font-size:1.2em; line-height: 1.7em; font-weight:normal; color: #4C4C4C;">See events for {{date_start}}</p>
+    	<p style="margin-left:0.6em; font-size:1.2em; line-height: 1.7em; font-weight:normal; color: #4C4C4C;">See events for {{date_start|date:"M d Y"}}</p>
     	{%endif%}
 	</div>
 </div>
