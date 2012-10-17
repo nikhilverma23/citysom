@@ -156,7 +156,6 @@ jQuery("a.like_link").live("click", function(e){
 });
 jQuery("a.like_link").live("mouseover",function(){$("div.likes_count_div", $(this).parent()).show();});
 jQuery("a.like_link").live("mouseout",function(){
-	console.log($("span.likes_count", $(this).parent()).html());
 	if($("span.likes_count", $(this).parent()).html()!="+1")
 	{
 		$("div.likes_count_div", $(this).parent()).hide();
