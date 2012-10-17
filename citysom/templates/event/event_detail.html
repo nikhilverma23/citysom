@@ -18,7 +18,7 @@
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
-	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;"><span>{{eventdetails.category}}</span> > <span style="color: #FF7920;">{{eventdetails.title}}</span> </a></li>
+	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;"><span>{{eventdetails.category}}</span>:<span style="color: #FF7920;">{{eventdetails.title}}</span> </a></li>
 </div>
 <!-- centerarea main end from here -->
 <div class="clear"></div>
@@ -89,7 +89,7 @@
 					</table>
 					<hr>
 				{% else %}
-					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days}} {% endfor %}</div>
+					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 					<br/>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
@@ -108,46 +108,50 @@
 			<table class="table_hours" border="0">
 				{% if eventdetails.start_hours_on_monday %}
 					<tr>
-						<td>Mo:</td>
+						<td>Mo.:</td>
 						<td>{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</td>
 					</tr>
 				{% endif %}
 				{% if eventdetails.start_hours_on_tuesday %}
 					<tr>
-						<td>Tu:</td>
+						<td>Tu.:</td>
 						<td>{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</td>
 					</tr>
 				{% endif %}
 				{% if eventdetails.start_hours_on_wednesday %}
 					<tr>
-						<td>We:</td>
+						<td>We.:</td>
 						<td>{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</td>
 					</tr>	
 				{% endif %}
 				{% if eventdetails.start_hours_on_thursday %}
 					<tr>
-						<td>Th:</td>
+						<td>Th.:</td>
 						<td>{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</td>
 					</tr>
 				{% endif %}
 				{% if eventdetails.start_hours_on_friday %}
 					<tr>
-						<td>Fr:</td>
+						<td>Fr.:</td>
 						<td>{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</td>
 					</tr>	
 				{% endif %}
 				{% if eventdetails.start_hours_on_saturday %}
 					<tr>
-						<td>Sa:</td>
+						<td>Sa.:</td>
 						<td>{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</td>
 					</tr>
 				{% endif %}
 				{% if eventdetails.start_hours_on_sunday %}
 					<tr>
-						<td>Su:</td>
+						<td>Su.:</td>
 						<td>{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</td>
 					</tr>
 				{% endif %}
+					<tr>
+						<td>Price $:</td>
+						<td>{{oh_ticket_price}}</td>
+					</tr>
 			</table>
 				{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
 				    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
@@ -246,9 +250,15 @@
 						{{ratings_form.reviews}}
 					</p>
 					<p>
-						<input type="hidden" name="id" id="comment_id" value="">
+						<div style="display:block; margin-top:4em;">
+							<input type="hidden" name="id" id="comment_id" value="">
+							<button class="btn btn-warning" value="Cancel" style="float:left; margin-left:7em; width:35%;">Cancel</button>
+         					<button class=" btn btn-primary" value="Share"  style="float:right; margin-right:17px; width:35%;">Share!</button>
+						</div>
+						
+						<!--
 						<input type="submit" value="Share!" class="custom_submit" style="margin-left: 135px;">
-						<input type="button" value="Discard" class="custom_submit" style="margin-left: 10px;" id="discard">
+						<input type="button" value="Discard" class="custom_submit" style="margin-left: 10px;" id="discard"> -->
 					</p>
 				</form>
 	     	</div>

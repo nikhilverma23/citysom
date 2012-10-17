@@ -97,9 +97,9 @@
          	</p>
          	<div id="price_range_select" class="nav_div">
          		<!--<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>-->
-         		<div class="textbox_nav input-prepend" style="float:right; margin-left:1em; margin-top:0.5em; font-size:15px;"><span class="add-on">$</span><input name="min_price" id="min_price" class="span9" type="text" placeholder="Min $"/></div>
+         		<div class="textbox_nav input-prepend" style="float:left; margin-left:0.5em; margin-top:0.5em; font-size:15px; width:90%;"><span class="add-on">$</span><input name="min_price" id="min_price" class="span9" type="text" placeholder="Min $"/></div>
          		<!--<label style="float:left; width:40px;text-align:left;margin: 20px 0 0 0;"> Max:</label>-->
-         		<div class="textbox_nav input-prepend" style="float:right; margin-left:1em; margin-top:0.5em; margin-bottom:0.5em; font-size:15px;"><span class="add-on">$</span><input name="max_price" id="max_price" class="span9" type="text" placeholder="Max $"/></div>
+         		<div class="textbox_nav input-prepend" style="float:left; margin-left:0.5em; margin-top:0.5em; margin-bottom:0.5em; font-size:15px; width:90%;"><span class="add-on">$</span><input name="max_price" id="max_price" class="span9" type="text" placeholder="Max $"/></div>
          		<p class="nav_div_choices">
          			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_price_range" onclick="$('#max_price').val(''); $('#min_price').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          			<button class="nav_button_choice btn btn-mini btn-info" id="valid_price_range" onclick="load_events()" style="float:right; margin-right:17px;">OK</button>
@@ -191,7 +191,7 @@
          	<p class="nav_menu">
          		<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Show time <img src="/static/images/btn_white_arr.png" alt="On-air time" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
-         	<div id="hours_range_select" class="nav_div" style="display:none; padding:0 10px;">
+         	<div id="hours_range_select" class="nav_div" style="display:none; padding:0 10px; width:94%;">
          		<label>Minimum start time:</label>
          		<div class="hours_display">
          			<select id="start_hours">
@@ -269,7 +269,7 @@
          				<option value="45">45</option>
          			</select>
          		</div>
-         		<p class="nav_div_choices" style="margin-left:-10px;">
+         		<p class="nav_div_choices" style="margin-left:-10px; width: 109% !important;">
          			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); $('#hours_range_select').val(''); load_events()" style="float:left; margin-left:17px;">Cancel</button>
          			<button class="nav_button_choice btn btn-mini btn-info" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:17px;">OK</button>
          		</p>
