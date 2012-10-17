@@ -7,9 +7,9 @@
 	<meta property="og:type" content="website"> 
 	<meta property="og:url" content="{{host}}">
 	<meta property="og:site_name"  content="Citysom">
-	<meta property="og:image"  content="{{host}}/static/images/{{eventdetails.event_poster}}">
+	<meta property="og:image"  content="http://{{host}}/static/images/{{eventdetails.event_poster}}">
 	<meta property="og:title"  content="{{eventdetails.title}}">
-	<meta property="og:description" content="{{eventdetails.description}}">
+	<meta property="og:description" content="{{eventdetails.description|safe}}">
 {% endblock %}
 
 {% block content %}
