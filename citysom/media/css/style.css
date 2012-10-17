@@ -1992,7 +1992,7 @@ div.like_div a span{display: none;}
 div.like_div a:hover span{display: block; padding: 5px; background:#FD8F53 ; position: absolute; top: 24px; right: 0px; color: #FFFFFF; text-decoration: none; font-size: 0.5em; width: 100px; text-align: center; border-radius: 5px; font-weight: bold;}
 div.div_orange_border{border: 0.1px groove #C4C4C4; border-radius: 10px; margin-bottom: 10px; background:#fff; width:90%; float:right;}
 /*button.remove_performance{margin-left: 10px; margin-bottom: 10px;}*/
-div.likes_count_div{background-color: #475474; padding: 2px 10px; color: #FFFFFF; display: inline-block; margin-left: 5px; font-size: 12px; font-weight: bold; position: relative;}
+div.likes_count_div{background-color: #475474; padding: 2px 4px 1px; color: #FFFFFF; display: inline-block; margin-left: 5px; font-size: 12px; font-weight: bold; position: relative;}
 div.likes_arrow{border-bottom: 3px solid transparent; border-top: 3px solid transparent; border-right: 3px solid #475474; position: absolute; top: 9px; left: -3px;}
 span.likes_count{font-size: 12px;}
 div.social_login{float: left; text-align: center; width: 400px;}
