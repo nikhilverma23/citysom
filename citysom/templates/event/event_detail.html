@@ -5,11 +5,11 @@
 {% block head_extras %}
 	<meta property="fb:app_id" content="238686352919310"> 
 	<meta property="og:type" content="website"> 
-	<meta property="og:url" content="{{host}}">
+	<meta property="og:url" content="http://{{host}}">
 	<meta property="og:site_name"  content="Citysom">
 	<meta property="og:image"  content="http://{{host}}/static/images/{{eventdetails.event_poster}}">
 	<meta property="og:title"  content="{{eventdetails.title}}">
-	<meta property="og:description" content="{{eventdetails.description|safe}}">
+	<meta property="og:description" content="{{eventdetails.description|striptags}}">
 {% endblock %}
 
 {% block content %}
