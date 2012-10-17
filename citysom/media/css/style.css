@@ -457,7 +457,7 @@ body
         width: -webkit-min-content;
         width: auto;*/
         height: 250px;
-        width: 19em;    
+        width: 256px;    
         margin-bottom: 15px;
         margin-right:15px;
         text-overflow:ellipsis;
@@ -822,7 +822,7 @@ p.nav_menu{
 /* Start Home page filtering div */
 .nav_div{
 	display:none;
-	width: 175px;
+	width: 155px;
 	position: relative;
 	margin-bottom: 25px;
 	margin-top:-20px;
