@@ -192,18 +192,7 @@
 						</tr>
 					{% endfor %}
 				</table>
-				
-				{% elif eventdetails.frequency1 == "DAILY" %}
-				<br>
-				<table class="table_hours" border="0">
-					{% for performance in event_performance_values %}
-						<tr>
-							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-							<td>${{performance.ticket_price}}</td>
-						</tr>
-					{% endfor %}
-				</table>
-				<hr>
+			
 				{% elif eventdetails.frequency1 == "DAILY" %}
 				<br>
 				<table class="table_hours" border="0">
@@ -217,17 +206,17 @@
 				<hr>
 				{% elif eventdetails.frequency1 == "MONTHLY" %}
 					<div class="event_program_2">
-					{% if eventdetails.by_month == "1" %}
+					{% if eventdetails.by_month1 == "1" %}
 						on the First
-					{% elif eventdetails.by_month == "2" %}
+					{% elif eventdetails.by_month1 == "2" %}
 						on the Second
-					{% elif eventdetails.by_month == "3" %}
+					{% elif eventdetails.by_month1 == "3" %}
 						on the Third
-					{% elif eventdetails.by_month == "4" %}
+					{% elif eventdetails.by_month1 == "4" %}
 						on the Fourth
 					{% else %}
 						on  theLast
-					{% endif %} {{eventdetails.by_monthday}} of the month
+					{% endif %} {{eventdetails.by_monthday1}} of the month
 					</div>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
@@ -239,7 +228,7 @@
 					</table>
 					<hr>
 				{% else %}
-					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+					<div class="event_program_2">{% for days in eventdetails.by_day1.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 					<br/>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
@@ -268,17 +257,7 @@
 				{% endfor %}
 			</table>
 			
-			{% elif eventdetails.frequency2 == "DAILY" %}
-			<br>
-			<table class="table_hours" border="0">
-				{% for performance in event_performance_values %}
-					<tr>
-						<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-						<td>${{performance.ticket_price}}</td>
-					</tr>
-				{% endfor %}
-			</table>
-			<hr>
+			
 			{% elif eventdetails.frequency2 == "DAILY" %}
 			<br>
 			<table class="table_hours" border="0">
@@ -292,17 +271,17 @@
 			<hr>
 			{% elif eventdetails.frequency2 == "MONTHLY" %}
 				<div class="event_program_2">
-				{% if eventdetails.by_month == "1" %}
+				{% if eventdetails.by_month2 == "1" %}
 					on the First
-				{% elif eventdetails.by_month == "2" %}
+				{% elif eventdetails.by_month2 == "2" %}
 					on the Second
-				{% elif eventdetails.by_month == "3" %}
+				{% elif eventdetails.by_month2 == "3" %}
 					on the Third
-				{% elif eventdetails.by_month == "4" %}
+				{% elif eventdetails.by_month2 == "4" %}
 					on the Fourth
 				{% else %}
 					on  theLast
-				{% endif %} {{eventdetails.by_monthday}} of the month
+				{% endif %} {{eventdetails.by_monthday2}} of the month
 				</div>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
@@ -314,7 +293,7 @@
 				</table>
 				<hr>
 			{% else %}
-				<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+				<div class="event_program_2">{% for days in eventdetails.by_day2.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
@@ -330,7 +309,7 @@
 		{% if eventdetails.event_start_date3 != None %}
 				<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
 				<div class="event_program">
-					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency2|lower|capfirst}}</span>:
+					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency3|lower|capfirst}}</span>:
 				</div>
 		
 			{% if eventdetails.frequency3 == "ONCE" %}
@@ -343,17 +322,7 @@
 				{% endfor %}
 			</table>
 			
-			{% elif eventdetails.frequency3 == "DAILY" %}
-			<br>
-			<table class="table_hours" border="0">
-				{% for performance in event_performance_values %}
-					<tr>
-						<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-						<td>${{performance.ticket_price}}</td>
-					</tr>
-				{% endfor %}
-			</table>
-			<hr>
+			
 			{% elif eventdetails.frequency3 == "DAILY" %}
 			<br>
 			<table class="table_hours" border="0">
@@ -367,17 +336,17 @@
 			<hr>
 			{% elif eventdetails.frequency3 == "MONTHLY" %}
 				<div class="event_program_2">
-				{% if eventdetails.by_month == "1" %}
+				{% if eventdetails.by_month3 == "1" %}
 					on the First
-				{% elif eventdetails.by_month == "2" %}
+				{% elif eventdetails.by_month3 == "2" %}
 					on the Second
-				{% elif eventdetails.by_month == "3" %}
+				{% elif eventdetails.by_month3 == "3" %}
 					on the Third
-				{% elif eventdetails.by_month == "4" %}
+				{% elif eventdetails.by_month3 == "4" %}
 					on the Fourth
 				{% else %}
 					on  theLast
-				{% endif %} {{eventdetails.by_monthday}} of the month
+				{% endif %} {{eventdetails.by_monthday3}} of the month
 				</div>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
@@ -389,7 +358,7 @@
 				</table>
 				<hr>
 			{% else %}
-				<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+				<div class="event_program_2">{% for days in eventdetails.by_day3.all %} {{days3|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
@@ -404,7 +373,7 @@
 		{% endif %}
 		{% if eventdetails.event_start_date4 != None %}
 				<div class="event_program">
-					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency2|lower|capfirst}}</span>:
+					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency4|lower|capfirst}}</span>:
 				</div>
 		
 			{% if eventdetails.frequency4 == "ONCE" %}
@@ -417,17 +386,7 @@
 				{% endfor %}
 			</table>
 			
-			{% elif eventdetails.frequency4 == "DAILY" %}
-			<br>
-			<table class="table_hours" border="0">
-				{% for performance in event_performance_values %}
-					<tr>
-						<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-						<td>${{performance.ticket_price}}</td>
-					</tr>
-				{% endfor %}
-			</table>
-			<hr>
+			
 			{% elif eventdetails.frequency4 == "DAILY" %}
 			<br>
 			<table class="table_hours" border="0">
@@ -441,17 +400,17 @@
 			<hr>
 			{% elif eventdetails.frequency4 == "MONTHLY" %}
 				<div class="event_program_2">
-				{% if eventdetails.by_month == "1" %}
+				{% if eventdetails.by_month4 == "1" %}
 					on the First
-				{% elif eventdetails.by_month == "2" %}
+				{% elif eventdetails.by_month4 == "2" %}
 					on the Second
-				{% elif eventdetails.by_month == "3" %}
+				{% elif eventdetails.by_month4 == "3" %}
 					on the Third
-				{% elif eventdetails.by_month == "4" %}
+				{% elif eventdetails.by_month4 == "4" %}
 					on the Fourth
 				{% else %}
 					on  theLast
-				{% endif %} {{eventdetails.by_monthday}} of the month
+				{% endif %} {{eventdetails.by_monthday4}} of the month
 				</div>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
@@ -463,7 +422,7 @@
 				</table>
 				<hr>
 			{% else %}
-				<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+				<div class="event_program_2">{% for days in eventdetails.by_day4.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
 				<table class="table_hours" border="0">
 					{% for performance in event_performance_values %}
