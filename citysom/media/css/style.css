@@ -25,7 +25,8 @@ html {font-family: Helvetica;}
 ::selection { background: #121252; color: #fff; text-shadow: none; }
                                                         
 
-
+html{min-width: 1200px;}
+body{padding: 0px !important;}
 /* Reset CSS */
 
 /*
