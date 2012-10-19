@@ -2011,3 +2011,5 @@ div.detail_review_rating{float: left;}
 div.detail_review_by{color: #989898; font-size: 0.85em; margin: 5px 0px;}
 div.detail_review_content{margin: 10px 20px 10px 30px; color: #505050; font-size: 0.85em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;}
 li.misc_pres_last{margin-right: 0px !important;}
+html{min-width: 1200px;}
+body{padding: 0px !important;}
