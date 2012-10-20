@@ -141,24 +141,23 @@ jQuery("li.misc_pres").live("mouseover",function(){$(this).children("div.like_di
 jQuery("li.misc_pres").live("mouseout",function(){$(this).children("div.like_div").hide();});
 jQuery("a.like_link").live("click", function(e){
 	e.preventDefault();
-	url = $(this).attr("href");
+	url = jQuery(this).attr("href");
 	link_object = $(this);
-	$.get(url,function(data){
+	jQuery.get(url,function(data){
 		parent = link_object.parent();
-		default_background_color = $("div.likes_count_div", parent).css("backgroundColor");
-		default_border_right = $("div.likes_arrow", parent).css("borderRightColor");
-		
-		$("span.likes_count", parent).html("+1");
-		$("div.likes_count_div", parent).show();
-		$("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
-		$("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
+		default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
+		default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
+		jQuery("span.likes_count", parent).html("+1");
+		jQuery("div.likes_count_div", parent).show();
+		jQuery("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
+		jQuery("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
 	});
 });
-jQuery("a.like_link").live("mouseover",function(){$("div.likes_count_div", $(this).parent()).show();});
+jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
 jQuery("a.like_link").live("mouseout",function(){
-	if($("span.likes_count", $(this).parent()).html()!="+1")
+	if(jQuery("span.likes_count", jQuery(this).parent()).html()!="+1")
 	{
-		$("div.likes_count_div", $(this).parent()).hide();
+		jQuery("div.likes_count_div", $(this).parent()).hide();
 	}
 });
 /*  		

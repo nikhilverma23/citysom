@@ -45,20 +45,24 @@
 		<hr>
 		<div id="event_scheduling">
 			{% if eventdetails.schedule_type == "performance_based" %}
-				<div class="event_dates">Final Start Date:{{eventdetails.event_start_date}} Final complete Date {{eventdetails.event_completion_date}}</div>
+				<div class="event_dates">Final Start Date:{{eventdetails.event_start_date}} <br>Final complete Date {{eventdetails.event_completion_date}}</div>
+				<div class="clear"></div>
+				<hr>
+			<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}</div>
+				<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency|lower|capfirst}}</span>:
 				</div>
 				
 				{% if eventdetails.frequency == "ONCE" %}
-					<table class="table_hours" border="0">
-					{% for performance in event_performance_values %}
-						<tr>
-							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-							<td>${{performance.ticket_price}}</td>
-						</tr>
-					{% endfor %}
+				<table class="table_hours" border="0">
+				{% for performance in event_performance_values %}
+					<tr>
+						<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+						<td>${{performance.ticket_price}}</td>
+					</tr>
+				{% endfor %}
 				</table>
 				
 				{% elif eventdetails.frequency == "DAILY" %}
@@ -71,7 +75,6 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 				{% elif eventdetails.frequency == "DAILY" %}
 				<br>
 				<table class="table_hours" border="0">
@@ -82,45 +85,44 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 				{% elif eventdetails.frequency == "MONTHLY" %}
-					<div class="event_program_2">
-					{% if eventdetails.by_month == "1" %}
-						on the First
-					{% elif eventdetails.by_month == "2" %}
-						on the Second
-					{% elif eventdetails.by_month == "3" %}
-						on the Third
-					{% elif eventdetails.by_month == "4" %}
-						on the Fourth
-					{% else %}
-						on  theLast
-					{% endif %} {{eventdetails.by_monthday}} of the month
-					</div>
-					<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					<hr>
+				<div class="event_program_2">
+				{% if eventdetails.by_month == "1" %}
+					on the First
+				{% elif eventdetails.by_month == "2" %}
+					on the Second
+				{% elif eventdetails.by_month == "3" %}
+					on the Third
+				{% elif eventdetails.by_month == "4" %}
+					on the Fourth
 				{% else %}
-					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-					<br/>
-					<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					<hr>
-				{% endif %}
+					on  theLast
+				{% endif %} {{eventdetails.by_monthday}} of the month
+				</div>
+				<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				{% else %}
+				<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+				<br/>
+				<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% endif %}
+			<div class="clear"></div>
 			{% else %}
 			<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
+			<hr class="orange_line">
 			<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
 			<br>
 			<table class="table_hours" border="0">
@@ -172,13 +174,16 @@
 					</tr>
 			</table>
 			<div class="clear"></div>
-				{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
-				    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
-				{% endif %}
-				<hr>
+			{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
+			    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
 			{% endif %}
+		{% endif %}
+		<div class="clear"></div>
+		</div>
 		{% if eventdetails.event_start_date1 != None %}
+			<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
+				<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency1|lower|capfirst}}</span>:
 				</div>
@@ -203,7 +208,6 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 				{% elif eventdetails.frequency1 == "MONTHLY" %}
 					<div class="event_program_2">
 					{% if eventdetails.by_month1 == "1" %}
@@ -226,7 +230,6 @@
 							</tr>
 						{% endfor %}
 					</table>
-					<hr>
 				{% else %}
 					<div class="event_program_2">{% for days in eventdetails.by_day1.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 					<br/>
@@ -238,12 +241,15 @@
 							</tr>
 						{% endfor %}
 					</table>
-					<hr>
 				{% endif %}
-		{% endif %}		
-		
+				
+		{% endif %}
+			<div class="clear"></div>
+		</div>
 		{% if eventdetails.event_start_date2 != None %}
+		<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date2}} to {{eventdetails.event_completion_date2}}</div>
+				<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency2|lower|capfirst}}</span>:
 				</div>
@@ -258,7 +264,6 @@
 				{% endfor %}
 			</table>
 			
-			
 			{% elif eventdetails.frequency2 == "DAILY" %}
 			<br>
 			<table class="table_hours" border="0">
@@ -269,7 +274,6 @@
 					</tr>
 				{% endfor %}
 			</table>
-			<hr>
 			{% elif eventdetails.frequency2 == "MONTHLY" %}
 				<div class="event_program_2">
 				{% if eventdetails.by_month2 == "1" %}
@@ -292,7 +296,6 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% else %}
 				<div class="event_program_2">{% for days in eventdetails.by_day2.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
@@ -304,11 +307,14 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% endif %}
-		{% endif %}	
+		{% endif %}
+			<div class="clear"></div>
+		</div>
 		{% if eventdetails.event_start_date3 != None %}
+			<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
+				<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency3|lower|capfirst}}</span>:
 				</div>
@@ -323,7 +329,6 @@
 				{% endfor %}
 			</table>
 			
-			
 			{% elif eventdetails.frequency3 == "DAILY" %}
 			<br>
 			<table class="table_hours" border="0">
@@ -334,7 +339,6 @@
 					</tr>
 				{% endfor %}
 			</table>
-			<hr>
 			{% elif eventdetails.frequency3 == "MONTHLY" %}
 				<div class="event_program_2">
 				{% if eventdetails.by_month3 == "1" %}
@@ -357,7 +361,6 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% else %}
 				<div class="event_program_2">{% for days in eventdetails.by_day3.all %} {{days3|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
@@ -369,10 +372,14 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% endif %}
 		{% endif %}
+		<div class="clear"></div>
+			</div>
 		{% if eventdetails.event_start_date4 != None %}
+		<div class="event_details_box">
+			<div class="event_dates">{{eventdetails.event_start_date4}} to {{eventdetails.event_completion_date4}}</div>
+			<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency4|lower|capfirst}}</span>:
 				</div>
@@ -398,7 +405,6 @@
 					</tr>
 				{% endfor %}
 			</table>
-			<hr>
 			{% elif eventdetails.frequency4 == "MONTHLY" %}
 				<div class="event_program_2">
 				{% if eventdetails.by_month4 == "1" %}
@@ -421,7 +427,6 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% else %}
 				<div class="event_program_2">{% for days in eventdetails.by_day4.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
 				<br/>
@@ -433,9 +438,10 @@
 						</tr>
 					{% endfor %}
 				</table>
-				<hr>
 			{% endif %}
 		{% endif %}
+		<div class="clear"></div>
+		</div>
 			<div class="clear"></div>
 		</div>
 		<a style="text-align:left; margin-left:-11em; font-size:0.85em;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>

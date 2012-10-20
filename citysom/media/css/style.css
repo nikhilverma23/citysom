@@ -2021,5 +2021,5 @@ li.misc_pres_last{margin-right: 0px !important;}
 #bottom_images ul li:last-child{margin-right:0;}
 #topnavigation, #container2, #bottomnavigation{width:1000px; margin:0 auto;}
 
-
-
+.event_details_box{font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0; margin-bottom: 5px;}
+hr.orange_line{background-color: #FF6600;}
