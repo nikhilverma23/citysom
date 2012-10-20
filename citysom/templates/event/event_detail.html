@@ -118,8 +118,7 @@
 						</tr>
 					{% endfor %}
 				</table>
-			{% endif %}
-			<div class="clear"></div>
+				{% endif %}
 			{% else %}
 			<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 			<hr class="orange_line">
@@ -173,7 +172,6 @@
 						<td>{{oh_ticket_price}}</td>
 					</tr>
 			</table>
-			<div class="clear"></div>
 			{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
 			    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
 			{% endif %}
@@ -242,10 +240,9 @@
 						{% endfor %}
 					</table>
 				{% endif %}
-				
-		{% endif %}
 			<div class="clear"></div>
-		</div>
+		</div>	
+		{% endif %}
 		{% if eventdetails.event_start_date2 != None %}
 		<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date2}} to {{eventdetails.event_completion_date2}}</div>
@@ -308,11 +305,11 @@
 					{% endfor %}
 				</table>
 			{% endif %}
-		{% endif %}
 			<div class="clear"></div>
 		</div>
+		{% endif %}
 		{% if eventdetails.event_start_date3 != None %}
-			<div class="event_details_box">
+		<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
 				<hr class="orange_line">
 				<div class="event_program">
@@ -373,9 +370,9 @@
 					{% endfor %}
 				</table>
 			{% endif %}
+			<div class="clear"></div>
+		</div>
 		{% endif %}
-		<div class="clear"></div>
-			</div>
 		{% if eventdetails.event_start_date4 != None %}
 		<div class="event_details_box">
 			<div class="event_dates">{{eventdetails.event_start_date4}} to {{eventdetails.event_completion_date4}}</div>
@@ -439,13 +436,11 @@
 					{% endfor %}
 				</table>
 			{% endif %}
-		{% endif %}
-		<div class="clear"></div>
-		</div>
 			<div class="clear"></div>
 		</div>
-		<a style="text-align:left; margin-left:-11em; font-size:0.85em;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
-
+		{% endif %}
+		<a style="text-align:left; margin-left:-11em; font-size:16px;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
+        </div>
 	</div>
 	 <div class="right_det">
 	 	<ul style="list-style: none;">
