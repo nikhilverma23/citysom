@@ -45,7 +45,9 @@
 		<hr>
 		<div id="event_scheduling">
 			{% if eventdetails.schedule_type == "performance_based" %}
-				<div class="event_dates">Final Start Date:{{eventdetails.event_start_date}} <br>Final complete Date {{eventdetails.event_completion_date}}</div>
+				<!--<div class="event_dates">
+					Final Start Date:{{eventdetails.event_start_date}} <br>Final complete Date {{eventdetails.event_completion_date}}
+				</div>-->
 				<div class="clear"></div>
 				<hr>
 			<div class="event_details_box">
@@ -439,7 +441,7 @@
 			<div class="clear"></div>
 		</div>
 		{% endif %}
-		<a style="text-align:left; margin-left:-11em; font-size:16px;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
+		<a style="text-align:left; margin-left:0px; font-size:16px;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
         </div>
 	</div>
 	 <div class="right_det">

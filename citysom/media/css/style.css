@@ -1327,7 +1327,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 .cre_event_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
 
 .login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:3em; width: 40%;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
-.cre_event_content .form_fields input[type=text],.login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:3em; width: 40%;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
+.cre_event_content .form_fields input[type=text],.login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:150px; width: 40%;margin-top: -34px;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
 
 .login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
 .cre_event_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
@@ -1902,8 +1902,8 @@ div.right_title
 }
 div.right_content
 {
-    margin: 0px 0px 50px 30px;
-    padding: 10px 20px;
+    margin: 0px -100px 50px 30px;
+    /*padding: 10px 20px;*/
     border: 1px solid #E0E0E0;
     background: #fff;
     border-radius:6px;
