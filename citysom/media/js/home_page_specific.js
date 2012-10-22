@@ -8,7 +8,9 @@ var sort = 'price';
 var page = 1;
 var activate_scroll = 0;
 
-function load_events(append=0){
+function load_events(append){
+	if(typeof(append)==='undefined')
+		append = 10;
 	url = '/event/event_list/?view=list&tgl='+togl;
   	min_price = parseInt($("#min_price").val());
   	max_price = parseInt($("#max_price").val());

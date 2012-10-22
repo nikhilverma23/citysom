@@ -1,3 +1,4 @@
+{% if page %}
 <div id="pres_date_selected">
 	<div id="pres_date_cont">
 		{%if date_end %}
@@ -7,6 +8,7 @@
     	{%endif%}
 	</div>
 </div>
+{% endif %}
 <ul>
  	{% for event in events %}
 		<li class="misc_pres {% cycle "" "" "misc_pres_last" %}">
