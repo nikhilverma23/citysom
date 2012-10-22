@@ -1,9 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">-->
+	<!DOCTYPE html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=9" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
 		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/touchcarousel.css" />
 		<link rel="stylesheet" type="text/css" href="/static/js/touchcarousel/grey-blue-skin/grey-blue-skin.css" />
@@ -40,7 +40,7 @@
 	<body>
 		<!-- Container start from here -->
 		<div id="headerbg" class="row-fluid">
-			<div id="topnavigation" class="span10 offset1">
+			<div id="topnavigation">
 				<ul>
 					<li class="lilink">
 						<a href="{% url home %}" class="search_link">Home</a>
@@ -62,13 +62,13 @@
 		
 		<div id="container" class="row-fluid">
 			<!-- Container 2 start from here -->
-			<div id="container2" class="span10 offset1">
+			<div id="container2">
 				<!--<div id="centerarea_main"> centerarea neutralization -->
 				<div class="row-fluid">
 					<div id="logo" class="span3">
 						<a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200" height="65" alt="Citysom" /> </a>
 					</div>
-					<div id="splash" class="span3" style="font-family:Damion; font-size:2em; font-weight:normal; color:#FF6600; margin-top:25px;"> Don't miss out! </div>
+					<div id="splash" class="span3" style="font-family:Damion; font-size:2em; font-weight:normal; color:#FF6600; margin-top:25px; width: 250px;"> Don't miss out! </div>
 					<div id="searchbox_main" class="span6">
 						<div id="logouttext">
 							{% if user.is_authenticated %}
@@ -108,7 +108,7 @@
 						
 				</div> <!-- end row fluid-->
 				<div class="row-fluid">
-					<div class="span9 offset3" style="font-family:Damion; font-size:1.8em; font-weight:normal; color:#FF6600; margin-bottom:1em; margin-top:-0.5em;">...find about every cool event going on in Boston in seconds!</div>
+					<div class="span9 offset3" style="font-family:Damion; font-size:1.8em; font-weight:normal; color:#FF6600; margin-bottom:1em; margin-top:-0.5em; width: 780px; margin-left: 265px;">...find about every cool event going on in Boston in seconds!</div>
 				</div>
 					<!--
 					<div class="filledarea1">
@@ -163,7 +163,7 @@
 		<!-- Container end from here -->
 	<div id="footerbg" class="row-fluid">
 		<!-- Topnavigation start from here -->
-		<div id="bottomnavigation" class="span10 offset1">
+		<div id="bottomnavigation">
 			<ul>
 				<li>
 					<a href="/about_us">About us</a>

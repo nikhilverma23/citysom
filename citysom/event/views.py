@@ -1422,6 +1422,16 @@ def event_list(request):
         pass
     
     try:
+        if request.GET['page']:
+            page = int(request.GET['page']) - 1
+    except:
+        
+        page = 0
+    
+    limit = 30
+    start = page*limit
+    
+    try:
         #If there is a mistake with the hours submitted by user
         if request.GET['ctrl']:
             return render_to_response("event/event_list.html")
@@ -1437,7 +1447,7 @@ def event_list(request):
 #                              )    
     except:
         
-        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()
+        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()[start:limit]
         event_obj1 = [event.performancedetails_set.aggregate(Max('ticket_price')) for event in events]
         #If view requested is 'by category'
     
@@ -1525,6 +1535,7 @@ def event_list(request):
                            "events":events,
                            "date_end":event_date_end_object,
                            "date_start":event_date_object,
+                           "page":page
                            },
                           context_instance=RequestContext(request)
                           )
