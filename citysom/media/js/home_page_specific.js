@@ -5,7 +5,10 @@ if(typeof togl == "undefined"){togl=0;}
 var step = 10;
 var timestep = 15;
 var sort = 'price';
-function load_events(){
+var page = 1;
+var activate_scroll = 0;
+
+function load_events(append=0){
 	url = '/event/event_list/?view=list&tgl='+togl;
   	min_price = parseInt($("#min_price").val());
   	max_price = parseInt($("#max_price").val());
@@ -111,9 +114,24 @@ function load_events(){
   					
   	if(search_text){url +='&search_text='+search_text;}
   	
+	if(!append)
+		page = 1
+	
+	url += '&page='+page;
+	
   	$.get(url,function(data){
-		$("#bottom_images").html(data);
-		});
+		if(append)
+			$("#bottom_images").append(data);
+		else
+		{
+			$("#bottom_images").html(data);
+		}
+		if(!activate_scroll)
+		{
+			activate_scroll = 1;
+			scroll_checker();
+		}
+	});
 }
 
 
@@ -160,6 +178,17 @@ jQuery("a.like_link").live("mouseout",function(){
 		jQuery("div.likes_count_div", $(this).parent()).hide();
 	}
 });
+
+function scroll_checker()
+{
+	$(window).scroll(function() {
+		if($(window).scrollTop() + $(window).height() == $(document).height()) {
+		    page += 1;
+		    load_events(1);
+		}
+	});
+}
+
 /*  		
 $("#min_price_down").click(function(){
 	var current_price = parseInt($("#min_price").val())-step;
