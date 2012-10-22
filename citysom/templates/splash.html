@@ -23,28 +23,43 @@
 		<!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	</head>
-	<body>
+	<body >
 		<!-- Container start from here -->
 		<div id="headerbg" class="row-fluid">
-			<div id="topnavigation" class="span10 offset1">
+			<div id="topnavigation1" class="span10 offset1">
 				<div style="display:inline-block; float:left;">
 					<span style="font-family:Damion; font-size:2.5em; margin-top:10px; display:inline-block;">Citysom</span>
 				</div>
 				<div style="display:inline-block; float:right; margin-top:4px; width:14em; min-width:150px;">
 					<div style="color:#999; display:inline-block; float:left; font-size:0.95em; margin-top:5px;">
-						Already a member?
+						Already a member? 
 					</div>
 					<div>
-						<a class="btn" href="/registration/login" style="float:right; display:inline-block;">Login</a>
+						<a href="javascript:void(0)" onclick="getLogin()"><img src='/static/images/facebook.png' width="20" height="20";/></a> 
+						 
+						<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="20"/></a>
+						<!--<a class="btn" href="/registration/login" style="float:right; display:inline-block;">Login</a>-->
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="login_top_div" id="log_top_div" style="display: none;">
+			<form method="post" action="{% url auth_login %}">
+				{% csrf_token %}
+				<div>
+					<dl>
+						<dt><label for="id_username">Username:</label></dt> <dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
+						<dt><label for="id_password">Password:</label></dt> <dd><input type="password" name="password" id="id_password" /></dd>
+						<dt><input type="submit" value="Log in" class="login_submit" /></dt>
+						</dl>
+					</div>
+			</form>
+		</div>
 		
-		<div id="container" class="row-fluid">
+		<div id="container" class="row-fluid" style="background: url('../media/images/acount_bg.png') no-repeat center center fixed; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;">
 			<!-- Container 2 start from here -->
 			<!--<div id="container2" class="span10 offset1">-->
-				<div id="top-page" style="margin-top:5em;">
+				<div id="top-page" style="margin-top:0em;">
 					<div id="genpres" style="width:45%; min-width:300px; display:inline-block; float:left;">
 						<div id="genprom" style="color:#FF6600; font-family:Damion; font-weight:bold; width:50%; text-align:center; padding:1.5em 1em; font-size:2em; border-radius:5px;">
 							Welcome to Citysom ...
@@ -62,7 +77,7 @@
 							<p style="text-align:center;">Recommended for members by members, just like you.</p>
 							<br>
 							<p style="text-align:center;"><strong>Sounds good?</strong> Come in, thousands of cool events await!</p>
-							<button class="btn btn-large btn-success btn-block" style="margin-top:2em; font-weight:bold;">Let's get started!</button>
+							<a href="/home"> <button class="btn btn-large btn-success btn-block" style="margin-top:2em; font-weight:bold;">Let's get started!</button> </a> 
 						</div>
 						
 					</div>
@@ -70,32 +85,35 @@
 						<div id="genprom2" style="color:#FF6600; font-family:Damion; font-weight:bold; width:50%; text-align:center; padding:1.5em 1em; font-size:2em; border-radius:5px;">
 							As easy as 1, 2, 3!
 						</div>
-						<div id="gendesc2" style="border:1px groove #E0E0E0; background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF)); background: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA); background: -moz-linear-gradient(top, #FAFAFA, #EAEAEA); background: -ms-linear-gradient(top, #FAFAFA, #EAEAEA); background: -o-linear-gradient(top, #FAFAFA, #EAEAEA); color:#777777; width:90%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
+						<div id="gendesc2" style="border:1px groove #E0E0E0; display:inline-block; margin-bottom:2em; background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF)); background: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA); background: -moz-linear-gradient(top, #FAFAFA, #EAEAEA); background: -ms-linear-gradient(top, #FAFAFA, #EAEAEA); background: -o-linear-gradient(top, #FAFAFA, #EAEAEA); color:#777777; width:90%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
 							<section>
 								<div class="howitworks-text">
-									<h4>1. Pick a date</h4>
+									<h4 style="color:#FF6600;">1. Pick a date</h4>
 									<p>Tell us when you want to get out. First click to let us know the earlier date you look for events, second click for the last date and let us do the magic.</p>
 								</div>
 								<div class="howitworks-pic">
 									<img src="/media/images/calendar.png" />
 								</div>
 							</section>
+							<hr>
 							<section>
-								<div class="howitworks-text">
-									<h4>2. Get excited</h4>
-									<p>Browse through the results, maybe using the left column filters to help you further refine your criteria. <br><br>Found something interesting? Click on "More info" to know more about the event. <br><br>An event looks really amazing? Click on "I recommend" to help out other users, like you find the best events.</p>
+								<div class="howitworks-text" style="float:right; margin-bottom:2em;">
+									<h4 style="color:#FF6600;">2. Browse, get excited</h4>
+									<p>Browse through the results, maybe using the left column filters to help you further refine your criteria. <br><br>Found something interesting? Click on <strong>"More info"</strong> to know more about the event. <br><br>An event looks really amazing? Click on <strong>"Recommend"</strong> to help out other users, like you find the best events.</p>
 								</div>
-								<div class="howitworks-pic">
-									PUT AN IMAGE THERE 
+								<div class="howitworks-pic" style="float:left; ">
+									<img src="/media/images/filtering2.png" style="margin-top:-1em;"/>
 								</div>
 							</section>
+							<div class="clear"></div>
+							<hr>
 							<section>
-								<div class="howitworks-text">
-									<h4>3. Enjoy some good time</h4>
+								<div class="howitworks-text" style="float:left; margin-top:1em;">
+									<h4 style="color:#FF6600;">3. Enjoy!</h4>
 									<p>Now that you have found some cool stuff going on. Tell you friends about it and get prepared for your next time out!</p>
 								</div>
-								<div class="howitworks-pic">
-									PUT AN IMAGE THERE
+								<div class="howitworks-pic" style="float:right;">
+									<img src="/media/images/event2.png" />
 								</div>
 							</section>	
 					</div>
@@ -117,7 +135,7 @@
 		<!-- Container end from here -->
 		<div id="footerbg" class="row-fluid">
 		<!-- Topnavigation start from here -->
-			<div id="bottomnavigation" class="span10 offset1">
+			<div id="bottomnavigation" class="span10 offset1" style="width:auto;">
 				<ul>
 					<li>
 						<a href="/about_us">About us</a>
@@ -132,5 +150,67 @@
 			</div>
 			<!-- Topnavigation end from here -->
 		</div>
+		
+		<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '291495594293239', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+	FB.Event.subscribe('auth.login', function(response) {
+		console.log('User is Logged In');
+	});
+
+	FB.Event.subscribe('auth.logout', function(response) {
+		console.log('Session was terminated!');
+	});
+
+	FB.Event.subscribe('edge.create', function(response) {
+		console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
+	});
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+   
+   function getLogin()
+	{
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
+			login();
+		  } else if (response.status === 'not_authorized') {
+			login();
+		  } else {
+			login();
+		  }
+		 });
+	}
+	
+	function login()
+	{
+		FB.login(function(response) {
+		   if (response.authResponse) {
+			 FB.api('/me', function(response) {
+			   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+			 });
+		   } else {
+			 console.log('User cancelled login or did not fully authorize.');
+		   }
+		 }, {scope:'email'});
+	}
+	</script>
 	</body>
+	
+	
+	
+	
+	
 </html>
