@@ -809,6 +809,12 @@ body
 .everything_area ul li:last-child:hover::after{left:22em;width:5em;}	
 
 
+/* Splash page */
+.howitworks-pic{width:50%; display:inline-block; vertical-align:top; margin-top:2em;}
+.howitworks-text{width:48%; display:inline-block;}
+
+
+
 
 /* Start Home page filtering paragraphs */
 p.nav_menu{
