@@ -1260,7 +1260,15 @@ def eventcreation(request):
 #----------------------------------------------------------------------------#
 def home(request):
     category = Category.objects.all()
-    return render_to_response("splash.html",
+#    return render_to_response("splash.html",
+#                              {
+#                               "request":request,
+#                               "category":category
+#                               },
+#                              context_instance=RequestContext(request)
+#                              )
+    
+    return render_to_response("event/home_page.html",
                               {
                                "request":request,
                                "category":category
@@ -1268,14 +1276,6 @@ def home(request):
                               context_instance=RequestContext(request)
                               )
     
-#    return render_to_response("event/home_page.html",
-#                              {
-#                               "request":request,
-#                               "category":category
-#                               },
-#                              context_instance=RequestContext(request)
-#                              )
-#    
 #----------------------------------------------------------------------------#
 def handle_uploaded_file(request):
     event_poster = request.FILES['event_poster_file']
