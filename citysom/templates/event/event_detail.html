@@ -25,18 +25,18 @@
 <div class="event_prev">
 	<div class="left_img_prev">
 	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
+	   {% if user.is_authenticated %}
 	   <hr>
 	   <div>
-		{% if user.is_authenticated %}
 		<a href="/myprofile/popularity?action=like&id={{eventdetails.id}}" class="like_link">
 			<button class="misc_pres_like" style="margin-bottom:0.7em !important;">   Recommend   <img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
 		</a>
 		<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
 		<a href='/myprofile/wishlist?action=add&id={{eventdetails.id}}'>
-			<button class="misc_pres_more_info" style="margin-bottom:0.7em !important; width: 110px;">Bookmark this <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
+			<button class="misc_pres_more_info" style="margin-bottom:0.7em !important; width: 90px;">Bookmark<img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
 		</a>
-		{% endif %}
 	</div>
+	   {% endif %}
 	
 	   
 		<!--<div>
@@ -173,6 +173,7 @@
 					{% endfor %}
 				</table>
 			{% endif %}
+			<div class="clear"></div>
 		</div>
 		{% endif %}
 		{% if eventdetails.event_start_date3 != None %}
@@ -237,6 +238,7 @@
 					{% endfor %}
 				</table>
 			{% endif %}
+			<div class="clear"></div>
 		</div>
 		{% endif %}
 		{% if eventdetails.event_start_date4 != None %}
@@ -302,11 +304,14 @@
 					{% endfor %}
 				</table>
 			{% endif %}
-			
-			{% endif %}
+			<div class="clear"></div>
+		</div>	
+		{% endif %}
 			
 			{% if eventdetails.event_start_date5 != None %}
+			<div class="event_details_box">
 				<div class="event_dates">{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}</div>
+				<hr class="orange_line">
 				<div class="event_program">
 					<span style="text-decoration:underline; font-size:1em;">{{eventdetails.frequency|lower|capfirst}}</span>:
 				</div>
@@ -370,8 +375,11 @@
 					{% endfor %}
 				</table>
 				{% endif %}
+				<div class="clear"></div>
+			</div>
 			{% endif %}
-		{% else %}	
+		{% else %}
+		<div class="event_details_box">
 			<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 			<hr class="orange_line">
 			<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
@@ -430,9 +438,8 @@
 		{% endif %}
 			<div class="clear"></div>
 		</div>
-			
-		<a style="text-align:left; margin-left:-11em; font-size:0.85em;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
-
+		<a style="text-align:left; margin-left:-11em; font-size:16px;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
+</div>
 
 		
 		
