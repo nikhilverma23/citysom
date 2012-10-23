@@ -133,6 +133,15 @@ function load_events(append){
 			activate_scroll = 1;
 			scroll_checker();
 		}
+		var url = document.location.href;
+		var url_array = url.split("#");
+		var url_length = url_array.length
+		if(url_length > 1)
+		{
+			highlight_event = url_array[url_length-1];
+			console.log(highlight_event);
+			$("li.event_container_"+highlight_event).animate({"backgroundColor":"#FFC11F"}, 500).delay(10000).animate({"backgroundColor":"#FFFFFF"}, 500);
+		}
 	});
 }
 

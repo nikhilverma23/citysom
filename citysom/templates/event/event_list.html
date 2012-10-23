@@ -11,7 +11,7 @@
 {% endif %}
 <ul>
  	{% for event in events %}
-		<li class="misc_pres {% cycle "" "" "misc_pres_last" %}">
+		<li class="misc_pres event_container_{{event.id}} {% cycle "" "" "misc_pres_last" %}">
 			<div class="misc_pres_container">
 				<div class="misc_pres_img">
 					<img src="/media/images/{{event.event_poster}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/>
