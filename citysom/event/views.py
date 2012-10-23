@@ -1258,8 +1258,33 @@ def eventcreation(request):
                               )
     
 #----------------------------------------------------------------------------#
+def splash(request):
+#    category = Category.objects.all()
+    return render_to_response("splash.html",
+                              {
+                               },
+                              context_instance=RequestContext(request)
+                              )
+    
+#    return render_to_response("event/home_page.html",
+#                              {
+#                               "request":request,
+#                               "category":category
+#                               },
+#                              context_instance=RequestContext(request)
+#                              )
+#    
+#----------------------------------------------------------------------------#
 def home(request):
     category = Category.objects.all()
+#    return render_to_response("splash.html",
+#                              {
+#                               "request":request,
+#                               "category":category
+#                               },
+#                              context_instance=RequestContext(request)
+#                              )
+    
     return render_to_response("event/home_page.html",
                               {
                                "request":request,

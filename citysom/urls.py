@@ -10,7 +10,8 @@ urlpatterns = patterns('',
     
     
     # for home_page
-    url(r'^$', "event.views.home", name='home'),
+    url(r'^$', "event.views.splash", name='splash'),
+    url(r'^home/',"event.views.home", name='home'),
     (r'^myprofile/home/', 'event.views.home'),
 
     # for automatic admin

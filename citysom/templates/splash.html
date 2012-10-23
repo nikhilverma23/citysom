@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css" />
+		<link rel="icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
+		<link rel "shortcut icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
+		<title>{% block title %}Citysom{% endblock %}</title>
+		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+		<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
+		<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+		<!--<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript" src="/static/js/base_specific.js"></script>
+		<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+		<!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	</head>
+	<body >
+		<!-- Container start from here -->
+		<div id="headerbg" class="row-fluid">
+			<div id="topnavigation1" class="span10 offset1">
+				<div style="display:inline-block; float:left;">
+					<span style="font-family:Damion; font-size:2.5em; margin-top:10px; display:inline-block;">Citysom</span>
+				</div>
+				<div style="display:inline-block; float:right; margin-top:4px; width:14em; min-width:150px;">
+					<div style="color:#999; display:inline-block; float:left; font-size:0.95em; margin-top:5px;">
+						Already a member? 
+					</div>
+					<div>
+						<a href="javascript:void(0)" onclick="getLogin()"><img src='/static/images/facebook.png' width="20" height="20";/></a> 
+						 
+						<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="20"/></a>
+						<!--<a class="btn" href="/registration/login" style="float:right; display:inline-block;">Login</a>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="login_top_div" id="log_top_div" style="display: none;">
+			<form method="post" action="{% url auth_login %}">
+				{% csrf_token %}
+				<div>
+					<dl>
+						<dt><label for="id_username">Username:</label></dt> <dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
+						<dt><label for="id_password">Password:</label></dt> <dd><input type="password" name="password" id="id_password" /></dd>
+						<dt><input type="submit" value="Log in" class="login_submit" /></dt>
+						</dl>
+					</div>
+			</form>
+		</div>
+		
+		<div id="container" class="row-fluid" style="background: url('../media/images/acount_bg.png') no-repeat center center fixed; -webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+			<!-- Container 2 start from here -->
+			<!--<div id="container2" class="span10 offset1">-->
+				<div id="top-page" style="margin-top:0em;">
+					<div id="genpres" style="width:45%; min-width:300px; display:inline-block; float:left;">
+						<div id="genprom" style="color:#FF6600; font-family:Damion; font-weight:bold; width:50%; text-align:center; padding:1.5em 1em; font-size:2em; border-radius:5px;">
+							Welcome to Citysom ...
+						</div>
+						<div id="gendesc" style="border:1px groove #E0E0E0; background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF)); background: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA); background: -moz-linear-gradient(top, #FAFAFA, #EAEAEA); background: -ms-linear-gradient(top, #FAFAFA, #EAEAEA); background: -o-linear-gradient(top, #FAFAFA, #EAEAEA); color:#777777; width:70%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
+							<ul>
+								<li style="display:inline;"><img src="/media/images/mfa_logo.jpg" width="85" height="85"/></li>
+								<li style="display:inline;"><img src="/media/images/huntington_logo.jpg" width="85" height="85"/></li>
+								<li style="display:inline;"><img src="/media/images/bso_logo.png" width="85" height="85" /></li>
+								<li style="display:inline;"><img src="/media/images/bijou_logo.jpg" width="95" height="85"/></li>
+								<li style="display:inline;"><img src="/media/images/passim_logo.jpg" width="90" height="85"/></li>
+							</ul>
+							<br>
+							<p style="text-align:center;">Find the best events in Boston. All tastes, all budgets. </p>
+							<p style="text-align:center;">Recommended for members by members, just like you.</p>
+							<br>
+							<p style="text-align:center;"><strong>Sounds good?</strong> Come in, thousands of cool events await!</p>
+							<a href="/home"> <button class="btn btn-large btn-success btn-block" style="margin-top:2em; font-weight:bold;">Let's get started!</button> </a> 
+						</div>
+						
+					</div>
+					<div id="genpic2" style="width:45%; min-width:300px; display:inline-block;">
+						<div id="genprom2" style="color:#FF6600; font-family:Damion; font-weight:bold; width:50%; text-align:center; padding:1.5em 1em; font-size:2em; border-radius:5px;">
+							As easy as 1, 2, 3!
+						</div>
+						<div id="gendesc2" style="border:1px groove #E0E0E0; display:inline-block; margin-bottom:2em; background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF)); background: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA); background: -moz-linear-gradient(top, #FAFAFA, #EAEAEA); background: -ms-linear-gradient(top, #FAFAFA, #EAEAEA); background: -o-linear-gradient(top, #FAFAFA, #EAEAEA); color:#777777; width:90%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
+							<section>
+								<div class="howitworks-text">
+									<h4 style="color:#FF6600;">1. Pick a date</h4>
+									<p>Tell us when you want to get out. First click to let us know the earlier date you look for events, second click for the last date and let us do the magic.</p>
+								</div>
+								<div class="howitworks-pic">
+									<img src="/media/images/calendar.png" />
+								</div>
+							</section>
+							<hr>
+							<section>
+								<div class="howitworks-text" style="float:right; margin-bottom:2em;">
+									<h4 style="color:#FF6600;">2. Browse, get excited</h4>
+									<p>Browse through the results, maybe using the left column filters to help you further refine your criteria. <br><br>Found something interesting? Click on <strong>"More info"</strong> to know more about the event. <br><br>An event looks really amazing? Click on <strong>"Recommend"</strong> to help out other users, like you find the best events.</p>
+								</div>
+								<div class="howitworks-pic" style="float:left; ">
+									<img src="/media/images/filtering2.png" style="margin-top:-1em;"/>
+								</div>
+							</section>
+							<div class="clear"></div>
+							<hr>
+							<section>
+								<div class="howitworks-text" style="float:left; margin-top:1em;">
+									<h4 style="color:#FF6600;">3. Enjoy!</h4>
+									<p>Now that you have found some cool stuff going on. Tell you friends about it and get prepared for your next time out!</p>
+								</div>
+								<div class="howitworks-pic" style="float:right;">
+									<img src="/media/images/event2.png" />
+								</div>
+							</section>	
+					</div>
+				</div>
+				<!--<div id="bottom_page">
+					<h1>How it works</h1>
+					<h3>1. Pick a date or a date range</h3>
+					<p>Tell us when you want to go out. On the calendar pick a beginning and an end date for your search.</p>
+					<h3>2. Refine the results based on your criteria</h3>
+					<p>Use the left pane column to further refine results set according to your priorities.</p>
+					<h3>3. Recommend and explore</h3>
+					<p>Click on the "That's Citysom" button to help the community spot interesting events and hit "More info" if you want more details about the event.</p>
+					<h3>4. Never miss-out again</h3>
+					<p>Whether it's a concert, an improv play, an historical tour or a XXX, you'll be doing what you love best!</p>
+				</div>-->
+			<!--</div>-->
+			<!-- Container 2 end from here -->
+		</div>
+		<!-- Container end from here -->
+		<div id="footerbg" class="row-fluid">
+		<!-- Topnavigation start from here -->
+			<div id="bottomnavigation" class="span10 offset1" style="width:auto;">
+				<ul>
+					<li>
+						<a href="/about_us">About us</a>
+				     </li>
+				     <li>
+				      	<a href="/contact_us">Contact us</a>
+				     </li>
+				     <li>
+				      	<a href="/legal_info">Legal information</a>
+				     </li>
+				</ul>
+			</div>
+			<!-- Topnavigation end from here -->
+		</div>
+		
+		<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '291495594293239', // App ID
+      status     : true, // check login status
+      cookie     : true, // enable cookies to allow the server to access the session
+      xfbml      : true  // parse XFBML
+    });
+	FB.Event.subscribe('auth.login', function(response) {
+		console.log('User is Logged In');
+	});
+
+	FB.Event.subscribe('auth.logout', function(response) {
+		console.log('Session was terminated!');
+	});
+
+	FB.Event.subscribe('edge.create', function(response) {
+		console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
+	});
+  };
+
+  // Load the SDK Asynchronously
+  (function(d){
+     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement('script'); js.id = id; js.async = true;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     ref.parentNode.insertBefore(js, ref);
+   }(document));
+   
+   function getLogin()
+	{
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
+			login();
+		  } else if (response.status === 'not_authorized') {
+			login();
+		  } else {
+			login();
+		  }
+		 });
+	}
+	
+	function login()
+	{
+		FB.login(function(response) {
+		   if (response.authResponse) {
+			 FB.api('/me', function(response) {
+			   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+			 });
+		   } else {
+			 console.log('User cancelled login or did not fully authorize.');
+		   }
+		 }, {scope:'email'});
+	}
+	</script>
+	</body>
+	
+	
+	
+	
+	
+</html>
