@@ -32,10 +32,10 @@
 			<button class="misc_pres_like" style="margin-bottom:0.7em !important;">   Recommend   <img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
 		</a>
 		<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
-	{% endif %}
 		<a href='/myprofile/wishlist?action=add&id={{eventdetails.id}}'>
 			<button class="misc_pres_more_info" style="margin-bottom:0.7em !important; width: 110px;">Bookmark this <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
 		</a>
+		{% endif %}
 	</div>
 	
 	   
@@ -428,8 +428,9 @@
 			    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
 			{% endif %}
 		{% endif %}
+			<div class="clear"></div>
 		</div>
-				
+			
 		<a style="text-align:left; margin-left:-11em; font-size:0.85em;" href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em; display:block;" target="_blank">Go to event website</a>
 
 

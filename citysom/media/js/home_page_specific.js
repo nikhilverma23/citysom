@@ -139,7 +139,6 @@ function load_events(append){
 		if(url_length > 1)
 		{
 			highlight_event = url_array[url_length-1];
-			console.log(highlight_event);
 			$("li.event_container_"+highlight_event).animate({"backgroundColor":"#FFC11F"}, 500).delay(10000).animate({"backgroundColor":"#FFFFFF"}, 500);
 		}
 	});
