@@ -32,8 +32,8 @@
 			</div>
 			<div class="misc_pres_button">
 				<hr>
-				<a href="/event/details?id={{event.id}}">
-					<button class="misc_pres_more_info">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
+				<a href="#{{event.id}}">
+					<button class="misc_pres_more_info" onclick="document.location.href='/event/details?id={{event.id}}';">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
 				</a>
 				{% if user.is_authenticated %}
 				<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">

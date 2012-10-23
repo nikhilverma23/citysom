@@ -190,7 +190,6 @@ function scroll_checker()
 		}
 	});
 }
-
 /*  		
 $("#min_price_down").click(function(){
 	var current_price = parseInt($("#min_price").val())-step;
