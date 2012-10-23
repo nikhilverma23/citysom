@@ -14,7 +14,8 @@
 		<li class="misc_pres event_container_{{event.id}} {% cycle "" "" "misc_pres_last" %}">
 			<div class="misc_pres_container">
 				<div class="misc_pres_img">
-					<img src="/media/images/{{event.event_poster}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/>
+					{{event.event_poster}}
+					<img src="/media/images/{{event.event_poster|cut:"images/"}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/>
 					<!--<table id="misc_pres_wrapper">
 						<tr>
 							<td><img src="/media/images/{{event.event_poster}}" style="position:absolute;" onload="OnImageLoad(event);" alt="{{event.title}}"/></td>
