@@ -106,7 +106,7 @@ class Event(models.Model):
     status = models.BooleanField(default=False,\
                                  help_text="Event is active or Inactive")
     # Image for Event
-    event_poster = models.ImageField(upload_to="images/tmp/",\
+    event_poster = models.ImageField(upload_to="images/",\
                                      max_length=100,blank=True,null=True)
     
     # Any videos of event
