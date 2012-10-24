@@ -12,7 +12,9 @@
 		<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="upload_image">
+            	{{eventform_poster.event_poster_file}}
             	{% if event_poster %}
+            	
             	<img src="/static/images/{{event_poster}}" alt="Poster" id="poster_image" />
                 <button id="upload_link" class="uploader btn btn-mini btn-primary" value="Upload Poster" >Change Poster</button>
             	{% else %}
