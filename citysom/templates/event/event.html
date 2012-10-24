@@ -12,13 +12,12 @@
 		<form id="eventposter-form" action="/event/upload_image/" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="upload_image">
-				{{eventform_poster.event_poster_file}}
             	{% if event_poster %}
             	<img src="/static/images/{{event_poster}}" alt="Poster" id="poster_image" />
                 <button id="upload_link" class="uploader btn btn-mini btn-primary" value="Upload Poster" >Change Poster</button>
             	{% else %}
             	<img src="/static/images/upload.png" alt="Poster" id="poster_image" />
-                <button id="upload_link" class="btn btn-small btn-primary btn-block" type="button" value="Upload Poster" style="width:82% !important; margin-top:0.5em;">Upload Poster</button>
+                <button id="upload_link" class="btn btn-small btn-primary btn-block" type="button" value="Upload Poster" style="width:108% !important; margin-top:0.5em;">Upload Poster</button>
             	{% endif %}
             </div>
 		</form>
@@ -34,12 +33,12 @@
     		{% csrf_token %}
         	<div class="width-60 fltlft">
             	<fieldset class="adminform">
-            		<ul class="adminformlist" style="list-style: none;">
+            		<ul class="adminformlist formdata" style="list-style: none;">
 						<li class="formlist1">
 							{% if eventform.title.errors %}
 							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.title.errors|join:", "  }}</p>
 							{% endif %}
-		                    <b>Event Title:</b>
+		                    <b class=fleft"">Event Title:</b>
 		                    {{eventform.title}}
 	                    </li>
 	                    <li class="formlist1">
@@ -61,22 +60,31 @@
 		                </li>
 		                               
 	                    <li class="formlist1">
-	                    	{% if eventform.date_started.errors %}
+	                    	<fieldset class="fldset">
+	                    		<legend>Show Time</legend>
+	                    		<div class="clear overflow-hidden">
+	                    			{% if eventform.date_started.errors %}
 							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_started.errors|join:", "  }}</p>
 							{% endif %}
 	                    	<b>Event start date:</b>
 	                    	<div class="formlist1_div">
 	                    		{{eventform.date_started}}	
 	                        </div>
-						</li>
-						<li class="formlist1">
-							{% if eventform.date_completed.errors %}
+	                    		</div>
+	                    		<div class="clear overflow-hidden mt_10">
+	                    			{% if eventform.date_completed.errors %}
 							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.date_completed.errors|join:", "  }}</p>
 							{% endif %}	
 	                        <b>Event end date:</b>
 	                        <div class="formlist1_div">
 	                        	{{eventform.date_completed}}	
 							</div>
+	                    		</div>
+	                    	</fieldset>
+	                    	
+						</li>
+						<li class="formlist1">
+							
 						</li>        	                          
                         <li class="formlist1 left_aligned_radios">
                         	{% if eventform.schedule_type.errors %}
@@ -1063,7 +1071,7 @@
                         </li>
                          <li class="formlist1">
                             <b style="float: left;">Event type:</b>
-                            <div class="formlist1_div" style="margin-left:3em;">
+                            <div class="formlist1_div">
                             	{% if eventform.category.errors %}
 						    	<p class="error">{{ eventform.category.errors|join:", "  }}</p>
 						  		{% endif %}
@@ -1402,7 +1410,7 @@
              	{{eventform.status.as_hidden}}
              	{{eventform.location.as_hidden}}
              	{{eventform.event_poster.as_hidden}}
-             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:21em; width:40%;">Publish your event!</button>
+             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:160px; width:40%;">Publish your event!</button>
              <!--<input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>--> 
           </form>
        </div>
