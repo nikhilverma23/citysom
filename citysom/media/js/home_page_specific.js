@@ -151,11 +151,6 @@ function load_events(append){
 		hash +='&search_text='+search_text;
 	}
   	
-	if(!append)
-		page = 1
-	
-	url += '&page='+page;
-	hash += '&page='+page;
 	if(back)
 	{
 		hash = window.location.hash;
@@ -163,6 +158,12 @@ function load_events(append){
 		url='/event/event_list/?'+hash;
 	}
 	window.location.hash = hash;
+	
+	if(!append)
+		page = 1
+	
+	url += '&page='+page;
+
   	$.get(url,function(data){
 		if(append)
 			$("#bottom_images").append(data);
