@@ -8,11 +8,20 @@ var sort = 'price';
 var page = 1;
 var activate_scroll = 0;
 
+var back = 0;
+
+if(window.location.hash)
+ back = 1;
+
 function load_events(append){
 	if(typeof(append)==='undefined')
 		append = 0;
-	url = '/event/event_list/?view=list&tgl='+togl;
+		
 	var hash;
+	
+	url = '/event/event_list/?view=list&tgl='+togl;
+	hash = 'view=list&tgl='+togl;
+	
   	min_price = parseInt($("#min_price").val());
   	max_price = parseInt($("#max_price").val());
   	event_date = $(".calendar_start").attr("rel")?$(".calendar_start").attr("rel"):$(".calendar_active").attr("rel");
@@ -22,16 +31,32 @@ function load_events(append){
   	audience = $('#event_audience_select').val()
   	search_text = $("#searchtextarea").val();
 	sort = $("#sort").val();
-  			
+  	
   	if(!isNaN(min_price))
 	{
 		url +='&min_price='+min_price;
-		hash += 'min_price='+min_price;
+		hash += '&min_price='+min_price;
 	}
-  	if(!isNaN(max_price))url +='&max_price='+max_price;
-  	if(event_date) url +='&event_date='+event_date;
-  	if(event_date_end) url +='&event_date_end='+event_date_end;
-	if(sort) {url +='&sort='+sort;}
+  	if(!isNaN(max_price))
+	{
+		url +='&max_price='+max_price;
+		hash += '&max_price='+max_price;
+	}
+  	if(event_date)
+	{
+		url +='&event_date='+event_date;
+		hash += '&event_date='+event_date;
+	}
+  	if(event_date_end)
+	{
+		url +='&event_date_end='+event_date_end;
+		hash += '&event_date_end='+event_date_end;
+	}
+	if(sort)
+	{
+		url +='&sort='+sort;
+		hash += '&sort='+sort;
+	}
   	if(filter_time){
   		var str=''
   		var st_str=''
@@ -95,6 +120,7 @@ function load_events(append){
 	  		}
   		
   		url +=str;
+		hash +=str;
   	}
   			
   	if(category){
@@ -119,13 +145,24 @@ function load_events(append){
   		}
   				
   					
-  	if(search_text){url +='&search_text='+search_text;}
+  	if(search_text)
+	{
+		url +='&search_text='+search_text;
+		hash +='&search_text='+search_text;
+	}
   	
 	if(!append)
 		page = 1
 	
 	url += '&page='+page;
-	
+	hash += '&page='+page;
+	if(back)
+	{
+		hash = window.location.hash;
+		hash = hash.substring(1);
+		url='/event/event_list/?'+hash;
+	}
+	window.location.hash = hash;
   	$.get(url,function(data){
 		if(append)
 			$("#bottom_images").append(data);
