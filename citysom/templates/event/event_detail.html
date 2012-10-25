@@ -24,7 +24,7 @@
 <div class="clear"></div>
 <div class="event_prev">
 	<div class="left_img_prev">
-	   <img src="/static/images/{{eventdetails.event_poster}}" alt="{{eventdetails.title}}"/>
+	   <img src="/static/images/{{eventdetails.event_poster|cut:"images/"}}" alt="{{eventdetails.title}}"/>
 	   {% if user.is_authenticated %}
 	   <hr>
 	   <div>

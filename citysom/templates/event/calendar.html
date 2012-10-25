@@ -27,9 +27,9 @@
 		{{weekday.last}}
 		{% for day in daysrange %}
 			{% if check_current_month == 1 and day|add:1 == now.day %}
-				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="today calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
+				<a href="#date={{current_date.year}}-{{current_date.month}}-{{day|add:1}}" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="today calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
 			{% else %}
-				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="{{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
+				<a href="#date={{current_date.year}}-{{current_date.month}}-{{day|add:1}}" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="{{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
 			{% endif %}
 		{% endfor %}
 		<div class="clear"></div>
