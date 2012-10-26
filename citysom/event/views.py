@@ -1445,8 +1445,9 @@ def event_list(request):
         
         page = 0
     
-    limit = 30
+    limit = 1
     start = page*limit
+    end = (page+1)*limit
     
     try:
         #If there is a mistake with the hours submitted by user
@@ -1464,7 +1465,7 @@ def event_list(request):
 #                              )    
     except:
         
-        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()[start:limit]
+        events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()[start:end]
         event_obj1 = [event.performancedetails_set.aggregate(Max('ticket_price')) for event in events]
         #If view requested is 'by category'
     
