@@ -1445,7 +1445,7 @@ def event_list(request):
         
         page = 0
     
-    limit = 1
+    limit = 30
     start = page*limit
     end = (page+1)*limit
     

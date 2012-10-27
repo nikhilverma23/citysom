@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css" />
 		<link rel="icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
 		<link rel "shortcut icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
-		<title>{% block title %}Citysom{% endblock %}</title>
+		
 		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
 		<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
 		<!--[if lt IE 9]>
@@ -18,6 +18,9 @@
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
 		<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
 		<!--<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>-->
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
+		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-timepicker.js"></script>
+		<script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
 		<script type="text/javascript" src="/static/js/base_specific.js"></script>
 		<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
@@ -43,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="login_top_div" id="log_top_div" style="display: none;">
+		<div class="login_top_div" id="log_top_div" style="display: none; z-index: 100;">
 			<form method="post" action="{% url auth_login %}">
 				{% csrf_token %}
 				<div>
@@ -60,17 +63,27 @@
 			<!-- Container 2 start from here -->
 			<!--<div id="container2" class="span10 offset1">-->
 				<div id="top-page" style="margin-top:0em;">
+					<div style="width: 980px; margin: 0 auto;">
+						<div id="logo" class="span3">
+							<a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200" height="65" alt="Citysom" /> </a>
+						</div>
+						<div style="float: left; margin-left: 20px;">
+							<div style="font-family:Damion; font-size:2em; font-weight:normal; color:#FF6600; margin-top:15px; float: none; margin-left: 30px;"> Don't miss out! </div>
+							<div style="font-family:Damion; font-size:1.8em; font-weight:normal; color:#FF6600; float: none; margin-top: 10px;">...find about every cool event going on in Boston in seconds!</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
 					<div id="genpres" style="width:45%; min-width:300px; display:inline-block; float:left;">
 						<div id="genprom" style="color:#FF6600; font-family:Damion; font-weight:bold; width:50%; text-align:center; padding:1.5em 1em; font-size:2em; border-radius:5px;">
 							Welcome to Citysom ...
 						</div>
 						<div id="gendesc" style="border:1px groove #E0E0E0; background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF)); background: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA); background: -moz-linear-gradient(top, #FAFAFA, #EAEAEA); background: -ms-linear-gradient(top, #FAFAFA, #EAEAEA); background: -o-linear-gradient(top, #FAFAFA, #EAEAEA); color:#777777; width:70%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
-							<ul>
-								<li style="display:inline;"><img src="/media/images/mfa_logo.jpg" width="85" height="85"/></li>
-								<li style="display:inline;"><img src="/media/images/huntington_logo.jpg" width="85" height="85"/></li>
-								<li style="display:inline;"><img src="/media/images/bso_logo.png" width="85" height="85" /></li>
-								<li style="display:inline;"><img src="/media/images/bijou_logo.jpg" width="95" height="85"/></li>
-								<li style="display:inline;"><img src="/media/images/passim_logo.jpg" width="90" height="85"/></li>
+							<ul style="margin-left: 0px;">
+								<li style="display:inline;"><img src="/media/images/mfa_logo.jpg" width="75" style="width: 75px;"/></li>
+								<li style="display:inline;"><img src="/media/images/huntington_logo.jpg" width="75" style="width: 75px;"/></li>
+								<li style="display:inline;"><img src="/media/images/bso_logo.png" width="75" style="width: 75px;"/></li>
+								<li style="display:inline;"><img src="/media/images/bijou_logo.jpg" width="75" style="width: 75px;"/></li>
+								<li style="display:inline;"><img src="/media/images/passim_logo.jpg" width="75" style="width: 75px;"/></li>
 							</ul>
 							<br>
 							<p style="text-align:center;">Find the best events in Boston. All tastes, all budgets. </p>

@@ -52,7 +52,7 @@ jQuery(document).ready(function() {
 	});
 	
 	$(document).ready(function(){
-        $(".login_content input[type=text],.login_content input[type=checkbox],.login_content input[type=radio],.login_content input[type=password], .login_content textarea, .login_content select").uniform();
+        //$(".login_content input[type=text],.login_content input[type=checkbox],.login_content input[type=radio],.login_content input[type=password], .login_content textarea, .login_content select").uniform();
     });
 });
 
