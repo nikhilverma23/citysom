@@ -12,12 +12,12 @@ class Place(models.Model):
     """
     where the event is taking place
     """
-    venue_name = models.CharField(max_length=255)
+    venue_name = models.CharField(max_length=1024)
     # event  start hours on respective weekdays
     institution_name = models.CharField(max_length=100,blank=True,null=True)
     institution_website = models.CharField(max_length=100,blank=True,null=True)
-    street = models.CharField(max_length=255)
-    state = models.CharField(max_length=30)
+    street = models.CharField(max_length=1024)
+    state = models.CharField(max_length=1024)
     zip_code = models.IntegerField(max_length=7, blank=True, null=True)
     start_hours_on_monday = models.TimeField(null=True,blank=True)
     end_hours_on_monday = models.TimeField(null=True,blank=True)

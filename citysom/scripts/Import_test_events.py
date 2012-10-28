@@ -22,7 +22,7 @@ from citysom.settings import MEDIA_ROOT
 from django.contrib.auth.models import User
 from django.db import connection
 #Init environment, variables
-file=sys.path[1] + '/event2.csv'
+file=sys.path[1] + '/events6.csv'
 i=0
 # Open the file in read mode
 reader = csv.reader(open(file,'rb'))
@@ -39,7 +39,7 @@ for row in reader:
 		curr_genre, created = EventGenre.objects.get_or_create(genre_choices=row[10])
 		curr_audience, created =EventPublic.objects.get_or_create(choicelist=row[11])
 		
-		curr_place, created = Place.objects.get_or_create(venue_name=row[3], street=row[4], state=row[5])
+		curr_place, created = Place.objects.get_or_create(venue_name=row[3], street=row[4],state=row[5])
 		
 		
 		days = row[20].split(',')
@@ -134,72 +134,84 @@ for row in reader:
 			
 		
 		try:
+			from datetime import *
 			if row[14] != None:
 				start_date_csv = datetime.strptime(row[14], '%d/%m/%Y')
 				event_start_date = start_date_csv.strftime('%Y-%m-%d')
 		except: 
 			event_start_date = None
 		try:
+			from datetime import *
 			if row[15] != None:
 				complete_date_csv = datetime.strptime(row[15], '%d/%m/%Y')
 				event_complete_date = complete_date_csv.strftime('%Y-%m-%d')
 		except:
 			event_complete_date = None
 		try:
+			from datetime import *
 			if row[16] != None:
 				start_date_csv1 = datetime.strptime(row[16], '%d/%m/%Y')
 				event_start_date1 = start_date_csv1.strftime('%Y-%m-%d')
 		except:
 			event_start_date1 = None
 		try:
+			from datetime import *
 			if row[17] != None:
 				complete_date_csv1 = datetime.strptime(row[17], "%d/%m/%Y")
 				event_complete_date1 = complete_date_csv1.strftime('%Y-%m-%d')
 		except:
 			event_complete_date1 = None
 		try:
+			from datetime import *
 			if row[29] != None:
 				start_date_csv2 = datetime.strptime(row[29], '%d/%m/%Y')
 				event_start_date2 = start_date_csv2.strftime('%Y-%m-%d')
 		except:
 			event_start_date2 = None
 		try:
+			from datetime import *
 			if row[30] != None:
 				complete_date_csv2 = datetime.strptime(row[30], "%d/%m/%Y")
 				event_complete_date2 = complete_date_csv2.strftime('%Y-%m-%d')
 		except:
 			event_complete_date2 = None
 		try:
+			from datetime import *
 			if row[42] != None:
 				start_date_csv3 = datetime.strptime(row[42], '%d/%m/%Y')
 				event_start_date3 = start_date_csv3.strftime('%Y-%m-%d')
 		except:
 			event_start_date3 = None
 		try:
+			from datetime import *
 			if row[43] != None:
 				complete_date_csv3 = datetime.strptime(row[43], "%d/%m/%Y")
 				event_complete_date3 = complete_date_csv3.strftime('%Y-%m-%d')
 		except:
 			event_complete_date3 = None
 		try:
+			from datetime import *
 			if row[55] != None:
 				start_date_csv4 = datetime.strptime(row[55], '%d/%m/%Y')
 				event_start_date4 = start_date_csv4.strftime('%Y-%m-%d')
 		except:
 			event_start_date4 = None
 		try:
+			from datetime import *
 			if row[56] != None:
 				complete_date_csv4 = datetime.strptime(row[56], "%d/%m/%Y")
 				event_complete_date4 = complete_date_csv4.strftime('%Y-%m-%d')
 		except:
 			event_complete_date4 = None
 		try:
+			from datetime import *
 			if row[69] != None:
 				start_date_csv5 = datetime.strptime(row[69], '%d/%m/%Y')
 				event_start_date5 = start_date_csv5.strftime('%Y-%m-%d')
 		except:
 			event_start_date5 = None
 		try:
+			from datetime import *
 			if row[70] != None:
 				complete_date_csv5 = datetime.strptime(row[70], "%d/%m/%Y")
 				event_complete_date5 = complete_date_csv5.strftime('%Y-%m-%d')
@@ -435,7 +447,7 @@ for row in reader:
 					for ev in rrule.rrule(2, dtstart=date_start, until=date_end, interval=inter, byweekday=T):
 						date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
 						#Test of Showtime 1
-						if (row[23] != None) and (row[24] != None):
+						if (row[23]!= None and row[23] != "") and (row[24]!= None and row[24] != ""):
 							sh_start=row[23] 
 							sh_end=row[24]
 							tix_price=row[6]
@@ -448,7 +460,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 2
-						if (row[25]!= None) and (row[26] != None):
+						if (row[25]!= None and row[25] != "") and (row[26]!= None and row[26] != ""):
 							sh_start=row[25] 
 							sh_end=row[26]
 							tix_price=row[6]
@@ -461,7 +473,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 3
-						if (row[27] != None) and (row[28] != None):
+						if (row[27]!= None and row[27] != "") and (row[28]!= None and row[28] != ""):
 							sh_start=row[27] 
 							sh_end=row[28]
 							tix_price=row[6]
@@ -507,7 +519,7 @@ for row in reader:
 					for ev in rrule.rrule(2, dtstart=date_start, until=date_end, interval=inter1, byweekday=T):
 						date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
 						#Test of Showtime 1
-						if (row[36]!= None) and (row[37]!= None):
+						if (row[36]!= None and row[36] != "") and (row[37]!= None and row[37] != ""):
 							sh_start= row[36]
 							sh_end=row[37]
 							tix_price=row[6]
@@ -520,7 +532,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 2
-						if (row[38] != None) and (row[39] != None):
+						if (row[38]!= None and row[38] != "") and (row[39]!= None and row[39] != ""):
 							sh_start=row[38]
 							sh_end=row[39]
 							tix_price=row[6]
@@ -533,7 +545,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 3
-						if (row[40] != None) and (row[41] != None):
+						if (row[40]!= None and row[40] != "") and (row[41]!= None and row[41] != ""):
 							sh_start=row[40] 
 							sh_end=row[41]
 							tix_price=row[6]
@@ -580,7 +592,7 @@ for row in reader:
 					for ev in rrule.rrule(2, dtstart=date_start, until=date_end, interval=inter2, byweekday=T):
 						date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
 						#Test of Showtime 1
-						if (row[49]!= None) and (row[50]!= None):
+						if (row[49]!= None and row[49] != "") and (row[50]!= None and row[50] != ""):
 							sh_start= row[49]
 							sh_end=row[50]
 							tix_price=row[6]
@@ -593,7 +605,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 2
-						if (row[51] != None) and (row[52] != None):
+						if (row[51]!= None and row[51] != "") and (row[52]!= None and row[52] != ""):
 							sh_start=row[51]
 							sh_end=row[52]
 							tix_price=row[6]
@@ -606,7 +618,7 @@ for row in reader:
 													showtimes_end = sh_end,
 													)
 						#Test of Showtime 3
-						if (row[53] != None) and (row[54] != None):
+						if (row[53]!= None and row[53] != "") and (row[54]!= None and row[54] != ""):
 							sh_start=row[53] 
 							sh_end=row[54]
 							tix_price=row[6]
@@ -654,7 +666,7 @@ for row in reader:
 					for ev in rrule.rrule(2, dtstart=date_start, until=date_end, interval=inter3, byweekday=T):
 						date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
 						#Test of Showtime 1
-						if (row[63]!= None) and (row[64]!= None):
+						if (row[63]!= None and row[63] != "") and (row[64]!= None and row[64] != ""):
 							sh_start= row[63]
 							sh_end=row[64]
 							tix_price=row[6]
@@ -667,7 +679,7 @@ for row in reader:
 												showtimes_end = sh_end,
 												)
 						#Test of Showtime 2
-						if (row[65] != None) and (row[66] != None):
+						if (row[65]!= None and row[65] != "") and (row[66]!= None and row[66] != ""):
 							sh_start=row[65]
 							sh_end=row[66]
 							tix_price=row[6]
@@ -680,7 +692,7 @@ for row in reader:
 												showtimes_end = sh_end,
 												)
 						#Test of Showtime 3
-						if (row[67] != None) and (row[68] != None):
+						if (row[67]!= None and row[67] != "") and (row[68]!= None and row[68] != ""):
 							sh_start=row[67] 
 							sh_end=row[68]
 							tix_price=row[6]
@@ -726,7 +738,7 @@ for row in reader:
 					for ev in rrule.rrule(2, dtstart=date_start, until=date_end, interval=inter4, byweekday=T):
 						date_show=str(ev.year)+'-'+str(ev.month)+'-'+str(ev.day)
 						#Test of Showtime 1
-						if (row[76]!= None) and (row[77]!= None):
+						if (row[76]!= None and row[76] != "") and (row[77]!= None and row[77] != ""):
 							sh_start= row[76]
 							sh_end=row[77]
 							tix_price=row[6]
@@ -739,7 +751,7 @@ for row in reader:
 												showtimes_end = sh_end,
 												)
 						#Test of Showtime 2
-						if (row[78] != None) and (row[79] != None):
+						if (row[78]!= None and row[78] != "") and (row[79]!= None and row[79] != ""):
 							sh_start=row[78]
 							sh_end=row[79]
 							tix_price=row[6]
@@ -752,7 +764,7 @@ for row in reader:
 												showtimes_end = sh_end,
 												)
 						#Test of Showtime 3
-						if (row[80] != None) and (row[81] != None):
+						if (row[80]!= None and row[80] != "") and (row[81]!= None and row[81] != ""):
 							sh_start=row[80] 
 							sh_end=row[81]
 							tix_price=row[6]
@@ -1007,7 +1019,7 @@ for row in reader:
 															    )
 						#Test of Showtime 2
 						if (row[78] != None and row[78] != "") and (row[79] != None and row[79]!= ""):
-
+			
 							sh_start=row[78]
 							sh_end=row[79]
 							tix_price=row[6]
@@ -1377,7 +1389,7 @@ for row in reader:
 			
 			except:
 				pass
-			pass
+			
 		elif row[13]  == "openhour_based":
 			#Open Hour Based Performance Records
 			import datetime
