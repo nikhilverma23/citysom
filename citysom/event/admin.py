@@ -20,7 +20,7 @@ class EventAdmin(admin.ModelAdmin):
     list_per_page = 100
     list_display = ('title','user','status')
     list_filter = ('user','status', 'category')
-    search_fields = ( "title",'location',"category")
+    search_fields = ( "title",)
  
 class PerformanceDetailsAdmin(admin.ModelAdmin):
     list_per_page = 50
