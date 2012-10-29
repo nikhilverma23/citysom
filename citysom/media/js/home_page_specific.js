@@ -11,7 +11,9 @@ var activate_scroll = 0;
 var back = 0;
 
 if(window.location.hash)
- back = 1;
+{
+	back = 1;
+}
 
 function load_events(append){
 	if(typeof(append)==='undefined')
@@ -57,6 +59,7 @@ function load_events(append){
 		url +='&sort='+sort;
 		hash += '&sort='+sort;
 	}
+	
   	if(filter_time){
   		var str=''
   		var st_str=''
@@ -156,9 +159,10 @@ function load_events(append){
 		hash = window.location.hash;
 		hash = hash.substring(1);
 		url='/event/event_list/?'+hash;
+		back = 0;
 	}
+	console.log(hash);
 	window.location.hash = hash;
-	
 	if(!append)
 		page = 1
 	
