@@ -134,6 +134,7 @@ function load_events(append){
   			i+=1;
   			}
   		url +=str;
+		hash +=str;
   		}
   				
   				
@@ -145,6 +146,7 @@ function load_events(append){
   			j+=1;
   			}
   		url +=stg;
+		url +=stg;
   		}
   				
   					
