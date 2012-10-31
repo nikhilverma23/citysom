@@ -438,7 +438,7 @@
 		{% endif %}
 			<div class="clear"></div>
 		</div>
-		<div style="text-align:center;"></p><a href="{{eventdetails.eventwebsite}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
+		<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
 </div>
 
 		
@@ -534,13 +534,15 @@
 					<p>
 						<div style="display:block; margin-top:4em;">
 							<input type="hidden" name="id" id="comment_id" value="">
-							<button class="btn btn-warning" value="Cancel" style="float:left; margin-left:7em; width:35%;">Cancel</button>
-         					<button class=" btn btn-primary" value="Share"  style="float:right; margin-right:17px; width:35%;">Share!</button>
+							<input type="button" value="Cancel" class="custom_submit btn btn-primary" style="float:left; margin-left:100px; width:35%;" id="discard">
+							<input type="submit" value="Share!" class="custom_submit btn btn-warning " style="float:right; margin-left:20px; width:35%;">
+						
+							{% comment %}<button class="btn btn-warning" value="Cancel" type="button" style="float:left; margin-left:7em; width:35%;">Cancel</button>
+         					<button class=" btn btn-primary" value="Share" type="submit" style="float:right; margin-right:17px; width:35%;">Share!</button>{% endcomment %}
 						</div>
 						
-						<!--
-						<input type="submit" value="Share!" class="custom_submit" style="margin-left: 135px;">
-						<input type="button" value="Discard" class="custom_submit" style="margin-left: 10px;" id="discard"> -->
+						
+						
 					</p>
 				</form>
 	     	</div>
