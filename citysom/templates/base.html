@@ -243,8 +243,61 @@
 
       </script>
       <script>
-      	$.get("/event/calendar/",function (data){
+	function getParameterByName(name, querystring)
+	{
+	  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	  var regexS = "[\\?&]" + name + "=([^&#]*)";
+	  var regex = new RegExp(regexS);
+	  var results = regex.exec(querystring);
+	  if(results == null)
+	    return "";
+	  else
+	    return decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+	if(back)
+	{
+		hash = window.location.hash;
+		hash = hash.substring(1);
+		event_date = getParameterByName("event_date", hash);
+		event_date_end = getParameterByName("event_date_end", hash);
+		event_date_array = event_date.split("-");
+		current_year = event_date_array[0]
+		current_month = event_date_array[1];
+		calendar_url = "/event/calendar/?year="+current_year+"&month="+current_month
+	}
+	else
+	{
+		calendar_url = "/event/calendar/"
+	}
+      	$.get(calendar_url,function (data){
 		$("#home_calendar").html(data);
+		if(back)
+		{
+			
+			$(".calendar_active").removeClass("calendar_active");
+			var hover_start = 0;
+			$("#days_container>a").each(function(){
+				if($(this).attr("rel") == event_date)
+				{
+					$(this).addClass("calendar_active");
+					if(event_date_end)
+					{
+						$(this).addClass("calendar_start");
+						hover_start = 1;
+					}
+				}
+				else if($(this).attr("rel") == event_date_end)
+				{
+					$(this).addClass("calendar_active");
+					$(this).addClass("calendar_end");
+					hover_start = 0;
+				}
+				if(hover_start == 1)
+				{
+					$(this).addClass("calendar_hover");
+				}
+			});
+		}
 		load_events();
 		}
 	);
@@ -259,7 +312,7 @@ $("#home_calendar").on("click", "a.calendar_nav_links", function(event){
 	url = $(this).attr("href");
 	$.get(url,function (data){
 		$("#home_calendar").html(data);
-		}
+	}
 	);
 });
 		
@@ -280,7 +333,7 @@ $("#searchbutton").click(function(){
 });
 		
 var clicking = false;
-var started = 0
+var started = 0;
 
 $("#home_calendar").on("mousedown", "#days_container>a", function(event){
     if(started == 0){

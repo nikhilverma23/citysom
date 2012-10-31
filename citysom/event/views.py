@@ -1464,8 +1464,8 @@ def event_list(request):
 #                              context_instance=RequestContext(request)
 #                              )    
     except:
-        
         events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()[start:end]
+        print events.query
         event_obj1 = [event.performancedetails_set.aggregate(Max('ticket_price')) for event in events]
         #If view requested is 'by category'
     
