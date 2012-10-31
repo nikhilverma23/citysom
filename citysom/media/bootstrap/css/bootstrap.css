@@ -934,6 +934,7 @@ textarea {
   font-size: 14px;
   font-weight: normal;
   line-height: 20px;
+  margin-left:-15px;
 }
 
 input,
@@ -946,6 +947,7 @@ textarea {
 label {
   display: block;
   margin-bottom: 5px;
+  margin-bottom:-25px;
 }
 
 select,
@@ -1056,7 +1058,8 @@ input[type="reset"],
 input[type="button"],
 input[type="radio"],
 input[type="checkbox"] {
-  width: auto;
+/*  width: auto;*/
+margin-top:8px;
 }
 
 select,
@@ -1791,10 +1794,11 @@ legend + .control-group {
 }
 
 .form-horizontal .control-label {
-  float: left;
+  /*float: left;*/
   width: 160px;
   padding-top: 5px;
-  text-align: right;
+  text-align: justify;
+  margin-left:-15px;
 }
 
 .form-horizontal .controls {

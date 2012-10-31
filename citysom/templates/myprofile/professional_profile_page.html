@@ -46,7 +46,7 @@
       {% if form.telephone.errors %}
         <p class="error">{{ form.mobile.errors|join:", "  }}</p>
       {% endif %}
-      <label for="id_telephone">Telephone Number:</label>
+      <label for="id_telephone">Telephone:</label>
       {{ form.mobile }}
       <div class="clear"></div>
     </div>
@@ -107,7 +107,7 @@
     <p style="margin-top: 2.5em;"><span style="font-size:2.2em; color:#FF6600; font-family:Damion; font_weight:normal; font-style:normal;">3.</span> When shall we come and visit?</p>  
 
    
-    	<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px; margin-right:285px;">Full day</span>
+    	<span style="float: right; height: 20px; margin-top: 10px; font-weight: bold; font-style:italic;font-size:12px; margin-right:190px;">Full day</span>
      <div id="start_hour mo" class="form_fields start_hour">
         <div class="clear"></div>
         {% if form.start_hours_on_monday.errors %}
@@ -119,7 +119,7 @@
         <label>Mondays:</label>
         {{form.start_hours_on_monday}} 
 		{{form.end_hours_on_monday}} 
-        <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:7px;" rel="monday"/><br />
+        <input type="checkbox" name="monday_checkbox" id="id_monday_checkbox" class="uni" value="Mondays" style="margin-left:500px;" rel="monday"/><br />
      	</div>                        
         
         
@@ -133,7 +133,7 @@
 	    <label>Tuesdays:</label>
 	    {{form.start_hours_on_tuesday}}
 	    {{form.end_hours_on_tuesday}} 
-        <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:7px;" rel="tuesday"/><br />
+        <input type="checkbox" name="tuesday_checkbox" id="id_tuesday_checkbox" class="uni" value="Tuesdays" style="margin-left:500px;" rel="tuesday"/><br />
      	</div>
       
        <div id="start_hour we" class="form_fields start_hour">                   
@@ -146,7 +146,7 @@
         <label>Wednesdays:</label>
         {{form.start_hours_on_wednesday}} 
         {{form.end_hours_on_wednesday}} 
-        <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday"/><br />
+        <input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:500px;" rel="wednesday"/><br />
       	</div>
         
        <div id="start_hour th" class="form_fields start_hour">
@@ -159,7 +159,7 @@
         <label>Thursdays:</label>
         {{form.start_hours_on_thursday}} 
 		{{form.end_hours_on_thursday}} 
-        <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:7px;" rel="thursday"/><br />
+        <input type="checkbox" name="thursday_checkbox" id="id_thursday_checkbox" class="uni" value="Thursdays" style="margin-left:500px;" rel="thursday"/><br />
 		</div>
 	
 		<div id="start_hour fr" class="form_fields start_hour">		 
@@ -172,7 +172,7 @@
         <label>Fridays:</label>
         {{form.start_hours_on_friday}} 
         {{form.end_hours_on_friday}} 
-        <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:7px;" rel="friday"/><br />
+        <input type="checkbox" name="friday_checkbox" id="id_friday_checkbox" class="uni" value="Fridays" style="margin-left:500px;" rel="friday"/><br />
 		</div>
 		
 		<div id="start_hour sa" class="form_fields start_hour">					 
@@ -185,7 +185,7 @@
         <label>Saturdays:</label>
         {{form.start_hours_on_saturday}} 
         {{form.end_hours_on_saturday}} 
-        <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:7px;" rel="saturday"/><br />
+        <input type="checkbox" name="saturday_checkbox" id="id_saturday_checkbox" class="uni" value="Saturdays" style="margin-left:500px;" rel="saturday"/><br />
 		</div>
 		
 		<div id="start_hour su" class="form_fields start_hour">				 
@@ -198,9 +198,8 @@
         <label>Sundays:</label>
         {{form.start_hours_on_sunday}} 
         {{form.end_hours_on_sunday}} 
-        <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:7px;" rel="sunday"/><br />	
+        <input type="checkbox" name="sunday_checkbox" id="id_sunday_checkbox" class="uni" value="Sundays" style="margin-left:500px;" rel="sunday"/><br />	
 		</div>
-		
 		<div class="clear"></div> 
   
  </fieldset>

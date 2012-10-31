@@ -4,7 +4,7 @@
 {% block content %}
 <div class="row-fluid">
 	<div class="login_content span6 offset3" style="background:white; padding:2em 3em; border:1px solid #E0E0E0; border-radius:5px;">
-		{% csrf_token %}
+		
 		{% if account_form.errors %}
 		<div class="alert" style="width:90%;">
 			<button type="button" class="close" data-dismiss="alert">x</button>
@@ -12,6 +12,7 @@
 		</div>
 		{% endif %} 
 		<form class="form-horizontal" method="post"  action="">
+			{% csrf_token %}
 			<legend>Select account type</legend>
 			{% if form.password.errors %}
 			<p class="text-error" style="margin-left:14em;">{{ account_form.account_type.errors|join:", "  }}</p>
@@ -19,28 +20,8 @@
 			<label class="radio inline">
 				{{ account_form.account_type }}
 			</label>
-			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:18em; margin-top:1em; width:30%;">Continue</button>
+			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:70px; margin-top:16px; width:220px;">Continue</button>
 		</form>
 	</div>
 </div>
-<!--
-<form method="POST" action="">
-{% csrf_token %}
-  {% if account_form.errors %}
-  <p class="mainerror">Please correct the errors below: {{ account_form.non_field_errors }}</p>
-  {% endif %} 
-    
-    <fieldset>
-    <div class="form_fields">
-      {% if account_form.account_type.errors %}
-        <p class="adminformlist">{{ account_form.account_type.errors|join:", "  }}</p>
-      {% endif %}
-      <label for="id_account_type">Choose Your Account:</label>
-      {{ account_form.account_type }}
-      <div class="clear"></div>
-    </div>
-    </fieldset>
-    <input id="submit_account_details" type="submit"  value="" name="submit" class="continue_button"/>
- </form>
--->
- {% endblock %}
+{% endblock %}

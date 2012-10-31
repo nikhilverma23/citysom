@@ -21,28 +21,28 @@
 			{% csrf_token %}
 			<div class="form_fields control-group">
 				{% if form.username.errors %}
-				<p class="text-error" style="margin-left:13.5em;">{{ form.username.errors|join:", "  }}</p>
+				<p class="text-error" style="margin-left:115px;">{{ form.username.errors|join:", "  }}</p>
     			{% endif %}
 				<label class="control-label" for="id_username">Username:</label>
     			{{ form.username }}
 			</div>
 			<div class="form_fields control-group">
 				{% if form.email.errors %}
-    			<p class="text-error" style="margin-left:13.5em;">{{ form.email.errors|join:", "  }}</p>
+    			<p class="text-error" style="margin-left:115px;">{{ form.email.errors|join:", "  }}</p>
   				{% endif %}
 				<label class="control-label" for="id_email">Email address:</label>
   				{{ form.email }}
 			</div>
 			<div class="form_fields control-group">
 				{% if form.password1.errors %}
-    			<p class="text-error" style="margin-left:13.5em;">{{ form.password1.errors|join:", "  }}</p>
+    			<p class="text-error" style="margin-left:115px;">{{ form.password1.errors|join:", "  }}</p>
   				{% endif %}
 				<label class="control-label" for="id_password1">Password:</label>
   				{{ form.password1 }}
 			</div>
 			<div class="form_fields control-group">
 				{% if form.password2.errors %}
-      			<p class="text-error" style="margin-left:13.5em;">{{ form.password2.errors|join:", "  }}</p>
+      			<p class="text-error" style="margin-left:115px;">{{ form.password2.errors|join:", "  }}</p>
     			{% endif %}
 				<label class="control-label" for="id_password2">Confirm Password:</label>
     			{{ form.password2 }}
@@ -50,12 +50,12 @@
 
 			<div class="form_fields control-group">
 				{% if form.account_type.errors %}
-        		<p class="text-error" style="margin-left:13.5em;">{{ form.account_type.errors|join:", "  }}</p>
+        		<p class="text-error" style="margin-left:115px;">{{ form.account_type.errors|join:", "  }}</p>
    				{% endif %}
 				<label class="control-label" for="id_account_type"></label>
     			{{ form.account_type }}
 			</div>
-			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:13em; margin-top:1em; width:30%;">Create account!</button>
+			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:9em; margin-top:1em; width:40%;">Create account!</button>
 		</form>
 	</div>
 </div>
