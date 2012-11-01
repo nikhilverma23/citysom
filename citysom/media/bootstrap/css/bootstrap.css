@@ -1137,9 +1137,19 @@ textarea::-webkit-input-placeholder {
 
 .radio input[type="radio"],
 .checkbox input[type="checkbox"] {
-  float: left;
-  margin-left: -18px;
+  /*float: left;
+  margin-left: 0px;*/
 }
+#event_type_select{overflow-x:hidden; overflow-y:auto;}
+#event_type_select .checkbox{padding-left:0 !important; margin:0 0 0 10px; clear:both;}
+#event_type_select em{float:left; font-size:0.875em !important;}
+#event_type_select input[type="checkbox"]{float:right; width:auto; margin:0 18px 0 0;}
+
+#event_audience_select{overflow-x:hidden; overflow-y:auto;}
+#event_audience_select .checkbox{padding-left:0 !important; margin:0 0 0 10px; clear:both;}
+#event_audience_select em{float:left; font-size:0.875em !important;}
+#event_audience_select input[type="checkbox"]{float:right; width:auto; margin:0 18px 0 0;}
+
 
 .controls > .radio:first-child,
 .controls > .checkbox:first-child {
