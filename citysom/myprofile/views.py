@@ -383,20 +383,20 @@ def login_user(request, user):
 ###############################################################################
 
 def registerfb(request):
-        email = request.GET['email']
-        first_name = request.GET['first_name']
-        last_name = request.GET['last_name']
-        gender = request.GET['gender']
-        try:
-            user = User.objects.get(username=email)
-        except:
-            user = User.objects.get_or_create(username=email,\
-                                            first_name=first_name,
-                                            last_name=last_name,
-                                            password=""
-                                            )
-            user = user[0]
-        login_user(request,user)
-        return HttpResponseRedirect('/myprofile/home/')
+    email = request.GET['email']
+    first_name = request.GET['first_name']
+    last_name = request.GET['last_name']
+    gender = request.GET['gender']
+    try:
+        user = User.objects.get(username=email)
+    except:
+        user = User.objects.get_or_create(username=email,\
+                                        first_name=first_name,
+                                        last_name=last_name,
+                                        password=""
+                                        )
+        user = user[0]
+    login_user(request,user)
+    return HttpResponseRedirect('/myprofile/home/')
     
 ###############################################################################
