@@ -22,7 +22,6 @@ from citysom.settings import MEDIA_ROOT,STATIC_ROOT
 from citysom.event.forms import EventForm, EventPosterForm, EventRatingForm
 from citysom.event.models import Place, Event, Category, PerformanceDetails, UserComments, Days
 
-
 #----------------------------------------------------------------------------#
 def server_error(request, template_name='500.html'):
     """
@@ -1465,7 +1464,6 @@ def event_list(request):
 #                              )    
     except:
         events = Event.objects.filter((Q(**kwargs1)|Q(**kwargs2))&start_time_q&end_time_q&searchbox_q&Q(**kwargs)&category_q&audience_q).distinct()[start:end]
-        print events.query
         event_obj1 = [event.performancedetails_set.aggregate(Max('ticket_price')) for event in events]
         #If view requested is 'by category'
     
