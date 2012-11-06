@@ -1,3 +1,4 @@
+{% load replace %}
 {% if page == 0 %}
 <div id="pres_date_selected">
 	<div id="pres_date_cont">
@@ -24,9 +25,9 @@
 				</div>
 				<div class="misc_pres_comment">
 					<h4>{{event.title}}</h4>
-					<h6><p style="#736F6E">{{event.category|safe}}</p>
+					<h6><p style="#736F6E;font-size: 12px;">{{event.category|upper}}</p>
 					</br>
-					<p style="color: #000000">{{event.location}}</p>
+					<p style="color: #666666;font-size: 10px; font-style: italic;">{{event.location}}</p>
 					</h6>
 				</div>
 				<div class="misc_pres_actions">

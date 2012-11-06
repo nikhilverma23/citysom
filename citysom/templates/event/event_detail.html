@@ -18,7 +18,8 @@
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="links">
 	<!--<li style="list-style: none; margin-top:5px; "><a href="#" style="text-decoration: none; color: #000;margin-left:22px;font-weight:bold;font-size: 16px; font-family: Calibri;"> < Back </a></li>-->
-	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:33px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;"><span>{{eventdetails.category}}</span>:<span style="color: #FF7920;">{{eventdetails.title}}</span> </a></li>
+	<li style="list-style: none; width: 100%; margin-top: 14px; "><a href="#" style="text-decoration: none; color: #000;margin-left:90px;font-weight:bold;font-size: 18px; float: left; font-family: Calibri; margin-top: 10px;">
+		<span>{{eventdetails.category}}</span> </a></li>
 </div>
 <!-- centerarea main end from here -->
 <div class="clear"></div>
@@ -382,7 +383,7 @@
 		<div class="event_details_box">
 			<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 			<hr class="orange_line">
-			<div class="event_program"><span style="text-decoration:underline;">{{eventdetails.frequency|lower|capfirst}}</span>:</div>
+			<div class="event_program"><span style="text-decoration:underline;margin-left: 16px;">OPEN HOUR BASED</span></div>
 			<br>
 			<table class="table_hours" border="0">
 				{% if eventdetails.start_hours_on_monday %}
