@@ -36,7 +36,7 @@ class Place(models.Model):
     
     
     def __unicode__(self):
-        location = "Venue:%s,Street:%s,State:%s" %(self.venue_name, self.street, self.state)
+        location = "%s,%s,%s" %(self.venue_name, self.street, self.state)
         return location
 
 
