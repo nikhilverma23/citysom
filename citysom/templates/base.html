@@ -220,17 +220,18 @@
 			login();
 		  }
 		 });
-	}	
+	}
 	
 	function login()
 	{
 		FB.login(function(response) {
-		   if (response.authResponse) {	
-			FB.api('/me', function(response) {
-				window.location.href='http://www.citysom.com/registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
-			});
+		   if (response.authResponse) {
+			 FB.api('/me', function(response) {
+				window.location.hash = '';
+			   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+			 });
 		   } else {
-			console.log('User cancelled login or did not fully authorize.');
+			 console.log('User cancelled login or did not fully authorize.');
 		   }
 		 }, {scope:'email'});
 	}
