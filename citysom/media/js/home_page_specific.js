@@ -216,7 +216,6 @@ $(document).ajaxStop(function(){
 });
 jQuery("li.misc_pres").live("mouseover",function(){$(this).children("div.like_div").show();});
 jQuery("li.misc_pres").live("mouseout",function(){$(this).children("div.like_div").hide();});
-alert('click');
 jQuery("a.like_link").live("click", function(e){
 	e.preventDefault();
 	url = jQuery(this).attr("href");
@@ -225,7 +224,6 @@ jQuery("a.like_link").live("click", function(e){
 		parent = link_object.parent();
 		default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
 		default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
-		console.log(jQuery("span.likes_count", parent));
 		jQuery("span.likes_count", parent).html("+1");
 		jQuery("div.likes_count_div", parent).show();
 		jQuery("div.likes_count_div", parent).show();
