@@ -1273,7 +1273,7 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .review{font-weight:bold;border-bottom: 2px solid black;}
 .txt_area{background: url('./images/textarea_shdw.png');}
 #event_scheduling{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.5em; color:#777777;}
-.event_dates{font-weight:bold; text-align:left; margin-left: 2em; font-size:1.7em;}
+.event_dates{font-weight:bold; text-align:center; font-size:13px;}
 .event_program{text-align:left; margin-left:2em; font-size:1.7em; margin-top:0.5em; display:inline-block; float:left;}
 .event_program_2{text-align:left; margin-left:1em; margin-top:0.5em; font-size:1.7em; display:inline-block; float:left;}
 .table_hours{display:block; float:left; margin-left:2em; margin-top:0.3em;}
@@ -2006,8 +2006,6 @@ div.likes_arrow{border-bottom: 3px solid transparent; border-top: 3px solid tran
 span.likes_count{font-size: 12px;}
 div.social_login{float: left; text-align: center; width: 400px;}
 div.social_login div{margin: 20px 0px;}
-div.detail_left{float: left;}
-div.detail_right{float: right;}
 span.detail_title{font-size: 22px; text-transform: uppercase; font-weight: bold;}
 div.detail_like_div{font-size: 14px; font-weight:  bold; text-align:  center; border-radius:  5px; border: 1px solid #8A8A8A; background-color: #92D050; padding: 5px 0px; color: #FFFFFF;}
 div.detail_block{border: 1px solid #9D9D9D; border-radius: 10px;}
@@ -2022,10 +2020,16 @@ div.detail_review_content{margin: 10px 20px 10px 30px; color: #505050; font-size
 li.misc_pres_last{margin-right: 0px !important;}
 
 
-
-
 #bottom_images ul li:last-child{margin-right:0;}
 #topnavigation, #container2, #bottomnavigation{width:1000px; margin:0 auto;}
 
 .event_details_box{font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0; margin-bottom: 5px;}
 hr.orange_line{background-color: #FF6600;}
+
+div.detail_container{border-radius: 8px; border: 1px solid #CCCCCC; margin-bottom: 10px;}
+div.detail_title{font-size: 19px; text-align: center; color: #545454; margin: 10px;}
+div.detail_left{float: left; width: 200px; margin: 10px;}
+div.detail_right{float: left; width: 758px; margin: 10px;}
+div.detail_pic{width: 200px; text-align: center; margin-bottom: 10px;}
+div.detail_pic img{max-width: 200px; border: 0 none; max-height: 200px;}
+div.detail_left hr{border: medium none; clear:both; color:#EAEAEA; float: none; height: 1px; margin-bottom: 8px; margin-top: 6px;}
