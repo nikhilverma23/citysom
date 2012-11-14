@@ -2033,3 +2033,26 @@ div.detail_right{float: left; width: 758px; margin: 10px;}
 div.detail_pic{width: 200px; text-align: center; margin-bottom: 10px;}
 div.detail_pic img{max-width: 200px; border: 0 none; max-height: 200px;}
 div.detail_left hr{border: medium none; clear:both; color:#EAEAEA; float: none; height: 1px; margin-bottom: 8px; margin-top: 6px;}
+div.description_head{}
+.misc_pres_unlike{
+	height: 23px;
+  	width: 110px;
+   	border: 0.1px solid #FF0000;
+   	background: #FF0000;
+   	padding: 0px 0px;
+   	-webkit-border-radius: 1px;
+   	-moz-border-radius: 1px;
+   	border-radius: 1px;
+   	-webkit-box-shadow: rgba(0,0,0,1) 0 0px 0;
+   	-moz-box-shadow: rgba(0,0,0,1) 0 0px 0;
+   	box-shadow: rgba(0,0,0,1) 0 0px 0;
+   	text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   	color: white;
+   	font-size: 12px;
+   	font-weight: bold;
+   	font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+   	text-decoration: none;
+   	vertical-align: middle;
+   	cursor: pointer;
+   	float:left;
+}
