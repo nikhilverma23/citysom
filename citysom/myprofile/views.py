@@ -351,17 +351,18 @@ def popularity(request):
         event = Event.objects.get(id=event_id)
         user = request.user
         
-        popularity_events = Popularity.objects.filter(user=user).filter(event=event)
-        if not popularity_events.count():
-            if request.GET['action'] == "like":
-                popularity = 1
-            elif request.GET['action'] == "unlike":
-                popularity = 0
-            popularity_obj = Popularity.objects.get_or_create(
+        if request.GET['action'] == "like":
+            popularity_events = Popularity.objects.filter(user=user).filter(event=event)
+            if not popularity_events.count():
+                popularity_obj = Popularity.objects.get_or_create(
                                                                    event = event,
                                                                    user = user,
-                                                                   popularity = popularity
+                                                                   popularity = 1
                                                                    )
+        elif request.GET['action'] == "unlike":
+            popularity_events = Popularity.objects.filter(user=user).filter(event=event)
+            popularity_events.delete()
+        
         popularity_count = Popularity.objects.filter(event=event)
         return HttpResponse(popularity_count.count())
 ###############################################################################

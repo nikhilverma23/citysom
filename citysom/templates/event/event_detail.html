@@ -20,14 +20,19 @@
 	<div class="detail_title">
 		{{eventdetails.title}}
 	</div>
-	<div>
+	<div class="rating_pic">
+		{% for star in total_stars%}
+		<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+		{%endfor%}
+		{{comment_counter}} ratings
+	</div>
+	<div class="detail_mid_container">
 		<div class="detail_left">
 			<div class="detail_pic">
 				<img src="/static/images/{{eventdetails.event_poster|cut:"images/"}}" alt="{{eventdetails.title}}"/>
 			</div>
 			<div id="event_scheduling">
-					{% if eventdetails.schedule_type == "performance_based" %}
-					
+				{% if eventdetails.schedule_type == "performance_based" %}
 					{% if eventdetails.event_start_date1 != None %}
 					<div class="event_details_box">
 						<div class="event_dates">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
@@ -47,7 +52,6 @@
 						</table>
 					
 						{% elif eventdetails.frequency1 == "DAILY" %}
-						<br>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -80,7 +84,6 @@
 							</table>
 						{% else %}
 							<div class="event_program_2">{% for days in eventdetails.by_day1.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-							<br/>
 							<table class="table_hours" border="0">
 								{% for performance in event_performance_values %}
 									<tr>
@@ -112,7 +115,6 @@
 					</table>
 					
 					{% elif eventdetails.frequency2 == "DAILY" %}
-					<br>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
 							<tr>
@@ -145,7 +147,6 @@
 						</table>
 					{% else %}
 						<div class="event_program_2">{% for days in eventdetails.by_day2.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<br/>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -177,7 +178,6 @@
 					</table>
 					
 					{% elif eventdetails.frequency3 == "DAILY" %}
-					<br>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
 							<tr>
@@ -210,7 +210,6 @@
 						</table>
 					{% else %}
 						<div class="event_program_2">{% for days in eventdetails.by_day3.all %} {{days3|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<br/>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -243,7 +242,6 @@
 					
 					
 					{% elif eventdetails.frequency4 == "DAILY" %}
-					<br>
 					<table class="table_hours" border="0">
 						{% for performance in event_performance_values %}
 							<tr>
@@ -276,7 +274,6 @@
 						</table>
 					{% else %}
 						<div class="event_program_2">{% for days in eventdetails.by_day4.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<br/>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -310,7 +307,6 @@
 						<hr>
 						
 						{% elif eventdetails.frequency == "DAILY" %}
-						<br>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -347,7 +343,6 @@
 						
 						{% else %}
 						<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<br/>
 						<table class="table_hours" border="0">
 							{% for performance in event_performance_values %}
 								<tr>
@@ -365,7 +360,6 @@
 					<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 					<hr class="orange_line">
 					<div class="event_program"><span style="text-decoration:underline;margin-left: 16px;">OPEN HOUR BASED</span></div>
-					<br>
 					<table class="table_hours" border="0">
 						{% if eventdetails.start_hours_on_monday %}
 							<tr>
@@ -420,13 +414,12 @@
 				{% endif %}
 					<div class="clear"></div>
 				</div>
-				<div class="event_details_box " style="margin-left: 0px;">
+				<div class="event_details_address_box">
 					<span style="font-weight:bold;color: grey;float:left;margin-left: 20px;">Address</span>
 					<hr class="orange_line">
 					<div style="font-size:12px;color: grey; padding: 0px 10px;">{{eventdetails.location}}</div>
 				</div>
 				<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
-		</div>
 		</div>
 		<div class="detail_right">
 			<div class="description_head">Description</div>
@@ -435,23 +428,12 @@
 			</div>
 		</div>
 		<div class="clear"></div>
-		<div style="padding: 10px; border-top: 1px solid #CCCCCC;">
-		<div class="prev_tit">What Citysoms say about it:</div>
-		<div class="event_desc">
-			<span class="cust_ratin">
-				<div class="cust_rating">
-					<div class="event_desc" style="display:inline-block !important;">Average rating:</div>
-					<div class="rating_pic" style="display: inline-block; float: none; vertical-align:middle; margin-right:0.5em;">
-						{% for star in total_stars%}
-						<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
-						{%endfor%}
-					</div>
-					based on {{comment_counter}} ratings
-				</div>
-			</span>
-		</div>
+	</div>
 		<hr>
-		<div class="prev_tit_2">Opinions</div>
+		<div class="prev_tit_2" style="position: relative;">
+			<div class="customer_reviews_arrow"></div>
+			<div class="customer_reviews_div">Customer Reviews</div>
+		</div>
 		<div class="review_sort">
 		    <div class="lreview_sort">
 			<strong style="margin-top:5px;">
@@ -480,46 +462,6 @@
 				</div>
 			</div>
 		</div>
-		<div id="ratings_div" style="width:90%;">
-			<form name="ratings_form" action="" method="post" class="ratings_form">
-				{% csrf_token %}
-				<a name="ratings_form"></a>
-				{{ratings_form.title.errors}}
-				<p>
-					<label for="id_title">Summary:</label>
-					{{ratings_form.title}}
-				</p>
-				{{ratings_form.ratings.errors}}
-				<p>
-					<label for="id_ratings">Rating:</label>
-					<span style="display: inline-block; width:82%; float:right;">
-						<input name="ratings" type="radio" class="star" value="1" id="id_ratings1"/>
-						<input name="ratings" type="radio" class="star" value="2" id="id_ratings2"/>
-						<input name="ratings" type="radio" class="star" value="3" id="id_ratings3"/>
-						<input name="ratings" type="radio" class="star" value="4" id="id_ratings4"/>
-						<input name="ratings" type="radio" class="star" value="5" id="id_ratings5"/>
-					</span>
-				</p>
-				{{ratings_form.reviews.errors}}
-				<p>
-					<label for="id_reviews">Your opinion:</label>
-					{{ratings_form.reviews}}
-				</p>
-				<p>
-					<div style="display:block; margin-top:4em;">
-						<input type="hidden" name="id" id="comment_id" value="">
-						<input type="button" value="Cancel" class="custom_submit btn btn-primary" style="float:left; margin-left:100px; width:35%;" id="discard">
-						<input type="submit" value="Share!" class="custom_submit btn btn-warning " style="float:right; margin-left:20px; width:35%;">
-					
-						{% comment %}<button class="btn btn-warning" value="Cancel" type="button" style="float:left; margin-left:7em; width:35%;">Cancel</button>
-					<button class=" btn btn-primary" value="Share" type="submit" style="float:right; margin-right:17px; width:35%;">Share!</button>{% endcomment %}
-					</div>
-					
-					
-					
-				</p>
-			</form>
-		</div>
 		{% for comment in user_comments %}
 		<div class="detail_review">
 			<div class="detail_review_header">
@@ -542,7 +484,47 @@
 			</div>
 			<div class="detail_review_content">{{comment.reviews}}</div>
 		</div>
-		{% endfor %}
+	{% endfor %}
+	<div id="ratings_div" style="width:90%;">
+		<form name="ratings_form" action="" method="post" class="ratings_form">
+			{% csrf_token %}
+			<a name="ratings_form"></a>
+			{{ratings_form.title.errors}}
+			<p>
+				<label for="id_title">Summary:</label>
+				{{ratings_form.title}}
+			</p>
+			{{ratings_form.ratings.errors}}
+			<p>
+				<label for="id_ratings">Rating:</label>
+				<span style="display: inline-block; width:82%; float:right;">
+					<input name="ratings" type="radio" class="star" value="1" id="id_ratings1"/>
+					<input name="ratings" type="radio" class="star" value="2" id="id_ratings2"/>
+					<input name="ratings" type="radio" class="star" value="3" id="id_ratings3"/>
+					<input name="ratings" type="radio" class="star" value="4" id="id_ratings4"/>
+					<input name="ratings" type="radio" class="star" value="5" id="id_ratings5"/>
+				</span>
+			</p>
+			{{ratings_form.reviews.errors}}
+			<p>
+				<label for="id_reviews">Your opinion:</label>
+				{{ratings_form.reviews}}
+			</p>
+			<p>
+				<div style="display:block; margin-top:4em;">
+					<input type="hidden" name="id" id="comment_id" value="">
+					<input type="button" value="Cancel" class="custom_submit btn btn-primary" style="float:left; margin-left:100px; width:35%;" id="discard">
+					<input type="submit" value="Share!" class="custom_submit btn btn-warning " style="float:right; margin-left:20px; width:35%;">
+				
+					{% comment %}<button class="btn btn-warning" value="Cancel" type="button" style="float:left; margin-left:7em; width:35%;">Cancel</button>
+				<button class=" btn btn-primary" value="Share" type="submit" style="float:right; margin-right:17px; width:35%;">Share!</button>{% endcomment %}
+				</div>
+				
+				
+				
+			</p>
+		</form>
+		</div>
 		</div>
 	</div>
 </div>
