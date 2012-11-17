@@ -224,11 +224,25 @@ jQuery("a.like_link").live("click", function(e){
 		parent = link_object.parent();
 		default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
 		default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
-		jQuery("span.likes_count", parent).html("+1");
+		//jQuery("span.likes_count", parent).html("+1");
 		jQuery("div.likes_count_div", parent).show();
 		jQuery("div.likes_count_div", parent).show();
 		jQuery("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
 		jQuery("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
+		
+		var button_obj = link_object.children("button");
+		if(button_obj.attr("class") == "misc_pres_like")
+		{
+			button_obj.removeClass("misc_pres_like");
+			button_obj.addClass("misc_pres_unlike");
+			button_obj.html("Unlike<img src=\"/static/images/btn_white_arr.png\" alt=\"That's not good\" />");
+		}
+		else
+		{
+			button_obj.removeClass("misc_pres_unlike");
+			button_obj.addClass("misc_pres_like");
+			button_obj.html("Like<img src=\"/static/images/btn_white_arr.png\" alt=\"That's good\" />");
+		}
 	});
 });
 jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
