@@ -222,26 +222,31 @@ jQuery("a.like_link").live("click", function(e){
 	link_object = $(this);
 	jQuery.get(url,function(data){
 		parent = link_object.parent();
-		default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
-		default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
+		//default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
+		//default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
 		//jQuery("span.likes_count", parent).html("+1");
-		jQuery("div.likes_count_div", parent).show();
-		jQuery("div.likes_count_div", parent).show();
-		jQuery("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
-		jQuery("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
-		
+		//jQuery("div.likes_count_div", parent).show();
+		//jQuery("div.likes_count_div", parent).show();
+		//jQuery("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
+		//jQuery("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
+		$("span.likes_count", parent).html(data);
+		var old_link = link_object.attr("href");
 		var button_obj = link_object.children("button");
 		if(button_obj.attr("class") == "misc_pres_like")
 		{
 			button_obj.removeClass("misc_pres_like");
 			button_obj.addClass("misc_pres_unlike");
 			button_obj.html("Unlike<img src=\"/static/images/btn_white_arr.png\" alt=\"That's not good\" />");
+			var new_link = old_link.replace("like","unlike");
+			link_object.attr("href",new_link);
 		}
 		else
 		{
 			button_obj.removeClass("misc_pres_unlike");
 			button_obj.addClass("misc_pres_like");
 			button_obj.html("Like<img src=\"/static/images/btn_white_arr.png\" alt=\"That's good\" />");
+			var new_link = old_link.replace("unlike","like");
+			link_object.attr("href",new_link);
 		}
 	});
 });
