@@ -11,19 +11,13 @@
 	<meta property="og:title"  content="{{eventdetails.title}}">
 	<meta property="og:description" content="{{eventdetails.description|striptags}}">
 {% endblock %}
-{% load replace %}
+
 {% block content %}
 <script type="text/javascript" src="/static/js/jquery.rating.js"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="detail_container">
-	<div class="social_div">
-		Share :
-		<span class='st_facebook_large social_icons' displayText=''></span>
-		<span class='st_twitter_large social_icons' displayText=''></span>
-		<span class='st_googleplus_large social_icons' displayText=''></span>
-		<span class='st_pinterest_large social_icons' displayText=''></span>
-	</div>
+
 	<div class="detail_title">
 		{{eventdetails.title}}
 	</div>
@@ -37,29 +31,6 @@
 		<div class="detail_left">
 			<div class="detail_pic">
 				<img src="/media/images/{{eventdetails.event_poster|cut:"images/"}}" alt="{{eventdetails.title}}"/>
-				{% if user.is_authenticated %}
-					<div style="margin-top: 10px;">
-						{% assign unlike "no" %}
-						{% for popularity in eventdetails.popularity_set.all %}
-							{% if popularity.user_id == user.id %}
-								<a href="/myprofile/popularity/?action=unlike&id={{eventdetails.id}}" class="like_link">
-									<button class="misc_pres_unlike" style="width: 65px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
-								</a>
-								{% assign unlike "yes" %}
-							{% endif %}
-						{% endfor %}
-						{% ifequal unlike "no" %}
-							<a href="/myprofile/popularity/?action=like&id={{eventdetails.id}}" class="like_link">
-									<button class="misc_pres_like" style="width: 65px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-								</a>
-						{% endifequal %}
-						<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
-						<a href='/myprofile/wishlist?action=add&id={{eventdetails.id}}'>
-							<button class="misc_pres_more_info" style="margin-bottom:0.7em !important; width: 90px;">Bookmark<img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
-						</a>
-						<div class="clear"></div>
-					</div>
-				{% endif %}
 			</div>
 			<div id="event_scheduling">
 				{% if eventdetails.schedule_type == "performance_based" %}
@@ -448,8 +419,6 @@
 				<div class="event_details_address_box">
 					<span style="font-weight:bold;color: grey;float:left;margin-left: 20px;">Address</span>
 					<hr class="orange_line">
-					<div style="font-size:14px;color: grey; padding: 0px 10px;height: 100px;">{{eventdetails.location}}</div>
-					<div id="detail_map"></div>
 				</div>
 				<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
 		</div>
@@ -593,81 +562,13 @@
 			e.preventDefault();
 		}
 	});
-	jQuery("li.misc_pres").live("mouseover",function(){$(this).children("div.like_div").show();});
-	jQuery("li.misc_pres").live("mouseout",function(){$(this).children("div.like_div").hide();});
 	jQuery("a.like_link").live("click", function(e){
 		e.preventDefault();
-		url = jQuery(this).attr("href");
 		link_object = $(this);
 		jQuery.get(url,function(data){
 			parent = link_object.parent();
-			//default_background_color = jQuery("div.likes_count_div", parent).css("backgroundColor");
-			//default_border_right = jQuery("div.likes_arrow", parent).css("borderRightColor");
-			//jQuery("span.likes_count", parent).html("+1");
-			//jQuery("div.likes_count_div", parent).show();
-			//jQuery("div.likes_count_div", parent).show();
-			//jQuery("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
-			//jQuery("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
-			$("span.likes_count", parent).html(data);
-			var old_link = link_object.attr("href");
-			var button_obj = link_object.children("button");
-			if(button_obj.attr("class") == "misc_pres_like")
-			{
-				button_obj.removeClass("misc_pres_like");
-				button_obj.addClass("misc_pres_unlike");
-				button_obj.html("Unlike<img src=\"/static/images/btn_white_arr.png\" alt=\"That's not good\" />");
-				var new_link = old_link.replace("like","unlike");
-				link_object.attr("href",new_link);
-			}
-			else
-			{
-				button_obj.removeClass("misc_pres_unlike");
-				button_obj.addClass("misc_pres_like");
-				button_obj.html("Like<img src=\"/static/images/btn_white_arr.png\" alt=\"That's good\" />");
-				var new_link = old_link.replace("unlike","like");
-				link_object.attr("href",new_link);
-			}
 		});
 	});
-	jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
-jQuery("a.like_link").live("mouseout",function(){
-		if(jQuery("span.likes_count", jQuery(this).parent()).html()!="+1")
-		{
-			jQuery("div.likes_count_div", $(this).parent()).hide();
-		}
-	});
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script>
-  var geocoder;
-  var map;
-  function initialize() {
-    geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
-    var mapOptions = {
-      zoom: 7,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      mapTypeControl: false
-    }
-    map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
-  }
-
-  function codeAddress(address) {
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-	map.setCenter(results[0].geometry.location);
-	var marker = new google.maps.Marker({
-	    map: map,
-	    position: results[0].geometry.location
-	});
-      } else {
-	alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
-  initialize();
-  codeAddress("{{eventdetails.location}}")
 </script>
 {% if ratings_form.errors  %}
 	<script>

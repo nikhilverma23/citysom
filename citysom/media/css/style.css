@@ -2061,7 +2061,3 @@ div.rating_pic{text-align:  center; width: 180px; margin: 0 auto; font-style: it
 div.detail_mid_container{width: 680px; margin: 0 auto;}
 div.customer_reviews_div{background: #FF6600; padding: 5px 5px 5px 20px; color: #FFFFFF; font-size: 20px; font-style: italic; width: 200px; margin: 0px; font-weight: normal;}
 div.customer_reviews_arrow{border-bottom: 15px solid transparent; border-top: 15px solid transparent; border-left: 15px solid #FF6600; position: absolute; top: 0px; left: 225px;}
-div.detail_review_options{float: right; margin-right: 50px;}
-div.social_div{position: absolute; top: 10px; left: 10px; font-size: 14px;}
-span.social_icons{display: inline-block; width: 35px; vertical-align: middle;}
-div#detail_map{height: 200px;}
