@@ -1265,14 +1265,14 @@ p.long_text_header{color: #66666; font-size: 16px;font-family: Georgia;font-weig
 .left_img_prev hr{background: none repeat scroll 0 0 #EAEAEA; border: medium none; clear:both; color:#EAEAEA; float: none; height: 1px; margin-bottom: 8px; margin-top: 6px;}
 .prev_det{margin-top: 20px; background:#fff; margin-bottom:20px;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; padding:10px; border-radius:6px; -webkit-border-radius:6px; -moz-border-radius:6px; border:1px solid #E0E0E0;}
 .prev_tit{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; color:#FF6600; font-weight:bold;}
-.prev_tit_2{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; color:#777777; font-weight:bold; margin-top:1.5em;}
+.prev_tit_2{overflow: hidden; position: relative; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; color:#777777; font-weight:bold; margin-top:1.5em;}
 .right_det{float: left; width:650px;}
 .top_critic{}
 .det_crit{width: 500px; font-family:Helvetica;}
 .det_crit p{ font-family:Helvetica;}
 .review{font-weight:bold;border-bottom: 2px solid black;}
 .txt_area{background: url('./images/textarea_shdw.png');}
-#event_scheduling{font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.5em; color:#777777; position: absolute; right: -50px; top: 100px; background: #FFFFFF; width: 200px; box-shadow: 0px 0px 10px #E0E0E0;}
+#event_scheduling{float:right; margin:-20px -30px 0 0; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 0.5em; color:#777777; background: #FFFFFF; width: 200px; box-shadow: 0px 0px 10px #E0E0E0;}
 .event_dates{font-weight:bold; text-align:center; font-size:13px;}
 .event_program{text-align:left; margin-left:10px; font-size:1.7em; margin-top:0.5em; display:inline-block; float:left;}
 .event_program_2{text-align:left; margin-left:1em; margin-top:0.5em; font-size:18px; display:inline-block; float:left;}
@@ -2011,10 +2011,10 @@ div.detail_like_div{font-size: 14px; font-weight:  bold; text-align:  center; bo
 div.detail_block{border: 1px solid #9D9D9D; border-radius: 10px;}
 div.detail_block_title{color: #E57C27; font-size:  16px; font-weight: bold; margin: 10px;}
 div.detail_block_content{color: #989898; margin: 0px 5px 10px 15px; font-size:  16px; font-weight: bold;}
-div.detail_review{margin: 10px; padding:2px;background: none repeat scroll 0 0 #CCCCCC;border-radius: 10px 10px 10px 10px;}
-div.detail_review_header{ margin:  10px;}
+div.detail_review{margin: 10px 0; clear:both; padding:2px;background: none repeat scroll 0 0 #CCCCCC;border-radius: 10px 10px 10px 10px;}
+div.detail_review_header{ margin:  10px; overflow: hidden;}
 div.detail_review_title{ color: #777777; font-size: 18px; font-weight: bold; float: left;}
-div.detail_review_rating{float: right;}
+div.detail_review_rating{float: right; padding-top:3px;}
 div.detail_review_by{color: #989898; font-size: 18px; margin: 5px 50px;text-align: right;}
 div.detail_review_content{margin: 10px 20px 10px 30px; color: #505050; font-size: 0.85em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;}
 li.misc_pres_last{margin-right: 0px !important;}
@@ -2056,8 +2056,27 @@ div.description_head{font-style: italic; font-size: 20px; margin-bottom:  5px;}
    	cursor: pointer;
    	float:left;
 }
-div.rating_pic{text-align:  center; width: 180px; margin: 0 auto; font-style: italic;}
-.event_details_address_box{font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0; margin-bottom: 5px; position: absolute; left: -50px; width: 200px; top: 100px; background: #FFFFFF; box-shadow: 0px 0px 10px #E0E0E0;}
-div.detail_mid_container{width: 680px; margin: 0 auto;}
-div.customer_reviews_div{background: #FF6600; padding: 5px 5px 5px 20px; color: #FFFFFF; font-size: 20px; font-style: italic; width: 200px; margin: 0px; font-weight: normal;}
-div.customer_reviews_arrow{border-bottom: 15px solid transparent; border-top: 15px solid transparent; border-left: 15px solid #FF6600; position: absolute; top: 0px; left: 225px;}
+div.rating_pic{float:left; text-align:  center; font-family: 'Georgia',serif; font-size: 13px; color:#2C5987; width: 155px; margin: 0 12px; font-style: italic;}
+.event_details_address_box{float:left; font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0; margin:-20px 0 5px -30px; width: 200px; top: 100px; background: #FFFFFF; box-shadow: 0px 0px 10px #E0E0E0;}
+div.detail_mid_container{width: 580px; float: left; margin: 0 20px;}
+div.customer_reviews_div{float:left; background: #FF6600; padding: 8px 5px 8px 20px; color: #FFFFFF; font-size: 20px; font-style: italic; width: 200px; margin: 0px; font-weight: normal;}
+div.customer_reviews_arrow{border-bottom: 19px solid transparent; border-top: 19px solid transparent; border-left: 25px solid #FF6600; float:left; position: absolute; top:0px; left:225px;}
+div.detail_review_options{float: left; margin-right: 10px; padding-left:3px;}
+
+/*Start css by satish for event detail page as on 19-11-2012*/
+.rating-cell{margin:0 0 0 13.5em; overflow: hidden; width:auto; position: relative;}
+.rating-bar{width:205px; float:left; margin-top:7px; border-bottom: 1px solid #ddd;height:2px;}
+.star-rating-control{margin-right:10px; float:left;}
+.icons-tube{float:left; width:280px; position: absolute; top:10px;}
+.pl-10{padding-left:10px;}
+.clear-both{clear:both;}
+.review-tube{margin:0 20% 10px 20px;}
+#ratings_div{margin-top:20px;}
+.fright{float:right;}
+
+.rating-star-tube{background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CCCCCC; border-radius: 4px 4px 4px 4px; display: inline-block;float: right; margin: 0 10px 10px 0;padding: 6px 6px 6px 0; width: 145px;}
+
+
+/*End css by satish for event detail page as on 19-11-2012*/
+
+

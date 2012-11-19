@@ -13,414 +13,35 @@
 {% endblock %}
 
 {% block content %}
+	
 <script type="text/javascript" src="/static/js/jquery.rating.js"></script>
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="detail_container">
-
 	<div class="detail_title">
 		{{eventdetails.title}}
 	</div>
-	<div class="rating_pic">
-		{% for star in total_stars%}
-		<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
-		{%endfor%}
-		{{comment_counter}} ratings
+	<div class="rating-cell">
+		<div class="rating-bar">&nbsp;</div>
+		<div class="rating_pic">
+			{% for star in total_stars%}
+			<input name="averageratings" type="radio" class="star {split:2}" value="{{star}}" disabled="disabled" {% ifequal star average_ratings %}checked="checked"{% endifequal %}/>
+			{%endfor%}
+			{{comment_counter}} Ratings
+		</div>
+		<div class="rating-bar">&nbsp;</div>
+	</div>
+	<div class="icons-tube pl-10">here will be share icons</div>
+	<div class="event_details_address_box">
+		<span style="font-weight:bold;color: grey;float:left;margin-left: 20px;">Address</span>
+		<hr class="orange_line">
+		<div style="font-size:18px;color: grey; padding: 0px 10px;height: 250px;">{{eventdetails.location}}</div>
 	</div>
 	<div class="detail_mid_container">
 		<div class="detail_left">
 			<div class="detail_pic">
 				<img src="/media/images/{{eventdetails.event_poster|cut:"images/"}}" alt="{{eventdetails.title}}"/>
 			</div>
-			<div id="event_scheduling">
-				{% if eventdetails.schedule_type == "performance_based" %}
-					{% if eventdetails.event_start_date1 != None %}
-					<div class="event_details_box">
-						<div class="event_dates">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
-						<hr class="orange_line">
-						<div class="event_program">
-							<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency1|lower|capfirst}}</span>:
-						</div>
-				
-						{% if eventdetails.frequency1 == "ONCE" %}
-							<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					
-						{% elif eventdetails.frequency1 == "DAILY" %}
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-						{% elif eventdetails.frequency1 == "MONTHLY" %}
-							<div class="event_program_2">
-							{% if eventdetails.by_month1 == "1" %}
-								on the First
-							{% elif eventdetails.by_month1 == "2" %}
-								on the Second
-							{% elif eventdetails.by_month1 == "3" %}
-								on the Third
-							{% elif eventdetails.by_month1 == "4" %}
-								on the Fourth
-							{% else %}
-								on  theLast
-							{% endif %} {{eventdetails.by_monthday1}} of the month
-							</div>
-							<table class="table_hours" border="0">
-								{% for performance in event_performance_values %}
-									<tr>
-										<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-										<td>${{performance.ticket_price}}</td>
-									</tr>
-								{% endfor %}
-							</table>
-						{% else %}
-							<div class="event_program_2">{% for days in eventdetails.by_day1.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-							<table class="table_hours" border="0">
-								{% for performance in event_performance_values %}
-									<tr>
-										<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-										
-									</tr>
-									<tr><td>${{performance.ticket_price}}</td></tr>
-								{% endfor %}
-							</table>
-						{% endif %}
-					<div class="clear"></div>
-				</div>	
-				{% endif %}
-				{% if eventdetails.event_start_date2 != None %}
-				<div class="event_details_box">
-						<div class="event_dates">{{eventdetails.event_start_date2}} to {{eventdetails.event_completion_date2}}</div>
-						<hr class="orange_line">
-						<div class="event_program">
-							<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency2|lower|capfirst}}</span>:
-						</div>
-				
-					{% if eventdetails.frequency2 == "ONCE" %}
-						<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					
-					{% elif eventdetails.frequency2 == "DAILY" %}
-					<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					{% elif eventdetails.frequency2 == "MONTHLY" %}
-						<div class="event_program_2">
-						{% if eventdetails.by_month2 == "1" %}
-							on the First
-						{% elif eventdetails.by_month2 == "2" %}
-							on the Second
-						{% elif eventdetails.by_month2 == "3" %}
-							on the Third
-						{% elif eventdetails.by_month2 == "4" %}
-							on the Fourth
-						{% else %}
-							on  theLast
-						{% endif %} {{eventdetails.by_monthday2}} of the month
-						</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% else %}
-						<div class="event_program_2">{% for days in eventdetails.by_day2.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% endif %}
-					<div class="clear"></div>
-				</div>
-				{% endif %}
-				{% if eventdetails.event_start_date3 != None %}
-				<div class="event_details_box">
-						<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
-						<hr class="orange_line">
-						<div class="event_program">
-							<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency3|lower|capfirst}}</span>:
-						</div>
-				
-					{% if eventdetails.frequency3 == "ONCE" %}
-						<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					
-					{% elif eventdetails.frequency3 == "DAILY" %}
-					<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					{% elif eventdetails.frequency3 == "MONTHLY" %}
-						<div class="event_program_2">
-						{% if eventdetails.by_month3 == "1" %}
-							on the First
-						{% elif eventdetails.by_month3 == "2" %}
-							on the Second
-						{% elif eventdetails.by_month3 == "3" %}
-							on the Third
-						{% elif eventdetails.by_month3 == "4" %}
-							on the Fourth
-						{% else %}
-							on  theLast
-						{% endif %} {{eventdetails.by_monthday3}} of the month
-						</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% else %}
-						<div class="event_program_2">{% for days in eventdetails.by_day3.all %} {{days3|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% endif %}
-					<div class="clear"></div>
-				</div>
-				{% endif %}
-				{% if eventdetails.event_start_date4 != None %}
-				<div class="event_details_box">
-					<div class="event_dates">{{eventdetails.event_start_date4}} to {{eventdetails.event_completion_date4}}</div>
-					<hr class="orange_line">
-						<div class="event_program">
-							<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency4|lower|capfirst}}</span>:
-						</div>
-				
-					{% if eventdetails.frequency4 == "ONCE" %}
-						<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					
-					
-					{% elif eventdetails.frequency4 == "DAILY" %}
-					<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-					</table>
-					{% elif eventdetails.frequency4 == "MONTHLY" %}
-						<div class="event_program_2">
-						{% if eventdetails.by_month4 == "1" %}
-							on the First
-						{% elif eventdetails.by_month4 == "2" %}
-							on the Second
-						{% elif eventdetails.by_month4 == "3" %}
-							on the Third
-						{% elif eventdetails.by_month4 == "4" %}
-							on the Fourth
-						{% else %}
-							on the Last
-						{% endif %} {{eventdetails.by_monthday4}} of the month
-						</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% else %}
-						<div class="event_program_2">{% for days in eventdetails.by_day4.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-					{% endif %}
-					<div class="clear"></div>
-				</div>	
-				{% endif %}
-					
-					{% if eventdetails.event_start_date5 != None %}
-					<div class="event_details_box">
-						<div class="event_dates">{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}</div>
-						<hr class="orange_line">
-						<div class="event_program">
-							<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency|lower|capfirst}}</span>:
-						</div>
-						
-						{% if eventdetails.frequency == "ONCE" %}
-						<table class="table_hours" border="0">
-						{% for performance in event_performance_values %}
-							<tr>
-								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
-							</tr>
-						{% endfor %}
-						</table>
-						<hr>
-						
-						{% elif eventdetails.frequency == "DAILY" %}
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-						<hr>
-						
-						{% elif eventdetails.frequency == "MONTHLY" %}
-							<div class="event_program_2">
-								{% if eventdetails.by_month == "1" %}
-									on the first
-								{% elif eventdetails.by_month == "2" %}
-									on the second
-								{% elif eventdetails.by_month == "3" %}
-									on the third
-								{% elif eventdetails.by_month == "4" %}
-									on the fourth
-								{% else %}
-									on  theLast
-								{% endif %} {{eventdetails.by_monthday}} of the month
-							</div>
-							<table class="table_hours" border="0">
-								{% for performance in event_performance_values %}
-									<tr>
-										<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-										<td>${{performance.ticket_price}}</td>
-									</tr>
-								{% endfor %}
-							</table>
-							<hr>
-						
-						{% else %}
-						<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
-						<table class="table_hours" border="0">
-							{% for performance in event_performance_values %}
-								<tr>
-									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-									<td>${{performance.ticket_price}}</td>
-								</tr>
-							{% endfor %}
-						</table>
-						{% endif %}
-						<div class="clear"></div>
-					</div>
-					{% endif %}
-				{% else %}
-				<div class="event_details_box">
-					<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
-					<hr class="orange_line">
-					<div class="event_program"><span style="text-decoration:underline;margin-left: 16px;">OPEN HOUR BASED</span></div>
-					<table class="table_hours" border="0">
-						{% if eventdetails.start_hours_on_monday %}
-							<tr>
-								<td>Mo.:</td>
-								<td>{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</td>
-							</tr>
-						{% endif %}
-						{% if eventdetails.start_hours_on_tuesday %}
-							<tr>
-								<td>Tu.:</td>
-								<td>{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</td>
-							</tr>
-						{% endif %}
-						{% if eventdetails.start_hours_on_wednesday %}
-							<tr>
-								<td>We.:</td>
-								<td>{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</td>
-							</tr>	
-						{% endif %}
-						{% if eventdetails.start_hours_on_thursday %}
-							<tr>
-								<td>Th.:</td>
-								<td>{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</td>
-							</tr>
-						{% endif %}
-						{% if eventdetails.start_hours_on_friday %}
-							<tr>
-								<td>Fr.:</td>
-								<td>{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</td>
-							</tr>	
-						{% endif %}
-						{% if eventdetails.start_hours_on_saturday %}
-							<tr>
-								<td>Sa.:</td>
-								<td>{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</td>
-							</tr>
-						{% endif %}
-						{% if eventdetails.start_hours_on_sunday %}
-							<tr>
-								<td>Su.:</td>
-								<td>{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</td>
-							</tr>
-						{% endif %}
-							<tr>
-								<td>Price $:</td>
-								<td>{{oh_ticket_price}}</td>
-							</tr>
-					</table>
-					{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
-					    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
-					{% endif %}
-				{% endif %}
-					<div class="clear"></div>
-				</div>
-				<div class="event_details_address_box">
-					<span style="font-weight:bold;color: grey;float:left;margin-left: 20px;">Address</span>
-					<hr class="orange_line">
-				</div>
-				<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
 		</div>
 		<div class="detail_right">
 			<div class="description_head" style="color: #777777;">Description</div>
@@ -428,13 +49,400 @@
 				{{eventdetails.description|safe}}
 			</div>
 		</div>
-		<div class="clear"></div>
 	</div>
-		<hr>
-		<div class="prev_tit_2" style="position: relative;">
-			<div class="customer_reviews_arrow"></div>
-			<div class="customer_reviews_div">Customer Reviews</div>
-		</div>
+	<div id="event_scheduling">
+			
+			{% if eventdetails.schedule_type == "performance_based" %}
+				{% if eventdetails.event_start_date1 != None %}
+				<div class="event_details_box">
+					<div class="event_dates">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
+					<hr class="orange_line">
+					<div class="event_program">
+						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency1|lower|capfirst}}</span>:
+					</div>
+			
+					{% if eventdetails.frequency1 == "ONCE" %}
+						<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				
+					{% elif eventdetails.frequency1 == "DAILY" %}
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+					{% elif eventdetails.frequency1 == "MONTHLY" %}
+						<div class="event_program_2">
+						{% if eventdetails.by_month1 == "1" %}
+							on the First
+						{% elif eventdetails.by_month1 == "2" %}
+							on the Second
+						{% elif eventdetails.by_month1 == "3" %}
+							on the Third
+						{% elif eventdetails.by_month1 == "4" %}
+							on the Fourth
+						{% else %}
+							on  theLast
+						{% endif %} {{eventdetails.by_monthday1}} of the month
+						</div>
+						<table class="table_hours" border="0">
+							{% for performance in event_performance_values %}
+								<tr>
+									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+									<td>${{performance.ticket_price}}</td>
+								</tr>
+							{% endfor %}
+						</table>
+					{% else %}
+						<div class="event_program_2">{% for days in eventdetails.by_day1.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+						<table class="table_hours" border="0">
+							{% for performance in event_performance_values %}
+								<tr>
+									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+									
+								</tr>
+								<tr><td>${{performance.ticket_price}}</td></tr>
+							{% endfor %}
+						</table>
+					{% endif %}
+				<div class="clear"></div>
+			</div>	
+			{% endif %}
+			{% if eventdetails.event_start_date2 != None %}
+			<div class="event_details_box">
+					<div class="event_dates">{{eventdetails.event_start_date2}} to {{eventdetails.event_completion_date2}}</div>
+					<hr class="orange_line">
+					<div class="event_program">
+						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency2|lower|capfirst}}</span>:
+					</div>
+			
+				{% if eventdetails.frequency2 == "ONCE" %}
+					<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				
+				{% elif eventdetails.frequency2 == "DAILY" %}
+				<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				{% elif eventdetails.frequency2 == "MONTHLY" %}
+					<div class="event_program_2">
+					{% if eventdetails.by_month2 == "1" %}
+						on the First
+					{% elif eventdetails.by_month2 == "2" %}
+						on the Second
+					{% elif eventdetails.by_month2 == "3" %}
+						on the Third
+					{% elif eventdetails.by_month2 == "4" %}
+						on the Fourth
+					{% else %}
+						on  theLast
+					{% endif %} {{eventdetails.by_monthday2}} of the month
+					</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% else %}
+					<div class="event_program_2">{% for days in eventdetails.by_day2.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+				<div class="clear"></div>
+			</div>
+			{% endif %}
+			{% if eventdetails.event_start_date3 != None %}
+			<div class="event_details_box">
+					<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
+					<hr class="orange_line">
+					<div class="event_program">
+						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency3|lower|capfirst}}</span>:
+					</div>
+			
+				{% if eventdetails.frequency3 == "ONCE" %}
+					<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				
+				{% elif eventdetails.frequency3 == "DAILY" %}
+				<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				{% elif eventdetails.frequency3 == "MONTHLY" %}
+					<div class="event_program_2">
+					{% if eventdetails.by_month3 == "1" %}
+						on the First
+					{% elif eventdetails.by_month3 == "2" %}
+						on the Second
+					{% elif eventdetails.by_month3 == "3" %}
+						on the Third
+					{% elif eventdetails.by_month3 == "4" %}
+						on the Fourth
+					{% else %}
+						on  theLast
+					{% endif %} {{eventdetails.by_monthday3}} of the month
+					</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% else %}
+					<div class="event_program_2">{% for days in eventdetails.by_day3.all %} {{days3|truncatechars:5|slice:":3"}} {% endfor %}</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+				<div class="clear"></div>
+			</div>
+			{% endif %}
+			{% if eventdetails.event_start_date4 != None %}
+			<div class="event_details_box">
+				<div class="event_dates">{{eventdetails.event_start_date4}} to {{eventdetails.event_completion_date4}}</div>
+				<hr class="orange_line">
+					<div class="event_program">
+						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency4|lower|capfirst}}</span>:
+					</div>
+			
+				{% if eventdetails.frequency4 == "ONCE" %}
+					<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				
+				
+				{% elif eventdetails.frequency4 == "DAILY" %}
+				<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+				</table>
+				{% elif eventdetails.frequency4 == "MONTHLY" %}
+					<div class="event_program_2">
+					{% if eventdetails.by_month4 == "1" %}
+						on the First
+					{% elif eventdetails.by_month4 == "2" %}
+						on the Second
+					{% elif eventdetails.by_month4 == "3" %}
+						on the Third
+					{% elif eventdetails.by_month4 == "4" %}
+						on the Fourth
+					{% else %}
+						on the Last
+					{% endif %} {{eventdetails.by_monthday4}} of the month
+					</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% else %}
+					<div class="event_program_2">{% for days in eventdetails.by_day4.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+				<div class="clear"></div>
+			</div>	
+			{% endif %}
+				
+				{% if eventdetails.event_start_date5 != None %}
+				<div class="event_details_box">
+					<div class="event_dates">{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}</div>
+					<hr class="orange_line">
+					<div class="event_program">
+						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency|lower|capfirst}}</span>:
+					</div>
+					
+					{% if eventdetails.frequency == "ONCE" %}
+					<table class="table_hours" border="0">
+					{% for performance in event_performance_values %}
+						<tr>
+							<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+							<td>${{performance.ticket_price}}</td>
+						</tr>
+					{% endfor %}
+					</table>
+					<hr>
+					
+					{% elif eventdetails.frequency == "DAILY" %}
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+					<hr>
+					
+					{% elif eventdetails.frequency == "MONTHLY" %}
+						<div class="event_program_2">
+							{% if eventdetails.by_month == "1" %}
+								on the first
+							{% elif eventdetails.by_month == "2" %}
+								on the second
+							{% elif eventdetails.by_month == "3" %}
+								on the third
+							{% elif eventdetails.by_month == "4" %}
+								on the fourth
+							{% else %}
+								on  theLast
+							{% endif %} {{eventdetails.by_monthday}} of the month
+						</div>
+						<table class="table_hours" border="0">
+							{% for performance in event_performance_values %}
+								<tr>
+									<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+									<td>${{performance.ticket_price}}</td>
+								</tr>
+							{% endfor %}
+						</table>
+						<hr>
+					
+					{% else %}
+					<div class="event_program_2">{% for days in eventdetails.by_day.all %} {{days|truncatechars:5|slice:":3"}} {% endfor %}</div>
+					<table class="table_hours" border="0">
+						{% for performance in event_performance_values %}
+							<tr>
+								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
+								<td>${{performance.ticket_price}}</td>
+							</tr>
+						{% endfor %}
+					</table>
+					{% endif %}
+					<div class="clear"></div>
+				</div>
+				{% endif %}
+			{% else %}
+			<div class="event_details_box">
+				<div class="event_dates">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
+				<hr class="orange_line">
+				<div class="event_program"><span style="text-decoration:underline;margin-left: 16px;">OPEN HOUR BASED</span></div>
+				<table class="table_hours" border="0">
+					{% if eventdetails.start_hours_on_monday %}
+						<tr>
+							<td>Mo.:</td>
+							<td>{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</td>
+						</tr>
+					{% endif %}
+					{% if eventdetails.start_hours_on_tuesday %}
+						<tr>
+							<td>Tu.:</td>
+							<td>{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</td>
+						</tr>
+					{% endif %}
+					{% if eventdetails.start_hours_on_wednesday %}
+						<tr>
+							<td>We.:</td>
+							<td>{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</td>
+						</tr>	
+					{% endif %}
+					{% if eventdetails.start_hours_on_thursday %}
+						<tr>
+							<td>Th.:</td>
+							<td>{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</td>
+						</tr>
+					{% endif %}
+					{% if eventdetails.start_hours_on_friday %}
+						<tr>
+							<td>Fr.:</td>
+							<td>{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</td>
+						</tr>	
+					{% endif %}
+					{% if eventdetails.start_hours_on_saturday %}
+						<tr>
+							<td>Sa.:</td>
+							<td>{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</td>
+						</tr>
+					{% endif %}
+					{% if eventdetails.start_hours_on_sunday %}
+						<tr>
+							<td>Su.:</td>
+							<td>{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</td>
+						</tr>
+					{% endif %}
+						<tr>
+							<td>Price $:</td>
+							<td>{{oh_ticket_price}}</td>
+						</tr>
+				</table>
+				{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
+				    <span style="font-style:italic; margin-left:1em;">No show time information available</span>
+				{% endif %}
+			{% endif %}
+				<div class="clear"></div>
+			</div>
+			
+			<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
+	</div>		
+	<div class="prev_tit_2 clear-both">
+		<div class="customer_reviews_arrow"></div>
+		<div class="customer_reviews_div">Customer Reviews</div>
+	</div>
+	<div class="review-tube">		
 		<div class="review_sort">
 		    <div class="lreview_sort">
 			<strong style="margin-top:5px;">
@@ -469,19 +477,19 @@
 				<div class="detail_review_title">
 					{{comment.title}}
 				</div>
-				<div class="detail_review_rating">
-					{% for star in total_stars%}
-						<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
-					{%endfor%}
-				</div>
-				{% if comment.user_id == user.id and user.is_authenticated %}
+				<div class="rating-star-tube">
+					{% if comment.user_id == user.id and user.is_authenticated %}
 					<div class="detail_review_options">
 						<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
 						<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
 					</div>
-				{% endif %}
-				<div class="clear"></div>
-				
+					{% endif %}
+					<div class="detail_review_rating">
+						{% for star in total_stars%}
+							<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
+						{%endfor%}
+					</div>
+				</div>
 			</div>
 			<div class="detail_review_content">{{comment.reviews}}</div>
 			<div class="detail_review_by">
@@ -489,7 +497,7 @@
 			</div>
 		</div>
 	{% endfor %}
-	<div id="ratings_div" style="width:90%;">
+	<div id="ratings_div">
 		<form name="ratings_form" action="" method="post" class="ratings_form">
 			{% csrf_token %}
 			<a name="ratings_form"></a>
@@ -531,6 +539,7 @@
 		</div>
 		</div>
 	</div>
+	
 </div>
 <script>
 	$("#ratings_link,#discard").click(function(){
@@ -562,12 +571,28 @@
 			e.preventDefault();
 		}
 	});
+	
 	jQuery("a.like_link").live("click", function(e){
 		e.preventDefault();
+		url = $(this).attr("href");
 		link_object = $(this);
-		jQuery.get(url,function(data){
+		$.get(url,function(data){
 			parent = link_object.parent();
+			default_background_color = $("div.likes_count_div", parent).css("backgroundColor");
+			default_border_right = $("div.likes_arrow", parent).css("borderRightColor");
+			
+			$("span.likes_count", parent).html("+1");
+			$("div.likes_count_div", parent).show();
+			$("div.likes_count_div", parent).animate({"backgroundColor":"#FF6600"}, 500).delay(10000).animate({"backgroundColor":default_background_color}, 500);
+			$("div.likes_arrow", parent).animate({"borderRightColor":"#FF6600"}, 500).delay(10000).animate({"borderRightColor":default_border_right}, 500, function(){$("span.likes_count", parent).html(data);$("div.likes_count_div", parent).hide();});
 		});
+	});
+	jQuery("a.like_link").live("mouseover",function(){$("div.likes_count_div", $(this).parent()).show();});
+	jQuery("a.like_link").live("mouseout",function(){
+		if($("span.likes_count", $(this).parent()).html()!="+1")
+		{
+			$("div.likes_count_div", $(this).parent()).hide();
+		}
 	});
 </script>
 {% if ratings_form.errors  %}
