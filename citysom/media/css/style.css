@@ -2063,7 +2063,7 @@ div.customer_reviews_div{float:left; background: #FF6600; padding: 8px 5px 8px 2
 div.customer_reviews_arrow{border-bottom: 19px solid transparent; border-top: 19px solid transparent; border-left: 25px solid #FF6600; float:left; position: absolute; top:0px; left:225px;}
 div.detail_review_options{float: left; margin-right: 10px; padding-left:3px;}
 
-/*Start css by satish for event detail page as on 19-11-2012*/
+/*Start css for event detail page as on 19-11-2012*/
 .rating-cell{margin:0 0 0 13.5em; overflow: hidden; width:auto; position: relative;}
 .rating-bar{width:205px; float:left; margin-top:7px; border-bottom: 1px solid #ddd;height:2px;}
 .star-rating-control{margin-right:10px; float:left;}
@@ -2077,6 +2077,12 @@ div.detail_review_options{float: left; margin-right: 10px; padding-left:3px;}
 .rating-star-tube{background: none repeat scroll 0 0 #FFFFFF; border: 1px solid #CCCCCC; border-radius: 4px 4px 4px 4px; display: inline-block;float: right; margin: 0 10px 10px 0;padding: 6px 6px 6px 0; width: 145px;}
 
 
-/*End css by satish for event detail page as on 19-11-2012*/
+
+/*End css by for event detail page as on 19-11-2012*/
+/* adding some css */
+div.detail_review_options{float: right; margin-right: 50px;}	
+div.social_div{position: absolute; top: 10px; left: 10px; font-size: 14px;}
+span.social_icons{display: inline-block; width: 35px; vertical-align: middle;}
+div#detail_map{height: 200px;}
 
 
