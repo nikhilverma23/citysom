@@ -40,7 +40,7 @@
 	</div>
 	
 	<div class="event_details_address_box">
-		<span style="font-weight:bold;color: grey;float:left;margin-left: 20px;">Address</span>
+		<div style="font-weight:bold;color: grey;text-align: center;">Address</div>
 		<hr class="orange_line">
 		<div style="font-size:14px;color: grey; padding: 0px 10px;height: 100px;">{{eventdetails.location}}</div>
 		<div id="detail_map"></div>
@@ -72,15 +72,16 @@
 						<div class="clear"></div>
 						</div>
 					{% endif %}
+					<div><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
 			</div>
 		</div>
 		<div class="detail_right">
 			<div class="description_head" style="color: #777777;">Description</div>
-			<div>
+			<div class="common-text">
 				{{eventdetails.description|safe}}
 			</div>
 		</div>
-	</div>
+	</div>	
 	<div id="event_scheduling">
 			
 			{% if eventdetails.schedule_type == "performance_based" %}
@@ -465,26 +466,16 @@
 				{% endif %}
 			{% endif %}
 				<div class="clear"></div>
-			</div>
-			
-			<div style="text-align:center;"></p><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" style="color: #FF6600; font-size:0.85em; margin-top:0.5em;" target="_blank">Go to event website</a></div>
-	</div>		
-	<div class="prev_tit_2 clear-both">
+			</div>		
+			<div class="content-wrapper">
+			<div class="prev_tit_2 clear-both">
 		<div class="customer_reviews_arrow"></div>
 		<div class="customer_reviews_div">Customer Reviews</div>
 	</div>
 	<div class="review-tube">		
 		<div class="review_sort">
-		    <div class="lreview_sort">
-			<strong style="margin-top:5px;">
-				{% if user.is_authenticated %}
-					<a href="#ratings_form" style="color: #FF7920; text-decoration:none !Important; font-size:0.85em;" id="ratings_link">Share your opinion  <img src="/static/images/edit_icon.png" width="15px"></a>
-				{% else %}
-					<a href="#ratings_form" style="color: #FF7920;" onclick="alert('Sorry ... You need to log in first to write a review');">Share your opinion  <img src="/static/images/edit_icon.png" width="15px"></a>
-				{% endif %}
-			</strong>
-		    </div>
-		    <div class="rate_show" style="float: right; width: auto !important;">
+		    <div class="fright">
+		    <div class="rate_show" style="float: left; width: auto !important;">
 			<div class="rating" style="float: left;width:60px;margin-top: 5px;font-weight: bold; font-size:0.85em; color:#777777;">Sort by</div>
 			    <div class="rating_pic" style="float: right;width: 110px;margin-left: 5px;font-weight: bold">
 					{% if sort_type == "asc" %}
@@ -501,6 +492,16 @@
 					</a>
 				</div>
 			</div>
+		    <div class="lreview_sort fleft">
+			<strong style="margin-top:5px;">
+				{% if user.is_authenticated %}
+					<a href="#ratings_form" class="write-a-review" id="ratings_link">write a review <!--<img src="/static/images/edit_icon.png" width="15px">--></a>
+				{% else %}
+					<a href="#ratings_form" style="color: #FF7920;" onclick="alert('Sorry ... You need to log in first to write a review');">Share your opinion  <img src="/static/images/edit_icon.png" width="15px"></a>
+				{% endif %}
+			</strong>
+		    </div>
+		    </div>
 		</div>
 		{% for comment in user_comments %}
 		<div class="detail_review">
@@ -569,6 +570,8 @@
 		</form>
 		</div>
 		</div>
+	</div>
+	</div>		
 	</div>
 	
 </div>
