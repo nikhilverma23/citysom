@@ -22,7 +22,7 @@ from citysom.settings import MEDIA_ROOT
 from django.contrib.auth.models import User
 from django.db import connection
 #Init environment, variables
-file=sys.path[1] + '/wip_boston_events.csv'
+file=sys.path[1] + '/page8.csv'
 i=0
 # Open the file in read mode
 reader = csv.reader(open(file,'rb'))
@@ -38,9 +38,9 @@ for row in reader:
 		
 		curr_genre, created = EventGenre.objects.get_or_create(genre_choices=row[10])
 		curr_audience, created =EventPublic.objects.get_or_create(choicelist=row[11])
-		
+		#import pdb
+		#pdb.set_trace()
 		curr_place, created = Place.objects.get_or_create(venue_name=row[3], street=row[4],state=row[5])
-		
 		
 		days = row[20].split(',')
 		days1 = row[33].split(',')
