@@ -20,10 +20,10 @@
 <div class="detail_container">
 		<div class="social_div">
 			Share :
-			<span class='st_facebook social_icons' displayText=''></span>
-			<span class='st_twitter social_icons' displayText=''></span>
-			<span class='st_googleplus social_icons' displayText=''></span>
-			<span class='st_pinterest social_icons' displayText=''></span>
+			<span class='st_facebook_large social_icons' displayText=''></span>
+			<span class='st_twitter_large social_icons' displayText=''></span>
+			<span class='st_googleplus_large social_icons' displayText=''></span>
+			<span class='st_pinterest_large social_icons' displayText=''></span>
 		</div>
 	<div class="detail_title">
 		{{eventdetails.title}}
@@ -654,26 +654,39 @@
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
-      zoom: 7,
+      zoom: 9,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
-      mapTypeControl: false
+      mapTypeControl: false,
+      streetViewControl: false
     }
     map = new google.maps.Map(document.getElementById('detail_map'), mapOptions);
   }
 
   function codeAddress(address) {
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-map.setCenter(results[0].geometry.location);
-var marker = new google.maps.Marker({
-map: map,
-position: results[0].geometry.location
-});
-      } else {
-alert('Geocode was not successful for the following reason: ' + status);
-      }
-    });
+	normal_icon = "/static/images/marker_star.png";
+	hover_icon = "/static/images/marker_star_highlight.png";
+	geocoder.geocode({'address': address}, function(results, status){
+		if (status == google.maps.GeocoderStatus.OK)
+		{
+			map.setCenter(results[0].geometry.location);
+			var marker = new google.maps.Marker({
+				map: map,
+				position: results[0].geometry.location,
+				icon: normal_icon
+			});
+			google.maps.event.addListener(marker, 'mouseover', function() {
+				marker.setIcon(hover_icon);
+			});
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				marker.setIcon(normal_icon);
+			});
+		}
+		else
+		{
+			alert('Geocode was not successful for the following reason: ' + status);
+		}
+	});
   }
   initialize();
   codeAddress("{{eventdetails.location}}")
