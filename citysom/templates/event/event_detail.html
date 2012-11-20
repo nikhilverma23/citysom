@@ -19,7 +19,6 @@
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="detail_container">
 		<div class="social_div">
-			Share :
 			<span class='st_facebook_large social_icons' displayText=''></span>
 			<span class='st_twitter_large social_icons' displayText=''></span>
 			<span class='st_googleplus_large social_icons' displayText=''></span>
@@ -87,6 +86,7 @@
 			{% if eventdetails.schedule_type == "performance_based" %}
 				{% if eventdetails.event_start_date1 != None %}
 				<div class="event_details_box">
+					
 					<div class="event_dates">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
 					<hr class="orange_line">
 					<div class="event_program">
@@ -213,7 +213,7 @@
 			</div>
 			{% endif %}
 			{% if eventdetails.event_start_date3 != None %}
-			<div class="event_details_box">
+			<div class="event_details_box">Event Schedule
 					<div class="event_dates">{{eventdetails.event_start_date3}} to {{eventdetails.event_completion_date3}}</div>
 					<hr class="orange_line">
 					<div class="event_program">
@@ -342,9 +342,14 @@
 				
 				{% if eventdetails.event_start_date5 != None %}
 				<div class="event_details_box">
-					<div class="event_dates">{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}</div>
+					
+					<div class="event_dates">Event Schedule</div>
+					
 					<hr class="orange_line">
 					<div class="event_program">
+						<span style="text-decoration:underline; font-size:14px;">
+							{{eventdetails.event_start_date5}} to {{eventdetails.event_completion_date5}}
+						</span>
 						<span style="text-decoration:underline; font-size:18px;">{{eventdetails.frequency|lower|capfirst}}</span>:
 					</div>
 					
@@ -400,9 +405,11 @@
 						{% for performance in event_performance_values %}
 							<tr>
 								<td>{{performance.showtimes_start}} - {{performance.showtimes_end}}</td>
-								<td>${{performance.ticket_price}}</td>
+								
 							</tr>
+							<td>Price ${{performance.ticket_price}}</td>
 						{% endfor %}
+						
 					</table>
 					{% endif %}
 					<div class="clear"></div>
