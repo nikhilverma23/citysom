@@ -268,13 +268,14 @@ function scroll_checker()
 	});
 }
 $(document).ready(function(){
-	if(back)
-	{
-		$('#price_range_select').show();
-		$('#event_type_select').show();
-		$('#hours_range_select').show();
-		$('#event_audience_select').show();
-	}
+	
+	
+	$('#price_range_select').show();
+	$('#event_type_select').show();
+	$('#hours_range_select').show();
+	$('#event_audience_select').show();
+	
+	
 });
 /*  		
 $("#min_price_down").click(function(){

@@ -7,30 +7,38 @@
 {% endblock %}
 
 {% block content %}
-<!--        <div class="filledarea">
+	{% comment %}
+	<div class="filledarea">
         	<div id="headingtext">April 2012</div>
             <div id="sundayarea"><img src="/static/images/sundayimg.png" width="508" height="17" alt="sunday" /></div>
-        </div>	 -->
-<div class="row-fluid">
-	<div id="work_cal" class="span2"> 
-		<img src="/static/images/box_orange.png" width="32" height="32" style="width: 32px; height: 32px;"/>
-        <div style="font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">1</div>
-        <div id="work_cal_txt" style="width:80%; display:block; font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1.3em; color:#4C4C4C;float:right; margin-right:1px;margin-top:6px;">Pick a date range</div>
-	<div class="clear"></div>
-        	<img src="/static/images/arrow_orange.png" width="64" height="64" style="margin-left:70px;width: 64px; height: 64px;"/>
+        </div>
+       {% endcomment %}
+	<div class="row-fluid">
+		<div id="work_cal" class="span2"> 
+			<img src="/static/images/box_orange.png" class="step1orangebox"/>
+			<div class="step1">1</div>
+			<div id="work_cal_txt">
+				Pick a date range
+			</div>
+		<div class="clear"></div>
+        	<img src="/static/images/arrow_orange.png" class="stpe1orangearrow"/>
 	</div>
 	<div id="home_calendar" class="span7 offset1">&nbsp;</div>
-</div>
-        
-        <!--<div class="row"></div>-->
+	</div>
+        {% comment %}
+        <div class="row"></div>
         <!-- filledarea main start from here -->
         <!-- HIDE CURRENT FILTERS
-         <div class="filter_section">
+        <div class="filter_section">
         	<div class="minprice_main">
             	<div class="minprice_heading" style="padding:0px 0px 0px 6px;">Min.Price</div>
                 <div class="minprice_heading">
-                	<div class="nextbutton"><a href="javascript:void(0)" id="min_price_down"><img src="/static/images/button_down.png" /></a></div>
-                    <div class="textbox">$<span id="min_price_span">0</span><input name="min_price" id="min_price" type="hidden" value="0"/></div>
+			<div class="nextbutton">
+				<a href="javascript:void(0)" id="min_price_down">
+					<img src="/static/images/button_down.png"/>
+				</a>
+			</div>
+	                <div class="textbox">$<span id="min_price_span">0</span><input name="min_price" id="min_price" type="hidden" value="0"/></div>
                     <div class="nextbutton"><a href="javascript:void(0)" id="min_price_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
@@ -52,7 +60,6 @@
                     <div class="nextbutton"><a href="javascript:void(0)" id="max_time_up"><img src="/static/images/button_up.png"/></a></div>
                 </div>
             </div>
-           -->
             <!-- Filters -->
             <!--
             <div class="minprice_main">
@@ -82,7 +89,7 @@
             -->  
          
           <!-- filledarea start from here -->
-         
+        {% endcomment %}
 <div class="filledarea1" id="visu_content">
          	<!--Div for posters -->
 	<div class="row-fluid">
@@ -276,14 +283,15 @@
          		<p class="nav_div_choices" style="margin-left:-10px; width: 109% !important;">
          			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_hours_select" onclick="$('#end_minutes').val(''); $('#end_hours').val(''); $('#start_minutes').val(''); $('#start_hours').val(''); $('#hours_range_select').val(''); load_events()" style="float:left; margin-left:6px;">Cancel</button>
          			<button class="nav_button_choice btn btn-mini btn-info" id="valid_hours_select" onclick="var hours=[]; hours.push($('#start_hours').val()); hours.push($('#start_minutes').val()); hours.push($('#end_hours').val()); hours.push($('#end_minutes').val()); $('#hours_range_select').val(hours); load_events();" style="float:right; margin-right:6px;">OK</button>
-         		</p>
-         		</div>
+	</p>
+</div>
          		
-         		<p class="nav_menu">
-         			<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;"> Public <img src="/static/images/btn_white_arr.png" alt="Public" style="float:right; margin-right:-10px; margin-top:-2px;"/> </button>
-         		</p>
+        <p class="nav_menu">
+         	<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;">
+			<img src="/static/images/btn_white_arr.png" alt="Public" style="float:right;margin-right:-10px; 			margin-top:-2px;"/>Audience Type
+		</button> 							
+         	</p>
          		<div id="event_audience_select" class="nav_div" style="display:none; line-height:1.5em;">
-      
          			<label class="checkbox" style="margin-top:1em;">
          				<em>All Public</em>
          				<input type="checkbox" id="checkbox_allpublic" value="1" name="audience">
