@@ -1,6 +1,5 @@
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">-->
-	<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=9" />
@@ -13,28 +12,27 @@
 		<link rel "shortcut icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
 		<title>{% block title %}Citysom{% endblock %}</title>
 		<link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
-		<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css' />
 		<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
-		<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
 		<script type="text/javascript" src="/static/js/jquery/js/jquery-ui-timepicker.js"></script>
 		<script type="text/javascript" src="/static/js/jquery/js/jquery.form.js"></script>
 		<link type="text/css" href="/static/js/jquery/css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" media="all" />
 		<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
 		<script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
-		<!--<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>-->
+		
 		<script type="text/javascript" src="/static/js/touchcarousel/jquery.touchcarousel-1.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/base_specific.js"></script>
 		<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
 		<!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
 		<script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-{% block head %}
-{% endblock %}
-{% block head_extras %}
-{% endblock %}
+		{% block head %}
+		{% endblock %}
+		{% block head_extras %}
+		{% endblock %}
 	</head>
 	<body>
 		<!-- Container start from here -->
@@ -60,14 +58,17 @@
 		</div>
 		
 		<div id="container" class="row-fluid">
-			<!-- Container 2 start from here -->
 			<div id="container2">
-				<!--<div id="centerarea_main"> centerarea neutralization -->
 				<div class="row-fluid">
 					<div id="logo" class="span3">
-						<a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200" height="65" alt="Citysom" /> </a>
+						<a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200px" height="65px" alt="Citysom" />
+						</a>
 					</div>
-					<div id="splash" class="span3" style="font-family:Damion; font-size:2em; font-weight:normal; color:#FF6600; margin-top:25px; width: 250px;"> Don't miss out! </div>
+					{% comment %}
+					<div id="splash" class="span3" style="font-family:Damion; font-size:2em; font-weight:normal; color:#FF6600; margin-top:25px; width: 250px;">
+						Don't miss out!
+					</div>
+					{% endcomment %}
 					<div id="searchbox_main" class="span6">
 						<div id="logouttext">
 							{% if user.is_authenticated %}
@@ -76,11 +77,18 @@
 							{% else %}
 								<!--<a href="javascript:void(0)" onclick="getLogin()">Login with Facebook</a> | -->
 								Login with: 
-							<a href="javascript:void(0)" onclick="getLogin()"><img src='/static/images/facebook.png' width="15" height="15";/></a> |
-								<!--
-								<a href="{% url auth_login %}"><img src='/static/images/twitter.png' width:"20" height="20"/></a> |
-								<a href="{% url auth_login %}"><img src='/static/images/google+_02_32x32.png' width:"20" height="20"/></a> |
-								-->
+								<a href="javascript:void(0)" onclick="getLogin()">
+									<img src='/static/images/facebook.png' width="15" height="15px" />
+								</a> |
+								{% comment %}
+								<a href="{% url auth_login %}">
+									<img src='/static/images/twitter.png' width:"20px" height="20px" />
+								</a>
+								{% endcomment %}
+								{% comment %}
+								<a href="{% url auth_login %}">
+									<img src='/static/images/google+_02_32x32.png' width:"20" height="20"/></a> |
+								{% endcomment %}
 								<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="15"/></a> | 
 								<a href="/accounts/register/">Sign Up!</a>
 							{% endif %}
@@ -97,71 +105,82 @@
 								</div>
 							</form>
 						</div>
-						<!-- HIDING SEARCHBOX ON TOP
+						{% comment %}
+						HIDING SEARCHBOX ON TOP
 						<div id="searchbox">
 							<input name="searchtextarea" id="searchtextarea" type="text"/>
-							<input type="button" name="submit" value=" " id="searchbutton">
-							</div>
-						-->
+							<input type="button" name="submit" value=" " id="searchbutton" />
+						</div>
+						{% endcomment %}
 					</div>
 						
-				</div> <!-- end row fluid-->
-				<div class="row-fluid">
-					<div class="span9 offset3" style="font-family:Damion; font-size:1.8em; font-weight:normal; color:#FF6600; margin-bottom:1em; margin-top:-0.5em; width: 780px; margin-left: 265px;">...find about every cool event going on in Boston in seconds!</div>
 				</div>
-					<!--
+				{% comment %}
+				<div class="row-fluid">
+					<div class="span9 offset3" style="font-family:Damion; font-size:1.8em; font-weight:normal; color:#FF6600; margin-bottom:1em; margin-top:-0.5em; width: 780px; margin-left: 265px;">
+						...find about every cool event going on in Boston in seconds!
+					</div>
+				</div>
+				{% endcomment %}
+					{% comment %}
 					<div class="filledarea1">
-			        	<div class="textmain">
-			            	<div class="textheading" id="city_div">
-						{% if city %}
-							{{city}}
-						{% else %}
-							Boston, MA
-						{% endif %}
+						<div class="textmain">
+							<div class="textheading" id="city_div">
+								{% if city %}
+									{{city}}
+								{% else %}
+									Boston, MA
+								{% endif %}
+						</div>
+						<div class="clear"></div>
+						<div class="txt">
+							<a href="javascript:void(0)" id="change_location">
+								Change location
+							</a>
+						</div>
+						<div class="textheading" id="city_change_div" style="display: none;">
+							<select name="cities_list" id="cities_list">
+								<option value="Boston, MA">Boston, MA</option>
+								<option value="Paris">Paris</option>
+								<option value="California">California</option>
+								<option value="New Delhi">New Delhi</option>
+							</select>
+							<input type="submit" value="Set" class="login_submit" id="city_submit"/>
+							<input type="submit" value="Auto Detect" class="login_submit" id="city_auto_submit"/>
+						</div>
 					</div>
+					<div class="txt2">Today: {% now "jS F Y" %}</div>
 					<div class="clear"></div>
-			                <div class="txt"><a href="javascript:void(0)" id="change_location">Change location</a></div>
-					<div class="textheading" id="city_change_div" style="display: none;">
-						<select name="cities_list" id="cities_list">
-							<option value="Boston, MA">Boston, MA</option>
-							<option value="Paris">Paris</option>
-							<option value="California">California</option>
-							<option value="New Delhi">New Delhi</option>
-						</select>
-						<input type="submit" value="Set" class="login_submit" id="city_submit"/>
-						<input type="submit" value="Auto Detect" class="login_submit" id="city_auto_submit"/>
-					</div>
-			            </div>
-			            <div class="txt2">Today: {% now "jS F Y" %}</div>
-				    <div class="clear"></div>
-				   -->
-				{% if message %}
-					<div class="alert alert-info">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						{{message}}
-					</div>
-				{% endif %}
-				{% if error %}
-					<div class="alert">
-						<button type="button" class="close" data-dismiss="alert">×</button>
-						{{error}}
-					</div>
-				{% endif %}
-				<div class="clear"></div>
-				
-				{% block content %}
-				{% endblock %} <!-- filledarea start from here -->
-					<!--filledarea end from here -->
-				<!--</div> centerarea main neutralization -->
-				<!-- centerarea main end from here -->
-				<div class="clear"></div>
-		</div>
-			<!-- Container 2 end from here -->
-	</div>
-	</div>
-		<!-- Container end from here -->
+					
+					{% if message %}
+						<div class="alert alert-info">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							{{message}}
+						</div>
+					{% endif %}
+					{% if error %}
+						<div class="alert">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							{{error}}
+						</div>
+					{% endif %}
+					<div class="clear"></div>
+					{% endcomment %}
+					{% block content %}
+					{% endblock %}
+					{% comment %}
+						filledarea start from here
+						filledarea end from here
+						</div> centerarea main neutralization
+						centerarea main end from here
+					{% endcomment %}
+					<div class="clear"></div>
+				</div>
+		
+			</div>
+		
+	
 	<div id="footerbg" class="row-fluid">
-		<!-- Topnavigation start from here -->
 		<div id="bottomnavigation">
 			<ul>
 				<li>
@@ -179,361 +198,361 @@
 	</div>
 		
 	<div id="fb-root" style="display: none;"></div>
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '291495594293239', // App ID
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      xfbml      : true  // parse XFBML
-    });
-	FB.Event.subscribe('auth.login', function(response) {
-		console.log('User is Logged In');
-	});
-
-	FB.Event.subscribe('auth.logout', function(response) {
-		console.log('Session was terminated!');
-	});
-
-	FB.Event.subscribe('edge.create', function(response) {
-		console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
-	});
-  };
-
-  // Load the SDK Asynchronously
-  (function(d){
-     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     ref.parentNode.insertBefore(js, ref);
-   }(document));
-   
-   function getLogin()
-	{
-		FB.getLoginStatus(function(response) {
-		  if (response.status === 'connected') {
-			login();
-		  } else if (response.status === 'not_authorized') {
-			login();
-		  } else {
-			login();
-		  }
-		 });
-	}
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '291495594293239', // App ID
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+		FB.Event.subscribe('auth.login', function(response) {
+			console.log('User is Logged In');
+		});
 	
-	function login()
-	{
-		FB.login(function(response) {
-		   if (response.authResponse) {
-			 FB.api('/me', function(response) {
-				window.location.hash = '';
-			   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+		FB.Event.subscribe('auth.logout', function(response) {
+			console.log('Session was terminated!');
+		});
+	
+		FB.Event.subscribe('edge.create', function(response) {
+			console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
+		});
+	  };
+	
+	  // Load the SDK Asynchronously
+	  (function(d){
+	     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement('script'); js.id = id; js.async = true;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     ref.parentNode.insertBefore(js, ref);
+	   }(document));
+	   
+	   function getLogin()
+		{
+			FB.getLoginStatus(function(response) {
+			  if (response.status === 'connected') {
+				login();
+			  } else if (response.status === 'not_authorized') {
+				login();
+			  } else {
+				login();
+			  }
 			 });
-		   } else {
-			 console.log('User cancelled login or did not fully authorize.');
-		   }
-		 }, {scope:'email'});
-	}
-	</script>
-
- 	<script type="text/javascript">
-      $(document).ready(function(){
-      	console.log('hello');
-      });
-
-      </script>
-      <script>
-	function getParameterByName(name, querystring)
-	{
-	  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-	  var regexS = "[\\?&]" + name + "=([^&#]*)";
-	  var regex = new RegExp(regexS);
-	  var results = regex.exec(querystring);
-	  if(results == null)
-	    return "";
-	  else
-	    return decodeURIComponent(results[1].replace(/\+/g, " "));
-	}
-	if(back)
-	{
-		hash = window.location.hash;
-		hash = hash.substring(1);
-		event_date = getParameterByName("event_date", hash);
-		event_date_end = getParameterByName("event_date_end", hash);
-		event_date_array = event_date.split("-");
-		current_year = event_date_array[0]
-		current_month = event_date_array[1];
-		calendar_url = "/event/calendar/?year="+current_year+"&month="+current_month
-	}
-	else
-	{
-		calendar_url = "/event/calendar/"
-	}
-      	$.get(calendar_url,function (data){
-		$("#home_calendar").html(data);
+		}
+		
+		function login()
+		{
+			FB.login(function(response) {
+			   if (response.authResponse) {
+				 FB.api('/me', function(response) {
+					window.location.hash = '';
+				   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+				 });
+			   } else {
+				 console.log('User cancelled login or did not fully authorize.');
+			   }
+			 }, {scope:'email'});
+		}
+		</script>
+	
+		<script type="text/javascript">
+	      $(document).ready(function(){
+		console.log('hello');
+	      });
+	
+	      </script>
+	      <script>
+		function getParameterByName(name, querystring)
+		{
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + name + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(querystring);
+		  if(results == null)
+		    return "";
+		  else
+		    return decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
 		if(back)
 		{
-			
-			$(".calendar_active").removeClass("calendar_active");
-			var hover_start = 0;
-			$("#days_container>a").each(function(){
-				if($(this).attr("rel") == event_date)
-				{
-					$(this).addClass("calendar_active");
-					if(event_date_end)
+			hash = window.location.hash;
+			hash = hash.substring(1);
+			event_date = getParameterByName("event_date", hash);
+			event_date_end = getParameterByName("event_date_end", hash);
+			event_date_array = event_date.split("-");
+			current_year = event_date_array[0]
+			current_month = event_date_array[1];
+			calendar_url = "/event/calendar/?year="+current_year+"&month="+current_month
+		}
+		else
+		{
+			calendar_url = "/event/calendar/"
+		}
+		$.get(calendar_url,function (data){
+			$("#home_calendar").html(data);
+			if(back)
+			{
+				
+				$(".calendar_active").removeClass("calendar_active");
+				var hover_start = 0;
+				$("#days_container>a").each(function(){
+					if($(this).attr("rel") == event_date)
 					{
-						$(this).addClass("calendar_start");
-						hover_start = 1;
+						$(this).addClass("calendar_active");
+						if(event_date_end)
+						{
+							$(this).addClass("calendar_start");
+							hover_start = 1;
+						}
 					}
-				}
-				else if($(this).attr("rel") == event_date_end)
-				{
-					$(this).addClass("calendar_active");
-					$(this).addClass("calendar_end");
-					hover_start = 0;
-				}
-				if(hover_start == 1)
-				{
-					$(this).addClass("calendar_hover");
-				}
-			});
-		}
+					else if($(this).attr("rel") == event_date_end)
+					{
+						$(this).addClass("calendar_active");
+						$(this).addClass("calendar_end");
+						hover_start = 0;
+					}
+					if(hover_start == 1)
+					{
+						$(this).addClass("calendar_hover");
+					}
+				});
+			}
+			load_events();
+			}
+		);
+	/*$("#home_calendar").on("click", "#days_container>a", function(event){
+		$("a.calendar_active").removeClass("calendar_active");
+		$(this).addClass("calendar_active");
 		load_events();
+	});*/
+			
+	$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
+		event.preventDefault();
+		url = $(this).attr("href");
+		$.get(url,function (data){
+			$("#home_calendar").html(data);
 		}
-	);
-/*$("#home_calendar").on("click", "#days_container>a", function(event){
-	$("a.calendar_active").removeClass("calendar_active");
-	$(this).addClass("calendar_active");
-	load_events();
-});*/
-		
-$("#home_calendar").on("click", "a.calendar_nav_links", function(event){
-	event.preventDefault();
-	url = $(this).attr("href");
-	$.get(url,function (data){
-		$("#home_calendar").html(data);
-	}
-	);
-});
-		
-$("#category").change(function(){
-	load_events();
-});
-		
-$('#searchtextarea').keyup(function(e){
-	e = e || event;
-	if (e.keyCode===13){
+		);
+	});
+			
+	$("#category").change(function(){
 		load_events();
-	}
-	return true;
-});
+	});
+			
+	$('#searchtextarea').keyup(function(e){
+		e = e || event;
+		if (e.keyCode===13){
+			load_events();
+		}
+		return true;
+	});
+			
+	$("#searchbutton").click(function(){
+		load_events();
+	});
+			
+	var clicking = false;
+	var started = 0;
+	
+	$("#home_calendar").on("mousedown", "#days_container>a", function(event){
+	    if(started == 0){
+		clicking = true;
+	    $(".calendar_active").removeClass("calendar_active");
+	    $(".calendar_hover").removeClass("calendar_hover");
+	    $(".calendar_start").removeClass("calendar_start");
+	    $(".calendar_end").removeClass("calendar_end");
+	    $(this).addClass("calendar_active");
+	    $(this).addClass("calendar_start");
+	    started = 1;
+	    return false;
+	    }
+	    if(started ==1){
+		clicking = false;
 		
-$("#searchbutton").click(function(){
-	load_events();
-});
+		$(this).addClass("calendar_tentative");
 		
-var clicking = false;
-var started = 0;
-
-$("#home_calendar").on("mousedown", "#days_container>a", function(event){
-    if(started == 0){
-    	clicking = true;
-    $(".calendar_active").removeClass("calendar_active");
-    $(".calendar_hover").removeClass("calendar_hover");
-    $(".calendar_start").removeClass("calendar_start");
-    $(".calendar_end").removeClass("calendar_end");
-    $(this).addClass("calendar_active");
-    $(this).addClass("calendar_start");
-    started = 1;
-    return false;
-    }
-    if(started ==1){
-    	clicking = false;
-    	
-    	$(this).addClass("calendar_tentative");
-    	
-    	if(parseInt($(".calendar_start").text()) > parseInt($(".calendar_tentative").text())){
-    		$(".calendar_tentative").removeClass("calendar_tentative");
-    		started = 1;
-    		clicking = 1;
-    		return;
-    		}
-    	else{
-    		$(".calendar_tentative").removeClass("calendar_tentative");
-    		$(this).addClass("calendar_active");
-    		$(this).addClass("calendar_end");
-    		
-    		if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel")) {
-    			$(".calendar_hover").removeClass("calendar_hover");
-     			calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
-     			$.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
-    			}
-    		else {
-	    		$(".calendar_active").removeClass("calendar_active");
-	     		$(".calendar_hover").removeClass("calendar_hover");
-			    $(".calendar_start").removeClass("calendar_start");
-			    $(".calendar_end").removeClass("calendar_end");
-			    $(this).addClass("calendar_active");
-    			}
-    		load_events();
-    		started = 0;	
-    		}
-    	return false;
-    	}
-});
-		
-/*$("#home_calendar").on("mouseup", "#days_container>a", function(event){
-	clicking = false;
-    $(this).addClass("calendar_active");
-    $(this).addClass("calendar_end");
-    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
-    {
-     $(".calendar_hover").removeClass("calendar_hover");
-     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
-     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
-    }
-    else
-    {
-     $(".calendar_active").removeClass("calendar_active");
-     $(".calendar_hover").removeClass("calendar_hover");
-     $(".calendar_start").removeClass("calendar_start");
-     $(".calendar_end").removeClass("calendar_end");
-     $(this).addClass("calendar_active");
-    }
-    load_events();
-    return false;
-});*/
-		
-$("#home_calendar").on("mouseover", "#days_container>a", function(event){
-	if(clicking == 0){return}
-	else{
-		$(".calendar_hover").removeClass("calendar_hover");
-		$(this).addClass("calendar_hover");
-		if(parseInt($(".calendar_hover").text()) > parseInt($(".calendar_start").text())){
+		if(parseInt($(".calendar_start").text()) > parseInt($(".calendar_tentative").text())){
+			$(".calendar_tentative").removeClass("calendar_tentative");
+			started = 1;
+			clicking = 1;
 			return;
+			}
+		else{
+			$(".calendar_tentative").removeClass("calendar_tentative");
+			$(this).addClass("calendar_active");
+			$(this).addClass("calendar_end");
+			
+			if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel")) {
+				$(".calendar_hover").removeClass("calendar_hover");
+				calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+				$.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+				}
+			else {
+				$(".calendar_active").removeClass("calendar_active");
+				$(".calendar_hover").removeClass("calendar_hover");
+				    $(".calendar_start").removeClass("calendar_start");
+				    $(".calendar_end").removeClass("calendar_end");
+				    $(this).addClass("calendar_active");
+				}
+			load_events();
+			started = 0;	
+			}
+		return false;
 		}
-		else{ $(".calendar_hover").removeClass("calendar_hover"); }
+	});
+			
+	/*$("#home_calendar").on("mouseup", "#days_container>a", function(event){
+		clicking = false;
+	    $(this).addClass("calendar_active");
+	    $(this).addClass("calendar_end");
+	    if($(".calendar_start").attr("rel") != $(".calendar_end").attr("rel"))
+	    {
+	     $(".calendar_hover").removeClass("calendar_hover");
+	     calendar_hovered_items = getAllBetween("a.calendar_start","a.calendar_end");
+	     $.each(calendar_hovered_items,function(key,item){$(item).addClass("calendar_hover");});
+	    }
+	    else
+	    {
+	     $(".calendar_active").removeClass("calendar_active");
+	     $(".calendar_hover").removeClass("calendar_hover");
+	     $(".calendar_start").removeClass("calendar_start");
+	     $(".calendar_end").removeClass("calendar_end");
+	     $(this).addClass("calendar_active");
+	    }
+	    load_events();
+	    return false;
+	});*/
+			
+	$("#home_calendar").on("mouseover", "#days_container>a", function(event){
+		if(clicking == 0){return}
+		else{
+			$(".calendar_hover").removeClass("calendar_hover");
+			$(this).addClass("calendar_hover");
+			if(parseInt($(".calendar_hover").text()) > parseInt($(".calendar_start").text())){
+				return;
+			}
+			else{ $(".calendar_hover").removeClass("calendar_hover"); }
+			}
+	    return false;
+	});
+	
+	function getAllBetween(firstEl,lastEl) {
+	    var firstElement = $(firstEl);
+	    var lastElement = $(lastEl);
+	    var collection = new Array();
+	    collection.push(firstElement);
+	    $(firstEl).nextAll().each(function(){
+		var siblingID  = $(this).attr("rel");
+		if (siblingID != $(lastElement).attr("rel")) {
+			collection.push($(this));
+		} else {
+			return false;
 		}
-    return false;
-});
-
-function getAllBetween(firstEl,lastEl) {
-    var firstElement = $(firstEl);
-    var lastElement = $(lastEl);
-    var collection = new Array();
-    collection.push(firstElement);
-    $(firstEl).nextAll().each(function(){
-        var siblingID  = $(this).attr("rel");
-        if (siblingID != $(lastElement).attr("rel")) {
-                collection.push($(this));
-        } else {
-                return false;
-        }
-    });  
-    collection.push(lastElement);       
-    return collection;
-}
-
-$(".timepicker").timepicker(
-	{
-	timeFormat:"hh:mm",
-	stepMinute: 5
+	    });  
+	    collection.push(lastElement);       
+	    return collection;
 	}
-);
-
-$("input[type=checkbox].uni").click(function(){
-	date_name = $(this).attr("rel");
-	first_child = "#id_start_hours_on_"+date_name;
-	second_child = "#id_end_hours_on_"+date_name;
-	if($(this).is(":checked"))
-	{
-		$(first_child).val("09:00");
-		$(second_child).val("17:00");
+	
+	$(".timepicker").timepicker(
+		{
+		timeFormat:"hh:mm",
+		stepMinute: 5
+		}
+	);
+	
+	$("input[type=checkbox].uni").click(function(){
+		date_name = $(this).attr("rel");
+		first_child = "#id_start_hours_on_"+date_name;
+		second_child = "#id_end_hours_on_"+date_name;
+		if($(this).is(":checked"))
+		{
+			$(first_child).val("09:00");
+			$(second_child).val("17:00");
+		}
+		else
+		{
+			$(first_child).val("");
+			$(second_child).val("");
+		}
+	});
+	      </script>
+	<!--<script>
+		{% if not city %}
+		$(document).ready(function(){
+			geolocation();
+		});
+		{% endif %}
+		$("#city_submit").click(function(){
+			set_city($("#cities_list").val());
+		});
+		$("#city_auto_submit").click(function(){
+			geolocation();
+		});
+	</script>
+	-->
+	<script>
+		function ScaleImage(srcwidth, srcheight, targetwidth, targetheight, fLetterBox) {
+	
+	    var result = { width: 0, height: 0, fScaleToTargetWidth: true };
+	
+	    if ((srcwidth <= 0) || (srcheight <= 0) || (targetwidth <= 0) || (targetheight <= 0)) {
+		return result;
+	    }
+	
+	    // scale to the target width
+	    var scaleX1 = targetwidth;
+	    var scaleY1 = (srcheight * targetwidth) / srcwidth;
+	
+	    // scale to the target height
+	    var scaleX2 = (srcwidth * targetheight) / srcheight;
+	    var scaleY2 = targetheight;
+	
+	    // now figure out which one we should use
+	    var fScaleOnWidth = (scaleX2 > targetwidth);
+	    if (fScaleOnWidth) {
+		fScaleOnWidth = fLetterBox;
+	    }
+	    else {
+	       fScaleOnWidth = !fLetterBox;
+	    }
+	
+	    if (fScaleOnWidth) {
+		result.width = Math.floor(scaleX1);
+		result.height = Math.floor(scaleY1);
+		result.fScaleToTargetWidth = true;
+	    }
+	    else {
+		result.width = Math.floor(scaleX2);
+		result.height = Math.floor(scaleY2);
+		result.fScaleToTargetWidth = false;
+	    }
+	    result.targetleft = Math.floor((targetwidth - result.width) / 2);
+	    result.targettop = Math.floor((targetheight - result.height) / 2);
+	
+	    return result;
 	}
-	else
-	{
-		$(first_child).val("");
-		$(second_child).val("");
+	
+		function OnImageLoad(evt) {
+	
+	    var img = evt.currentTarget;
+	
+	    // what's the size of this image and it's parent
+	    var w = $(img).width();
+	    var h = $(img).height();
+	    var tw = $(img).parent().width();
+	    var th = $(img).parent().height();
+	
+	    // compute the new size and offsets
+	    var result = ScaleImage(w, h, tw, th, false);
+	
+	    // adjust the image coordinates and size
+	    img.width = result.width;
+	    img.height = result.height;
+	    $(img).css("left", result.targetleft);
+	    $(img).css("top", result.targettop);
 	}
-});
-      </script>
-<!--<script>
-	{% if not city %}
-	$(document).ready(function(){
-		geolocation();
-	});
-	{% endif %}
-	$("#city_submit").click(function(){
-		set_city($("#cities_list").val());
-	});
-	$("#city_auto_submit").click(function(){
-		geolocation();
-	});
-</script>
--->
-<script>
-	function ScaleImage(srcwidth, srcheight, targetwidth, targetheight, fLetterBox) {
-
-    var result = { width: 0, height: 0, fScaleToTargetWidth: true };
-
-    if ((srcwidth <= 0) || (srcheight <= 0) || (targetwidth <= 0) || (targetheight <= 0)) {
-        return result;
-    }
-
-    // scale to the target width
-    var scaleX1 = targetwidth;
-    var scaleY1 = (srcheight * targetwidth) / srcwidth;
-
-    // scale to the target height
-    var scaleX2 = (srcwidth * targetheight) / srcheight;
-    var scaleY2 = targetheight;
-
-    // now figure out which one we should use
-    var fScaleOnWidth = (scaleX2 > targetwidth);
-    if (fScaleOnWidth) {
-        fScaleOnWidth = fLetterBox;
-    }
-    else {
-       fScaleOnWidth = !fLetterBox;
-    }
-
-    if (fScaleOnWidth) {
-        result.width = Math.floor(scaleX1);
-        result.height = Math.floor(scaleY1);
-        result.fScaleToTargetWidth = true;
-    }
-    else {
-        result.width = Math.floor(scaleX2);
-        result.height = Math.floor(scaleY2);
-        result.fScaleToTargetWidth = false;
-    }
-    result.targetleft = Math.floor((targetwidth - result.width) / 2);
-    result.targettop = Math.floor((targetheight - result.height) / 2);
-
-    return result;
-}
-
-	function OnImageLoad(evt) {
-
-    var img = evt.currentTarget;
-
-    // what's the size of this image and it's parent
-    var w = $(img).width();
-    var h = $(img).height();
-    var tw = $(img).parent().width();
-    var th = $(img).parent().height();
-
-    // compute the new size and offsets
-    var result = ScaleImage(w, h, tw, th, false);
-
-    // adjust the image coordinates and size
-    img.width = result.width;
-    img.height = result.height;
-    $(img).css("left", result.targetleft);
-    $(img).css("top", result.targettop);
-}
-</script>
-
+	</script>
 	</body>
+
 </html>
