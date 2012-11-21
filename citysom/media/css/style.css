@@ -2136,3 +2136,72 @@ a.gotoeventwebsite:hover{text-decoration: none;}
 .step1orangebox{width: 32px; height: 32px;}
 
 
+
+
+
+
+/*Start css for New Instruction Page */
+#main-container{overflow: visible; margin:0;}
+#header, #outer-wrapper, #footer{clear:both;}
+
+#header{background: url("/media/images/bg-dark-tile.png") repeat-x scroll 0 0 transparent; height: 447px; z-index: 1;}
+#footer{background: url("/media/images/bg-dark-tile.png") repeat-x scroll 0 0 transparent; min-height: 300px;}
+
+
+
+img{border:0;}
+
+a, a:hover{text-decoration: none;}
+
+
+#logo{float:none; width:100%;}
+#header .inner {height: 447px; margin: 0 auto 40px; position: relative; width: 950px; z-index: 1;}
+#header .header-left{float: left; text-align: center; margin-top: 75px;}
+#header .header-right{float: right;}
+#header .header-left, #header .header-right{width: 50%;}
+
+.header-slider{ float: right; height: 350px; margin: 60px 20px 10px; overflow: hidden; padding: 0 20px; position: relative; transition: opacity 1s ease 0.5s; width: 333px;}
+
+h2.oneliner{color: #CCC; line-height:1.3em; clear:both; font-size: 23px; font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; font-weight: normal; margin: 10px 0 35px; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);}
+
+
+.join-btn {
+    background-color: #6FBC22;
+    background-image: -moz-linear-gradient(center top , #8DCD45 0%, #5AAC1C);
+    border-color: #B5D87A #8DB054 #6B853C;
+    margin: 5px 0 3px;
+    padding: 12px 25px 5px;
+    text-align: center;    
+    color: #FFFFFF;
+    font: bold 16px Hitchcock,Verdana,Arial,Helvetica,sans-serif;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+    display: inline-block;    
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(255, 255, 255, 0.5) inset;
+    height: auto;
+    line-height: 20px;
+    padding: 12px 25px 5px;
+    text-decoration: none;
+}
+
+.join-btn:hover{
+    border: 1px solid #76864E;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 1px 1px #FFFFFF inset;
+    color: #FFFFFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+    text-decoration:none;
+}
+  .join-btn span{display: block;}
+  .exist-user-sign{ color: #CCCCCC; font-size: 14px; margin-top: 40px; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);}
+  .exist-user-sign a{color: #CCCCCC; font-weight: bold; text-decoration: none;}
+  .exist-user-sign a:hover{color: orange; text-decoration: underline;}
+    
+/*End css for New Instruction Page */
+
+
+
+
+
+
