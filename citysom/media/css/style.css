@@ -2023,7 +2023,7 @@ li.misc_pres_last{margin-right: 0px !important;}
 #bottom_images ul li:last-child{margin-right:0;}
 #topnavigation, #container2, #bottomnavigation{width:1000px; margin:0 auto;}
 
-.event_details_box{font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0;min-height:250px;}
+.event_details_box{font-size: 1em; border-radius: 5px; border: 1px solid #E0E0E0;min-height:330px;}
 hr.orange_line{background-color: #FF6600; margin:3px 0;}
 
 div.detail_container{border-radius: 8px; width:100%; float:left; overflow: visible; border: 1px solid #CCCCCC; margin-bottom: 10px; position: relative;}
@@ -2142,7 +2142,7 @@ a.gotoeventwebsite:hover{text-decoration: none;}
 .schedule_info_time{font-size: 13px; text-align: center; margin-bottom: 5px;}
 .schedule_info_price{color: #FF0000; font-family: Georgia,serif; font-size: 24px; text-align: center; margin-bottom: 5px;}
 .schedule_info_not{font-style:italic; font-size: 13px; font-weight:  bold;}
-
+.schedule_info_opentime{font-size: 13px; text-align: center; margin-bottom: 5px;display: inline; margin-left: 5px;}
 
 
 /*Start css for New Instruction Page */
