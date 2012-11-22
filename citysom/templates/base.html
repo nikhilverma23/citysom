@@ -75,10 +75,9 @@
 								<a href="{% url dashboard %}">My profile</a> | 
 								<a href="/accounts/logout">Logout</a>
 							{% else %}
-								<!--<a href="javascript:void(0)" onclick="getLogin()">Login with Facebook</a> | -->
 								Login with: 
 								<a href="javascript:void(0)" onclick="getLogin()">
-									<img src='/static/images/facebook.png' width="15" height="15px" />
+									<img src='/static/images/facebook.png' height="25px" width="25px" />
 								</a> |
 								{% comment %}
 								<a href="{% url auth_login %}">
@@ -89,8 +88,8 @@
 								<a href="{% url auth_login %}">
 									<img src='/static/images/google+_02_32x32.png' width:"20" height="20"/></a> |
 								{% endcomment %}
-								<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="15"/></a> | 
-								<a href="/accounts/register/">Sign Up!</a>
+								<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="25px" width="25px"/></a> | 
+								<a href="/accounts/register/" style="font-size: 15px";>Sign Up!</a>
 							{% endif %}
 						</div>
 						<div class="login_top_div" id="log_top_div" style="display: none;">
