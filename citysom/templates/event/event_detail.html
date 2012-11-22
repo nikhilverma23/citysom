@@ -70,6 +70,8 @@
 						</a>
 						<div class="clear"></div>
 						</div>
+					{% else %}
+						<div class="clear" style="margin-bottom: 10px;"></div>
 					{% endif %}
 					<div><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" class="gotoeventwebsite" target="_blank">Go to event website</a></div>
 			</div>
@@ -268,6 +270,7 @@
 				{% endif %}
 			{% else %}
 				<hr class="orange_line">
+				<div class="openhour_heading">OPEN HOUR BASED</div>
 				<div class="schedule_date">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 				<div class="schedule_info">
 					{% if eventdetails.start_hours_on_monday %}
@@ -314,7 +317,16 @@
 					{% endif %}
 					{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
 						<div class="schedule_info_not">No show time information available</div>
-				{% endif %}
+					{% endif %}
+					
+					{% for performance in event_performance_values %}
+							{% if forloop.first %}
+							<div class="schedule_info_price">
+								${{performance.ticket_price}}
+							</div>
+						{% endif %}
+					{% endfor %}
+					
 				</div>	
 			{% endif %}
 			</div>
@@ -350,9 +362,9 @@
 		    <div class="lreview_sort fleft">
 			<strong style="margin-top:5px;">
 				{% if user.is_authenticated %}
-					<a href="#ratings_form" class="write-a-review" id="ratings_link">write a review <!--<img src="/static/images/edit_icon.png" width="15px">--></a>
+					<a href="#ratings_form" class="write-a-review" id="ratings_link">write a review</a>
 				{% else %}
-					<a href="#ratings_form" style="color: #FF7920;" onclick="alert('Sorry ... You need to log in first to write a review');">Share your opinion  <img src="/static/images/edit_icon.png" width="15px"></a>
+					<a href="#ratings_form" class="write-a-review" onclick="alert('Sorry ... You need to log in first to write a review');">write a review</a>
 				{% endif %}
 			</strong>
 		    </div>

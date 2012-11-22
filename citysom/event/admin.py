@@ -19,13 +19,12 @@ class CategoryAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_per_page = 100
     list_display = ('title','user','status')
-    list_filter = ('user','status', 'category')
+    list_filter = ('status', 'category',"schedule_type")
     search_fields = ( "title",)
  
 class PerformanceDetailsAdmin(admin.ModelAdmin):
     list_per_page = 50
     list_display = ('event','date_of_performance','showtimes_start','showtimes_end','ticket_price')
-    search_fields = ( "event","place","ticket_price","showtimes_start","showtimes_end")
     list_filter = ('ticket_price',)
     
 class DaysAdmin(admin.ModelAdmin):

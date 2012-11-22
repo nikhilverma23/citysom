@@ -2143,7 +2143,7 @@ a.gotoeventwebsite:hover{text-decoration: none;}
 .schedule_info_price{color: #FF0000; font-family: Georgia,serif; font-size: 24px; text-align: center; margin-bottom: 5px;}
 .schedule_info_not{font-style:italic; font-size: 13px; font-weight:  bold;}
 .schedule_info_opentime{font-size: 13px; text-align: center; margin-bottom: 5px;display: inline; margin-left: 5px;}
-
+.openhour_heading{text-align:center;}
 
 /*Start css for New Instruction Page */
 #main-container{overflow: visible; margin:0;}
