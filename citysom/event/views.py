@@ -1544,6 +1544,12 @@ def event_list(request):
                           ) 
     else:
         
+        show_like = {};
+        for event in events.iterator():
+            show_like[event.id] = 1
+            for popularity in event.popularity_set.iterator():
+                if popularity.user_id == request.user.id:
+                    show_like[event.id] = 0
         
         return render_to_response("event/event_list.html",
                            {
@@ -1551,7 +1557,8 @@ def event_list(request):
                            "events":events,
                            "date_end":event_date_end_object,
                            "date_start":event_date_object,
-                           "page":page
+                           "page":page,
+                           "show_like":show_like
                            },
                           context_instance=RequestContext(request)
                           )
@@ -1728,7 +1735,11 @@ def get_event_details(request):
                         total_days_consecutive += 1
                 except:
                     pass
-
+    
+    show_like = 1
+    for popularity in event_obj.popularity_set.iterator():
+        if popularity.user_id == user.id:
+            show_like = 0
     
     return render_to_response("event/event_detail.html",
                               {
@@ -1747,7 +1758,8 @@ def get_event_details(request):
                               'by_day':by_day,
                               "comment_counter":comment_counter,
                               "host":settings.HOST,
-                              "page_url":request.get_full_path
+                              "page_url":request.get_full_path,
+                              "show_like":show_like
                               },
                               context_instance=RequestContext(request)
                               )

@@ -40,20 +40,19 @@
 					<button class="misc_pres_more_info" onclick="document.location.href='/event/details?id={{event.id}}';">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
 				</a>
 				{% if user.is_authenticated %}
-					{% assign unlike "no" %}
-					{% for popularity in event.popularity_set.all %}
-						{% if popularity.user_id == user.id %}
-							<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
-								<button class="misc_pres_unlike">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
-							</a>
-							{% assign unlike "yes" %}
-						{% endif %}
-					{% endfor %}
-					{% ifequal unlike "no" %}
-						<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
-							<button class="misc_pres_like">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-						</a>	
-					{% endifequal %}
+					{% with event_id=event.id %}
+						{% with show_like_event=show_like.event_id %}
+							{% ifequal show_like_event 0 %}
+								<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
+									<button class="misc_pres_unlike">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
+								</a>
+							{% else %}
+								<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
+									<button class="misc_pres_like">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+								</a>	
+							{% endifequal %}
+						{% endwith %}
+					{% endwith %}
 				<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{event.popularity_set.count}}</span></div>
 				{% endif %}
 			</div>
