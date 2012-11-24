@@ -390,7 +390,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="detail_review_content">{{comment.reviews}}</div>
+				<div class="detail_review_content">{{comment.reviews|linebreaks}}</div>
 				<div class="detail_review_by">
 					- by {{comment.user.username}}
 				</div>
@@ -447,12 +447,13 @@
 	});
 	$(".edit_review").click(function(){
 		comment_id = $(this).attr("rel");
-		var title_div = $(this).parent();
-		var title = title_div.children("strong").html();
-		var rating_div = title_div.parent();
-		var rating = rating_div.children(".rating_pic").children("input.star:checked").val();
-		var review_div = rating_div.parent();
-		var review = review_div.children(".event_text").children("p").html();
+		var title_div = $(this).parent().parent().parent();
+		var title = title_div.children(".detail_review_title").html();
+		title = title.trim();
+		var rating_div = $(this).parent().parent();
+		var rating = rating_div.children(".detail_review_rating").children("input.star:checked").val();
+		var review = title_div.parent().children(".detail_review_content").html();
+		review = review.trim();
 		
 		$("#comment_id").val(comment_id);
 		$("#id_title").val(title);
