@@ -1258,32 +1258,14 @@ def eventcreation(request):
     
 #----------------------------------------------------------------------------#
 def splash(request):
-#    category = Category.objects.all()
     return render_to_response("splash.html",
-                              {
-                               },
+                              {},
                               context_instance=RequestContext(request)
                               )
     
-#    return render_to_response("event/home_page.html",
-#                              {
-#                               "request":request,
-#                               "category":category
-#                               },
-#                              context_instance=RequestContext(request)
-#                              )
-#    
 #----------------------------------------------------------------------------#
 def home(request):
     category = Category.objects.all()
-#    return render_to_response("splash.html",
-#                              {
-#                               "request":request,
-#                               "category":category
-#                               },
-#                              context_instance=RequestContext(request)
-#                              )
-    
     return render_to_response("event/home_page.html",
                               {
                                "request":request,
@@ -1543,8 +1525,7 @@ def event_list(request):
                           context_instance=RequestContext(request)
                           ) 
     else:
-        
-        show_like = {};
+        show_like = {}
         for event in events.iterator():
             show_like[event.id] = 1
             for popularity in event.popularity_set.iterator():
