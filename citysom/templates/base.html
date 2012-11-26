@@ -143,7 +143,7 @@
 					</div>
 					<div class="txt2">Today: {% now "jS F Y" %}</div>
 					<div class="clear"></div>
-					
+					{% endcomment %}
 					{% if message %}
 						<div class="alert alert-info">
 							<button type="button" class="close" data-dismiss="alert">×</button>
@@ -157,7 +157,6 @@
 						</div>
 					{% endif %}
 					<div class="clear"></div>
-					{% endcomment %}
 					{% block content %}
 					{% endblock %}
 					{% comment %}

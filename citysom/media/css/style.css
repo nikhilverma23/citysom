@@ -2300,10 +2300,4 @@ ul#login_dropdown li a:hover{background: #FFFFFF; color:#000000; padding: 5px 10
 ul#login_dropdown li ul{background: #000000;}
 ul#login_dropdown li ul li{text-align:  left; width: 160px;}
 b.caret{margin-top:8px !important;}
-
-
-
-
-
-
-
+div.alert-info{background-color: #F9D2B8; color: #FF6600; border-color: #F9D2B8;}
