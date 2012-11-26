@@ -25,7 +25,7 @@
 				</div>
 				<div class="misc_pres_comment">
 					<h4>{{event.title}}</h4>
-					<h6><p style="color: #736F6E";font-size: 12px;">{{event.category|upper}}</p>
+					<h6><p style="color: #736F6E;font-size: 12px;">{{event.category|upper}}</p>
 					</br>
 					<p style="color: #666666;font-size: 9px; font-style: italic;">{{event.location|truncatechars:70}}</p>
 					</h6>
@@ -41,7 +41,7 @@
 				</a>
 				{% if user.is_authenticated %}
 					{% with event_id=event.id %}
-						{% with show_like_event=show_like.event_id %}
+						{% with show_like_event=show_like|keyvalue:event_id %}
 							{% ifequal show_like_event 0 %}
 								<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
 									<button class="misc_pres_unlike">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
