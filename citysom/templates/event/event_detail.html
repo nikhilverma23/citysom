@@ -39,9 +39,8 @@
 	</div>
 	
 	<div class="event_details_address_box">
-		<div style="font-weight:bold;color: grey;text-align: center;">Address</div>
-		<hr class="orange_line">
-		<div style="font-size:14px;color: grey; padding: 0px 10px;height: 100px;">{{eventdetails.location}}</div>
+		<div style="font-weight:bold;color: #4C4C4C;text-align: center; background:#F3F3F3; border-radius:5px 5px 0 0; height: 30px; line-height:30px; border-bottom:1px solid #E0E0E0;">Where</div>
+		<div style="font-size:13px;color: grey; padding: 10px 10px;height: 90px;">{{eventdetails.location}}</div>
 		<div id="detail_map"></div>
 	</div>
 	<div class="detail_mid_container">
@@ -80,11 +79,10 @@
 	</div>	
 	<div id="event_scheduling">
 		<div class="event_details_box">
-			<div class="event_dates">Event Schedule</div>
+			<div style="font-weight:bold;color: #4C4C4C;text-align: center; background:#F3F3F3; border-radius:5px 5px 0 0; height: 30px; line-height:30px; border-bottom:1px solid #E0E0E0;">When</div>
 			<div class="schedule_container">
 			{% if eventdetails.schedule_type == "performance_based" %}
 				{% if eventdetails.event_start_date1 != None %}
-					<hr class="orange_line">
 					<div class="schedule_date">{{eventdetails.event_start_date1}} to {{eventdetails.event_completion_date1}}</div>
 					<div class="schedule_info">
 						<div class="schedule_info_span">{{eventdetails.frequency1|lower|capfirst}}</div>:
@@ -264,56 +262,56 @@
 					</div>
 				{% endif %}
 			{% else %}
-				<hr class="orange_line">
-				<div class="openhour_heading">OPEN HOUR BASED</div>
+				<!--<div class="openhour_heading">Open-hour event</div>-->
 				<div class="schedule_date">{{eventdetails.event_start_date}} to {{eventdetails.event_completion_date}}</div>
 				<div class="schedule_info">
+					<table style='float:left; margin-left:10px;'>
 					{% if eventdetails.start_hours_on_monday %}
-						<div>
-							<div class="schedule_info_span">Mo.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Mo.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_monday}} to {{eventdetails.end_hours_on_monday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_tuesday %}
-						<div>
-							<div class="schedule_info_span">Tu.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Tu.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_tuesday}} to {{eventdetails.end_hours_on_tuesday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_wednesday %}
-						<div>
-							<div class="schedule_info_span">We.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">We.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_wednesday}} to {{eventdetails.end_hours_on_wednesday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_thursday %}
-						<div>
-							<div class="schedule_info_span">Th.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Th.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_thursday}} to {{eventdetails.end_hours_on_thursday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_friday %}
-						<div>
-							<div class="schedule_info_span">Fr.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Fr.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_friday}} to {{eventdetails.end_hours_on_friday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_saturday %}
-						<div>
-							<div class="schedule_info_span">Sa.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Sa.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_saturday}} to {{eventdetails.end_hours_on_saturday}}</td>
+						</tr>
 					{% endif %}
 					{% if eventdetails.start_hours_on_sunday %}
-						<div>
-							<div class="schedule_info_span">Su.</div>:
-							<div class="schedule_info_opentime">{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</div>
-						</div>
+						<tr>
+							<td class="schedule_info_span">Su.</td>
+							<td class="schedule_info_opentime">{{eventdetails.start_hours_on_sunday}} to {{eventdetails.end_hours_on_sunday}}</td>
+						</tr>
 					{% endif %}
 					{% if not eventdetails.start_hours_on_sunday and not eventdetails.start_hours_on_monday and not eventdetails.start_hours_on_tuesday and not eventdetails.start_hours_on_wednesday and not eventdetails.start_hours_on_thursday and not eventdetails.start_hours_on_friday and not eventdetails.start_hours_on_saturday %}
 						<div class="schedule_info_not">No show time information available</div>
 					{% endif %}
-					
+				</table>
 					{% for performance in event_performance_values %}
 							{% if forloop.first %}
 							<div class="schedule_info_price">
