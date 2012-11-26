@@ -19,6 +19,7 @@
 <script type="text/javascript">stLight.options({publisher: "ur-b92ddcaa-509e-d0e0-397-b9dd14b75700"});</script>
 <div class="detail_container">
 		<div class="social_div">
+			Share :
 			<span class='st_facebook_large social_icons' displayText=''></span>
 			<span class='st_twitter_large social_icons' displayText=''></span>
 			<span class='st_googleplus_large social_icons' displayText=''></span>
@@ -365,33 +366,35 @@
 		    </div>
 		    </div>
 		</div>
-		{% for comment in user_comments %}
-			<div class="detail_review">
-				<div class="detail_review_header">
-					<div class="detail_review_title">
-						{{comment.title}}
+		<div id="latest_events">
+			{% for comment in user_comments %}
+				<div class="detail_review">
+					<div class="detail_review_header">
+						<div class="detail_review_title">
+							{{comment.title}}
+						</div>
+						<div class="rating-star-tube">
+							{% if comment.user_id == user.id and user.is_authenticated %}
+							<div class="detail_review_options">
+								<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
+								<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
+							</div>
+							{% endif %}
+							<div class="detail_review_rating">
+								{% for star in total_stars%}
+									<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
+								{%endfor%}
+							</div>
+						</div>
 					</div>
-					<div class="rating-star-tube">
-						{% if comment.user_id == user.id and user.is_authenticated %}
-						<div class="detail_review_options">
-							<a href="javascript:void(0)" class="edit_review" rel="{{comment.id}}" title="Edit {{comment.title}}"><img src="/static/images/edit_icon.png"></a>
-							<a href="/event/comment_delete?id={{comment.id}}&event_id={{eventdetails.id}}" class="delete_review" title="Delete {{comment.title}}"><img src="/static/images/delete_icon.png"></a>
-						</div>
-						{% endif %}
-						<div class="detail_review_rating">
-							{% for star in total_stars%}
-								<input name="ratings_show{{comment.id}}" type="radio" class="star" value="{{star}}" disabled="disabled" {% ifequal star comment.ratings %}checked="checked"{% endifequal %}/>
-							{%endfor%}
-						</div>
+					<div class="detail_review_content">{{comment.reviews|linebreaks}}</div>
+					<div class="detail_review_by">
+						- by {{comment.user.username}}
 					</div>
 				</div>
-				<div class="detail_review_content">{{comment.reviews|linebreaks}}</div>
-				<div class="detail_review_by">
-					- by {{comment.user.username}}
-				</div>
-			</div>
-		{% endfor %}
-		<div id="ratings_div">
+			{% endfor %}
+		</div>
+		<div id="ratings_div" style="display: none;">
 			<form name="ratings_form" action="" method="post" class="ratings_form">
 				{% csrf_token %}
 				<a name="ratings_form"></a>
@@ -399,6 +402,7 @@
 				<p>
 					<label for="id_title">Summary:</label>
 					{{ratings_form.title}}
+					<div class="clear"></div>
 				</p>
 				{{ratings_form.ratings.errors}}
 				<p>
@@ -410,20 +414,23 @@
 						<input name="ratings" type="radio" class="star" value="4" id="id_ratings4"/>
 						<input name="ratings" type="radio" class="star" value="5" id="id_ratings5"/>
 					</span>
+					<div class="clear"></div>
 				</p>
 				{{ratings_form.reviews.errors}}
 				<p>
 					<label for="id_reviews">Your opinion:</label>
 					{{ratings_form.reviews}}
+					<div class="clear"></div>
 				</p>
 				<p>
-					<div style="display:block; margin-top:4em;">
+					<div style="display:block;">
 						<input type="hidden" name="id" id="comment_id" value="">
 						<input type="button" value="Cancel" class="custom_submit btn btn-primary" style="float:left; margin-left:100px; width:35%;" id="discard">
 						<input type="submit" value="Share!" class="custom_submit btn btn-warning " style="float:right; margin-left:20px; width:35%;">
 					
 						{% comment %}<button class="btn btn-warning" value="Cancel" type="button" style="float:left; margin-left:7em; width:35%;">Cancel</button>
 					<button class=" btn btn-primary" value="Share" type="submit" style="float:right; margin-right:17px; width:35%;">Share!</button>{% endcomment %}
+					<div class="clear"></div>
 					</div>
 					
 					
@@ -507,6 +514,10 @@
 			jQuery("div.likes_count_div", $(this).parent()).hide();
 		}
 	});
+	
+	{% if not user_comments %}
+		jQuery.("#ratings_div").show();
+	{% endif %}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
@@ -516,7 +527,7 @@
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(-34.397, 150.644);
     var mapOptions = {
-      zoom: 9,
+      zoom: 12,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,

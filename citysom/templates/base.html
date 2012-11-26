@@ -37,10 +37,10 @@
 	<body>
 		<!-- Container start from here -->
 		<div id="headerbg" class="row-fluid">
-			<div id="topnavigation">
+			<div id="topnavigation" style="position:  relative;">
 				<ul>
 					<li class="lilink">
-						<a href="{% url home %}" class="search_link">Home</a>
+						<a href="{% url home %}" class="search_link" style="padding-top:7px;">Home</a>
 					</li>
 					<!--<li>
 						<a href="#">Categorize</a>
@@ -51,8 +51,35 @@
 					</li>
 					{% endif %}
 				</ul>
+				<ul id="login_dropdown" class="nav pull-right">
+					<li class="dropdown">
+						<a data-toggle="dropdown" class="dropdown-toggle" href="#">Hello {% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %} <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							{% if user.is_authenticated %}
+								<li><a href="{% url dashboard %}">My profile</a></li>
+								<li><a href="/accounts/logout">Logout</a></li>
+							{% else %}
+								<li><a href="javascript:void(0)">Login with facebook <img src='/static/images/facebook.png' style="width: 25px; height: 25px;"/></a></li>
+								<li><a href="javascript:void(0)" class="login_top_link">Login with citysom <img src='/static/images/citysom_icon.png' style="width: 25px; height: 25px;"/></a></li>
+								<li><a href="/accounts/register/">Join Citysom</a></li>
+							{% endif %}
+						</ul>
+					</li>
+				</ul>
+				<div class="login_top_div" id="log_top_div" style="display: none;">
+					<form method="post" action="{% url auth_login %}">
+						{% csrf_token %}
+						<div>
+							<dl>
+								<dt><label for="id_username">Username:</label></dt> <dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
+								<dt><label for="id_password">Password:</label></dt> <dd><input type="password" name="password" id="id_password" /></dd>
+								<dt><input type="submit" value="Log in" class="login_submit" /></dt>
+							</dl>
+						</div>
+					</form>
+				</div>
 				<div id="commenttext">
-					Hello <span>{% if user.is_authenticated %}{{user.username}}{% else %}Guest!{% endif %}</span>
+					
 				</div>
 			</div>
 		</div>
@@ -70,40 +97,6 @@
 					</div>
 					{% endcomment %}
 					<div id="searchbox_main" class="span6">
-						<div id="logouttext">
-							{% if user.is_authenticated %}
-								<a href="{% url dashboard %}">My profile</a> | 
-								<a href="/accounts/logout">Logout</a>
-							{% else %}
-								Login with: 
-								<a href="javascript:void(0)" onclick="getLogin()">
-									<img src='/static/images/facebook.png' height="25px" width="25px" />
-								</a> |
-								{% comment %}
-								<a href="{% url auth_login %}">
-									<img src='/static/images/twitter.png' width:"20px" height="20px" />
-								</a>
-								{% endcomment %}
-								{% comment %}
-								<a href="{% url auth_login %}">
-									<img src='/static/images/google+_02_32x32.png' width:"20" height="20"/></a> |
-								{% endcomment %}
-								<a href="javascript:void(0)" class="login_top_link"><img src='/static/images/citysom_icon.png' height="25px" width="25px"/></a> | 
-								<a href="/accounts/register/" style="font-size: 15px";>Sign Up!</a>
-							{% endif %}
-						</div>
-						<div class="login_top_div" id="log_top_div" style="display: none;">
-							<form method="post" action="{% url auth_login %}">
-								{% csrf_token %}
-								<div>
-									<dl>
-										<dt><label for="id_username">Username:</label></dt> <dd><input id="id_username" type="text" name="username" maxlength="30" /></dd>
-										<dt><label for="id_password">Password:</label></dt> <dd><input type="password" name="password" id="id_password" /></dd>
-										<dt><input type="submit" value="Log in" class="login_submit" /></dt>
-									</dl>
-								</div>
-							</form>
-						</div>
 						{% comment %}
 						HIDING SEARCHBOX ON TOP
 						<div id="searchbox">
