@@ -24,6 +24,7 @@
         <script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
         <script type="text/javascript" src="/static/js/base_specific.js"></script>
         <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/bootstrap/js/bootstrap-carousel.js"></script>
         <!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
         <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
         <script type="text/javascript">
@@ -61,7 +62,26 @@
             </div>
             <div class="header-right">
                 <div class="header-slider">
-                    slider code
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            {% for event in events %}
+                                <div class="item">
+                                    <div class="instruction_slide_event">
+                                        <div class="instruction_slide_event_image">
+                                              <a href="/event/details?id={{event.id}}"><img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/></a>  
+                                        </div>
+                                        <div class="instruction_slide_event_title">
+                                            {{event.title}}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -114,14 +134,10 @@
         </div>
         </div> 
      </footer>
- </div>   
-    
-    
-    
-    
-    
-    
-    
+ </div>
+ <script>
+    $('.carousel').carousel();
+ </script>
 </body>
 </html>
     

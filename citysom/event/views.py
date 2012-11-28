@@ -1259,9 +1259,9 @@ def eventcreation(request):
     
 #----------------------------------------------------------------------------#
 def splash(request):
-    events = Event.objects.all().order_by("-id")[:50]
-    return render_to_response("splash.html",
-                              {events:events},
+    events = Event.objects.all().order_by("id")[0:50]
+    return render_to_response("splash2.html",
+                              {"events":events},
                               context_instance=RequestContext(request)
                               )
     
