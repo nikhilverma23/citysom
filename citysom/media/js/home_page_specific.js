@@ -270,10 +270,10 @@ function scroll_checker()
 $(document).ready(function(){
 	
 	
-	$('#price_range_select').show();
+	//$('#price_range_select').show();
 	$('#event_type_select').show();
-	$('#hours_range_select').show();
-	$('#event_audience_select').show();
+	//$('#hours_range_select').show();
+	//$('#event_audience_select').show();
 	
 	
 });
