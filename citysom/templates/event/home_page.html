@@ -15,13 +15,7 @@
        {% endcomment %}
 	<div class="row-fluid">
 		<div id="work_cal" class="span2"> 
-			<img src="/static/images/box_orange.png" class="step1orangebox"/>
-			<div class="step1">1</div>
-			<div id="work_cal_txt">
-				Pick a date range
-			</div>
 		<div class="clear"></div>
-        	<img src="/static/images/arrow_orange.png" class="stpe1orangearrow"/>
 	</div>
 	<div id="home_calendar" class="span7 offset1">&nbsp;</div>
 	</div>
@@ -93,101 +87,105 @@
 <div class="filledarea1" id="visu_content">
          	<!--Div for posters -->
 	<div class="row-fluid">
-		<div id="poster_filter" class="span2" style="float:left; position: relative; border:1px solid #E0E0E0;  border-radius:5px; padding:5px; background:#fff;">
-         	<div id="poster_filter_title_cont">
-         		<div id="poster_filter_title">
-         			<img src="/static/images/box_orange.png" width="32" height="32" style="width: 32px; height: 32px;"/>
-        			<div style="font:1em; color:white; display:inline; font-weight:bold; margin-left:-24px;">2</div>
-        			<div style="width:75%; display:block; font-family:'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:1.2em; color:#4C4C4C;float:right; margin-bottom:20px;">Filter results</div>
-         				<!--
-         				<p style="font-size:1.2em; color:#FF6600; margin-left:0.2em;">Filter events by:</p>
-         				-->
-         		</div>
-         	</div>
-		<p class="nav_menu">
-         		<button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Event type <img src="/static/images/btn_white_arr.png" alt="Event type" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
-         	</p>
-         	<div id="event_type_select" class="nav_div" style="line-height:1.5em; display: block;">
-         		<label class="checkbox">
-         			<em>Movie</em>
-         			<input type="checkbox" id="checkbox_movie" value="29" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Exhibition</em>
-         			<input type="checkbox" id="checkbox_exhibition" value="2" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Lecture/ Talk</em>
-         			<input type="checkbox" id="checkbox_lecture" value="3" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Concert</em>
-         			<input type="checkbox" id="checkbox_concert" value="4" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Sport</em>
-         			<input type="checkbox" id="checkbox_sport" value="5" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Theater/ Reading</em>
-         			<input type="checkbox" id="checkbox_theater" value="6" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Opera</em>
-         			<input type="checkbox" id="checkbox_opera" value="7" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Dance</em>
-         			<input type="checkbox" id="checkbox_dance" value="8" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Musical/ Show</em>
-         			<input type="checkbox" id="checkbox_musical" value="9" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Outdoor</em>
-         			<input type="checkbox" id="checkbox_outdoor" value="10" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Festival</em>
-         			<input type="checkbox" id="checkbox_festival" value="11" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Stand-Up</em>
-         			<input type="checkbox" id="checkbox_standup" value="12" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Course</em>
-         			<input type="checkbox" id="checkbox_course" value="13" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>City Activity</em>
-         			<input type="checkbox" id="checkbox_category" value="14" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Fair</em>
-         			<input type="checkbox" id="checkbox_fair" value="15" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Fundraiser</em>
-         			<input type="checkbox" id="checkbox_fundraiser" value="16" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Party</em>
-         			<input type="checkbox" id="checkbox_party" value="17" name="category">
-         		</label>
-         		<label class="checkbox">
-         			<em>Other</em>
-         			<input type="checkbox" id="checkbox_other" value="18" name="category">
-         		</label>
-         		
-         		<p class="nav_div_choices">
-         			<button class="nav_button_choice btn btn-mini btn-warning" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:8px;">Cancel</button>
-         			<button class="nav_button_choice btn btn-mini btn-info" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:8px;">OK</button>
-         		</p>
-         	</div>
-         	<p class="nav_menu">
-         		<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Price <img src="/static/images/btn_white_arr.png" alt="Price" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
+		     <div id="home_left" class="span2">
+			    <div class="home_left_section">
+				   <div class="home_left_section_title">
+					  What are you interested in ?
+				   </div>
+				   <div class="home_left_section_body">
+					  {% comment %}
+					  <p class="nav_menu">
+						 <button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Event type <img src="/static/images/plus_icon.png" alt="Event type" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
+					  </p>
+					  {% endcomment %}
+					  <div id="event_type_select" class="nav_div" style="line-height:1.5em; display: block;">
+						 <label class="checkbox">
+							 <em>Movie</em>
+							 <input type="checkbox" id="checkbox_movie" value="29" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Exhibition</em>
+							 <input type="checkbox" id="checkbox_exhibition" value="2" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Lecture/ Talk</em>
+							 <input type="checkbox" id="checkbox_lecture" value="3" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Concert</em>
+							 <input type="checkbox" id="checkbox_concert" value="4" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Sport</em>
+							 <input type="checkbox" id="checkbox_sport" value="5" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Theater/ Reading</em>
+							 <input type="checkbox" id="checkbox_theater" value="6" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Opera</em>
+							 <input type="checkbox" id="checkbox_opera" value="7" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Dance</em>
+							 <input type="checkbox" id="checkbox_dance" value="8" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Musical/ Show</em>
+							 <input type="checkbox" id="checkbox_musical" value="9" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Outdoor</em>
+							 <input type="checkbox" id="checkbox_outdoor" value="10" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Festival</em>
+							 <input type="checkbox" id="checkbox_festival" value="11" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Stand-Up</em>
+							 <input type="checkbox" id="checkbox_standup" value="12" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Course</em>
+							 <input type="checkbox" id="checkbox_course" value="13" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>City Activity</em>
+							 <input type="checkbox" id="checkbox_category" value="14" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Fair</em>
+							 <input type="checkbox" id="checkbox_fair" value="15" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Fundraiser</em>
+							 <input type="checkbox" id="checkbox_fundraiser" value="16" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Party</em>
+							 <input type="checkbox" id="checkbox_party" value="17" name="category">
+						 </label>
+						 <label class="checkbox">
+							 <em>Other</em>
+							 <input type="checkbox" id="checkbox_other" value="18" name="category">
+						 </label>
+						 
+						 <p class="nav_div_choices">
+							 <button class="nav_button_choice btn btn-mini btn-warning" id="cancel_type_select" onclick="$('#event_type_select').find('input[type=checkbox]:checked').removeAttr('checked'); $('#event_type_select').val(''); load_events()" style="float:left; margin-left:8px;">Cancel</button>
+							 <button class="nav_button_choice btn btn-mini btn-info" id="valid_type_select" onclick="var data=[];$('#event_type_select :checked').each(function(){data.push($(this).val());}); $('#event_type_select').val(data); load_events(); " style="float:right; margin-right:8px;">OK</button>
+						 </p>
+					 </div>
+				   </div>
+			    </div>
+			    <div class="home_left_section">
+				   <div class="home_left_section_title">
+					  What's important
+				   </div>
+				   <div class="home_left_section_body">
+					  <p class="nav_menu">
+         		<button class="nav_button" onclick="$('#price_range_select').toggle(); return false;"> Price <img src="/static/images/plus_icon.png" alt="Price" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
          	<div id="price_range_select" class="nav_div">
          		<!--<label style="float:left; width:40px;text-align:left;margin: 12px 0 0 0;"> Min:</label>-->
@@ -200,7 +198,7 @@
          		</p>
          	</div>
          	<p class="nav_menu">
-         		<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Show time <img src="/static/images/btn_white_arr.png" alt="On-air time" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
+         		<button class="nav_button" onclick="$('#hours_range_select').toggle(); return false;"> Show time <img src="/static/images/plus_icon.png" alt="On-air time" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
          	</p>
          	<div id="hours_range_select" class="nav_div" style="display:none; padding:0 10px; width:94%;">
          		<label>Minimum start time:</label>
@@ -286,9 +284,9 @@
 	</p>
 </div>
          		
-        <p class="nav_menu">
+		     <p class="nav_menu">
          	<button class="nav_button" onclick="$('#event_audience_select').toggle(); return false;">
-			<img src="/static/images/btn_white_arr.png" alt="Public" style="float:right;margin-right:-10px; 			margin-top:-2px;"/>Audience Type
+			<img src="/static/images/plus_icon.png" alt="Public" style="float:right;margin-right:-10px; 			margin-top:-2px;"/>Audience Type
 		</button> 							
          	</p>
          		<div id="event_audience_select" class="nav_div" style="display:none; line-height:1.5em;">
@@ -330,7 +328,9 @@
          				<button class="nav_button_choice btn btn-mini btn-info" id="valid_type_select" onclick="var tmp_aud=[];$('#event_audience_select :checked').each(function(){tmp_aud.push($(this).val());}); $('#event_audience_select').val(tmp_aud); load_events(); " style="float:right; margin-right:8px;">OK</button>
          			</p>
          		</div>
-         	</div>
+				   </div>
+			</div>
+		     </div>
 	<div id="poster_container" class="span10" >
          		<!--
          		<button class="nav_button" id="toggle_view" onclick="if(togl==0){togl=1; load_events(); $('#toggle_sort').show(); return false;} else{togl=0; load_events(); $('#toggle_sort').hide(); return false;}"> Toggle view </button>

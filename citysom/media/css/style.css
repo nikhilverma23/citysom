@@ -817,7 +817,7 @@ body
 
 /* Start Home page filtering paragraphs */
 p.nav_menu{
-	margin: 0 0 25px;
+	margin: 10px 0px;
 	position: relative;
 	text-align: center;
 }
@@ -829,12 +829,12 @@ p.nav_menu{
 	display:none;
 	width: 155px;
 	position: relative;
-	margin-bottom: 25px;
-	margin-top:-20px;
-	border-bottom: 0.1px groove #E0E0E0;
+	margin-top: 10px;
+	border-bottom: 1px dashed #E0E0E0;
     font-size: 0.85em;
     overflow: auto;
 }
+.nav_div:last-child{border-bottom: 0px;}
 
 /* End Home page filtering div */
 
@@ -852,17 +852,8 @@ button.nav_button {
    height: 30px;
    width: 90%;
    line-height:9px;
-   border: 0.1px solid #E0E0E0;
-   background: #EFEFEF;
-   background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#EFEFEF));
-   background: -webkit-linear-gradient(top, #FAFAFA, #EFEFEF);
-   background: -moz-linear-gradient(top, #FAFAFA, #EFEFEF);
-   background: -ms-linear-gradient(top, #FAFAFA, #EFEFEF);
-   background: -o-linear-gradient(top, #FAFAFA, #EFEFEF);
+   background: none;
    padding: 8.5px 17px;
-   -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   border-radius: 6px;
    /*text-shadow: rgba(0,0,0,.4) 0 1px 0;*/
    color: #4C4C4C;
    font-size: 13px;
@@ -874,8 +865,8 @@ button.nav_button {
    cursor: pointer;
    }
 button.nav_button:hover {
-   background: #ff6600;
-   color: #fff;
+   background: #CCCCCC;
+   border-radius: 5px;
    }
 button.nav_button:active {
    background: #ff6600;
@@ -2301,3 +2292,8 @@ ul#login_dropdown li ul{background: #000000;}
 ul#login_dropdown li ul li{text-align:  left; width: 160px;}
 b.caret{margin-top:8px !important;}
 div.alert-info{background-color: #F9D2B8; color: #FF6600; border-color: #F9D2B8;}
+
+
+div.home_left_section{border: 2px solid #A8A5A3; border-radius: 20px 0px 20px 0px; margin-bottom: 20px;}
+div.home_left_section_title{ background:  #FF6600; color: #FFFFFF; font-size: 13px; font-weight: bold; padding: 5px 10px; text-align:  center; border-radius:20px 0px 0px 0px;}
+div.home_left_section_body{}
