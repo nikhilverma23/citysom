@@ -67,7 +67,7 @@
 					</li>
 				</ul>
 				<div class="login_top_div" id="log_top_div" style="display: none;">
-					<form method="post" action="{% url auth_login %}">
+					<form method="post" action="{% url auth_login %}?next={{request.get_full_path}}">
 						{% csrf_token %}
 						<div>
 							<dl>
