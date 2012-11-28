@@ -1,9 +1,5 @@
 
 jQuery(document).ready(function() {
-	var loc = window.location.toString()
-	var page = loc.substring(loc.indexOf('/', 8), loc.length);
-	$('#topnavigation>ul>li>a[href="' + page + '"]').parent().addClass("current");
-	if(page =='/myprofile/home/'){$('#topnavigation>ul>li>a[href="/"]').parent().addClass("current");}
 	
 	var mouse_is_inside=false;
 	

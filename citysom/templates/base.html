@@ -39,14 +39,14 @@
 		<div id="headerbg" class="row-fluid">
 			<div id="topnavigation" style="position:  relative;">
 				<ul>
-					<li class="lilink">
-						<a href="{% url home %}" class="search_link" style="padding-top:7px;">Home</a>
+					<li class="lilink {% if active_link == "home" %}current{% endif %}">
+						<a href="{% url home %}" class="search_link">Home</a>
 					</li>
 					<!--<li>
 						<a href="#">Categorize</a>
 					</li>-->
 					{% if user.is_authenticated and user.userprofile.account_type == "professional" %}
-					<li>
+					<li class="lilink {% if active_link == "publish" %}current{% endif %}">
 						<a href="/event/createevent/">Publish</a>
 					</li>
 					{% endif %}
@@ -175,7 +175,7 @@
 		<div id="bottomnavigation">
 			<ul>
 				<li>
-					<a href="/about_us">About us</a>
+				<a href="/about_us">About us</a>
 			     </li>
 			     <li>
 			      	<a href="/contact_us">Contact us</a>

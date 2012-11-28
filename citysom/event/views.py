@@ -1251,7 +1251,8 @@ def eventcreation(request):
                                'eventform':event_form,
                                'eventform_poster':eventposter_form,
                                'frequency_range':frequency_range,
-                               'event_poster': event_poster
+                               'event_poster': event_poster,
+                               'active_link': "publish"
                                },
                               context_instance=RequestContext(request)
                               )
@@ -1270,7 +1271,8 @@ def home(request):
     return render_to_response("event/home_page.html",
                               {
                                "request":request,
-                               "category":category
+                               "category":category,
+                               "active_link":"home"
                                },
                               context_instance=RequestContext(request)
                               )
