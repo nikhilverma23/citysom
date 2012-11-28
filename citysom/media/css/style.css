@@ -360,10 +360,11 @@ body
 	}
 	
 #searchtextarea {
-    float: left;
-    height: 26px;
     margin: 7px 0 0 9px;
-    width: 455px;
+    width: 95px;
+    background: #EEEEEE;
+    font-size: 14px;
+    font-style: italic;
 }	
 
 .placeholder {

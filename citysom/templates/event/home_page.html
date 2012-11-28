@@ -98,6 +98,10 @@
 						 <button class="nav_button" onclick="$('#event_type_select').toggle(); return false;"> Event type <img src="/static/images/plus_icon.png" alt="Event type" style="float:right; margin-right:-10px; margin-top:-2px;"/></button>
 					  </p>
 					  {% endcomment %}
+					  <div>
+						 <input name="searchtextarea" id="searchtextarea" type="text" value="Search For.." onclick="if(this.value=='Search For..')this.value='';" onblur="if(this.value=='')this.value='Search For..';"/>
+						 <input type="button" name="submit" value="&nbsp;" id="searchbutton" />
+					  </div>
 					  <div id="event_type_select" class="nav_div" style="line-height:1.5em; display: block;">
 						 <label class="checkbox">
 							 <em>Movie</em>
