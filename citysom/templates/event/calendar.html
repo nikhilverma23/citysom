@@ -28,11 +28,11 @@
 		{% for day in daysrange %}
 			{% if check_current_month == 1 and day|add:1 == now.day and forloop.last %}
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
-			{% elif check_current_month == 1 and day|add:1 == now.day %}
+			{% elif check_current_month == 1 and day|add:1 == now.day and preset == "no" %}
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="calendar_start calendar_hover calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
 			{% elif check_current_month == 1 and day|add:1 == now.day|add:7 %}
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="calendar_end calendar_hover calendar_active {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
-			{% elif check_current_month == 1 and day|add:1 <= now.day|add:6 and day|add:1 >= now.day|add:1 %}
+			{% elif check_current_month == 1 and day|add:1 <= now.day|add:6 and day|add:1 >= now.day|add:1  and preset == "no" %}
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="calendar_hover{% if forloop.last%} calendar_end calendar_active{% endif %} {{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>
 			{% else %}
 				<a href="javascript:void(0)" rel="{{current_date.year}}-{{current_date.month}}-{{day|add:1}}" class="{{ day|add:last_weekday|divisibleby:"14"|yesno:"last_day,"}}">{{day|add:1}}</a>

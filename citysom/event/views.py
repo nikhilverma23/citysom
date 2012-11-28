@@ -1258,8 +1258,9 @@ def eventcreation(request):
     
 #----------------------------------------------------------------------------#
 def splash(request):
+    events = Event.objects.all().order_by("-id")[:50]
     return render_to_response("splash.html",
-                              {},
+                              {events:events},
                               context_instance=RequestContext(request)
                               )
     
@@ -1558,8 +1559,10 @@ def calendar(request):
     
     try:
         current_date = datetime.datetime(int(request.GET["year"]),int(request.GET["month"]),1)
+        preset = "yes"
     except:
         current_date = datetime.datetime(int(now.year),int(now.month),1)
+        preset = "no"
         
     prev_month=current_date+relativedelta(months=-1)
     prev_year=current_date+relativedelta(years=-1)
@@ -1584,7 +1587,8 @@ def calendar(request):
                                 "check_current_month":check_current_month,
                                 "weekday":range(weekday%7),
                                 "last_weekday":(weekday%7)+1,
-                                "now":now
+                                "now":now,
+                                "preset":preset
                             },
                              context_instance=RequestContext(request)
                              )

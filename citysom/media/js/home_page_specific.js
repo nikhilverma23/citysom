@@ -31,7 +31,7 @@ function load_events(append){
   	filter_time = $("#hours_range_select").val();
   	category = $("#event_type_select").val();
   	audience = $('#event_audience_select').val()
-  	search_text = $("#searchtextarea").val();
+	search_text = $("#searchtextarea").val();
 	sort = $("#sort").val();
   	
   	if(!isNaN(min_price))
@@ -150,7 +150,7 @@ function load_events(append){
   		}
   				
   					
-  	if(search_text)
+  	if(search_text!="" && search_text!="Search For..")
 	{
 		url +='&search_text='+search_text;
 		hash +='&search_text='+search_text;
