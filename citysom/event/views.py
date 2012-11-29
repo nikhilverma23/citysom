@@ -1259,9 +1259,16 @@ def eventcreation(request):
     
 #----------------------------------------------------------------------------#
 def splash(request):
-    events = Event.objects.all().order_by("id")[0:50]
+    events = Event.objects.all().order_by("id")[:10]
+    show_like = {}
+    for event in events.iterator():
+        show_like[event.id] = 1
+        for popularity in event.popularity_set.iterator():
+            if popularity.user_id == request.user.id:
+                show_like[event.id] = 0
     return render_to_response("splash2.html",
-                              {"events":events},
+                              {"events":events,"show_like":show_like,\
+                               'request':request},
                               context_instance=RequestContext(request)
                               )
     

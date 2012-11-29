@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     url(r'^about_us/$', direct_to_template, {'template': 'aboutus.html'}, 'about_us'),
     url(r'^contact_us/$', direct_to_template, {'template': 'contactus.html'}, name='contact_us'),
     url(r'^legal_info/$', direct_to_template, {'template': 'legal_info.html'}, name='legal_info'),
-    
+    (r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
     #for django-registration app.
     (r'^tinymce/', include('tinymce.urls')),
     (r'^accounts/', include('registration.backends.default.urls')),

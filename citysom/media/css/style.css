@@ -2191,6 +2191,10 @@ h2.oneliner{color: #FF6600; line-height:1.3em; clear:both; font-size: 23px; font
     text-decoration:none;
 }
   .join-btn span{display: block;}
+.footer-msg{width: 50px;}
+.footer-msg h1{color: #4C4C4C;}
+.splash2-user-sign-in-top{ color: #4C4C4C; font-size: 14px;width:150px;}
+#splash2-user-sign-in-bottom{ margin-top:2em; font-weight:bold;width:150px;float:right;}
   .exist-user-sign{ color: #4C4C4C; font-size: 14px; margin-top: 40px; /*text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);*/}
   .exist-user-sign a{color: #4C4C4C; font-weight: bold; text-decoration: none;}
   .exist-user-sign a:hover{color: orange; text-decoration: underline;}
