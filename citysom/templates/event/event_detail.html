@@ -69,6 +69,16 @@
 						<div class="clear" style="margin-bottom: 10px;"></div>
 					{% endif %}
 					<div><a href="http://{{eventdetails.eventwebsite|cut:"http://"}}" class="gotoeventwebsite" target="_blank">Go to event website</a></div>
+					<div style="margin-top: 10px;">
+						<div class="btn-group">
+						<button data-toggle="dropdown" class="btn btn-success dropdown-toggle">Add to <span class="caret"></span></button>
+						<ul class="dropdown-menu">
+						  <li><a href="/myprofile/wishlist?action=add&id={{eventdetails.id}}">Bookmark</a></li>
+						  <li><a href="#">ICAL</a></li>
+						  <li><a href="#">Outlook</a></li>
+						</ul>
+					      </div>
+					</div>
 			</div>
 		</div>
 		<div class="detail_right">
