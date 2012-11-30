@@ -2309,4 +2309,18 @@ div.instruction_slide_event_title{margin-top: 5px; color: #000000; font-size: 16
 div.instruction_slide_event_description{margin-top: 5px; font-size: 14px;}
 .carousel-control.left{left: -22px !important;}
 .carousel-control.right{right: -22px !important;}
-div.carousel{border-radius: 3px; border: 3px solid #FF6600;}
+div.carousel{border-radius: 3px;}
+.websitelink {
+    background: none;
+    bottom: 0;
+    font-size: 11px;
+    color:black;
+    height: 16px;
+    line-height: 16px;
+    max-width: 40%;
+    overflow: hidden;
+    padding: 0 4px;
+    float:left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

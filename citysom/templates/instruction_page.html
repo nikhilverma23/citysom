@@ -79,27 +79,38 @@
                                 <div class="item">
                                     <div class="instruction_slide_event">
                                         <div class="instruction_slide_event_image">
-                                              <a href="/event/details?id={{event.id}}"><img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/></a>  
+		                                      <a href="/event/details?id={{event.id}}">
+		                                      	<img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/>
+					    					  </a> 
+	                                    						
                                         </div>
+                                        <div class="websitelink">
+	                                        {{event.eventwebsite}}
+					    				</div>
+					    				<div class="clear"></div>
                                         <div class="instruction_slide_event_title">
                                             {{event.title}}
-					    
-						<div style="margin-top: 10px;">
-							{% ifequal show_like 0 %}
-							<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
-								<button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
-							</a>
-							{% else %}
-							<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
-								<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-							</a>
-							{% endifequal %}
-						<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
-						
-						</div>
-					
+					    				</div>
+					    				<div class="instruction_slide_event_description">
+                                            {{event.description|safe|truncatechars:50}}
                                         </div>
-                                    </div>
+                                        
+										<div style="margin-top: 10px;">
+											{% ifequal show_like 0 %}
+												<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
+													<button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
+												</a>
+											{% else %}
+												<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
+													<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+												</a>
+											{% endifequal %}
+											<div class="likes_count_div" style="display: none;">
+												<div class="likes_arrow"></div>
+												<span class="likes_count">{{event.popularity_set.count}}</span>
+											</div>
+										</div>
+									</div>
                                 </div>
                             
 			    {% endfor %}
