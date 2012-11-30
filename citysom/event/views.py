@@ -14,9 +14,6 @@ from django.template import RequestContext
 from django import http
 from django.db.models import Q, Count, Max, Min
 from django.contrib.auth.decorators import login_required
-from icalendar import Calendar
-from django.http import HttpResponse
-from django.contrib.sites.models import Site
 from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
 # citysom imports
 from citysom import settings
