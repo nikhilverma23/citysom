@@ -81,6 +81,9 @@
                                         <div class="instruction_slide_event_image">
                                               <a href="/event/details?id={{event.id}}"><img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/></a>  
                                         </div>
+                                        <div class="instruction_slide_event_description">
+                                            {{eventdetails.description|safe|truncatechars:200}}
+                                        </div>
                                         <div class="instruction_slide_event_title">
                                             {{event.title}}
 					    {% if request.user.is_authenticated %}
