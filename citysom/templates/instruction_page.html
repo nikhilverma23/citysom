@@ -95,22 +95,27 @@
                                             {{event.description|safe|truncatechars:50}}
                                         </div>
                                         
-										<div style="margin-top: 10px;">
-											{% ifequal show_like 0 %}
-												<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
-													<button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
-												</a>
-											{% else %}
-												<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
-													<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-												</a>
-											{% endifequal %}
-											<div class="likes_count_div" style="display: none;">
-												<div class="likes_arrow"></div>
-												<span class="likes_count">{{event.popularity_set.count}}</span>
-											</div>
-										</div>
-									</div>
+					    <div style="margin-top: 10px;">
+						    {% comment %}
+						    {% ifequal show_like 0 %}
+							    <a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
+								    <button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
+							    </a>
+						    {% else %}
+							    <a href="{% url auth_login %}?next=/event/details/?id={{event.id}}" class="like_link">
+								    <button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+							    </a>
+						    {% endifequal %}
+						    {% endcomment %}
+						    <a href="{% url auth_login %}?next=/event/details/?id={{event.id}}" class="like_link">
+							<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+						    </a>
+						    <div class="likes_count_div" style="display: none;">
+							    <div class="likes_arrow"></div>
+							    <span class="likes_count">{{event.popularity_set.count}}</span>
+						    </div>
+					    </div>
+					</div>
                                 </div>
                             
 			    {% endfor %}
@@ -187,6 +192,7 @@
  <script>
     $('.carousel').carousel();
  </script>
+    {% comment %}
     <script>
 	jQuery("a.like_link").live("click", function(e){
 		e.preventDefault();
@@ -223,6 +229,7 @@
 		}
 	});
     </script>
+    {% endcomment %}
 </body>
 </html>
     
