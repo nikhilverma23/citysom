@@ -1543,7 +1543,7 @@ color:#FF6600;
 
 #searchbutton{}
 .menurecipes_content{width: 894px;}
-#searchbutton{background-image:url(../images/searchbox_button.png); height: 25px; width: 24px; margin-top: 8px;}
+#searchbutton{background:url(../images/searchbox_button.png); height: 25px; width: 24px; margin-top: 8px;}
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 /*#upload_link{margin-top:10px;margin-left:40px; padding: 10px; color: #111111; border: 1px solid #666666; border-radius: 10px;}*/
 .left_aligned_radios ul{margin-left: 32px;}

@@ -97,7 +97,7 @@
 								<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
 							</a>
 							{% endifequal %}
-						<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
+						<div class="likes_count_div"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
 						
 						</div>
 					{% else %}
@@ -208,13 +208,6 @@
 				link_object.attr("href",new_link);
 			}
 		});
-	});
-	jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
-	jQuery("a.like_link").live("mouseout",function(){
-	if(jQuery("span.likes_count", jQuery(this).parent()).html()!="+1")
-		{
-			jQuery("div.likes_count_div", $(this).parent()).hide();
-		}
 	});
     </script>
 </body>
