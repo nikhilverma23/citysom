@@ -14,6 +14,9 @@ from django.template import RequestContext
 from django import http
 from django.db.models import Q, Count, Max, Min
 from django.contrib.auth.decorators import login_required
+from icalendar import Calendar
+from django.http import HttpResponse
+from django.contrib.sites.models import Site
 from django.http import Http404, HttpResponse,HttpResponseRedirect, HttpResponseServerError
 # citysom imports
 from citysom import settings
@@ -1266,7 +1269,7 @@ def splash(request):
         for popularity in event.popularity_set.iterator():
             if popularity.user_id == request.user.id:
                 show_like[event.id] = 0
-    return render_to_response("splash2.html",
+    return render_to_response("instruction_page.html",
                               {"events":events,"show_like":show_like,\
                                'request':request},
                               context_instance=RequestContext(request)
@@ -1771,4 +1774,4 @@ def comment_delete(request):
     
     event_id = request.GET['event_id']
     return HttpResponseRedirect('/event/details/?id='+event_id)
-#----------------------------------------------------------------------------#    
+#----------------------------------------------------------------------------#

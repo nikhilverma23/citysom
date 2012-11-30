@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
+<html lang="en" dir="ltr" version="HTML+RDFa 1.1">
+<head profile="http://www.w3.org/1999/xhtml/vocab">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=yes" />
+    <link rel="shortcut icon" href="http://favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>Citysom</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css" />
+        <link rel="icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
+        <link rel "shortcut icon" type="image/x-icon" href="/static/images/citysom_icon.png"/>
+        
+        <link type="text/css" href="/static/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+        <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css' />
+        <!--[if lt IE 9]>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="/static/js/jquery/js/jquery-1.7.2.min.js"></script>
+        <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+        <!--<script src="/static/js/jquery.uniform.min.js" type="text/javascript" charset="utf-8"></script>-->
+        <script type="text/javascript" src="/static/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery/js/jquery-ui-timepicker.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.jscrollpane.js"></script>
+        <script type="text/javascript" src="/static/js/base_specific.js"></script>
+        <script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/bootstrap/js/bootstrap-carousel.js"></script>
+        <!--[if lt IE 9]><script src="/static/js/html5shiv.js"></script><![endif]-->
+        <script src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28987362-1']);
+        _gaq.push(['_trackPageview']);
+      
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      
+        </script>
+    
+</head>
+<style type="text/css">
+    html{direction: ltr;}
+    body{
+    font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;  font-size: 13px; color:#999; line-height:1.4em; padding:0; margin:0;}
+</style>
+<body>
+    
+ <div class="main-container">
+     <header id="header">
+        <div class="inner">
+            <div class="header-left">
+                <div id="logo">
+                        <a href="{% url home %}"> <img src="/static/images/citysom_logo.png" width="200" height="65" title="Citysome" alt="Citysom" /> </a>
+                </div>
+                <h2 class="oneliner" style='margin-top:1em;'>Find and share Boston's best events</h2>
+                {% if request.user.is_authenticated %}
+		    <div class="splash2-user-sign-in-top">
+			<div style="color:#4C4C4C; font-size:22px; text-align:center; font-weight:50;">Hi {{request.user}}!</div>
+			<a href="/home">
+			    <button class="btn btn-large btn-success btn-block" style="margin-top:2em; font-weight:bold;">Let's get started!</button>
+			</a>
+			<div class="exist-user-sign"><a href="/logout/">Sign Out</a><span></span></div>
+		    </div>
+		{% else %}
+		    <a class="join-btn" href="/accounts/register/">Join Citysom <span></span></a>
+		    <div class="exist-user-sign">Existing user? <a href="{% url auth_login %}?next=/myprofile/home/">Sign in</a><span></span></div>
+		{% endif %}
+	    </div>
+            <div class="header-right">
+                <div class="header-slider">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            {% for event in events %}
+                                <div class="item">
+                                    <div class="instruction_slide_event">
+                                        <div class="instruction_slide_event_image">
+                                              <a href="/event/details?id={{event.id}}"><img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/></a>  
+                                        </div>
+                                        <div class="instruction_slide_event_title">
+                                            {{event.title}}
+					    
+						<div style="margin-top: 10px;">
+							{% ifequal show_like 0 %}
+							<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
+								<button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
+							</a>
+							{% else %}
+							<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
+								<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+							</a>
+							{% endifequal %}
+						<div class="likes_count_div" style="display: none;"><div class="likes_arrow"></div><span class="likes_count">{{eventdetails.popularity_set.count}}</span></div>
+						
+						</div>
+					
+                                        </div>
+                                    </div>
+                                </div>
+                            
+			    {% endfor %}
+                        </div>
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </header>
+     <section id="outer-wrapper">
+        <div class="wrapper">
+            <div id="genpic2">
+                <div class="main-heading color-gray ptb-15">Do you see yourself asking...I want to find something fun to do but just don't know where to look?"</div>
+         		<div style="color:#4C4C4C; font-size:50px; text-align:center; font-weight:600; line-height:135px;">Introducing Citysom</div>
+         		<!--<div class="main-heading color-gray" style="padding:15px; line-height40px;:">Finding top things to do become as easy as 1, 2, 3!</div>-->
+         		<!--<div id="genprom2" style="color:#FF6600; font-size:22px; font-weight:bold; width:50%; text-align:center; padding:20px 30px; border-radius:5px;">
+                            As easy as 1, 2, 3!
+				</div> -->
+                    <div id="gendesc2" style="display:inline-block; margin-bottom:10px;  color:#777777; width:100%; text-align:middle; padding:1em; font-size:2em; border-radius:5px; margin-top:0.25em;">
+                            <section class="clear-both overflow-hidden" style='margin-bottom:2em;'>
+                                    <div class="howitworks-text">
+                                            <h1 class="main-heading">1. Pick a date</h1>
+                                            <p class="main-text">Tell us when you want to get out. First click to let us know the earlier date you look for events, second click for the last date and let us do the magic.</p>
+                                    </div>
+                                    <div class="howitworks-pic">
+                                            <img src="/media/images/calendar.png" />
+                                    </div>
+                            </section>
+                            <section class="clear-both overflow-hidden" style='margin-bottom:17em;'>
+                                    <div class="howitworks-text" style="float:right; margin-bottom:0px;">
+                                            <h1 class="main-heading">2. Browse, get excited</h1>
+                                            <p class="main-text">Browse through the results, maybe using the left column filters to help you further refine your criteria. <br><br>Found something interesting? Click on <strong>"More info"</strong> to know more about the event. <br><br>An event looks really amazing? Click on <strong>"Recommend"</strong> to help out other users, like you find the best events.</p>
+                                    </div>
+                                    <div class="howitworks-pic" style="float:left; ">
+                                            <img src="/media/images/filtering2.png" style="margin-top:-1em;"/>
+                                    </div>
+                            </section>                           
+                            <section class="clear-both overflow-hidden" style='margin-bottom:2em;'>
+                                    <div class="howitworks-text" style="float:left; margin-top:1em;">
+                                            <h1 class="main-heading">3. Enjoy!</h1>
+                                            <p class="main-text">Now that you have found some cool stuff going on. Tell you friends about it and get prepared for your next time out!</p>
+                                    </div>
+                                    <div class="howitworks-pic" style="float:right;">
+                                            <img src="/media/images/event2.png" />
+                                    </div>
+                            </section>	
+            </div>
+        </div>
+     </section>
+     <footer id="footer">
+        <div class="zTpSzd">
+	    {% if request.user.is_authenticated %}
+		
+		<a href="/home">
+		    <button class="btn btn-large btn-success btn-block" id="splash2-user-sign-in-bottom">Let's get started!</button>
+		</a>
+		<div class="cKY3Ic">
+		    <h1 style='color:#4C4C4C;'>Want to know more from Citysom !</h1>
+		</div>
+		    
+	    {% else %}
+		<a class="fright sLxfWd wveQ3d VIpgJd-TzA9Ye-eEGnhe" href="/accounts/register/">Join Citysom</a>
+		<div class="cKY3Ic">
+		    <h1 style='color:#4C4C4C;'>Join Citysom today</h1>
+		</div>
+            {% endif %}
+        
+        </div> 
+     </footer>
+ </div>
+ <script>
+    $('.carousel').carousel();
+ </script>
+    <script>
+	jQuery("a.like_link").live("click", function(e){
+		e.preventDefault();
+		url = jQuery(this).attr("href");
+		link_object = $(this);
+		jQuery.get(url,function(data){
+			parent = link_object.parent();
+			$("span.likes_count", parent).html(data);
+			var old_link = link_object.attr("href");
+			var button_obj = link_object.children("button");
+			if(button_obj.attr("class") == "misc_pres_like")
+			{
+				button_obj.removeClass("misc_pres_like");
+				button_obj.addClass("misc_pres_unlike");
+				button_obj.html("Unlike<img src=\"/static/images/btn_white_arr.png\" alt=\"That's not good\" />");
+				var new_link = old_link.replace("like","unlike");
+				link_object.attr("href",new_link);
+			}
+			else
+			{
+				button_obj.removeClass("misc_pres_unlike");
+				button_obj.addClass("misc_pres_like");
+				button_obj.html("Like<img src=\"/static/images/btn_white_arr.png\" alt=\"That's good\" />");
+				var new_link = old_link.replace("unlike","like");
+				link_object.attr("href",new_link);
+			}
+		});
+	});
+	jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
+	jQuery("a.like_link").live("mouseout",function(){
+	if(jQuery("span.likes_count", jQuery(this).parent()).html()!="+1")
+		{
+			jQuery("div.likes_count_div", $(this).parent()).hide();
+		}
+	});
+    </script>
+</body>
+</html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
