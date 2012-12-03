@@ -12,5 +12,5 @@ urlpatterns = patterns(
     (r'^details/$', 'get_event_details'),
     (r'^update_city/$', 'update_city'),
     (r'^comment_delete/$', 'comment_delete'),
-    #url(r'^export/$', 'export', name="event_export"),
+    url(r'^export/$', 'export', name="event_export"),
 )

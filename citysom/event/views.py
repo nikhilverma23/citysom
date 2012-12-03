@@ -9,7 +9,7 @@ from operator import or_, and_
 from dateutil.relativedelta import *
 from calendar import monthrange
 # django  imports
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django import http
 from django.db.models import Q, Count, Max, Min
@@ -1259,13 +1259,18 @@ def eventcreation(request):
     
 #----------------------------------------------------------------------------#
 def splash(request):
-    events = Event.objects.all().order_by("id")[:10]
+    if request.user.is_authenticated():
+        return redirect('home')
+    
+    events = Event.objects.all().order_by("id")[:50]
+    
     show_like = {}
     for event in events.iterator():
         show_like[event.id] = 1
         for popularity in event.popularity_set.iterator():
             if popularity.user_id == request.user.id:
                 show_like[event.id] = 0
+    
     return render_to_response("instruction_page.html",
                               {"events":events,"show_like":show_like,\
                                'request':request},
@@ -1772,3 +1777,22 @@ def comment_delete(request):
     event_id = request.GET['event_id']
     return HttpResponseRedirect('/event/details/?id='+event_id)
 #----------------------------------------------------------------------------#
+from icalendar import Calendar
+
+
+def export(request):
+    event_id = request.GET['id']
+    event_obj = Event.objects.get(id=event_id)
+    cal = Calendar()
+    
+    ical_event = {}
+    ical_event['summary']= event_obj.description
+    ical_event['dtstart']= event_obj.date_started
+    ical_event['dtend']= event_obj.end_date
+    ical_event['dtstamp']= event_obj.end_date
+    ical_event['uid'] = '%d.event.events.%s' % (event_obj.id)
+    cal.add_component(ical_event)
+
+    response = HttpResponse(cal.as_string(), mimetype="text/calendar")
+    response['Content-Disposition'] = 'attachment; filename=%s.ics' % event_obj.id
+    return response

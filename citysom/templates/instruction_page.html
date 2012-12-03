@@ -1,3 +1,4 @@
+{% load replace %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN">
 <html lang="en" dir="ltr" version="HTML+RDFa 1.1">
 <head profile="http://www.w3.org/1999/xhtml/vocab">
@@ -48,7 +49,6 @@
     font-family: "Helvetica Neue", Helvetica,Arial, sans-serif;  font-size: 13px; color:#999; line-height:1.4em; padding:0; margin:0;}
 </style>
 <body>
-    
  <div class="main-container">
      <header id="header">
         <div class="inner">
@@ -67,6 +67,9 @@
 		    </div>
 		{% else %}
 		    <a class="join-btn" href="/accounts/register/">Join Citysom <span></span></a>
+		    <br>
+		    <br>
+		    <a href="javascript: void(0)" onclick="login()"><img src="/static/images/flogin.jpg"></a>
 		    <div class="exist-user-sign">Existing user? <a href="{% url auth_login %}?next=/myprofile/home/">Sign in</a><span></span></div>
 		{% endif %}
 	    </div>
@@ -79,45 +82,50 @@
                                 <div class="item">
                                     <div class="instruction_slide_event">
                                         <div class="instruction_slide_event_image">
-		                                      <a href="/event/details?id={{event.id}}">
-		                                      	<img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/>
-					    					  </a> 
-	                                    						
+		                            <a href="/event/details?id={{event.id}}">
+						<img src="/media/images/{{event.event_poster|cut:"images/"}}" title="{{event.title}}"/>
+					    </a>
+					    {% if event.eventwebsite %}
+					    <div class="websitelink">
+						    <a href="http://{{event.eventwebsite|cut:'http://'}}" target="_blank">{{event.eventwebsite|cut:'http://'}}</a>
+					    </div>
+					    {% endif %}
                                         </div>
-                                        <div class="websitelink">
-	                                        {{event.eventwebsite}}
-					    				</div>
-					    				<div class="clear"></div>
+					<div class="clear"></div>
                                         <div class="instruction_slide_event_title">
                                             {{event.title}}
-					    				</div>
-					    				<div class="instruction_slide_event_description">
-                                            {{event.description|safe|truncatechars:50}}
-                                        </div>
-                                        
-					    <div style="margin-top: 10px;">
-						    {% comment %}
-						    {% ifequal show_like 0 %}
-							    <a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
-								    <button class="misc_pres_unlike" style="width: 155px;">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
-							    </a>
-						    {% else %}
-							    <a href="{% url auth_login %}?next=/event/details/?id={{event.id}}" class="like_link">
-								    <button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-							    </a>
-						    {% endifequal %}
-						    {% endcomment %}
-						    <a href="{% url auth_login %}?next=/event/details/?id={{event.id}}" class="like_link">
-							<button class="misc_pres_like" style="width: 155px;">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
-						    </a>
-						    <div class="likes_count_div" style="display: none;">
-							    <div class="likes_arrow"></div>
-							    <span class="likes_count">{{event.popularity_set.count}}</span>
-						    </div>
-					    </div>
 					</div>
+					<div class="instruction_slide_event_description">
+                                            {{event.description|striptags|truncatechars:50}}
+                                        </div>
+					<div style="margin-top: 10px;">
+					    {% if user.is_authenticated %}
+						{% with event_id=event.id %}
+							{% with show_like_event=show_like|keyvalue:event_id %}
+								{% ifequal show_like_event 0 %}
+									<a href="/myprofile/popularity/?action=unlike&id={{event.id}}" class="like_link">
+										<button class="misc_pres_unlike">Unlike<img src="/static/images/btn_white_arr.png" alt="That's not good" /></button>
+									</a>
+								{% else %}
+									<a href="/myprofile/popularity/?action=like&id={{event.id}}" class="like_link">
+										<button class="misc_pres_like">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+									</a>	
+								{% endifequal %}
+							{% endwith %}
+						{% endwith %}
+					    {% else %}
+						<a href="{% url auth_login %}?next=/event/details/?id={{event.id}}" class="like_link">
+						    <button class="misc_pres_like">Like<img src="/static/images/btn_white_arr.png" alt="That's good" /></button>
+						</a>
+					    {% endif %}
+					    <div class="likes_count_div" style="padding: 6px 0px;">
+						    <div class="likes_arrow"></div>
+						    <span class="likes_count">{{event.popularity_set.count}}</span>
+					    </div>
+					    <button class="misc_pres_more_info" onclick="document.location.href='/event/details?id={{event.id}}';">More info <img src="/static/images/btn_white_arr.png" alt="Get more info" style="float:right; margin-right:5px; margin-top:4px;"/></button>
+					    </div>
+				    </div>
                                 </div>
-                            
 			    {% endfor %}
                         </div>
                         <!-- Carousel nav -->
@@ -188,12 +196,70 @@
         
         </div> 
      </footer>
+     <div id="fb-root" style="display: none;"></div>
+	<script>
+	  window.fbAsyncInit = function() {
+	    FB.init({
+	      appId      : '291495594293239', // App ID
+	      status     : true, // check login status
+	      cookie     : true, // enable cookies to allow the server to access the session
+	      xfbml      : true  // parse XFBML
+	    });
+		FB.Event.subscribe('auth.login', function(response) {
+			console.log('User is Logged In');
+		});
+	
+		FB.Event.subscribe('auth.logout', function(response) {
+			console.log('Session was terminated!');
+		});
+	
+		FB.Event.subscribe('edge.create', function(response) {
+			console.log("User liked <a target='_blank' href='" + response + "'>this page.</a>");
+		});
+	  };
+	
+	  // Load the SDK Asynchronously
+	  (function(d){
+	     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+	     if (d.getElementById(id)) {return;}
+	     js = d.createElement('script'); js.id = id; js.async = true;
+	     js.src = "//connect.facebook.net/en_US/all.js";
+	     ref.parentNode.insertBefore(js, ref);
+	   }(document));
+	   
+	   function getLogin()
+		{
+			FB.getLoginStatus(function(response) {
+			  if (response.status === 'connected') {
+				login();
+			  } else if (response.status === 'not_authorized') {
+				login();
+			  } else {
+				login();
+			  }
+			 });
+		}
+		
+		function login()
+		{
+			FB.login(function(response) {
+			   if (response.authResponse) {
+				 FB.api('/me', function(response) {
+					window.location.hash = '';
+				   document.location.href='registerfb/?email='+response.email+'&first_name='+response.first_name+'&last_name='+response.last_name+'&gender='+response.gender;
+				 });
+			   } else {
+				 console.log('User cancelled login or did not fully authorize.');
+			   }
+			 }, {scope:'email'});
+		}
+		</script>
  </div>
  <script>
     $('.carousel').carousel();
  </script>
-    {% comment %}
     <script>
+	{% if request.user.is_authenticated %}
 	jQuery("a.like_link").live("click", function(e){
 		e.preventDefault();
 		url = jQuery(this).attr("href");
@@ -221,15 +287,8 @@
 			}
 		});
 	});
-	jQuery("a.like_link").live("mouseover",function(){jQuery("div.likes_count_div", $(this).parent()).show();});
-	jQuery("a.like_link").live("mouseout",function(){
-	if(jQuery("span.likes_count", jQuery(this).parent()).html()!="+1")
-		{
-			jQuery("div.likes_count_div", $(this).parent()).hide();
-		}
-	});
+	{% endif %}
     </script>
-    {% endcomment %}
 </body>
 </html>
     

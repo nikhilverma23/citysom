@@ -59,7 +59,7 @@
 								<li><a href="{% url dashboard %}">My profile</a></li>
 								<li><a href="/accounts/logout">Logout</a></li>
 							{% else %}
-								<li><a href="javascript:void(0)">Login with facebook <img src='/static/images/facebook.png' style="width: 25px; height: 25px;"/></a></li>
+								<li><a href="javascript:void(0)" onclick="getLogin()">Login with facebook <img src='/static/images/facebook.png' style="width: 25px; height: 25px;"/></a></li>
 								<li><a href="javascript:void(0)" class="login_top_link">Login with citysom <img src='/static/images/citysom_icon.png' style="width: 25px; height: 25px;"/></a></li>
 								<li><a href="/accounts/register/">Join Citysom</a></li>
 							{% endif %}
