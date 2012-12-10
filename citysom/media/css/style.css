@@ -1316,7 +1316,7 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 /*.cre_event_content p{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:1.2em; font-weight: normal; color:#FF8C00; font-style:italic;}*/
 .cre_event_img{margin-bottom:1.5em; font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; float:left; width:20%;}
 
-.login_content .form_fields{clear: both; margin-bottom: 20px; margin-left:35px;}
+.login_content .form_fields{clear: both; margin-bottom: 20px;}
 .cre_event_content .form_fields{clear: both; margin-bottom: 2.5em; margin-left:6em;}
 
 /*.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#444444; margin-top:8px; margin-left:2em; }*/
@@ -2328,3 +2328,21 @@ div.carousel{border-radius: 3px;}
 {
     color: #00CC33;
 }
+
+
+.login_content .control-label {
+  float: left;
+  width: 190px !important;
+  padding-top: 5px;
+  text-align: justify;
+  margin-left:10px !important;
+}
+.login_content .form-horizontal input{float:left; margin-left:200px !important;}
+.login_content .form-horizontal label{font-weight:bold;}
+.login_content .form-horizontal input[type="text"], .login_content .form-horizontal input[type="password"]{width:50% !important; float:left; margin-left:200px !important;}
+.login_content .form-horizontal legend{font-weight:bold; color:#FF6600; background: #F3F3F3;}
+.login_content .form-horizontal legend span{padding-left:10px; font-size:1.1em;}
+
+
+
+

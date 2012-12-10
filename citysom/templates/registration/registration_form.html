@@ -8,7 +8,7 @@
 <div class="clear"></div>
 <div class="bln_area"></div>-->
 <div class="row-fluid">
-	<div class="login_content span6 offset3" style="background:white; padding:2em 3em; border:1px solid #E0E0E0; border-radius:5px;">
+	<div class="login_content" style="padding:0; height:auto; background:white; margin-bottom: 20px; border:1px solid #E0E0E0; border-radius:5px;">
 		{% if form.errors %}
 		<div class="alert" style="width:90%;">
 			<button type="button" class="close" data-dismiss="alert">x</button>
@@ -17,7 +17,7 @@
 		{% endif %}
 
 		<form class="form-horizontal" method="post"  action="">
-			<legend>Create an account</legend>
+			<legend><span>Create an account</span></legend>
 			{% csrf_token %}
 			<div class="form_fields control-group">
 				{% if form.username.errors %}
@@ -55,7 +55,7 @@
 				<label class="control-label" for="id_account_type"></label>
     			{{ form.account_type }}
 			</div>
-			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:9em; margin-top:1em; width:40%;">Create account!</button>
+			<button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:12.5em; margin-top:1em; width:30%;">Create account!</button>
 		</form>
 	</div>
 </div>
