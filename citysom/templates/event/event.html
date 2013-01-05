@@ -19,7 +19,7 @@
                 <button id="upload_link" class="uploader btn btn-mini btn-primary" value="Upload Poster" >Change Poster</button>
             	{% else %}
             	<img src="/static/images/upload.png" alt="Poster" id="poster_image" />
-                <button id="upload_link" class="btn btn-small btn-primary btn-block" type="button" value="Upload Poster" style="width:108% !important; margin-top:0.5em;">Upload Poster</button>
+                <button id="upload_link" class="btn btn-small btn-primary btn-block" type="button" value="Upload Poster">Upload Poster</button>
             	{% endif %}
             </div>
 		</form>
@@ -35,7 +35,7 @@
     		{% csrf_token %}
         	<div class="width-60 fltlft">
             	<fieldset class="adminform">
-            		<ul class="adminformlist formdata" style="list-style: none;">
+            		<ul class="adminformlist formdata">
 						<li class="formlist1">
 							{% if eventform.title.errors %}
 							<p class="text-error" style="margin-left:12em; line-height:1em;">{{ eventform.title.errors|join:", "  }}</p>
@@ -100,7 +100,7 @@
                         	<b style="float:left;">Event open hours:</b>
                         	<div id="start_hour">
                         	<div class="start_left">
-								<span style="float: right; height: 20px; margin-top: 10px; margin-bottom:10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+								<span style="float: right; line-height: 1.4em; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
                             	<div class="clear"></div>
                             	{% if eventform.start_hours_on_monday.errors %}
 				    			<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_monday.errors|join:", "  }}</p>
@@ -137,7 +137,7 @@
 			                             		<input type="checkbox" name="wednesday_checkbox" id="id_wednesday_checkbox" class="uni" value="Wednesdays" style="margin-left:7px;" rel="wednesday"/><br />
 				  							</div>
                                 			<div class="start_right">
-                                				<span style="float: right; height: 20px; margin-top: 10px; margin-bottom:10px; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
+                                				<span style="float: right; line-height: 1.4em; font-weight: bold; font-style:italic;font-size:12px;">Full day</span>
                             					<div class="clear"></div>
 							  			 		{% if eventform.start_hours_on_thursday.errors %}
 							    					<p class="text-error" style="margin-left:14em;">{{ eventform.start_hours_on_thursday.errors|join:", "  }}</p>
@@ -1398,7 +1398,7 @@
 						    	<p class="error">{{ eventform.venue_name.errors|join:", "  }}</p>
 						  	{% endif %}
                          	<b>Description:</b>
-                         	<div class="formlist1_div">
+                         	<div class="formlist1_div description">
                          		{{eventform.description}}
                          	</div>
                          <!--<textarea  class="uni" style="width: 100%; height: 300px;" ></textarea>-->
@@ -1412,7 +1412,7 @@
              	{{eventform.status.as_hidden}}
              	{{eventform.location.as_hidden}}
              	{{eventform.event_poster.as_hidden}}
-             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:160px; width:40%;">Publish your event!</button>
+             <button type="submit" class="btn btn-large btn-block btn-primary" style="margin-left:200px; position: relative; top:-45px; width:40%;">Publish your event!</button>
              <!--<input id="createsubmit" type="submit"  value=" " name="createevent" class="submitButton"/>--> 
           </form>
        </div>
