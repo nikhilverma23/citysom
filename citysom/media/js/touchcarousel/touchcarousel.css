@@ -27,8 +27,8 @@
 	position: relative;
 	width: 580px;
 	height: 200px;		
-	float:right;
-	margin-right:2em;
+	/*float:right;*/
+	margin-right:0;
 	margin-bottom:1.5em;
 	/* style is removed after carousel is inited, use !important if you want to keep it*/
 	overflow: hidden; 
@@ -59,9 +59,10 @@
 
 .touchcarousel .touchcarousel-item {
 	/* use margin-right for spacing between items */
-	margin: 0 0 0 0;
+	margin: 0 2em 0 0;
 	padding: 0;	
-	float: left;		
+	float: left;
+	width:180px;
 }
 
 /* Last carousel item  */

@@ -1220,7 +1220,7 @@ p.long_text_header{color: #666; font-size: 16px;font-family: Georgia;font-weight
 .cre_event{color: #666; font-size: 30px;float:left;margin-bottom:10px; margin-top:40px;width:auto;font-family: Georgia;font-weight: normal;font-style: normal; width:100%;}
 #login{width: 100%; float:left; height:auto;margin-top:10px;}
 
-.login_content{ padding: 3em 1em; width:55em;height:1280px;}
+.login_content{ padding: 3em 1em; min-height:500px;}
 .cre_event_content{float:left;width:78%; }
 
 .upload_image{width:100%; clear:both;}
@@ -1323,8 +1323,8 @@ p.mainerror{display: block; height: 35px; color: #FF0000;}
 /*.login_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#444444; margin-top:8px; margin-left:2em; }*/
 .cre_event_content .form_fields label{display: block; width: 150px; float: left; font-size:12px; font-weight:bold; color:#111111;}
 
-.login_content .form_fields input[type=text],.login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:110px; width: 40%;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
-.cre_event_content .form_fields input[type=text],.login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:110px; width: 40%;margin-top: 0px;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
+.login_content .form_fields input[type=text], .login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:0px; width: 40%;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
+.cre_event_content .form_fields input[type=text], .login_content .form_fields input[type=password]{/*border: 0.1px solid #E0E0E0;*/ margin-left:0px; width: 40%;margin-top: 0px;/* height:1.8em; border-radius:5px;font-size:1em;font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;font-weight:normal;padding:3px 8px;color:#030303;background-color: #fff; outline:0;*/}
 
 .login_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
 .cre_event_content .form_fields input[type=radio]{background-image: url(../images/sprite.png); background-repeat: no-repeat; -webkit-font-smoothing: antialiased;height:18px;width:18px;background-position:0px -279px; border:none;}
@@ -1394,15 +1394,14 @@ button.uploader:active{
 }
 
 .showtime_fs{
-	border: 1px solid #FFB280;
+	border: 1px solid #ddd;
 	border-radius:5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	margin-left:2em;
 	margin-right:2em;
-	margin-bottom:1em;
-	background-color:#FFE0CC;
-	width:85%;
+	background-color:#E6E6E6;
+	width:89%;
 }
 
 .showtime_select_div{
@@ -1425,9 +1424,9 @@ button.uploader:active{
 }
 
 .showtime_fs legend{
-	font-size:1.1em;
-	font-weight:normal;
-	font-style:italic;
+	font-size:1.4em;
+	font-weight:bold;
+	font-style:normal;
 	color: #333333;
 	padding: 0.5em 0.5em 0.5em;
 	margin-left:2em;
@@ -1569,7 +1568,7 @@ a.custom_link:hover
 	font-size:12px;
 }
 .performance_hours_div{
-	margin-left:2.5em;
+	margin-left:2em;
 	font-size:0.9em;
 	line-height:1em;
 	color:#111;
@@ -1758,7 +1757,7 @@ a.custom_link:hover
 .carousel_pres{
 	margin-bottom:1em;
 	margin-top:1em;
-	margin-left:2em;
+	margin-left:1em;
 }
 
 .carousel_pres img{
@@ -1829,7 +1828,7 @@ img.ue_im{
 }
 div.account_div
 {
-    margin: 20px 15px 0px;
+    margin: 0px;
 }
 h1.account_title
 {
@@ -1837,23 +1836,24 @@ h1.account_title
     border-bottom: 1px groove #FEFEFE;
     font-weight: bold;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    padding: 10px;
+    padding: 0 10px;
     color:#666666;
 }
 div.main_account
 {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 div.left_account
 {
     float: left;
-    width: 200px;
+    width: 220px;
+    min-height: 500px;
 }
 div.right_account
 {
-    float: left;
-    width: 70%;
-    margin-left: 5em;
+    /*float: left;
+    width: 70%;*/
+    margin-left: 220px;
 }
 div.left_title
 {
@@ -1864,8 +1864,8 @@ div.left_title
 }
 div.left_links
 {
-    padding-left: 20px;
-    margin-bottom: 80px;
+    padding-left: 12px;
+    margin-bottom: 20px;
 }
 div.left_links:last-child
 {
@@ -1874,6 +1874,7 @@ div.left_links:last-child
 div.left_links ul
 {
     list-style: none;
+    margin-left:0;
 }
 div.left_links ul li
 {
@@ -1887,6 +1888,7 @@ div.left_links ul li a
     font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:0.9em;
 }
+div.left_links ul li a:hover{color:#5d5d5d;}
 div.right_title
 {
     background: #F0F0F0;
@@ -1899,8 +1901,9 @@ div.right_title
 }
 div.right_content
 {
-    margin: 0px -100px 50px 30px;
+    /*margin: 0px -100px 50px 30px;*/
     /*padding: 10px 20px;*/
+    margin:0 0 15px 10px;
     border: 1px solid #E0E0E0;
     background: #fff;
     border-radius:6px;
@@ -1971,8 +1974,8 @@ div.star-rating-readonly a{cursor:default !important;}
 div.star-rating{background:transparent!important;overflow:hidden!important;}
 /* END jQuery.Rating Plugin CSS */
 
-textarea.emails_textarea{width: 98%; height: 60px; border: 1px solid #DDDDDD;}
-a.emails_link{color: #FD8F53; font-weight: bold; font-size:1em;}
+textarea.emails_textarea{width: 95%; margin-left:10px; height: 60px; border: 1px solid #DDDDDD;}
+a.emails_link{color: #FD8F53; font-weight: bold; font-size:1em; margin-right: 16px;}
 div.message_success{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
 div.message_error{background: #FD8F53; width: 100%; border-radius: 10px; color: #FFFFFF; padding: 10px; margin-top: 5px; font-weight: bold;}
 #city_change_div{position: absolute; top:96px; display: none; left:0px; background: #FBFBFB; padding: 10px; border-radius: 0px; color: #666666; font-family: Helvetica; font-weight: bold; font-size: 13px; border-color: #BEBEBE; box-shadow: 0 2px 4px rgba(0,0,0,0.12);}
@@ -2297,7 +2300,7 @@ ul#login_dropdown li a:hover{background: #FFFFFF; color:#000000; padding: 5px 10
 ul#login_dropdown li ul{background: #000000;}
 ul#login_dropdown li ul li{text-align:  left; width: 160px;}
 b.caret{margin-top:8px !important;}
-div.alert-info{background-color: #F9D2B8; color: #FF6600; border-color: #F9D2B8;}
+div.alert-info{background-color: #F9D2B8; color: green; border-color: #F9D2B8;}
 
 
 div.home_left_section{border: 2px solid #A8A5A3; border-radius: 20px 0px 20px 0px; margin-bottom: 20px;}
@@ -2362,7 +2365,7 @@ div.carousel{border-radius: 3px;}
 .category_class{width:auto !important;}
 .category_class option{padding-left:5px;}
 
+.showtime_fs .formlist1 b{width:135px;}
+.showtime_fs b{padding:3px 0;}
 
-
-
-
+.login_content label{margin:0 10px 0 0; display: inline-block; width:135px;}
